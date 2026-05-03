@@ -1,0 +1,476 @@
+10:21:17 **** Clean-only build of project ps_digital_clock_bsp ****
+make -k clean 
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src -s clean 
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_7/src -s clean 
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s clean 
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_4/src -s clean 
+make -C ps7_cortexa9_0/libsrc/iicps_v3_9/src -s clean 
+make -C ps7_cortexa9_0/libsrc/scugic_v4_0/src -s clean 
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s clean 
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s clean 
+make -C ps7_cortexa9_0/libsrc/seven_seg_v1_0/src -s clean 
+rm: cannot lstat `*.o': Invalid argument
+make[1]: *** [Makefile:26: clean] Error 1
+make -C ps7_cortexa9_0/libsrc/standalone_v7_0/src -s clean 
+make: *** [Makefile:33: ps7_cortexa9_0/libsrc/seven_seg_v1_0/src/make.clean] Error 2
+make -C ps7_cortexa9_0/libsrc/textlcd_v1_0/src -s clean 
+rm: cannot lstat `*.o': Invalid argument
+make[1]: *** [Makefile:26: clean] Error 1
+make: *** [Makefile:33: ps7_cortexa9_0/libsrc/textlcd_v1_0/src/make.clean] Error 2
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_3/src -s clean 
+make: Target 'clean' not remade because of errors.
+13:47:24 **** Build of project ps_digital_clock_bsp ****
+make -k all 
+"Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_7/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_7/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_4/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/iicps_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/iicps_v3_9/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scugic_v4_0/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v4_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/seven_seg_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/seven_seg_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/standalone_v7_0/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v7_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/textlcd_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/textlcd_v1_0/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_3/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src"
+make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling coresightps_dcc"
+arm-none-eabi-ar: creating ../../../lib/libxil.a
+"Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_7/src"
+make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_7/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling cpu_cortexa9"
+"Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_5/src"
+make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling devcfg"
+"Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_4/src"
+make -C ps7_cortexa9_0/libsrc/dmaps_v2_4/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling dmaps"
+"Running Make libs in ps7_cortexa9_0/libsrc/iicps_v3_9/src"
+make -C ps7_cortexa9_0/libsrc/iicps_v3_9/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling iicps"
+"Running Make libs in ps7_cortexa9_0/libsrc/scugic_v4_0/src"
+make -C ps7_cortexa9_0/libsrc/scugic_v4_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scugic"
+"Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scutimer"
+"Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src"
+make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling scuwdt"
+"Running Make libs in ps7_cortexa9_0/libsrc/seven_seg_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/seven_seg_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling seven_seg..."
+seven_seg_selftest.c: In function 'SEVEN_SEG_Reg_SelfTest':
+seven_seg_selftest.c:52:58: warning: comparison of integer expressions of different signedness: 'u32' {aka 'long unsigned int'} and 'int' [-Wsign-compare]
+    if ( SEVEN_SEG_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                          ^~
+seven_seg_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/standalone_v7_0/src"
+make -C ps7_cortexa9_0/libsrc/standalone_v7_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling standalone"
+In file included from usleep.c:56:
+xtime_l.h:87:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xil_sleeptimer.c:51:
+xtime_l.h:87:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from xtime_l.c:49:
+xtime_l.h:87:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+In file included from sleep.c:53:
+xtime_l.h:87:9: note: #pragma message: For the sleep routines, Global timer is being used
+ #pragma message ("For the sleep routines, Global timer is being used")
+         ^~~~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/textlcd_v1_0/src"
+make -C ps7_cortexa9_0/libsrc/textlcd_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling textlcd..."
+textlcd_selftest.c: In function 'TEXTLCD_Reg_SelfTest':
+textlcd_selftest.c:52:56: warning: comparison of integer expressions of different signedness: 'u32' {aka 'long unsigned int'} and 'int' [-Wsign-compare]
+    if ( TEXTLCD_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                        ^~
+textlcd_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+"Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_3/src"
+make -C ps7_cortexa9_0/libsrc/xadcps_v2_3/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
+"Compiling xadcps"
+'Finished building libraries'
+13:47:58 **** Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'WriteTLCDReg':
+../src/main.c:64:14: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   pRegVal[i] = temp;
+   ~~~~~~~~~~~^~~~~~
+../src/main.c: In function 'main':
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:45:3: warning: 'SegReg' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   WriteTLCDReg(TlcdReg_downline, SegReg);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: ps_digital_clock.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size ps_digital_clock.elf  |tee "ps_digital_clock.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  57316	   2600	  23328	  83244	  1452c	ps_digital_clock.elf
+'Finished building: ps_digital_clock.elf.size'
+' '
+14:09:18 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:45:11: error: 'Recvbuffer' undeclared (first use in this function); did you mean 'RecvBuffer'?
+   SegReg|=Recvbuffer[0];
+           ^~~~~~~~~~
+           RecvBuffer
+../src/main.c:45:11: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:23: src/main.o] Error 1
+14:09:44 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'WriteTLCDReg':
+../src/main.c:69:14: warning: 'temp' may be used uninitialized in this function [-Wmaybe-uninitialized]
+   pRegVal[i] = temp;
+   ~~~~~~~~~~~^~~~~~
+../src/main.c: In function 'main':
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: ps_digital_clock.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size ps_digital_clock.elf  |tee "ps_digital_clock.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  57444	   2600	  23328	  83372	  145ac	ps_digital_clock.elf
+'Finished building: ps_digital_clock.elf.size'
+' '
+15:09:54 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:58:4: warning: implicit declaration of function 'TEXT_LCD__mWriteReg'; did you mean 'TEXTLCD_mWriteReg'? [-Wimplicit-function-declaration]
+    TEXT_LCD__mWriteReg(XPAR_TEXTLCD_0_S00_AXI_BASEADDR,i*4, TlcdReg_upline[i*4+3] + (TcldReg_upline[i*4+2]<<8) + (TlcdReg_upline[i*4+1] <<16) + (TlcdReg_upline[i*4]<<24));
+    ^~~~~~~~~~~~~~~~~~~
+    TEXTLCD_mWriteReg
+../src/main.c:58:86: error: 'TcldReg_upline' undeclared (first use in this function); did you mean 'TlcdReg_upline'?
+    TEXT_LCD__mWriteReg(XPAR_TEXTLCD_0_S00_AXI_BASEADDR,i*4, TlcdReg_upline[i*4+3] + (TcldReg_upline[i*4+2]<<8) + (TlcdReg_upline[i*4+1] <<16) + (TlcdReg_upline[i*4]<<24));
+                                                                                      ^~~~~~~~~~~~~~
+                                                                                      TlcdReg_upline
+../src/main.c:58:86: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:59:91: error: 'TcldReg_downline' undeclared (first use in this function); did you mean 'TlcdReg_downline'?
+    TEXT_LCD__mWriteReg(XPAR_TEXTLCD_0_S00_AXI_BASEADDR,i*4+16, TlcdReg_downline[i*4+3] + (TcldReg_downline[i*4+2]<<8) + (TlcdReg_downline[i*4+1] <<16) + (TlcdReg_downline[i*4]<<24));
+                                                                                           ^~~~~~~~~~~~~~~~
+                                                                                           TlcdReg_downline
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:23: src/main.o] Error 1
+15:10:40 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:58:4: warning: implicit declaration of function 'TEXT_LCD__mWriteReg'; did you mean 'TEXTLCD_mWriteReg'? [-Wimplicit-function-declaration]
+    TEXT_LCD__mWriteReg(XPAR_TEXTLCD_0_S00_AXI_BASEADDR,i*4, TlcdReg_upline[i*4+3] + (TlcdReg_upline[i*4+2]<<8) + (TlcdReg_upline[i*4+1] <<16) + (TlcdReg_upline[i*4]<<24));
+    ^~~~~~~~~~~~~~~~~~~
+    TEXTLCD_mWriteReg
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/main.o: in function `main':
+C:\work\2021115390\ps_digital_clock\ps_digital_clock.sdk\ps_digital_clock\Debug/../src/main.c:58: undefined reference to `TEXT_LCD__mWriteReg'
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: C:\work\2021115390\ps_digital_clock\ps_digital_clock.sdk\ps_digital_clock\Debug/../src/main.c:59: undefined reference to `TEXT_LCD__mWriteReg'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: ps_digital_clock.elf] Error 1
+15:11:06 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:58:4: warning: implicit declaration of function 'TEXT_LCD_mWriteReg'; did you mean 'TEXTLCD_mWriteReg'? [-Wimplicit-function-declaration]
+    TEXT_LCD_mWriteReg(XPAR_TEXTLCD_0_S00_AXI_BASEADDR,i*4, TlcdReg_upline[i*4+3] + (TlcdReg_upline[i*4+2]<<8) + (TlcdReg_upline[i*4+1] <<16) + (TlcdReg_upline[i*4]<<24));
+    ^~~~~~~~~~~~~~~~~~
+    TEXTLCD_mWriteReg
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/main.o: in function `main':
+C:\work\2021115390\ps_digital_clock\ps_digital_clock.sdk\ps_digital_clock\Debug/../src/main.c:58: undefined reference to `TEXT_LCD_mWriteReg'
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: C:\work\2021115390\ps_digital_clock\ps_digital_clock.sdk\ps_digital_clock\Debug/../src/main.c:59: undefined reference to `TEXT_LCD_mWriteReg'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: ps_digital_clock.elf] Error 1
+15:11:25 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: ps_digital_clock.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size ps_digital_clock.elf  |tee "ps_digital_clock.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  57764	   2600	  23328	  83692	  146ec	ps_digital_clock.elf
+'Finished building: ps_digital_clock.elf.size'
+' '
+15:15:15 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:16:08 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:17:01 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:18:22 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:19:24 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:22:45 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../ps_digital_clock_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:31:2: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:2: warning: incompatible implicit declaration of built-in function 'sprintf'
+../src/main.c:31:2: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+../src/main.c:6:1:
++#include <stdio.h>
+ 
+../src/main.c:31:2:
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~
+../src/main.c:31:43: warning: 'sprintf' writing a terminating nul past the end of the destination [-Wformat-overflow=]
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+                                           ^
+../src/main.c:31:2: note: 'sprintf' output 17 bytes into a destination of size 16
+  sprintf(TlcdReg_upline, "Digital Clock   ");
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:35:15: warning: 'SendBuffer' is used uninitialized in this function [-Wuninitialized]
+   IicStatus = ReadRTC(Iic, SendBuffer, RecvBuffer);
+               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: ps_digital_clock.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../ps_digital_clock_bsp/ps7_cortexa9_0/lib -o "ps_digital_clock.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: ps_digital_clock.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size ps_digital_clock.elf  |tee "ps_digital_clock.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  57764	   2600	  23328	  83692	  146ec	ps_digital_clock.elf
+'Finished building: ps_digital_clock.elf.size'
+' '
+15:22:48 **** Incremental Build of configuration Debug for project ps_digital_clock ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
