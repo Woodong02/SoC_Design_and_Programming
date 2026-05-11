@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon May 11 22:42:28 2026
+# Process ID: 29520
+# Current directory: C:/SoC_Design_and_Programming/Project/interrupt/interrupt.runs/impl_1
+# Command line: vivado.exe -log system_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source system_wrapper.tcl -notrace
+# Log file: C:/SoC_Design_and_Programming/Project/interrupt/interrupt.runs/impl_1/system_wrapper.vdi
+# Journal file: C:/SoC_Design_and_Programming/Project/interrupt/interrupt.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source system_wrapper.tcl -notrace

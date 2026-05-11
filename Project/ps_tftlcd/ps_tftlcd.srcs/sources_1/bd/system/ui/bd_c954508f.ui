@@ -1,0 +1,43 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1590 -y -510 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 4 -x 1590 -y -530 -defaultsOSRD
+preplace port Hsync_0 -pg 1 -lvl 4 -x 1590 -y -360 -defaultsOSRD
+preplace port TFTLCD_DE_out_0 -pg 1 -lvl 4 -x 1590 -y -280 -defaultsOSRD
+preplace port TFTLCD_Tpower_0 -pg 1 -lvl 4 -x 1590 -y -260 -defaultsOSRD
+preplace port Vsync_0 -pg 1 -lvl 4 -x 1590 -y -380 -defaultsOSRD
+preplace port clk_0 -pg 1 -lvl 0 -x -90 -y -630 -defaultsOSRD
+preplace port opclk_0 -pg 1 -lvl 4 -x 1590 -y -400 -defaultsOSRD
+preplace portBus B_0 -pg 1 -lvl 4 -x 1590 -y -300 -defaultsOSRD
+preplace portBus G_0 -pg 1 -lvl 4 -x 1590 -y -320 -defaultsOSRD
+preplace portBus R_0 -pg 1 -lvl 4 -x 1590 -y -340 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 150 -y -490 -defaultsOSRD
+preplace inst tftlcd_0 -pg 1 -lvl 3 -x 920 -y -330 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 570 -y -360 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 150 -y -190 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 -60 -290 360 -240 720
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 -70 -590 350
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 370J -230 730
+preplace netloc tftlcd_0_B 1 3 1 N -300
+preplace netloc tftlcd_0_G 1 3 1 N -320
+preplace netloc tftlcd_0_Hsync 1 3 1 N -360
+preplace netloc tftlcd_0_R 1 3 1 N -340
+preplace netloc tftlcd_0_TFTLCD_DE_out 1 3 1 N -280
+preplace netloc tftlcd_0_TFTLCD_Tpower 1 3 1 N -260
+preplace netloc tftlcd_0_Vsync 1 3 1 N -380
+preplace netloc clk_0_1 1 0 3 N -630 N -630 720
+preplace netloc tftlcd_0_opclk 1 3 1 N -400
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 N -510 N -510 N
+preplace netloc processing_system7_0_DDR 1 1 3 N -530 N -530 N
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 370 -490n
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N -360
+levelinfo -pg 1 -90 150 570 920 1590
+pagesize -pg 1 -db -bbox -sgen -180 -650 1770 420
+"
+}
+{
+   "da_axi4_cnt":"1",
+   "da_ps7_cnt":"1"
+}

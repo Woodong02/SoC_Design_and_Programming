@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/impl_1'
+HD_PWD='E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

@@ -60,32 +60,31 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {HDL-1065} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param chipscope.maxJobs 3
+  set_param chipscope.maxJobs 4
   create_project -in_memory -part xc7z020clg484-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir C:/work/2021115390/ps_digital_clock/ps_digital_clock.cache/wt [current_project]
-  set_property parent.project_path C:/work/2021115390/ps_digital_clock/ps_digital_clock.xpr [current_project]
+  set_property webtalk.parent_dir E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.cache/wt [current_project]
+  set_property parent.project_path E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.xpr [current_project]
   set_property ip_repo_paths {
-  C:/work/2021115390/ip_repo/seven_seg_1.0
-  C:/work/2021115390/ip_repo/textlcd_1.0
+  E:/SoC_Design_and_Programming/test/ip_repo/seven_seg_1.0
+  E:/SoC_Design_and_Programming/test/ip_repo/textlcd_1.0
 } [current_project]
   update_ip_catalog
-  set_property ip_output_repo C:/work/2021115390/ps_digital_clock/ps_digital_clock.cache/ip [current_project]
+  set_property ip_output_repo E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-  add_files -quiet C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.dcp
+  add_files -quiet E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/system.bd
+  add_files E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/system.bd
   set_param project.isImplRun false
-  read_xdc C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc
+  read_xdc E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc
   set_param project.isImplRun true
   link_design -top system_wrapper -part xc7z020clg484-1
   set_param project.isImplRun false

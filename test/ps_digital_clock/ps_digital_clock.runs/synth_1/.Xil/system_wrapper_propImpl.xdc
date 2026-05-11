@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc rfile:../../../ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc rfile:../../../ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN "Y18" [get_ports "resetn_0"]
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]

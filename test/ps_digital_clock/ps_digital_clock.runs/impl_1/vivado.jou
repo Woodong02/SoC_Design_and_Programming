@@ -2,11 +2,11 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Tue Apr 28 10:14:48 2026
-# Process ID: 20900
-# Current directory: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/impl_1
+# Start of session at: Sun May  3 12:54:50 2026
+# Process ID: 4776
+# Current directory: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/impl_1
 # Command line: vivado.exe -log system_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source system_wrapper.tcl -notrace
-# Log file: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/impl_1/system_wrapper.vdi
-# Journal file: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/impl_1\vivado.jou
+# Log file: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/impl_1/system_wrapper.vdi
+# Journal file: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/impl_1\vivado.jou
 #-----------------------------------------------------------
 source system_wrapper.tcl -notrace

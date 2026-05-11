@@ -2,17 +2,17 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Tue Apr 28 10:13:51 2026
-# Process ID: 18864
-# Current directory: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1
+# Start of session at: Sun May  3 12:54:22 2026
+# Process ID: 17276
+# Current directory: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1
 # Command line: vivado.exe -log system_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_wrapper.tcl
-# Log file: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.vds
-# Journal file: C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1\vivado.jou
+# Log file: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.vds
+# Journal file: E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
 source system_wrapper.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
-INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/work/2021115390/ip_repo/seven_seg_1.0'.
-INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/work/2021115390/ip_repo/textlcd_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'e:/SoC_Design_and_Programming/test/ip_repo/seven_seg_1.0'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'e:/SoC_Design_and_Programming/test/ip_repo/textlcd_1.0'.
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
 Command: synth_design -top system_wrapper -part xc7z020clg484-1
 Starting synth_design
@@ -20,35 +20,35 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 6020 
+INFO: Helper process launched with PID 9856 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 751.609 ; gain = 177.570
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 752.195 ; gain = 177.008
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'system_wrapper' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/imports/hdl/system_wrapper.v:12]
-INFO: [Synth 8-6157] synthesizing module 'system' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:610]
-INFO: [Synth 8-6157] synthesizing module 'system_processing_system7_0_1' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_processing_system7_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_processing_system7_0_1' (1#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_processing_system7_0_1_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_ps7_0_axi_periph_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:930]
-INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1H7AUOX' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1H7AUOX' (2#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:12]
-INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_4Y7TYO' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:158]
-INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_4Y7TYO' (3#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:158]
-INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_11SE3QO' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:304]
-INFO: [Synth 8-6157] synthesizing module 'system_auto_pc_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_auto_pc_0' (4#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_11SE3QO' (5#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:304]
-INFO: [Synth 8-6157] synthesizing module 'system_xbar_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_xbar_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_xbar_0' (6#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_xbar_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_ps7_0_axi_periph_0' (7#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:930]
-INFO: [Synth 8-6157] synthesizing module 'system_rst_ps7_0_50M_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_rst_ps7_0_50M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_rst_ps7_0_50M_0' (8#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_rst_ps7_0_50M_0_stub.v:6]
-WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'system_rst_ps7_0_50M_0' has 10 connections declared, but only 6 given [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:867]
-INFO: [Synth 8-6157] synthesizing module 'system_seven_seg_0_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_seven_seg_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_seven_seg_0_0' (9#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_seven_seg_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_textlcd_0_0' [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_textlcd_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_textlcd_0_0' (10#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-18864-L7735/realtime/system_textlcd_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system' (11#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:610]
-INFO: [Synth 8-6155] done synthesizing module 'system_wrapper' (12#1) [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/imports/hdl/system_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'system_wrapper' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/imports/hdl/system_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'system' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:610]
+INFO: [Synth 8-6157] synthesizing module 'system_processing_system7_0_1' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_processing_system7_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_processing_system7_0_1' (1#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_processing_system7_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_ps7_0_axi_periph_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:930]
+INFO: [Synth 8-6157] synthesizing module 'm00_couplers_imp_1H7AUOX' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'm00_couplers_imp_1H7AUOX' (2#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:12]
+INFO: [Synth 8-6157] synthesizing module 'm01_couplers_imp_4Y7TYO' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:158]
+INFO: [Synth 8-6155] done synthesizing module 'm01_couplers_imp_4Y7TYO' (3#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:158]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_11SE3QO' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:304]
+INFO: [Synth 8-6157] synthesizing module 'system_auto_pc_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_auto_pc_0' (4#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_11SE3QO' (5#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:304]
+INFO: [Synth 8-6157] synthesizing module 'system_xbar_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_xbar_0' (6#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_xbar_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_ps7_0_axi_periph_0' (7#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:930]
+INFO: [Synth 8-6157] synthesizing module 'system_rst_ps7_0_50M_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_rst_ps7_0_50M_0' (8#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_rst_ps7_0_50M_0_stub.v:6]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'system_rst_ps7_0_50M_0' has 10 connections declared, but only 6 given [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:867]
+INFO: [Synth 8-6157] synthesizing module 'system_seven_seg_0_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_seven_seg_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_seven_seg_0_0' (9#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_seven_seg_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_textlcd_0_0' [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_textlcd_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_textlcd_0_0' (10#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/.Xil/Vivado-17276-Woodong_PC_25/realtime/system_textlcd_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system' (11#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/synth/system.v:610]
+INFO: [Synth 8-6155] done synthesizing module 'system_wrapper' (12#1) [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/imports/hdl/system_wrapper.v:12]
 WARNING: [Synth 8-3331] design s00_couplers_imp_11SE3QO has unconnected port M_ACLK
 WARNING: [Synth 8-3331] design s00_couplers_imp_11SE3QO has unconnected port M_ARESETN
 WARNING: [Synth 8-3331] design m01_couplers_imp_4Y7TYO has unconnected port M_ACLK
@@ -66,7 +66,7 @@ WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port M0
 WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port S00_ACLK
 WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port S00_ARESETN
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 819.051 ; gain = 245.012
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 820.082 ; gain = 244.895
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -79,167 +79,167 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 819.051 ; gain = 245.012
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 820.082 ; gain = 244.895
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 819.051 ; gain = 245.012
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 820.082 ; gain = 244.895
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_seven_seg_0_0/system_seven_seg_0_0/system_seven_seg_0_0_in_context.xdc] for cell 'system_i/seven_seg_0'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_seven_seg_0_0/system_seven_seg_0_0/system_seven_seg_0_0_in_context.xdc] for cell 'system_i/seven_seg_0'
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_textlcd_0_0/system_textlcd_0_0/system_textlcd_0_0_in_context.xdc] for cell 'system_i/textlcd_0'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_textlcd_0_0/system_textlcd_0_0/system_textlcd_0_0_in_context.xdc] for cell 'system_i/textlcd_0'
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc] for cell 'system_i/processing_system7_0'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc] for cell 'system_i/processing_system7_0'
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_xbar_0/system_xbar_0/system_xbar_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/xbar'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_xbar_0/system_xbar_0/system_xbar_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/xbar'
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0_in_context.xdc] for cell 'system_i/rst_ps7_0_50M'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0_in_context.xdc] for cell 'system_i/rst_ps7_0_50M'
-Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0/system_auto_pc_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/s00_couplers/auto_pc'
-Finished Parsing XDC File [c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0/system_auto_pc_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/s00_couplers/auto_pc'
-Parsing XDC File [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]
-Finished Parsing XDC File [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_wrapper_propImpl.xdc].
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_seven_seg_0_0/system_seven_seg_0_0/system_seven_seg_0_0_in_context.xdc] for cell 'system_i/seven_seg_0'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_seven_seg_0_0/system_seven_seg_0_0/system_seven_seg_0_0_in_context.xdc] for cell 'system_i/seven_seg_0'
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_textlcd_0_0/system_textlcd_0_0/system_textlcd_0_0_in_context.xdc] for cell 'system_i/textlcd_0'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_textlcd_0_0/system_textlcd_0_0/system_textlcd_0_0_in_context.xdc] for cell 'system_i/textlcd_0'
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc] for cell 'system_i/processing_system7_0'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc] for cell 'system_i/processing_system7_0'
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_xbar_0/system_xbar_0/system_xbar_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/xbar'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_xbar_0/system_xbar_0/system_xbar_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/xbar'
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0_in_context.xdc] for cell 'system_i/rst_ps7_0_50M'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0/system_rst_ps7_0_50M_0_in_context.xdc] for cell 'system_i/rst_ps7_0_50M'
+Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0/system_auto_pc_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Finished Parsing XDC File [e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_auto_pc_0/system_auto_pc_0/system_auto_pc_0_in_context.xdc] for cell 'system_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Parsing XDC File [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]
+Finished Parsing XDC File [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/constrs_1/imports/digital_clock_files2/top.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_wrapper_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/system_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/dont_touch.xdc]
-Finished Parsing XDC File [C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/dont_touch.xdc]
+Parsing XDC File [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 883.398 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 882.391 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 883.398 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 882.391 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 883.398 ; gain = 309.359
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 882.391 ; gain = 307.203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 883.398 ; gain = 309.359
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 882.391 ; gain = 307.203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 2).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 3).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 4).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 5).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 6).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 7).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 8).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 9).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 10).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 11).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 12).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 13).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 14).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 15).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 16).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 17).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 18).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 19).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 20).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 21).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 22).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 23).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 24).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 25).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 26).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 27).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 28).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 29).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 30).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 31).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 32).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 33).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 34).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 35).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 36).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 37).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 38).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 39).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 40).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 41).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 42).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 43).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 44).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 45).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 46).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 47).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 48).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 49).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 50).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 51).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 52).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 53).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 54).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 55).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 56).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 57).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 58).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 59).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 60).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 61).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 62).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 63).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 64).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 65).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 66).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 67).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 68).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 69).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 70).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 71).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 72).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 73).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 74).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 75).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 76).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 77).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 78).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 79).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 80).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 81).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 82).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 83).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 84).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 85).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 86).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 87).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 88).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 89).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 90).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 91).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 92).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 93).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 94).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 95).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 96).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 97).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 98).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 99).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 100).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 101).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 102).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 103).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 104).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 105).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 106).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 107).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 108).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 109).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 110).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 111).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 112).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 113).
-Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 114).
-Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  c:/work/2021115390/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 115).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 2).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 3).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 5).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 6).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 7).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 8).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 9).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 10).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 11).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 12).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 13).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 14).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 15).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 16).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 17).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 18).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 19).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 20).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 21).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 22).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 23).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 24).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 25).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 26).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 27).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 28).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 29).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 30).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 31).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 32).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 33).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 34).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 35).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 36).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 37).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 38).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 39).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 40).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 41).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 42).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 43).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 44).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 45).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 46).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 47).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 48).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 49).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 50).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 51).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 52).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 53).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 54).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 55).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 56).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 57).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 58).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 59).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 60).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 61).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 62).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 63).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 64).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 65).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 66).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 67).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 68).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 69).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 70).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 71).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 72).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 73).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 74).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 75).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 76).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 77).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 78).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 79).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 80).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 81).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 82).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 83).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 84).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 85).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 86).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 87).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 88).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 89).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 90).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 91).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 92).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 93).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 94).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 95).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 96).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 97).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 98).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 99).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 100).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 101).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 102).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 103).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 104).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 105).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 106).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 107).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 108).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 109).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 110).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 111).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 112).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 113).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 114).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  e:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.srcs/sources_1/bd/system/ip/system_processing_system7_0_1/system_processing_system7_0_1/system_processing_system7_0_1_in_context.xdc, line 115).
 Applied set_property DONT_TOUCH = true for system_i. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for system_i/seven_seg_0. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for system_i/textlcd_0. (constraint file  auto generated constraint, line ).
@@ -249,10 +249,10 @@ Applied set_property DONT_TOUCH = true for system_i/ps7_0_axi_periph. (constrain
 Applied set_property DONT_TOUCH = true for system_i/rst_ps7_0_50M. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for system_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 883.398 ; gain = 309.359
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 882.391 ; gain = 307.203
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 883.398 ; gain = 309.359
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 882.391 ; gain = 307.203
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -294,7 +294,7 @@ WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port M0
 WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port S00_ACLK
 WARNING: [Synth 8-3331] design system_ps7_0_axi_periph_0 has unconnected port S00_ARESETN
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 883.398 ; gain = 309.359
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 882.391 ; gain = 307.203
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -308,13 +308,13 @@ Start Applying XDC Timing Constraints
 INFO: [Synth 8-5578] Moved timing constraint from pin 'system_i/processing_system7_0/FCLK_CLK0' to pin 'system_i/processing_system7_0/bbstub_FCLK_CLK0/O'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 912.656 ; gain = 338.617
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 907.742 ; gain = 332.555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 912.805 ; gain = 338.766
+Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 907.816 ; gain = 332.629
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -326,7 +326,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:29 . Memory (MB): peak = 922.945 ; gain = 348.906
+Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 917.719 ; gain = 342.531
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -350,7 +350,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished IO Insertion : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -363,7 +363,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -375,25 +375,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -435,25 +435,25 @@ Report Instance Areas:
 |4     |      s00_couplers   |s00_couplers_imp_11SE3QO  |   177|
 +------+---------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 933.461 ; gain = 358.273
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 6 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:27 . Memory (MB): peak = 936.734 ; gain = 298.348
-Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 936.734 ; gain = 362.695
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 933.461 ; gain = 295.965
+Synthesis Optimization Complete : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 933.461 ; gain = 358.273
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 956.652 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 950.664 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 40 Infos, 23 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:42 . Memory (MB): peak = 956.652 ; gain = 655.355
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 956.652 ; gain = 0.000
+synth_design: Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 950.664 ; gain = 651.715
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 950.664 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
-INFO: [Common 17-1381] The checkpoint 'C:/work/2021115390/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'E:/SoC_Design_and_Programming/test/ps_digital_clock/ps_digital_clock.runs/synth_1/system_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_wrapper_utilization_synth.rpt -pb system_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 28 10:14:41 2026...
+INFO: [Common 17-206] Exiting Vivado at Sun May  3 12:54:43 2026...
