@@ -1,0 +1,7 @@
+# 로그
+*.log
+*.jou
+
+# OS
+.DS_Store
+Thumbs.db
