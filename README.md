@@ -66,6 +66,7 @@ SoC_Design_and_Programming/
 ├── bd/                  # Block Design tcl export
 ├── constraints/         # XDC 제약 파일
 ├── scripts/             # 프로젝트 재생성 tcl 스크립트
+├── backup/              # 이전 프로젝트 파일들 -> 자료 이전 필요
 └── README.md
 ```
 
