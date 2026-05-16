@@ -2,7 +2,7 @@
 
 ## 프로젝트 개요
 
-Zynq-7000 기반 학습용 보드 2대로 TDMA 필드버스(FlexRay)를 구성하고, 조도 센서 데이터를 노드 간 전송하는 시스템을 구현한다.
+Zynq-7000 기반 학습용 보드 2대로 TDMA 필드버스를 구성하고, 조도 센서 데이터를 노드 간 전송하는 시스템을 구현한다.
 
 - **보드**: Zynq-7000 학습용 보드 × 2 (동일 HW 구성)
 - **툴**: Vivado (버전 고정)
@@ -19,11 +19,11 @@ TFT-LCD, 7-Segment, Text LCD, 조도 센서, GPIO, DIP 스위치
 | IP | 인터페이스 | 역할 |
 |---|---|---|
 | TFT-LCD | AXI | PS가 가공한 데이터 출력 |
-| 7-Segment | FlexRay | 통신 관련 실시간 숫자 정보 표시 |
+| 7-Segment | TDMA | 통신 관련 실시간 숫자 정보 표시 |
 | Text LCD | AXI | 통신 관련 실시간 문자 정보 표시 |
-| FlexRay | AXI | TDMA 통신 전체 담당 (프레이밍, 클럭 동기 포함) |
-| 조도 센서 | FlexRay | 조도 값을 32비트로 출력 |
-| GPIO | FlexRay | 통신 신호 투명 연결 |
+| TDMA | AXI | TDMA 통신 전체 담당 (프레이밍, 클럭 동기 포함) |
+| 조도 센서 | TDMA | 조도 값을 32비트로 출력 |
+| GPIO | TDMA | 통신 신호 투명 연결 |
 
 ### PS / PL 역할 분담
 - **PL**: GPIO 통신, IP 구현, 센서 인터페이스
@@ -39,7 +39,7 @@ TFT-LCD, 7-Segment, Text LCD, 조도 센서, GPIO, DIP 스위치
 ```
 SoC_Design_and_Programming/
 ├── ip/                  # 패키징 완료된 커스텀 IP
-│   ├── flexray_v1.0/
+│   ├── tdma_v1.0/
 │   ├── tft_lcd_v1.0/
 │   ├── seven_seg_v1.0/
 │   ├── text_lcd_v1.0/
@@ -53,7 +53,7 @@ SoC_Design_and_Programming/
 │       ├── component.xml
 │       └── README.md    # 해당 IP 레지스터 맵 상세
 ├── dev/                 # 패키징 전 작업 파일
-│   ├── flexray/
+│   ├── tdma/
 │   │   ├── rtl/
 │   │   └── tb/
 │   ├── tft_lcd/
