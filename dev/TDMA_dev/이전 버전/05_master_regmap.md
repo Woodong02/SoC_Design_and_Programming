@@ -1,6 +1,6 @@
 # TDMA Master IP — 레지스터 맵 사양
 
-> 버전: 0.4 · 데이터 폭: 32비트 · 주소 폭: 32비트 · 엔디언: little-endian · 비트 순서: MSB first
+> 버전: 0.3 (초안) · 데이터 폭: 32비트 · 주소 폭: 32비트 · 엔디언: little-endian · 비트 순서: MSB first
 > 최대 슬레이브: 8개 (주소 0~7)
 
 ---
@@ -12,7 +12,6 @@
 | RW | 읽기/쓰기 |
 | RO | 읽기 전용 |
 | W1C | 쓰기 1로 클리어 |
-| RW† | PS 읽기/쓰기 + HW 자동 세팅 가능 |
 | reserved | 0으로 읽힘, 쓰기 무시 |
 
 ---
@@ -24,7 +23,7 @@
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
 | 0 | ENABLE | RW | 0 | 1: IP 동작 시작. 0: 정지 |
-| 1 | SOFT_RST | RW | 0 | 1: 소프트 리셋 (자동 클리어). HALT_CMD·모든 카운터 초기화 |
+| 1 | SOFT_RST | RW | 0 | 1: 소프트 리셋 (자동 클리어) |
 | 31:2 | reserved | — | 0 | — |
 
 ---
@@ -34,8 +33,9 @@
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
 | 9:0 | DIV | RW | 0 | clk_tick = clk / (DIV + 1). 1~1024 분주 |
-| 19:10 | GUARD_TICKS | RW | — | 슬롯 간 guard time 틱 수. GUARD_MIN_RO 이상으로 설정 |
-| 31:20 | reserved | — | 0 | — |
+| 19:10 | GUARD_TICKS | RW | — | 슬롯 간 guard time 틱 수. GUARD_MIN 이상으로 설정 |
+| 22:20 | RETRY_CNT | RW | 0 | 슬롯 내 재전송 횟수. 총 전송 = RETRY_CNT + 1 |
+| 31:23 | reserved | — | 0 | — |
 
 > 모든 노드의 LINK_CFG는 동일하게 설정해야 한다.
 
@@ -58,50 +58,48 @@
 | 7:4 | RECOVERY_TH | RW | 3 | 데이터 fault 복구 연속 성공 횟수 |
 | 11:8 | SYNC_FAULT_TH | RW | 3 | sync fault 누적 임계값 |
 | 15:12 | SYNC_RECOVERY_TH | RW | 3 | sync fault 복구 연속 성공 횟수 |
-| 19:16 | LINE_RECOVERY_TH | RW | 3 | 라인 fault 진입 및 복구 연속 횟수 |
+| 19:16 | LINE_RECOVERY_TH | RW | 3 | 라인 복구 연속 정상 횟수 |
 | 31:20 | reserved | — | 0 | — |
 
 ---
 
-### 0x10 — HALT_CMD
+### 0x10 — DRIFT_TH
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 7:0 | HALT_CMD | RW† | 0 | 슬레이브 중단 명령 비트맵. bit n = 1이면 슬레이브 n에 중단 명령 |
-| 31:8 | reserved | — | 0 | — |
-
-> HW가 다음 두 경우에 해당 비트를 자동으로 1로 세팅한다:
-> - CLOCK_FAULT 진입: bit n (해당 슬레이브)
-> - ADDR_ERR 감지: bit [rx_addr] (침범 식별 슬레이브)
->
-> PS는 언제든 쓰기 가능 (비트 클리어 포함). SOFT_RST 시 전체 초기화.
+| 31:0 | DRIFT_TH | RW | — | 사이클 간 허용 드리프트 절댓값. `\|drift[n][k]\| > DRIFT_TH` 시 SYNC_FAULT 카운터 증가 |
 
 ---
 
-### 0x14 — (reserved)
+### 0x14 — OFFSET_TH
+
+| 비트 | 이름 | 접근 | 초기값 | 설명 |
+|------|------|------|--------|------|
+| 31:0 | OFFSET_TH | RW | — | 허용 누적 오프셋 절댓값. `\|D[n][k]\| > OFFSET_TH` 시 즉시 CLOCK_FAULT |
 
 ---
 
 ## 2. 읽기 전용 계산값
 
-### 0x18 — SLOT_TICKS_RO
+### 0x18 — SLOT_TICKS
 
 | 비트 | 이름 | 접근 | 설명 |
 |------|------|------|------|
-| 31:0 | SLOT_TICKS | RO | 하드웨어가 자동 계산한 슬롯 길이 (틱) |
+| 31:0 | SLOT_TICKS | RO | 하드웨어가 자동 계산한 슬롯 길이 (틱). DIV, RETRY_CNT, GUARD_TICKS로부터 산출 |
 
-> `frame_ticks = 83 × 2 × (DIV + 1)` (83비트 Manchester)
-> `slot_ticks  = frame_ticks + GUARD_TICKS`
+> `SLOT_TICKS = (RETRY_CNT+1) × frame_ticks + RETRY_CNT × IFG_ticks + GUARD_TICKS`
+> `frame_ticks = 91 × 2 × (DIV+1)` (91비트 Manchester)
+> `IFG_ticks = 2 × 2 × (DIV+1)` (2비트 idle)
 
 ---
 
-### 0x1C — GUARD_MIN_RO
+### 0x1C — GUARD_MIN
 
 | 비트 | 이름 | 접근 | 설명 |
 |------|------|------|------|
-| 31:0 | GUARD_MIN | RO | 하드웨어가 계산한 최소 guard time (틱). GUARD_TICKS는 이 값 이상으로 설정 |
+| 31:0 | GUARD_MIN | RO | 하드웨어가 계산한 최소 guard time (틱). GUARD_TICKS는 이 값 이상으로 설정해야 함 |
 
-> `GUARD_MIN = RX_PROCESS_CYCLES + CABLE_DELAY_TICKS + BUS_TURNAROUND + MARGIN`
+> `GUARD_MIN = RX_PROCESS_CYCLES + CABLE_DELAY_TICKS + MARGIN` (구현 시 확정)
 
 ---
 
@@ -111,7 +109,7 @@
 
 | 비트 | 이름 | 접근 | 설명 |
 |------|------|------|------|
-| 31:0 | TX_TICK | RO | 마스터가 가장 최근 브로드캐스트한 틱 값 (cycle_start 래치, 사이클마다 갱신) |
+| 31:0 | TX_TICK | RO | 마스터가 가장 최근 브로드캐스트한 틱 값. 사이클마다 갱신 |
 
 ---
 
@@ -137,29 +135,15 @@
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 31:0 | RX_TICK | RO | 0 | 슬레이브 n으로부터 수신한 TX_TICK 값 (공유 RX 버스 슬롯 n에서 추출) |
+| 31:0 | RX_TICK | RO | 0 | 슬레이브 n으로부터 수신한 TX_TICK 값. 시간동기 계산에 사용 |
 
 > 주소: [0]=0x44, [1]=0x48, [2]=0x4C, [3]=0x50, [4]=0x54, [5]=0x58, [6]=0x5C, [7]=0x60
 
 ---
 
-## 6. 노드별 오프셋 (×8)
+## 6. 노드별 상태 (×8)
 
 기준 주소: `0x64 + n × 0x04`, n = 0~7
-
-### NODE_OFFSET[n]
-
-| 비트 | 이름 | 접근 | 초기값 | 설명 |
-|------|------|------|--------|------|
-| 31:0 | OFFSET | RO | 0 | 슬레이브 n에 대해 마스터가 계산한 최근 offset[n][k]. signed 32비트. PS 소프트웨어에서 부호 있는 정수로 해석 |
-
-> 주소: [0]=0x64, [1]=0x68, [2]=0x6C, [3]=0x70, [4]=0x74, [5]=0x78, [6]=0x7C, [7]=0x80
-
----
-
-## 7. 노드별 상태 (×8)
-
-기준 주소: `0x84 + n × 0x04`, n = 0~7
 
 ### NODE_STATUS[n]
 
@@ -170,10 +154,10 @@
 | 10:7 | SYNC_FAULT_CNT | RO | 0 | sync fault 누적 카운터 |
 | 14:11 | RECOV_CNT | RO | 0 | 복구 확인 연속 성공 카운터 |
 | 15 | DATA_VALID | W1C | 0 | 1: 새 payload 수신됨 |
-| 16 | PREAMBLE_MISS | W1C | 0 | 최근 슬롯 preamble 미검출 (LINE_FAULT 카운터 증가) |
+| 16 | PREAMBLE_ERR | W1C | 0 | 최근 슬롯 preamble 오류 |
 | 17 | FRAME_ERR | W1C | 0 | 최근 슬롯 프레임 구조 오류 |
-| 18 | HAMMING_ERR | W1C | 0 | 최근 슬롯 Hamming 2비트 오류 (정정 불가) |
-| 19 | ADDR_ERR | W1C | 0 | 최근 슬롯 주소 불일치. 식별된 슬레이브에 HALT_CMD 자동 세팅됨 |
+| 18 | CRC_ERR | W1C | 0 | 최근 슬롯 CRC 불일치 |
+| 19 | ADDR_ERR | W1C | 0 | 최근 슬롯 주소 불일치 |
 | 20 | SLOT_TIMEOUT | W1C | 0 | 최근 슬롯 무응답 |
 | 21 | SYNC_FAULT_FLAG | W1C | 0 | sync fault 발생 |
 | 22 | CLOCK_FAULT_FLAG | W1C | 0 | clock fault 발생 |
@@ -188,18 +172,18 @@
 | 001 | NORMAL | 정상 동작 |
 | 010 | DATA_FAULT | 데이터 오류 누적, 격리 중 |
 | 011 | DATA_RECOVERY | 데이터 복구 확인 중 |
-| 100 | SYNC_FAULT | 오프셋 이상, 격리 중 |
-| 101 | SYNC_RECOVERY | 오프셋 복구 확인 중 |
-| 110 | LINE_FAULT | 공유 RX 버스 이상, 격리 중 |
+| 100 | SYNC_FAULT | 드리프트 이상, 격리 중 |
+| 101 | SYNC_RECOVERY | 드리프트 복구 확인 중 |
+| 110 | LINE_FAULT | 물리 라인 이상, 격리 중 |
 | 111 | CLOCK_FAULT | 클럭 근본 불일치, 영구 격리 |
 
-> 주소: [0]=0x84, [1]=0x88, [2]=0x8C, [3]=0x90, [4]=0x94, [5]=0x98, [6]=0x9C, [7]=0xA0
+> 주소: [0]=0x64, [1]=0x68, [2]=0x6C, [3]=0x70, [4]=0x74, [5]=0x78, [6]=0x7C, [7]=0x80
 
 ---
 
-## 8. 글로벌 상태
+## 7. 글로벌 상태
 
-### 0xA4 — GLOBAL_STATUS
+### 0x84 — GLOBAL_STATUS
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
@@ -209,7 +193,7 @@
 
 ---
 
-### 0xA8 — CYCLE_CNT
+### 0x88 — CYCLE_CNT
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
@@ -217,25 +201,24 @@
 
 ---
 
-## 9. 인터럽트
+## 8. 인터럽트
 
-### 0xAC — IRQ_STATUS
+### 0x8C — IRQ_STATUS
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
 | 0 | CYCLE_DONE | W1C | 0 | TDMA 사이클 1회 완료 |
 | 1 | NODE_FAULT | W1C | 0 | 임의 노드 fault 상태 진입 |
 | 2 | NODE_RECOVERY | W1C | 0 | 임의 노드 NORMAL 복구 |
-| 3 | DATA_ERROR | W1C | 0 | 임의 노드 데이터 오류 (FRAME_ERR / HAMMING_ERR / SLOT_TIMEOUT) |
+| 3 | DATA_ERROR | W1C | 0 | 임의 노드 데이터 오류 (PREAMBLE/FRAME/CRC/ADDR/TIMEOUT) |
 | 4 | SYNC_FAULT | W1C | 0 | 임의 노드 SYNC_FAULT 진입 |
 | 5 | CLOCK_FAULT | W1C | 0 | 임의 노드 CLOCK_FAULT 진입 |
 | 6 | LINE_FAULT | W1C | 0 | 임의 노드 LINE_FAULT 진입 |
-| 7 | ADDR_ERR | W1C | 0 | ADDR_ERR 감지, 침범 슬레이브에 HALT_CMD 자동 세팅됨 |
-| 31:8 | reserved | — | 0 | — |
+| 31:7 | reserved | — | 0 | — |
 
 ---
 
-### 0xB0 — IRQ_MASK
+### 0x90 — IRQ_MASK
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
@@ -246,8 +229,7 @@
 | 4 | SYNC_FAULT_EN | RW | 0 | 1: SYNC_FAULT IRQ 활성화 |
 | 5 | CLOCK_FAULT_EN | RW | 0 | 1: CLOCK_FAULT IRQ 활성화 |
 | 6 | LINE_FAULT_EN | RW | 0 | 1: LINE_FAULT IRQ 활성화 |
-| 7 | ADDR_ERR_EN | RW | 0 | 1: ADDR_ERR IRQ 활성화 |
-| 31:8 | reserved | — | 0 | — |
+| 31:7 | reserved | — | 0 | — |
 
 > IRQ 핀 = OR(IRQ_STATUS & IRQ_MASK)
 > 원인 파악 순서: IRQ_STATUS → GLOBAL_STATUS.FAULT_MASK → NODE_STATUS[n]
@@ -258,14 +240,12 @@
 
 | 범위 | 그룹 | 레지스터 수 |
 |------|------|-------------|
-| 0x00 ~ 0x10 | 제어 (CTRL, LINK_CFG, NODE_CFG, FAULT_CFG, HALT_CMD) | 5 |
-| 0x14 | reserved | — |
-| 0x18 ~ 0x1C | 읽기 전용 계산값 (SLOT_TICKS_RO, GUARD_MIN_RO) | 2 |
+| 0x00 ~ 0x14 | 제어 (CTRL, LINK_CFG, NODE_CFG, FAULT_CFG, DRIFT_TH, OFFSET_TH) | 6 |
+| 0x18 ~ 0x1C | 읽기 전용 계산값 (SLOT_TICKS, GUARD_MIN) | 2 |
 | 0x20 | 타임스탬프 (TX_TICK) | 1 |
 | 0x24 ~ 0x40 | 노드별 수신 데이터 ×8 (NODE_DATA) | 8 |
 | 0x44 ~ 0x60 | 노드별 수신 틱 ×8 (NODE_TICK) | 8 |
-| 0x64 ~ 0x80 | 노드별 오프셋 ×8 (NODE_OFFSET, signed) | 8 |
-| 0x84 ~ 0xA0 | 노드별 상태 ×8 (NODE_STATUS) | 8 |
-| 0xA4 ~ 0xA8 | 글로벌 상태 (GLOBAL_STATUS, CYCLE_CNT) | 2 |
-| 0xAC ~ 0xB0 | 인터럽트 (IRQ_STATUS, IRQ_MASK) | 2 |
-| **합계** | | **44개** |
+| 0x64 ~ 0x80 | 노드별 상태 ×8 (NODE_STATUS) | 8 |
+| 0x84 ~ 0x88 | 글로벌 상태 (GLOBAL_STATUS, CYCLE_CNT) | 2 |
+| 0x8C ~ 0x90 | 인터럽트 (IRQ_STATUS, IRQ_MASK) | 2 |
+| **합계** | | **37개** |

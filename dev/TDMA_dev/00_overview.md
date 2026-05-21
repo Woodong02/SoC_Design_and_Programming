@@ -1,8 +1,8 @@
 # TDMA IP 설계 개요
 
-> 버전: 0.1 · 작성일: 2026-05-18
-> 이 문서는 PHY부터 레지스터 맵까지 전체 설계를 한눈에 파악하기 위한 요약입니다.
-> 각 항목의 상세 근거는 `phy_decisions.md`, `datalink_decisions.md`, `sync_decisions.md`, `fault_decisions.md`를 참조하세요.
+> 버전: 0.4 · 작성일: 2026-05-21
+> 이 문서는 PHY부터 레지스터 맵까지 전체 설계를 한눈에 파악하기 위한 요약이다.
+> 각 항목의 상세 근거는 01~06 문서, 포트 정의는 07~08 문서를 참조한다.
 
 ---
 
@@ -11,81 +11,81 @@
 ```
         ┌─────────────────────────────────────────┐
         │                 Master                  │
-        └──┬──────┬──────┬──── ... ────┬──────────┘
-     TX 케이블 (Master → 모든 Slave, 브로드캐스트)
-           │      │      │             │
-     RX 케이블 (각 Slave → Master, 점대점)
-           │      │      │             │
-        Slave0  Slave1  Slave2  ...  Slave7
+        └────────────────────┬────────────────────┘
+                             │ TX 케이블 (Master → 모든 Slave, 브로드캐스트)
+              ┌──────────────┼──────────────┐
+           Slave0          Slave1  ...    Slave7
+              │              │              │
+              └──────────────┴──────────────┘
+                    공유 RX 버스 (모든 Slave → Master)
+                    각 Slave는 자신의 TDMA 슬롯에서만 구동
+                    슬롯 외 구간: High-Z (삼상 개방)
 ```
 
 | 항목 | 사양 |
 |------|------|
-| 토폴로지 | 스타형, 마스터 1 + 슬레이브 최대 8 |
-| 케이블 | TX / RX 이중 단방향 케이블 |
-| 연결 방식 | 슬레이브별 점대점 (공유 버스 없음) |
+| 토폴로지 | 마스터 1 + 슬레이브 최대 8 |
+| TX 케이블 | 마스터 브로드캐스트 전용. 슬레이브 전체 공유 |
+| RX 케이블 | 슬레이브 전체가 공유하는 단일 버스. TDMA로 충돌 방지 |
 | 슬레이브 주소 | 3비트 (0~7) |
-| 기준 클럭 | 25 MHz (각 노드 독립 크리스탈) |
+| 기준 클럭 | 25 MHz. 동일 생산 공정 별도 크리스탈 (미세 주파수 편차 존재) |
+| 전송 속도 | 125 kbps (DIV 설정으로 조정 가능) |
 
-TX 케이블은 마스터가 모든 슬레이브에 동시에 브로드캐스트하는 전용선이고,
-RX 케이블은 슬레이브마다 마스터에 연결된 독립선이다.
-이중 케이블로 TX/RX가 물리적으로 분리되어 충돌 방지 로직이 불필요하다.
+공유 RX 버스에서 High-Z는 동작의 전제 조건이다. 슬롯 외 구간에 드라이버가 능동 구동하면 버스 경합이 발생한다. TDMA 슬롯 분리가 충돌을 구조적으로 방지하므로 별도 중재 로직이 불필요하다.
 
 ---
 
 ## 2. 물리 계층
 
-| 항목 | 결정 |
-|------|------|
-| 비트 인코딩 | Manchester (셀프 클로킹, 별도 클럭선 불필요) |
-| 비트 순서 | MSB first |
-| 아이들 상태 | High |
-| 단선 감지 | 수신 측 풀다운 저항 → 단선 시 라인이 Low로 내려감 |
-| 전송 속도 | 125 kbps (DIV 설정으로 조정 가능) |
+| 항목       | 결정                                                   |
+| -------- | ---------------------------------------------------- |
+| 비트 인코딩   | Manchester (셀프 클로킹, 별도 클럭선 불필요)                      |
+| 비트 순서    | MSB first                                            |
+| 아이들 상태   | High-Z (삼상 개방). 슬롯 외 구간 및 전송 미수행 시                   |
+| 라인 이상 감지 | preamble(0x55) 미검출 LINE_RECOVERY_TH회 연속 → LINE_FAULT |
+| 종단 저항    | 없음 (50cm 단거리, 125kbps 저속에서 불필요)                      |
 
-Manchester 인코딩은 비트 중간에 반드시 전이가 발생하므로, 수신 측이 클럭 선 없이 비트 타이밍을 복원한다. 각 노드가 독립 크리스탈을 사용하는 구성에서 필수적이다.
-
-아이들을 High로 정의하면 케이블 단선(→ Low), 송신기 정지(→ High 유지), 프레임 시작(High→Low 전이) 세 가지를 명확히 구분할 수 있다.
+Manchester 인코딩은 비트 중간에 반드시 전이가 발생하므로 수신 측이 클럭 선 없이 비트 타이밍을 복원한다. 아이들 상태를 High-Z로 정의하면 슬레이브가 공유 RX 버스를 시분할로 구동할 수 있다.
 
 ---
 
 ## 3. 프레임 구조
 
-### 슬레이브 → 마스터 (RX 케이블)
+### 슬레이브 → 마스터 (공유 RX 버스)
 
 ```
-[preamble 8b][addr 3b][payload 32b][TX_TICK 32b][CRC-16 16b]
- ←──────────────────── 91비트 ────────────────────────────→
-               └────────── CRC 커버 범위 ──────────────────┘
+[preamble 8b][addr 3b][payload 32b][TX_TICK 32b][Hamming 8b]
+ ←────────────────────── 83비트 ──────────────────────────→
+              └────────── Hamming 커버 (67비트) ──────────┘
 ```
 
 | 필드 | 설명 |
 |------|------|
-| preamble | 0x55 고정. 수신 측 비트 타이밍 복원용 |
-| addr | 슬레이브 자신의 주소 (0~7). 마스터 슬롯 검증에 사용 |
+| preamble | 0x55 고정. Manchester 클럭 복원용 |
+| addr | 슬레이브 주소 (0~7). 공유 버스에서 마스터가 송신자를 식별하고 슬롯 번호와 대조 |
 | payload | 슬레이브 센서 데이터 32비트 |
-| TX_TICK | 슬레이브 보정 타임스탬프 (`raw_counter + TICK_OFFSET`) |
-| CRC-16 | CRC-16 CCITT (0x1021), addr부터 TX_TICK까지 커버 |
+| TX_TICK | 슬레이브 보정 타임스탬프 (`raw_counter + TICK_OFFSET`, signed 덧셈) |
+| Hamming | SEC-DED 8비트. addr + payload + TX_TICK (67비트) 커버 |
 
 ### 마스터 → 슬레이브 (TX 케이블, 브로드캐스트)
 
 ```
-[preamble 8b][TX_TICK 32b][CRC-16 16b]
- ←────────────── 56비트 ─────────────→
-               └── CRC 커버 범위 ────┘
+[preamble 8b][HALT_CMD 8b][reserved 27b][TX_TICK 32b][Hamming 8b]
+ ←────────────────────────── 83비트 ──────────────────────────────→
+              └──────────────── Hamming 커버 (67비트) ──────────────┘
 ```
 
-마스터 브로드캐스트는 시간 동기용 틱 배포만이 목적이므로 최소 구조로 설계한다.
+| 필드 | 설명 |
+|------|------|
+| preamble | 0x55 고정. Manchester 클럭 복원용 |
+| HALT_CMD | 슬레이브 중단 명령 비트맵. bit n=1이면 슬레이브 n 중단 |
+| reserved | 0 고정. 향후 사용 예약 |
+| TX_TICK | 마스터 브로드캐스트 타임스탬프 |
+| Hamming | SEC-DED 8비트. 슬레이브 프레임과 동일한 67비트 커버 → 동일 Hamming 모듈 공유 |
 
-### 슬롯 내 재전송
+양측 프레임이 83비트로 통일되어 슬롯 구조 계산이 단순하다. Hamming 커버 대상이 동일(67비트)하므로 인코더/디코더 로직을 마스터·슬레이브가 공유한다.
 
-```
-[프레임][IFG 2b][프레임][IFG 2b] ... [프레임][guard time]
- ←──────────── RETRY_CNT + 1 회 ──────────────→
-```
-
-- IFG(Inter-Frame Gap) 2비트: RX 엔진이 CRC 검사 후 상태를 리셋할 여유 확보
-- 재전송 시 TX_TICK 값은 첫 전송과 동일하게 유지 (타임스탬프 일관성)
+**Hamming 구현**: 67비트 데이터를 Hamming(127,120) 표준 블록의 앞 67 슬롯에 MSB first 배치, 나머지 53 슬롯을 0으로 패딩. 7 패리티 비트 + 1 전체 패리티 = 8비트 추출. 1비트 오류: 자동 정정. 2비트 오류: 검출만, 프레임 폐기.
 
 ---
 
@@ -93,37 +93,31 @@ Manchester 인코딩은 비트 중간에 반드시 전이가 발생하므로, �
 
 ### 슬롯 길이 자동 계산
 
-사용자가 슬롯 길이를 직접 설정하지 않는다. 하드웨어가 자동 계산한다.
-
 ```
-frame_ticks = 91 × 2 × (DIV + 1)
-IFG_ticks   =  2 × 2 × (DIV + 1)
-
-slot_ticks  = (RETRY_CNT + 1) × frame_ticks
-            + RETRY_CNT × IFG_ticks
-            + GUARD_TICKS
+frame_ticks = 83 × 2 × (DIV + 1)
+slot_ticks  = frame_ticks + GUARD_TICKS
 ```
 
-계산 결과는 `SLOT_TICKS` (RO) 레지스터로 확인할 수 있다.
-`GUARD_MIN` (RO) 레지스터는 하드웨어가 계산한 최소 guard time을 제공한다.
+`SLOT_TICKS_RO` (RO 레지스터)로 확인 가능. `GUARD_MIN_RO` (RO)는 HW가 계산한 최소 guard time.
 
 ### 사이클 구조
 
 ```
-사이클 시작
+사이클 시작 (cycle_start)
     │
-    ├─ Master TX: 브로드캐스트 (TX_TICK 포함)
+    ├─ Master TX: 브로드캐스트 전송 시작 (preamble 첫 액티브 에지)
     │
-    ├─ Slot 0: Slave 0 전송 (에지 감지 즉시)
+    ├─ Slot 0: Slave 0 전송 (에지 감지 즉시, Master TX와 동시)
     ├─ Slot 1: Slave 1 전송 (1 × slot_ticks 후)
     ├─ Slot 2: Slave 2 전송 (2 × slot_ticks 후)
     │   ...
     └─ Slot N: Slave N 전송 (N × slot_ticks 후)
+         └─ 전송 완료 후 guard time → guard time 정 중앙: 오프셋 보정 및 fault 판정
 ```
 
-슬레이브는 마스터 브로드캐스트의 첫 번째 falling edge를 감지한 순간부터 로컬 클럭으로 카운팅하여 자신의 슬롯 시작 시각을 결정한다.
+슬레이브는 마스터 브로드캐스트의 첫 번째 액티브 에지(High-Z → 첫 드라이브 전이)를 감지하여 슬롯 카운팅을 시작한다.
 
-fault 상태 슬레이브의 슬롯은 사이클에서 제거하지 않는다. 사이클 주기가 변하면 다른 슬레이브의 타이밍이 흔들리기 때문이다.
+fault 상태 슬레이브의 슬롯은 사이클에서 제거하지 않는다. 공유 버스에서 슬롯 구조를 변경하면 전 슬레이브의 타이밍이 동시에 흔들리기 때문이다.
 
 ---
 
@@ -133,33 +127,35 @@ fault 상태 슬레이브의 슬롯은 사이클에서 제거하지 않는다. �
 
 ```
 마스터: raw_counter (보정 없음)
-슬레이브: raw_counter + TICK_OFFSET (→ 이것이 TX_TICK으로 전송됨)
+슬레이브: raw_counter + TICK_OFFSET → TX_TICK으로 전송 (TICK_OFFSET: signed 32비트)
 ```
 
-### 드리프트 계산 (매 사이클)
+### 오프셋 계산 (매 사이클)
 
 **슬레이브 측:**
 ```
-D[k]     = RX_TICK[k] - TX_TICK[k]   (수신한 마스터 틱 - 내가 보낸 틱)
-drift[k] = D[k] - D[k-1]
+D[k]       = RX_TICK[k] - SLV_TX_TICK[k]   (수신한 마스터 틱 - 내가 보낸 틱)
+offset[k]  = D[k] - D[k-1]                 (D의 변화량 = 클럭 편차)
 ```
 
 **마스터 측 (슬레이브 n에 대해):**
 ```
-D[n][k]     = NODE_TICK[n][k] - TX_TICK[k]
-drift[n][k] = D[n][k] - D[n][k-1]
+D[n][k]      = NODE_TICK[n][k] - MST_TX_TICK[k]
+offset[n][k] = D[n][k] - D[n][k-1]
 ```
 
-두 계산은 같은 물리적 클럭 차이를 각자 독립적으로 측정한다.
+k=0 사이클: D[0]만 저장. 보정 및 fault 판정 스킵. k=1부터 정상 동작.
 
 ### 슬레이브 보정
 
-guard time 진입 시 하드웨어가 자동으로:
+guard time 정 중앙 시점(frame_ticks 경과 후 GUARD_TICKS/2 카운팅 완료)에 하드웨어가 자동으로:
 ```
-TICK_OFFSET -= drift[k]
+TICK_OFFSET += offset[k]    // signed 덧셈. offset > 0 → 마스터가 빠름 → TICK_OFFSET 증가
 ```
 
-크리스탈 드리프트는 환경이 고정적이면 사실상 상수이므로, 전량 보정 1회 후 안정 상태가 유지된다.
+동일 공정 크리스탈의 드리프트는 사실상 상수이므로, 보정 1회 후 안정 상태를 유지한다. guard time 정 중앙은 슬롯 카운터와 별개의 내부 카운터로 관리한다.
+
+마스터의 offset[n][k]는 `NODE_OFFSET[n]` 레지스터(signed)로 PS에 노출된다.
 
 ---
 
@@ -173,103 +169,159 @@ CLOCK_FAULT > LINE_FAULT > SYNC_FAULT > DATA_FAULT
 
 ### Fault 종류 요약
 
-| Fault | 감지 조건 | 감지 주체 | 복구 |
-|-------|----------|----------|------|
-| DATA_FAULT | PREAMBLE/FRAME/CRC/ADDR 오류 또는 타임아웃 누적 | 마스터 | 자동 (RECOVERY_TH 연속 성공) |
-| SYNC_FAULT | `\|drift\| > DRIFT_TH` | 마스터 + 슬레이브 각자 | 자동 (슬레이브 1사이클 PAUSE) |
-| CLOCK_FAULT | `\|D[k]\| > OFFSET_TH` (누적 오프셋 초과) | 마스터 전용 | 수동 (PS SOFT_RST) |
-| LINE_FAULT | RX 라인 stuck Low (1사이클 확인) | 마스터 + 슬레이브 각자 | 자동 (LINE_RECOVERY_TH 연속 정상) |
+| Fault | 감지 조건 | 감지 주체 | 동작 | 복구 |
+|-------|----------|----------|------|------|
+| DATA_FAULT | FRAME/HAMMING/SLOT_TIMEOUT 누적 ≥ FAULT_TH | 마스터 | 슬롯 격리 | 자동 (RECOVERY_TH 연속 정상) |
+| SYNC_FAULT | `\|offset\| > GUARD_TICKS >> 2` | 마스터 + 슬레이브 | 마스터: 슬롯 격리. 슬레이브: 1사이클 PAUSE | 자동 복구 |
+| CLOCK_FAULT | `\|offset\| > GUARD_TICKS >> 1` | 마스터 전용 | 영구 격리 + HALT_CMD HW 자동 세팅 | 수동 (SOFT_RST) |
+| LINE_FAULT | preamble 미검출 LINE_RECOVERY_TH회 연속 | 마스터 + 슬레이브 | 격리. 마스터: PS IRQ | 자동 (LINE_RECOVERY_TH 연속 정상) |
+| ADDR_ERR | addr 필드 ≠ 슬롯 번호 (슬롯 점유자 침묵 후 확인) | 마스터 | 식별 슬레이브에 HALT_CMD 즉시 자동 세팅 | 수동 |
 
-### 마스터 상태 머신 (슬레이브 n별)
+LINE_FAULT는 공유 RX 버스 전체에 영향을 미친다. 모든 슬레이브 슬롯이 동시에 preamble 미검출 패턴을 보이면 버스 수준 장애로 판별할 수 있다.
+
+ADDR_ERR 시나리오: A가 슬롯 B 침범 → 충돌로 Hamming 오류 → FAULT_CNT[B] 누적 → HALT_CMD[B] → B 침묵 → A 단독 전송 → addr 불일치 확인 → 즉시 HALT_CMD[A].
+
+### HALT_CMD
+
+마스터 브로드캐스트 프레임에 포함된 8비트 비트맵. 슬레이브는 자신의 비트가 1인 브로드캐스트 수신 시 즉시 공유 버스 구동을 중단(High-Z)하고 FAULT 진입.
+
+| HW 자동 세팅 조건    | 대상 비트               |
+| -------------- | ------------------- |
+| CLOCK_FAULT 진입 | 해당 슬레이브(n)          |
+| ADDR_ERR 감지    | 침범 식별 슬레이브(rx_addr) |
+
+PS는 언제든 HALT_CMD 레지스터를 읽기/쓰기 가능. SOFT_RST 시 전체 클리어. 브로드캐스트 반영은 다음 사이클부터 (최대 1사이클 지연, 허용됨).
+
+### 마스터 상태 머신 (슬레이브 n별, 7상태)
 
 ```
-어느 상태에서든 CLOCK_FAULT → CLOCK_FAULT (PS 리셋만 복구)
-CLOCK_FAULT 제외, 어느 상태에서든 LINE_FAULT → LINE_FAULT → (자동복구) → NORMAL
+어느 상태에서든: |offset|>GUARD_TICKS/2 → CLOCK_FAULT (HALT_CMD HW 자동)
+               LINE_FAULT 감지 → LINE_FAULT → (자동복구) → NORMAL
 
 NORMAL
   ├─ FAULT_CNT ≥ FAULT_TH ──────────────▶ DATA_FAULT
   └─ SYNC_FAULT_CNT ≥ SYNC_FAULT_TH ───▶ SYNC_FAULT
 
-DATA_FAULT ──(슬레이브 재개)──▶ DATA_RECOVERY ──(RECOVERY_TH 연속 성공)──▶ NORMAL
-SYNC_FAULT ──(드리프트 정상)──▶ SYNC_RECOVERY ──(SYNC_RECOVERY_TH 연속)──▶ NORMAL
+DATA_FAULT ──(재개 감지)──▶ DATA_RECOVERY ──(RECOVERY_TH 연속 정상)──▶ NORMAL
+SYNC_FAULT ──(offset 정상)──▶ SYNC_RECOVERY ──(SYNC_RECOVERY_TH 연속)──▶ NORMAL
 ```
 
-fault 상태에서도 슬롯은 유지하며 RX 윈도우를 열어 복구를 감시한다.
-
-### 슬레이브 상태 머신
+### 슬레이브 상태 머신 (5상태)
 
 ```
-어느 상태에서든 LINE_FAULT → DEAD → (자동복구) → NORMAL
+어느 상태에서든: LINE_FAULT → DEAD → (자동복구) → NORMAL
+               HALT_CMD 수신 → FAULT 즉시 진입 (공유 버스 High-Z)
 
 NORMAL
-  ├─ |drift| > DRIFT_TH ──▶ PAUSE (1사이클) ──▶ NORMAL (자동 복귀)
-  └─ FAULT_CNT ≥ FAULT_TH ▶ FAULT ──(유효 브로드캐스트)──▶ RECOVERY ──▶ NORMAL
+  ├─ |offset[k]| > GUARD_TICKS>>2 ──▶ PAUSE (1사이클 전송 중단) ──▶ NORMAL
+  └─ FAULT_CNT ≥ FAULT_TH ──────────▶ FAULT
+
+FAULT ──(유효 브로드캐스트, HALT_CMD=0)──▶ RECOVERY ──(RECOVERY_TH 연속)──▶ NORMAL
 ```
 
 ---
 
 ## 7. 레지스터 맵 요약
 
-### 마스터 (총 37개, 0x00~0x90)
+### 마스터 (총 44개, 0x00~0xB0)
 
 | 범위 | 그룹 |
 |------|------|
-| 0x00~0x14 | 제어: CTRL, LINK_CFG, NODE_CFG, FAULT_CFG, DRIFT_TH, OFFSET_TH |
-| 0x18~0x1C | 읽기 전용 계산값: SLOT_TICKS, GUARD_MIN |
-| 0x20 | 타임스탬프: TX_TICK |
-| 0x24~0x40 | 노드별 수신 데이터: NODE_DATA[0~7] |
-| 0x44~0x60 | 노드별 수신 틱: NODE_TICK[0~7] |
-| 0x64~0x80 | 노드별 상태: NODE_STATUS[0~7] |
-| 0x84~0x88 | 글로벌 상태: GLOBAL_STATUS, CYCLE_CNT |
-| 0x8C~0x90 | 인터럽트: IRQ_STATUS, IRQ_MASK |
+| 0x00~0x10 | 제어: CTRL, LINK_CFG, NODE_CFG, FAULT_CFG, HALT_CMD |
+| 0x18~0x1C | 계산값 (RO): SLOT_TICKS_RO, GUARD_MIN_RO |
+| 0x20 | 타임스탬프: TX_TICK (RO) |
+| 0x24~0x40 | 노드별 수신 데이터: NODE_DATA[0~7] (RO) |
+| 0x44~0x60 | 노드별 수신 틱: NODE_TICK[0~7] (RO) |
+| 0x64~0x80 | 노드별 오프셋: NODE_OFFSET[0~7] (RO, signed) |
+| 0x84~0xA0 | 노드별 상태: NODE_STATUS[0~7] (RO/W1C) |
+| 0xA4~0xA8 | 글로벌 상태: GLOBAL_STATUS, CYCLE_CNT (RO) |
+| 0xAC~0xB0 | 인터럽트: IRQ_STATUS (W1C), IRQ_MASK (RW) |
 
-NODE_STATUS[n]의 STATE 인코딩:
+NODE_STATUS[n].STATE 인코딩:
 `000`=INACTIVE · `001`=NORMAL · `010`=DATA_FAULT · `011`=DATA_RECOVERY
 `100`=SYNC_FAULT · `101`=SYNC_RECOVERY · `110`=LINE_FAULT · `111`=CLOCK_FAULT
 
-### 슬레이브 (총 12개, 0x00~0x2C)
+### 슬레이브 (총 11개, 0x00~0x28)
 
 | 주소 | 레지스터 | 설명 |
 |------|---------|------|
 | 0x00 | CTRL | ENABLE, SOFT_RST |
-| 0x04 | LINK_CFG | DIV, GUARD_TICKS, RETRY_CNT (마스터와 동일 설정) |
+| 0x04 | LINK_CFG | DIV, GUARD_TICKS (마스터와 동일 설정) |
 | 0x08 | SLAVE_CFG | SLAVE_ADDR[2:0] |
 | 0x0C | FAULT_CFG | FAULT_TH, RECOVERY_TH, LINE_RECOVERY_TH |
-| 0x10 | DRIFT_TH | 드리프트 허용 임계값 |
-| 0x14 | TX_DATA | 송신 payload (PS 갱신) |
-| 0x18 | TX_TICK | 최근 전송 타임스탬프 (RO) |
-| 0x1C | RX_TICK | 최근 수신 마스터 틱 (RO) |
-| 0x20 | TICK_OFFSET | 보정 오프셋 (HW 자동 갱신, PS 읽기/쓰기 가능) |
-| 0x24 | STATUS | STATE, FAULT_CNT, RECOV_CNT, 오류 플래그 |
-| 0x28 | IRQ_STATUS | 인터럽트 상태 |
-| 0x2C | IRQ_MASK | 인터럽트 마스크 |
+| 0x10 | TX_DATA | 송신 payload (PS 갱신) |
+| 0x14 | TX_TICK | 최근 전송 타임스탬프 (RO) |
+| 0x18 | RX_TICK | 최근 수신 마스터 틱 (RO) |
+| 0x1C | TICK_OFFSET | 보정 오프셋 (RW, signed, HW 자동 갱신) |
+| 0x20 | STATUS | STATE, FAULT_CNT, RECOV_CNT, 오류 플래그 (RO/W1C) |
+| 0x24 | IRQ_STATUS | 인터럽트 상태 (W1C) |
+| 0x28 | IRQ_MASK | 인터럽트 마스크 (RW) |
 
-STATUS의 STATE 인코딩:
+STATUS.STATE 인코딩:
 `000`=IDLE · `001`=NORMAL · `010`=PAUSE · `011`=FAULT · `100`=RECOVERY · `101`=DEAD
 
 ---
 
-## 8. 설정 초기화 순서 (예시)
+## 8. 설정 초기화 순서
 
 ```
-1. LINK_CFG 설정 (모든 노드 동일: DIV, GUARD_TICKS, RETRY_CNT)
+1. LINK_CFG 설정 (모든 노드 동일: DIV, GUARD_TICKS)
 2. 마스터: NODE_CFG.NODE_CNT 설정 (활성 슬레이브 수)
-3. 마스터: FAULT_CFG, DRIFT_TH, OFFSET_TH 설정
+3. 마스터: FAULT_CFG 설정 (FAULT_TH, RECOVERY_TH, SYNC_FAULT_TH, SYNC_RECOVERY_TH, LINE_RECOVERY_TH)
 4. 슬레이브: SLAVE_CFG.SLAVE_ADDR 설정 (각자 다르게)
-5. 슬레이브: FAULT_CFG, DRIFT_TH 설정
+5. 슬레이브: FAULT_CFG 설정 (FAULT_TH, RECOVERY_TH, LINE_RECOVERY_TH)
 6. CTRL.ENABLE = 1 (마스터 먼저, 이후 슬레이브 순서 무관)
-   → 슬레이브는 첫 브로드캐스트 falling edge 감지 시 자동 동기 획득
+   → 슬레이브는 첫 브로드캐스트 액티브 에지 감지 시 자동 동기 획득
+```
+
+GUARD_TICKS 설정 기준:
+- `GUARD_TICKS ≥ GUARD_MIN_RO` (HW 계산 최솟값)
+- SYNC_FAULT 임계값 = `GUARD_TICKS >> 2`, CLOCK_FAULT 임계값 = `GUARD_TICKS >> 1` (하드와이어드)
+- 4의 배수가 아닐 경우 하위 비트 내림 처리 (보수적, 의도된 동작)
+
+---
+
+## 9. 모듈 구조 요약
+
+### 마스터
+
+```
+tdma_master_top
+├── clk_div          : 클럭 분주 (DIV+1)
+├── slot_timer       : TDMA 사이클·슬롯 관리. tx_tick cycle_start 래치 출력
+├── master_tx        : 브로드캐스트 프레임 생성 (83비트, Hamming 포함)
+├── shared_rx        : 공유 RX 버스 수신. Manchester 디코딩 + Hamming 검증
+│   ├── phy_rx
+│   └── frame_dec
+├── fault_fsm [×8]   : 슬레이브별 7상태 FSM + sync_monitor (오프셋 계산)
+├── regfile          : AXI-Lite. HALT_CMD HW 자동 세팅 OR 처리 포함
+└── irq_ctrl         : IRQ 집계
+```
+
+### 슬레이브
+
+```
+tdma_slave_top
+├── clk_div          : 클럭 분주 (마스터와 동일 모듈)
+├── master_rx        : 마스터 브로드캐스트 수신. 액티브 에지 감지. Hamming 검증. LINE_FAULT 카운터
+├── slot_timer       : 액티브 에지 기준 슬롯 카운팅. guard_mid 펄스 생성
+├── slave_tx         : 슬레이브 프레임 직렬 출력 (83비트, Hamming). tx_oe로 삼상 제어
+├── fault_fsm        : 5상태 FSM + sync_ctrl (오프셋 계산, TICK_OFFSET += offset[k])
+├── regfile          : AXI-Lite
+└── irq_ctrl         : IRQ 집계
 ```
 
 ---
 
-## 9. 관련 문서
+## 10. 관련 문서
 
 | 문서 | 내용 |
 |------|------|
-| `01_phy_decisions.md` | 물리 계층 설계 근거 (케이블, Manchester, 아이들 상태) |
-| `02_datalink_decisions.md` | 프레임 구조, CRC, 슬롯 타이밍, MAC 결정 근거 |
-| `03_sync_decisions.md` | 시간 동기 메커니즘, TICK_OFFSET 보정, Fault 분류 근거 |
-| `04_fault_decisions.md` | Fault 분류 체계, 상태 머신 상세, 임계값 레지스터 목록 |
-| `05_master_regmap.md` | 마스터 레지스터 맵 전체 사양 |
-| `06_slave_regmap.md` | 슬레이브 레지스터 맵 전체 사양 |
+| `01_phy_decisions(3).md` | 물리 계층: TX/RX 케이블 분리, 공유 RX 버스, Manchester, High-Z |
+| `02_datalink_decisions(3).md` | 프레임 구조, Hamming, 슬롯 타이밍, MAC 결정 근거 |
+| `03_sync_decisions(3).md` | 시간 동기 메커니즘, TICK_OFFSET 보정, 동기 관련 fault |
+| `04_fault_decisions(3).md` | Fault 분류 체계, 상태 머신, HALT_CMD, 임계값 레지스터 |
+| `05_master_regmap.md` | 마스터 레지스터 맵 사양 (v0.4) |
+| `06_slave_regmap.md` | 슬레이브 레지스터 맵 사양 (v0.2) |
+| `07_master_port_def.md` | 마스터 모듈 포트 정의 (v0.2) |
+| `08_slave_port_def.md` | 슬레이브 모듈 포트 정의 (v0.2) |
