@@ -1,13 +1,25 @@
 module clock_and_slot_Master (
     input wire resetn,
-    input wire clk_in,
+    input wire clk,
     input wire [9:0] guard_ticks,
     input wire [2:0] node_cnt,
 
-    output reg  [3:0] slot,
-    output reg  [10:0] clk_cnt
+    output reg  [2:0] slot,
+    output reg  [10:0] clk_cnt,
+    output reg  last_slot
 );
 
+  always @(posedge clk or negedge resetn) begin
+    if (!resetn) begin
+      last_slot <= 1'b0;
+    end
+    else begin
+      if (slot==node_cnt)
+        last_slot <= 1'b1;
+      else
+        last_slot <= 1'b0;
+    end
+  end  // clk_cnt reset at dataframe bit + guard time
 
   always @(posedge clk or negedge resetn) begin
     if (!resetn) begin

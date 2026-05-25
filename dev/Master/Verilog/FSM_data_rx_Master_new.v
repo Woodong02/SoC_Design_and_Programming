@@ -4,7 +4,6 @@
     input wire [9:0] DIV,
     input wire GPIO_in,
     input wire resetn,
-    input wire [2:0] slot,
 
     output reg [41:0] data_out,
     output reg out_sig,
@@ -22,8 +21,6 @@
     if (!resetn) begin
       clk_cnt <= 10'b0;
     end
-    else if(last_slot==1'b1 && slot==3'b0)
-      clk_cnt <= 10'b0;
     else begin
       case(state)
         2'd0: begin
@@ -90,7 +87,7 @@
       buffer <= 42'b0;
     end
     else begin
-      if(state==2'd2 && bit_cnt==6'd41 && clk_cnt==DIV>>1)
+      if(state==2'd2 && bit_cnt==6'd40 && clk_cnt==DIV>>1)
         buffer <= 42'b0;
       else if(clk_cnt == DIV>>1)
         buffer <= {buffer[40:0], GPIO_in};
@@ -135,8 +132,8 @@
       data_out <= 42'b0;
     end
     else begin
-      if(state==2'd2 && clk_cnt == DIV>>1 && bit_cnt == 6'd41)
-        data_out <= buffer;
+      if(state==2'd2 && clk_cnt == DIV>>1 && bit_cnt == 6'd40)
+        data_out <= {buffer[40:0], GPIO_in};
       else
         data_out <= data_out;
     end
@@ -150,7 +147,7 @@
     else begin
       case(state)
         2'd2: begin
-          if(clk_cnt == DIV>>1 && bit_cnt == 6'd41)
+          if(clk_cnt ==0 && bit_cnt == 6'd41)
             out_sig <= 1'b1;
           else
             out_sig <= 1'b0;
