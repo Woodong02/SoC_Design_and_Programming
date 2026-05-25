@@ -1,0 +1,24 @@
+# vsim -c -do "run -all; quit" tb_slave_rx 
+# Start time: 10:02:36 on May 25,2026
+# Loading work.tb_slave_rx
+# Loading work.slave_tx
+# Loading work.slave_rx
+# run -all
+# 
+# --- Test 1: addr=2, data=0xDEADBEEF ---
+# [PASS] frame_valid=1, addr=2, data=0xdeadbeef
+# 
+# --- Test 2: addr=7, data=0xA5A5A5A5 ---
+# [PASS] frame_valid=1, addr=7, data=0xa5a5a5a5
+# 
+# --- Test 3: active_edge detected ---
+# [PASS] active_edge pulsed
+# 
+# --- Test 4: data_sent + frame_valid ---
+# [PASS] data_sent=1, frame_valid=1
+# 
+# [DONE] slave_rx: 4 PASS, 0 FAIL
+# ** Note: $finish    : tb_slave_rx.v(130)
+#    Time: 18565 ns  Iteration: 1  Instance: /tb_slave_rx
+# End time: 10:02:37 on May 25,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

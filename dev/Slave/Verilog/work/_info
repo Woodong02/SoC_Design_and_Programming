@@ -1,0 +1,410 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/SoC_Design_and_Programming/dev/Slave/Verilog
+vclk_div
+Z1 !s110 1779670930
+!i10b 1
+!s100 3Cg>dhi:OXARMOMmPCnjN3
+I;O?eZBCPBSFbm5;[A>4@W3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1779640586
+8clk_div.v
+Fclk_div.v
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1779670930.000000
+Z5 !s107 tb_slave_rx.v|tb_master_tx.v|tb_tdma_slave_top.v|tb_regfile.v|tb_irq_ctrl.v|tb_fault_fsm.v|tb_slot_timer.v|tb_slave_tx.v|tb_master_rx.v|tb_clk_div.v|slave_rx.v|master_tx.v|tdma_slave_top.v|regfile.v|irq_ctrl.v|fault_fsm.v|slot_timer.v|slave_tx.v|master_rx.v|clk_div.v|
+Z6 !s90 clk_div.v|master_rx.v|slave_tx.v|slot_timer.v|fault_fsm.v|irq_ctrl.v|regfile.v|tdma_slave_top.v|master_tx.v|slave_rx.v|tb_clk_div.v|tb_master_rx.v|tb_slave_tx.v|tb_slot_timer.v|tb_fault_fsm.v|tb_irq_ctrl.v|tb_regfile.v|tb_tdma_slave_top.v|tb_master_tx.v|tb_slave_rx.v|
+!i113 1
+Z7 tCvgOpt 0
+vfault_fsm
+R1
+!i10b 1
+!s100 :XFaTo?Z=H2n;@5c`cG123
+I1QcbY=F1BK5dSBJYk:f;S3
+R2
+R0
+w1779644444
+8fault_fsm.v
+Ffault_fsm.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+virq_ctrl
+R1
+!i10b 1
+!s100 HO9kViG@D<EL3f1ocH_If1
+Io@EenXYMk^U;Wl374lPHW0
+R2
+R0
+w1779644324
+8irq_ctrl.v
+Firq_ctrl.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vmaster_rx
+R1
+!i10b 1
+!s100 nF9mO:Gk0JMccliAQ9flE3
+IV@RS2n81AQf]FeVd:ozlM2
+R2
+R0
+w1779642330
+8master_rx.v
+Fmaster_rx.v
+L0 7
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vmaster_tx
+R1
+!i10b 1
+!s100 LHAoE^m4AzL_@K?JnZcSh0
+I^fdR9YBdhZ]W^lzF>[X5E3
+R2
+R0
+w1779670190
+8master_tx.v
+Fmaster_tx.v
+L0 6
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vregfile
+R1
+!i10b 1
+!s100 8fC:?c7Q=QC?i2mOlmE;Q0
+IjARcaRbmKEYZ[I]]^F6K73
+R2
+R0
+w1779644511
+8regfile.v
+Fregfile.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vslave_rx
+R1
+!i10b 1
+!s100 B[a1QH>m;l`bP2U:QVhYk2
+IeLN2MK?Ale;S5Qff70O332
+R2
+R0
+w1779670235
+8slave_rx.v
+Fslave_rx.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vslave_tx
+R1
+!i10b 1
+!s100 5T`hk1hf?ECGYTXS:jJbc0
+I2XLg`5WNhNK:cdBgc50bd0
+R2
+R0
+w1779642372
+8slave_tx.v
+Fslave_tx.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vslot_timer
+R1
+!i10b 1
+!s100 ;AAkoa@PS_`]k285]>CI12
+Ifdf4kT2iz2TR?dn=nFm^50
+R2
+R0
+w1779643789
+8slot_timer.v
+Fslot_timer.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_clk_div
+R1
+!i10b 1
+!s100 @^aeK0eM5=8acVZ2n`<Tf0
+IjM8NXbaSB[@>Z6NLgR_Nc3
+R2
+R0
+w1779640595
+8tb_clk_div.v
+Ftb_clk_div.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_fault_fsm
+Z8 !s110 1779670931
+!i10b 1
+!s100 :_`93QIWzYY3;?5aG4EL>3
+IJ47^97XZ9NYKR@Q6ZWmgF2
+R2
+R0
+w1779644137
+8tb_fault_fsm.v
+Ftb_fault_fsm.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_irq_ctrl
+R8
+!i10b 1
+!s100 96^fo<dX>]BWVfQ]1CJkB2
+ImU9`=76zgFZISh9a^d`D]3
+R2
+R0
+w1779644350
+8tb_irq_ctrl.v
+Ftb_irq_ctrl.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_master_rx
+R1
+!i10b 1
+!s100 28jZTHPd>UdSSWH>UE95E3
+Id38JS5CVJ;KUUzH0LU5HF0
+R2
+R0
+w1779642281
+8tb_master_rx.v
+Ftb_master_rx.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_master_tx
+R8
+!i10b 1
+!s100 S@fI?^Zza1`f`DQ@jjRiR3
+IYm1MQS7`gmPcji62^ci[X1
+R2
+R0
+w1779670329
+8tb_master_tx.v
+Ftb_master_tx.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_regfile
+R8
+!i10b 1
+!s100 BgjCCGkBlcgL=?X:J[=CN0
+IgC`?6=<Ocd@]bY6ol9C9U2
+R2
+R0
+w1779644826
+8tb_regfile.v
+Ftb_regfile.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_slave_rx
+R8
+!i10b 1
+!s100 9X]1k50O^d1RYn]Xj@i>?0
+IU;zbgdI4Ognf?znABCJ1g3
+R2
+R0
+w1779670351
+8tb_slave_rx.v
+Ftb_slave_rx.v
+L0 5
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_slave_tx
+R8
+!i10b 1
+!s100 <SACfHO[OB_;`^=UHVkG81
+Ik6EK07DT4X[ULWRkVDRoZ0
+R2
+R0
+w1779643597
+8tb_slave_tx.v
+Ftb_slave_tx.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_slot_timer
+R8
+!i10b 1
+!s100 8WnX=KVKM0U0aPbFf<F3S0
+IYH>>DfRAA8_;E1FFi;e3o2
+R2
+R0
+w1779643957
+8tb_slot_timer.v
+Ftb_slot_timer.v
+L0 3
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtb_tdma_slave_top
+R8
+!i10b 1
+!s100 i1WFMJ32BbnPdl6[@STo<2
+IK1V`nXE^N:MNAcG<:[Ch@3
+R2
+R0
+w1779644942
+8tb_tdma_slave_top.v
+Ftb_tdma_slave_top.v
+L0 8
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vtdma_slave_top
+R1
+!i10b 1
+!s100 Z@cTQ3SP?PBJlIPXViiab0
+IWZEA[W2nYC_XP:iWf`ENO1
+R2
+R0
+w1779644905
+8tdma_slave_top.v
+Ftdma_slave_top.v
+L0 4
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
