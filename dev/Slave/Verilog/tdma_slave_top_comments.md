@@ -66,7 +66,7 @@ wire rst_int_n = rst_n & ~soft_rst;
 wire halt_cmd = bc_halt_cmd[slave_addr_cfg];
 ```
 
-- 마스터 브로드캐스트의 8비트 HALT_CMD에서 자신의 슬레이브 주소(0~7) 비트만 추출
+- 마스터 브로드캐스트의 8비트 HALT_CMD에서 자신의 슬레이브 주소(0~7) 비트만 추출  
 - `slave_addr_cfg=3`이면 `bc_halt_cmd[3]`이 halt_cmd
 - 이 신호가 `fault_fsm`에 전달되어 즉시 FAULT 진입 가능
 
