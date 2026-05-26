@@ -1,9 +1,8 @@
 // master_rx: receives NRZ master broadcast frames
 // Bit period = 2*(div+1) clk cycles; sample at clk_cnt == div+1
-// Frame: [preamble 8b = 0xAA][data 42b = halt_cmd+reserved+hamming]
-// Buffer: shift at every sample in PREAMBLE and DATA states.
-//   After 9 PREAMBLE shifts + 41 DATA shifts = 50 total, DATA bit_cnt==41:
-//   buffer[41:0] = {D0..D41} (42 data bits, D0 = halt_cmd[7])
+// Frame: [preamble 8b = 0xAA][codeword 42b] = 50 bits
+//   codeword = {halt_cmd[7:0], 27'b0, p[5:0], p_overall}  (systematic SECDED)
+// Buffer[41:0] = codeword; decoded via hamming_dec
 module master_rx (
     input  wire        clk,
     input  wire        rst_n,
@@ -102,74 +101,19 @@ module master_rx (
     end
 
     // ----------------------------------------------------------------
-    // Hamming SEC-DED (combinatorial on current buffer)
-    //
-    // buffer[41:7]  = rx_data[34:0] = {addr[2:0], payload[31:0]}
-    //   rx_data[34] = buffer[41] = addr[2]   → Hamming pos 3
-    //   rx_data[33] = buffer[40] = addr[1]   → pos 5
-    //   rx_data[32] = buffer[39] = addr[0]   → pos 6
-    //   rx_data[31] = buffer[38] = pay[31]   → pos 7
-    //   ... (non-power-of-2 positions 3,5-7,9-15,17-31,33-41)
-    //
-    // buffer[6:0]  = rx_hamming[6:0]
-    //   Hamming sent order: p1 first → p1 ends up at buffer[6]
-    //   buffer[6]=p1, [5]=p2, [4]=p4, [3]=p8, [2]=p16, [1]=p32, [0]=p_overall
+    // Hamming systematic SECDED decode via hamming_dec module
+    // buffer[41:0] = codeword = {d[34:0], p[5:0], p_overall}
+    //   d = {halt_cmd[7:0], 27'b0}
     // ----------------------------------------------------------------
-    wire [6:0]  rx_hamming = buffer[6:0];
-    wire [34:0] rx_data    = buffer[41:7];
+    wire [34:0] fixed_data;
+    wire        ham_1bit_err, ham_2bit_err;
 
-    // parity extractions (transmitted p1 first → sits at MSB of rx_hamming)
-    wire p1_rx  = rx_hamming[6];
-    wire p2_rx  = rx_hamming[5];
-    wire p4_rx  = rx_hamming[4];
-    wire p8_rx  = rx_hamming[3];
-    wire p16_rx = rx_hamming[2];
-    wire p32_rx = rx_hamming[1];
-    wire pov_rx = rx_hamming[0]; // overall parity
-
-    // syndrome bits: parity over Hamming positions with each bit set
-    wire s1 = p1_rx                                                     // pos 1
-        ^ rx_data[34] ^ rx_data[33] ^ rx_data[31] ^ rx_data[30]        // pos 3,5,7,9
-        ^ rx_data[28] ^ rx_data[26] ^ rx_data[24] ^ rx_data[23]        // 11,13,15,17
-        ^ rx_data[21] ^ rx_data[19] ^ rx_data[17] ^ rx_data[15]        // 19,21,23,25
-        ^ rx_data[13] ^ rx_data[11] ^ rx_data[9]  ^ rx_data[8]         // 27,29,31,33
-        ^ rx_data[6]  ^ rx_data[4]  ^ rx_data[2]  ^ rx_data[0];        // 35,37,39,41
-
-    wire s2 = p2_rx                                                     // pos 2
-        ^ rx_data[34] ^ rx_data[32] ^ rx_data[31] ^ rx_data[29]        // 3,6,7,10
-        ^ rx_data[28] ^ rx_data[25] ^ rx_data[24] ^ rx_data[22]        // 11,14,15,18
-        ^ rx_data[21] ^ rx_data[18] ^ rx_data[17] ^ rx_data[14]        // 19,22,23,26
-        ^ rx_data[13] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[7]         // 27,30,31,34
-        ^ rx_data[6]  ^ rx_data[3]  ^ rx_data[2];                      // 35,38,39
-
-    wire s4 = p4_rx                                                     // pos 4
-        ^ rx_data[33] ^ rx_data[32] ^ rx_data[31] ^ rx_data[27]        // 5,6,7,12
-        ^ rx_data[26] ^ rx_data[25] ^ rx_data[24] ^ rx_data[20]        // 13,14,15,20
-        ^ rx_data[19] ^ rx_data[18] ^ rx_data[17] ^ rx_data[12]        // 21,22,23,28
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[5]         // 29,30,31,36
-        ^ rx_data[4]  ^ rx_data[3]  ^ rx_data[2];                      // 37,38,39
-
-    wire s8 = p8_rx                                                     // pos 8
-        ^ rx_data[30] ^ rx_data[29] ^ rx_data[28] ^ rx_data[27]        // 9,10,11,12
-        ^ rx_data[26] ^ rx_data[25] ^ rx_data[24] ^ rx_data[16]        // 13,14,15,24
-        ^ rx_data[15] ^ rx_data[14] ^ rx_data[13] ^ rx_data[12]        // 25,26,27,28
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[1]         // 29,30,31,40
-        ^ rx_data[0];                                                   // 41
-
-    wire s16 = p16_rx                                                   // pos 16
-        ^ rx_data[23] ^ rx_data[22] ^ rx_data[21] ^ rx_data[20]        // 17,18,19,20
-        ^ rx_data[19] ^ rx_data[18] ^ rx_data[17] ^ rx_data[16]        // 21,22,23,24
-        ^ rx_data[15] ^ rx_data[14] ^ rx_data[13] ^ rx_data[12]        // 25,26,27,28
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9];                      // 29,30,31
-
-    wire s32 = p32_rx                                                   // pos 32
-        ^ rx_data[8]  ^ rx_data[7]  ^ rx_data[6]  ^ rx_data[5]         // 33,34,35,36
-        ^ rx_data[4]  ^ rx_data[3]  ^ rx_data[2]  ^ rx_data[1]         // 37,38,39,40
-        ^ rx_data[0];                                                   // 41
-
-    wire [5:0] syndrome   = {s32, s16, s8, s4, s2, s1};
-    wire       all_xor    = ^buffer;         // XOR of all 42 bits (should be 0 if no error)
-    wire       h_2bit_err = (syndrome != 6'd0) && (all_xor == 1'b0);
+    hamming_dec u_dec (
+        .codeword    (buffer[41:0]),
+        .data        (fixed_data),
+        .ham_1bit_err(ham_1bit_err),
+        .ham_2bit_err(ham_2bit_err)
+    );
 
     // ----------------------------------------------------------------
     // output registers (1-clock pulses at frame boundaries)
@@ -207,13 +151,13 @@ module master_rx (
             end
 
             // data frame complete at DATA bit_cnt==41
-            // buffer CURRENT = D0..D41 (50 total shifts into 42-bit buffer)
+            // buffer[41:0] = codeword; fixed_data from hamming_dec
             if (state == DATA && at_sample && bit_cnt == 6'd41) begin
-                if (h_2bit_err) begin
+                if (ham_2bit_err) begin
                     bc_hamming_err <= 1'b1;
                 end else if (preamble_ok_latch) begin
                     bc_valid    <= 1'b1;
-                    bc_halt_cmd <= buffer[41:34];
+                    bc_halt_cmd <= fixed_data[34:27];
                 end
             end
         end

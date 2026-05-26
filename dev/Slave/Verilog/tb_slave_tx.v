@@ -77,36 +77,31 @@ module tb_slave_tx;
     end
 
     // ----------------------------------------------------------------
-    // Hamming reference calculation (same as slave_tx)
+    // Hamming reference calculation — systematic SECDED (matches hamming_enc)
+    // Returns codeword[6:0] = {p[5:0], p_overall}  (lower 7 bits of 42-bit codeword)
     // ----------------------------------------------------------------
     function [6:0] calc_hamming;
         input [2:0]  addr;
         input [31:0] data;
         reg [34:0] d;
-        reg p1, p2, p4, p8, p16, p32;
-        reg [40:0] cw;
+        reg p0,p1,p2,p3,p4,p5,pov;
         begin
             d = {addr, data};
-            p1  = d[34]^d[33]^d[31]^d[30]^d[28]^d[26]^d[24]^d[23]
-                 ^d[21]^d[19]^d[17]^d[15]^d[13]^d[11]^d[9] ^d[8]
-                 ^d[6] ^d[4] ^d[2] ^d[0];
-            p2  = d[34]^d[32]^d[31]^d[29]^d[28]^d[25]^d[24]^d[22]
-                 ^d[21]^d[18]^d[17]^d[14]^d[13]^d[10]^d[9] ^d[7]
-                 ^d[6] ^d[3] ^d[2];
-            p4  = d[33]^d[32]^d[31]^d[27]^d[26]^d[25]^d[24]^d[20]
-                 ^d[19]^d[18]^d[17]^d[12]^d[11]^d[10]^d[9] ^d[5]
-                 ^d[4] ^d[3] ^d[2];
-            p8  = d[30]^d[29]^d[28]^d[27]^d[26]^d[25]^d[24]^d[16]
-                 ^d[15]^d[14]^d[13]^d[12]^d[11]^d[10]^d[9] ^d[1]^d[0];
-            p16 = d[23]^d[22]^d[21]^d[20]^d[19]^d[18]^d[17]^d[16]
-                 ^d[15]^d[14]^d[13]^d[12]^d[11]^d[10]^d[9];
-            p32 = d[8]^d[7]^d[6]^d[5]^d[4]^d[3]^d[2]^d[1]^d[0];
-            cw = {d[0],d[1],d[2],d[3],d[4],d[5],d[6],d[7],d[8],
-                  p32,d[9],d[10],d[11],d[12],d[13],d[14],d[15],d[16],
-                  d[17],d[18],d[19],d[20],d[21],d[22],d[23],
-                  p16,d[24],d[25],d[26],d[27],d[28],d[29],d[30],
-                  p8,d[31],d[32],d[33],p4,d[34],p2,p1};
-            calc_hamming = {p1, p2, p4, p8, p16, p32, ^cw};
+            p0  = d[0]^d[2]^d[4]^d[6]^d[8]^d[10]^d[12]^d[14]
+                 ^d[16]^d[18]^d[20]^d[22]^d[24]^d[26]^d[28]^d[30]
+                 ^d[32]^d[34];
+            p1  = d[1]^d[2]^d[5]^d[6]^d[9]^d[10]^d[13]^d[14]
+                 ^d[17]^d[18]^d[21]^d[22]^d[25]^d[26]^d[29]^d[30]
+                 ^d[33]^d[34];
+            p2  = d[3]^d[4]^d[5]^d[6]^d[11]^d[12]^d[13]^d[14]
+                 ^d[19]^d[20]^d[21]^d[22]^d[27]^d[28]^d[29]^d[30];
+            p3  = d[7]^d[8]^d[9]^d[10]^d[11]^d[12]^d[13]^d[14]
+                 ^d[23]^d[24]^d[25]^d[26]^d[27]^d[28]^d[29]^d[30];
+            p4  = d[15]^d[16]^d[17]^d[18]^d[19]^d[20]^d[21]^d[22]
+                 ^d[23]^d[24]^d[25]^d[26]^d[27]^d[28]^d[29]^d[30];
+            p5  = d[31]^d[32]^d[33]^d[34];
+            pov = ^{d, p5, p4, p3, p2, p1, p0};
+            calc_hamming = {p5, p4, p3, p2, p1, p0, pov};
         end
     endfunction
 
@@ -119,6 +114,7 @@ module tb_slave_tx;
         reg [49:0] exp_frame;
         begin
             exp_h     = calc_hamming(exp_addr, exp_data);
+            // new frame: {preamble, data[34:0], p[5:0], p_overall}
             exp_frame = {8'hAA, exp_addr, exp_data, exp_h};
             if (rx_buf === exp_frame) begin
                 $display("[PASS] frame match: addr=%0d data=0x%H hamming=0x%H",

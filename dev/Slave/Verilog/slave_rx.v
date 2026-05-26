@@ -1,7 +1,8 @@
 // slave_rx: NRZ receiver for TDMA slave data frames (master-side)
 // Bit period = 2*(div+1) clk cycles; sample at clk_cnt == div+1
-// Frame: [preamble 8b = 0xAA][addr 3b][payload 32b][hamming 7b] = 50 bits
-// Buffer after 42 shifts: buffer[41:39]=addr, buffer[38:7]=payload, buffer[6:0]=hamming
+// Frame: [preamble 8b = 0xAA][codeword 42b] = 50 bits
+//   codeword = {addr[2:0], payload[31:0], p[5:0], p_overall}  (systematic SECDED)
+// Buffer after 42 shifts: buffer[41:0] = codeword; decoded via hamming_dec
 module slave_rx (
     input  wire        clk,
     input  wire        rst_n,
@@ -91,63 +92,19 @@ module slave_rx (
     end
 
     // ----------------------------------------------------------------
-    // Hamming SEC-DED — identical syndrome formula to master_rx
-    // rx_data[34:0] = buffer[41:7] = {addr[2:0], payload[31:0]}
-    // rx_hamming[6:0] = buffer[6:0]; p1 sent first → sits at buffer[6]
+    // Hamming systematic SECDED decode via hamming_dec module
+    // buffer[41:0] = codeword = {d[34:0], p[5:0], p_overall}
+    //   d = {addr[2:0], payload[31:0]}
     // ----------------------------------------------------------------
-    wire [6:0]  rx_hamming = buffer[6:0];
-    wire [34:0] rx_data    = buffer[41:7];
+    wire [34:0] fixed_data;
+    wire        ham_1bit_err, ham_2bit_err;
 
-    wire p1_rx  = rx_hamming[6];
-    wire p2_rx  = rx_hamming[5];
-    wire p4_rx  = rx_hamming[4];
-    wire p8_rx  = rx_hamming[3];
-    wire p16_rx = rx_hamming[2];
-    wire p32_rx = rx_hamming[1];
-    wire pov_rx = rx_hamming[0];
-
-    wire s1 = p1_rx
-        ^ rx_data[34] ^ rx_data[33] ^ rx_data[31] ^ rx_data[30]
-        ^ rx_data[28] ^ rx_data[26] ^ rx_data[24] ^ rx_data[23]
-        ^ rx_data[21] ^ rx_data[19] ^ rx_data[17] ^ rx_data[15]
-        ^ rx_data[13] ^ rx_data[11] ^ rx_data[9]  ^ rx_data[8]
-        ^ rx_data[6]  ^ rx_data[4]  ^ rx_data[2]  ^ rx_data[0];
-
-    wire s2 = p2_rx
-        ^ rx_data[34] ^ rx_data[32] ^ rx_data[31] ^ rx_data[29]
-        ^ rx_data[28] ^ rx_data[25] ^ rx_data[24] ^ rx_data[22]
-        ^ rx_data[21] ^ rx_data[18] ^ rx_data[17] ^ rx_data[14]
-        ^ rx_data[13] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[7]
-        ^ rx_data[6]  ^ rx_data[3]  ^ rx_data[2];
-
-    wire s4 = p4_rx
-        ^ rx_data[33] ^ rx_data[32] ^ rx_data[31] ^ rx_data[27]
-        ^ rx_data[26] ^ rx_data[25] ^ rx_data[24] ^ rx_data[20]
-        ^ rx_data[19] ^ rx_data[18] ^ rx_data[17] ^ rx_data[12]
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[5]
-        ^ rx_data[4]  ^ rx_data[3]  ^ rx_data[2];
-
-    wire s8 = p8_rx
-        ^ rx_data[30] ^ rx_data[29] ^ rx_data[28] ^ rx_data[27]
-        ^ rx_data[26] ^ rx_data[25] ^ rx_data[24] ^ rx_data[16]
-        ^ rx_data[15] ^ rx_data[14] ^ rx_data[13] ^ rx_data[12]
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9]  ^ rx_data[1]
-        ^ rx_data[0];
-
-    wire s16 = p16_rx
-        ^ rx_data[23] ^ rx_data[22] ^ rx_data[21] ^ rx_data[20]
-        ^ rx_data[19] ^ rx_data[18] ^ rx_data[17] ^ rx_data[16]
-        ^ rx_data[15] ^ rx_data[14] ^ rx_data[13] ^ rx_data[12]
-        ^ rx_data[11] ^ rx_data[10] ^ rx_data[9];
-
-    wire s32 = p32_rx
-        ^ rx_data[8]  ^ rx_data[7]  ^ rx_data[6]  ^ rx_data[5]
-        ^ rx_data[4]  ^ rx_data[3]  ^ rx_data[2]  ^ rx_data[1]
-        ^ rx_data[0];
-
-    wire [5:0] syndrome   = {s32, s16, s8, s4, s2, s1};
-    wire       all_xor    = ^buffer;
-    wire       h_2bit_err = (syndrome != 6'd0) && (all_xor == 1'b0);
+    hamming_dec u_dec (
+        .codeword    (buffer[41:0]),
+        .data        (fixed_data),
+        .ham_1bit_err(ham_1bit_err),
+        .ham_2bit_err(ham_2bit_err)
+    );
 
     // ----------------------------------------------------------------
     // Output registers
@@ -183,12 +140,12 @@ module slave_rx (
             end
 
             if (state == DATA && at_sample && bit_cnt == 6'd41) begin
-                if (h_2bit_err) begin
+                if (ham_2bit_err) begin
                     hamming_err <= 1'b1;
                 end else if (preamble_ok_latch) begin
                     frame_valid <= 1'b1;
-                    frame_addr  <= buffer[41:39];
-                    frame_data  <= buffer[38:7];
+                    frame_addr  <= fixed_data[34:32];
+                    frame_data  <= fixed_data[31:0];
                 end
             end
         end

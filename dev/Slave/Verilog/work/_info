@@ -28,6 +28,26 @@ Z5 !s107 tb_slave_rx.v|tb_master_tx.v|tb_tdma_slave_top.v|tb_regfile.v|tb_irq_ct
 Z6 !s90 clk_div.v|master_rx.v|slave_tx.v|slot_timer.v|fault_fsm.v|irq_ctrl.v|regfile.v|tdma_slave_top.v|master_tx.v|slave_rx.v|tb_clk_div.v|tb_master_rx.v|tb_slave_tx.v|tb_slot_timer.v|tb_fault_fsm.v|tb_irq_ctrl.v|tb_regfile.v|tb_tdma_slave_top.v|tb_master_tx.v|tb_slave_rx.v|
 !i113 1
 Z7 tCvgOpt 0
+verror_and_hamming
+Z8 !s110 1779805012
+!i10b 1
+!s100 GcY]IYJ5G@GCAH1Bl`:^01
+IOmnAJ^A`6EVI2eSAGK3lX2
+R2
+R0
+w1779805004
+8../Master_임시/error_with_hamming.v
+F../Master_임시/error_with_hamming.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z9 !s108 1779805012.000000
+Z10 !s107 ../Master_임시/tb_error_and_hamming.v|../Master_임시/error_with_hamming.v|../Master_임시/hamming_dec.v|../Master_임시/hamming_enc.v|
+Z11 !s90 ../Master_임시/hamming_enc.v|../Master_임시/hamming_dec.v|../Master_임시/error_with_hamming.v|../Master_임시/tb_error_and_hamming.v|
+!i113 1
+R7
 vfault_fsm
 R1
 !i10b 1
@@ -46,6 +66,46 @@ r1
 R4
 R5
 R6
+!i113 1
+R7
+vhamming_dec
+R8
+!i10b 1
+!s100 EU:5c^66R0jzhJ4W1=a5g1
+Ifk=mNa825cZJKV=Fam1Ll0
+R2
+R0
+w1779784466
+8../Master_임시/hamming_dec.v
+F../Master_임시/hamming_dec.v
+L0 15
+R3
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R7
+vhamming_enc
+R8
+!i10b 1
+!s100 hHc@ljY>20@Yj2g2Qai3U0
+IAkIKOVF06F@IK1<Mn1X?R1
+R2
+R0
+w1779784447
+8../Master_임시/hamming_enc.v
+F../Master_임시/hamming_enc.v
+L0 14
+R3
+r1
+!s85 0
+31
+R9
+R10
+R11
 !i113 1
 R7
 virq_ctrl
@@ -69,33 +129,33 @@ R6
 !i113 1
 R7
 vmaster_rx
-R1
+Z12 !s110 1779787211
 !i10b 1
-!s100 nF9mO:Gk0JMccliAQ9flE3
-IV@RS2n81AQf]FeVd:ozlM2
+!s100 <NKkhfc0O05JTnMOcS]jn3
+In=U597i@K6g<AjVU5M`XB2
 R2
 R0
-w1779642330
+w1779784854
 8master_rx.v
 Fmaster_rx.v
-L0 7
+L0 6
 R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+Z13 !s108 1779787211.000000
+Z14 !s107 tb_comm_slave.v|master_rx.v|slave_tx.v|hamming_dec.v|hamming_enc.v|
+Z15 !s90 hamming_enc.v|hamming_dec.v|slave_tx.v|master_rx.v|tb_comm_slave.v|
 !i113 1
 R7
 vmaster_tx
-R1
+Z16 !s110 1779787223
 !i10b 1
-!s100 LHAoE^m4AzL_@K?JnZcSh0
-I^fdR9YBdhZ]W^lzF>[X5E3
+!s100 dk8H>J>goXm7BFezC=WUj2
+IUeQ@WH52TZzH4Q4MinEIP1
 R2
 R0
-w1779670190
+w1779784722
 8master_tx.v
 Fmaster_tx.v
 L0 6
@@ -103,9 +163,9 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+Z17 !s108 1779787222.000000
+Z18 !s107 tb_comm_master.v|slave_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
+Z19 !s90 hamming_enc.v|hamming_dec.v|master_tx.v|slave_rx.v|tb_comm_master.v|
 !i113 1
 R7
 vregfile
@@ -129,33 +189,33 @@ R6
 !i113 1
 R7
 vslave_rx
-R1
+R16
 !i10b 1
-!s100 B[a1QH>m;l`bP2U:QVhYk2
-IeLN2MK?Ale;S5Qff70O332
+!s100 8ggS`Y_MiOVFmeU`cORn90
+I5H<FF@ck2::0f3]H[R:Lf0
 R2
 R0
-w1779670235
+w1779784813
 8slave_rx.v
 Fslave_rx.v
-L0 5
+L0 6
 R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+R17
+R18
+R19
 !i113 1
 R7
 vslave_tx
-R1
+R12
 !i10b 1
-!s100 5T`hk1hf?ECGYTXS:jJbc0
-I2XLg`5WNhNK:cdBgc50bd0
+!s100 PPN]VN@3fDm4z6L3mBVO22
+I2ELdc>I<<C?f6_<EB>NRX3
 R2
 R0
-w1779642372
+w1779784685
 8slave_tx.v
 Fslave_tx.v
 L0 5
@@ -163,9 +223,9 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+R13
+R14
+R15
 !i113 1
 R7
 vslot_timer
@@ -208,8 +268,68 @@ R5
 R6
 !i113 1
 R7
+vtb_comm_master
+R16
+!i10b 1
+!s100 ]nzXQ3QjHzTbR9oZdWUjJ3
+IiLnYNcPlgmCBQ>?d>ZFaM1
+R2
+R0
+w1779787199
+8tb_comm_master.v
+Ftb_comm_master.v
+L0 6
+R3
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R7
+vtb_comm_slave
+R12
+!i10b 1
+!s100 :<bmc<33V7PFKcaQH?:PR3
+I5zRlUa2j9T^ODd0M?6CHM2
+R2
+R0
+w1779787172
+8tb_comm_slave.v
+Ftb_comm_slave.v
+L0 6
+R3
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R7
+vtb_error_and_hamming
+R8
+!i10b 1
+!s100 WL:40XoACGBA8YZdIWM6M3
+IaY[?m6kY[P98gzfY7Ze5Y1
+R2
+R0
+w1779804902
+8../Master_임시/tb_error_and_hamming.v
+F../Master_임시/tb_error_and_hamming.v
+L0 3
+R3
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R7
 vtb_fault_fsm
-Z8 !s110 1779670931
+Z20 !s110 1779670931
 !i10b 1
 !s100 :_`93QIWzYY3;?5aG4EL>3
 IJ47^97XZ9NYKR@Q6ZWmgF2
@@ -228,8 +348,48 @@ R5
 R6
 !i113 1
 R7
+vtb_hamming_dec
+!s110 1779784641
+!i10b 1
+!s100 :9N9UUWJA?lXJEScl_bo:3
+IB;A[R?32C17e0kjUd^gbV0
+R2
+R0
+w1779784629
+8tb_hamming_dec.v
+Ftb_hamming_dec.v
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1779784641.000000
+!s107 tb_hamming_dec.v|hamming_dec.v|hamming_enc.v|
+!s90 hamming_enc.v|hamming_dec.v|tb_hamming_dec.v|
+!i113 1
+R7
+vtb_hamming_enc
+!s110 1779784552
+!i10b 1
+!s100 =T@oBhE_bTQ1ELZJE4kP41
+IWJ[?m6?Z`f@4ALGTL98aW0
+R2
+R0
+w1779784494
+8tb_hamming_enc.v
+Ftb_hamming_enc.v
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1779784552.000000
+!s107 tb_hamming_enc.v|hamming_enc.v|
+!s90 hamming_enc.v|tb_hamming_enc.v|
+!i113 1
+R7
 vtb_irq_ctrl
-R8
+R20
 !i10b 1
 !s100 96^fo<dX>]BWVfQ]1CJkB2
 ImU9`=76zgFZISh9a^d`D]3
@@ -249,7 +409,7 @@ R6
 !i113 1
 R7
 vtb_master_rx
-R1
+!s110 1779784914
 !i10b 1
 !s100 28jZTHPd>UdSSWH>UE95E3
 Id38JS5CVJ;KUUzH0LU5HF0
@@ -263,13 +423,13 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+!s108 1779784914.000000
+!s107 tb_master_rx.v|master_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
+!s90 hamming_enc.v|hamming_dec.v|master_tx.v|master_rx.v|tb_master_rx.v|
 !i113 1
 R7
 vtb_master_tx
-R8
+!s110 1779784926
 !i10b 1
 !s100 S@fI?^Zza1`f`DQ@jjRiR3
 IYm1MQS7`gmPcji62^ci[X1
@@ -283,13 +443,13 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+!s108 1779784926.000000
+!s107 tb_master_tx.v|master_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
+!s90 hamming_enc.v|hamming_dec.v|master_tx.v|master_rx.v|tb_master_tx.v|
 !i113 1
 R7
 vtb_regfile
-R8
+R20
 !i10b 1
 !s100 BgjCCGkBlcgL=?X:J[=CN0
 IgC`?6=<Ocd@]bY6ol9C9U2
@@ -309,7 +469,7 @@ R6
 !i113 1
 R7
 vtb_slave_rx
-R8
+!s110 1779784905
 !i10b 1
 !s100 9X]1k50O^d1RYn]Xj@i>?0
 IU;zbgdI4Ognf?znABCJ1g3
@@ -323,19 +483,19 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+!s108 1779784905.000000
+!s107 tb_slave_rx.v|slave_rx.v|slave_tx.v|hamming_dec.v|hamming_enc.v|
+!s90 hamming_enc.v|hamming_dec.v|slave_tx.v|slave_rx.v|tb_slave_rx.v|
 !i113 1
 R7
 vtb_slave_tx
-R8
+!s110 1779784773
 !i10b 1
-!s100 <SACfHO[OB_;`^=UHVkG81
-Ik6EK07DT4X[ULWRkVDRoZ0
+!s100 ik@dzcM0z7iXUQ9W1^22>0
+I81d=FX1g_3Wo@6ah2Dc8;3
 R2
 R0
-w1779643597
+w1779784749
 8tb_slave_tx.v
 Ftb_slave_tx.v
 L0 3
@@ -343,13 +503,13 @@ R3
 r1
 !s85 0
 31
-R4
-R5
-R6
+!s108 1779784773.000000
+!s107 tb_slave_tx.v|slave_tx.v|hamming_enc.v|
+!s90 hamming_enc.v|slave_tx.v|tb_slave_tx.v|
 !i113 1
 R7
 vtb_slot_timer
-R8
+R20
 !i10b 1
 !s100 8WnX=KVKM0U0aPbFf<F3S0
 IYH>>DfRAA8_;E1FFi;e3o2
@@ -369,7 +529,7 @@ R6
 !i113 1
 R7
 vtb_tdma_slave_top
-R8
+R20
 !i10b 1
 !s100 i1WFMJ32BbnPdl6[@STo<2
 IK1V`nXE^N:MNAcG<:[Ch@3

@@ -109,3 +109,58 @@ Hamming 위치(1~41)에 대한 syndrome 계산:
 
 - 모든 출력(`active_edge`, `bc_valid`, `bc_preamble_ok`, `bc_hamming_err`, `bc_preamble_err`)은 매 클럭 0으로 초기화 후 해당 조건에서 1클럭만 HIGH
 - `bc_halt_cmd[7:0]`: DATA 완료 시점에 래치 (`buffer[41:34]`)
+
+---
+
+## v2 변경사항 — Systematic SECDED (Hamming [42,35] + p_overall)
+
+### 변경 개요
+
+slave_rx v2와 동일한 방식으로 전환. 버퍼 폭·FSM 타이밍 **불변**.
+
+| 항목 | v1 | v2 |
+|------|----|----|
+| 버퍼 폭 | 42비트 | **42비트 (불변)** |
+| 코드워드 구조 | 비체계적 (패리티 중간 삽입) | `{d[34:0], p[5:0], p_overall}` 체계적 배치 |
+| Hamming 검증 | syndrome 직접 계산 | **`hamming_dec` 모듈 인스턴스화** |
+| 1비트 에러 | bc_valid 차단 | **자동 정정 후 bc_valid=1** |
+| 2비트 에러 | bc_hamming_err=1 | **동일** |
+
+### 새로운 버퍼 필드 매핑 (v2)
+
+```
+buffer[41:0]  (42비트, MSB first 수신)
+  ├─ buffer[41:7]  = d_rx[34:0] = {halt_cmd[7:0], 27'b0}
+  ├─ buffer[6:1]   = p_rx[5:0]   ← 체계적 패리티 6비트
+  └─ buffer[0]     = p_overall_rx
+```
+
+### 구현 변경 (v2)
+
+```verilog
+wire [34:0] fixed_data;
+wire        ham_1bit_err, ham_2bit_err;
+hamming_dec u_dec (
+    .codeword    (buffer[41:0]),
+    .data        (fixed_data),
+    .ham_1bit_err(ham_1bit_err),
+    .ham_2bit_err(ham_2bit_err)
+);
+```
+
+### 출력 래치 (v2)
+
+```verilog
+if (state == DATA && at_sample && bit_cnt == 6'd41) begin
+    if (ham_2bit_err) begin
+        bc_hamming_err <= 1'b1;           // 2비트 에러 → 슬레이브 FAULT 처리
+    end else if (preamble_ok_latch) begin
+        bc_valid    <= 1'b1;
+        bc_halt_cmd <= fixed_data[34:27]; // 정정된 halt_cmd (v1: buffer[41:34])
+    end
+end
+```
+
+- v1 대비 출력 소스가 `buffer[41:34]` → `fixed_data[34:27]`으로 변경
+  (체계적 배치에서는 동일 위치이나, 1비트 에러 발생 시 정정된 값을 사용)
+- FSM 타이밍, preamble 검증 로직은 **변경 없음**.

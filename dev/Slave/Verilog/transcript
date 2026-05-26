@@ -1,24 +1,39 @@
-# vsim -c -do "run -all; quit" tb_slave_rx 
-# Start time: 10:02:36 on May 25,2026
-# Loading work.tb_slave_rx
-# Loading work.slave_tx
-# Loading work.slave_rx
+# vsim -c tb_error_and_hamming -do "run -all; quit" 
+# Start time: 23:17:00 on May 26,2026
+# Loading work.tb_error_and_hamming
+# Loading work.error_and_hamming
+# Loading work.hamming_dec
+# Loading work.hamming_enc
 # run -all
+# === Case 1: Normal reception, all 8 slots ===
+# [PASS] slot0 normal: data=0xa5a5a500
+# [PASS] slot1 normal: data=0xa5a5a501
+# [PASS] slot2 normal: data=0xa5a5a502
+# [PASS] slot3 normal: data=0xa5a5a503
+# [PASS] slot4 normal: data=0xa5a5a504
+# [PASS] slot5 normal: data=0xa5a5a505
+# [PASS] slot6 normal: data=0xa5a5a506
+# [PASS] slot7 normal: data=0xa5a5a507
 # 
-# --- Test 1: addr=2, data=0xDEADBEEF ---
-# [PASS] frame_valid=1, addr=2, data=0xdeadbeef
+# === Case 2: 1-bit error correction (slot 0) ===
+# [PASS] 1-bit err corrected: data=0xdeadbeef err_cnt=4
 # 
-# --- Test 2: addr=7, data=0xA5A5A5A5 ---
-# [PASS] frame_valid=1, addr=7, data=0xa5a5a5a5
+# === Case 3: 2-bit error - data must be discarded (slot 1) ===
+# [PASS] 2-bit err discarded: slot_out1 unchanged=0xcafebabe cnt=8
 # 
-# --- Test 3: active_edge detected ---
-# [PASS] active_edge pulsed
+# === Case 4: Slot routing verification ===
+# [PASS] routing: slot0 got=0x12340000
+# [PASS] routing: slot1 got=0x12340001
+# [PASS] routing: slot2 got=0x12340002
+# [PASS] routing: slot3 got=0x12340003
+# [PASS] routing: slot4 got=0x12340004
+# [PASS] routing: slot5 got=0x12340005
+# [PASS] routing: slot6 got=0x12340006
+# [PASS] routing: slot7 got=0x12340007
 # 
-# --- Test 4: data_sent + frame_valid ---
-# [PASS] data_sent=1, frame_valid=1
-# 
-# [DONE] slave_rx: 4 PASS, 0 FAIL
-# ** Note: $finish    : tb_slave_rx.v(130)
-#    Time: 18565 ns  Iteration: 1  Instance: /tb_slave_rx
-# End time: 10:02:37 on May 25,2026, Elapsed time: 0:00:01
+# [DONE] error_and_hamming tb: 18 PASS, 0 FAIL
+# ALL PASS
+# ** Note: $finish    : ../Master_юс╫ц/tb_error_and_hamming.v(224)
+#    Time: 630 ns  Iteration: 1  Instance: /tb_error_and_hamming
+# End time: 23:17:01 on May 26,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0

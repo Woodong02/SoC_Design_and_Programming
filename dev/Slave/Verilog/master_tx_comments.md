@@ -87,3 +87,47 @@ tx_line ──(pull-down)──► tx_line_sync → master_rx
 ```
 - `bc_valid=1`, `bc_halt_cmd == halt_cmd` 확인
 - `data_sent` 펄스 확인
+
+---
+
+## v2 변경사항 — Systematic SECDED (Hamming [42,35] + p_overall)
+
+### 변경 개요
+
+slave_tx v2와 동일한 방식으로 전환. 프레임 크기·FSM 타이밍 **불변**.
+
+| 항목 | v1 | v2 |
+|------|----|----|
+| 코드워드 구조 | 비체계적 (패리티 중간 삽입) | `{d[34:0], p[5:0], p_overall}` 체계적 42비트 |
+| Hamming 생성 | p1..p32 XOR 트리 직접 계산 | **`hamming_enc` 모듈 인스턴스화** |
+| 프레임 크기 | 50비트 | **50비트 (불변)** |
+
+### 새로운 코드워드 구조 (v2)
+
+```
+d[34:0] = {halt_cmd[7:0], 27'b0}
+codeword[41:0] = {d[34:0], p[5:0], p_overall}
+frame[49:0]    = {8'hAA, codeword[41:0]}
+```
+
+### 구현 변경 (v2)
+
+```verilog
+wire [34:0] d = {halt_cmd, 27'b0};
+wire [41:0] codeword;
+hamming_enc u_enc (.data(d), .codeword(codeword));
+// ...
+frame <= {8'hAA, codeword};  // TX 시작 시 프레임 래치 (불변)
+```
+
+TX 카운터·tristate 출력은 **변경 없음**.
+
+### 프레임 비트 순서 (v2)
+
+```
+frame[49..42] = 0xAA        (preamble)
+frame[41..35] = halt_cmd[7:0] (d[34:27])
+frame[34..7]  = 27'b0         (d[26:0], reserved)
+frame[6..1]   = p[5:0]        (체계적 패리티)
+frame[0]      = p_overall
+```

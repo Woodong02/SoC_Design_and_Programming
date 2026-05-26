@@ -89,3 +89,61 @@ IDLE ──(rx_line 0→1)──▶ PREAMBLE ──(8 samples)──▶ DATA ─
 - `active_edge`: IDLE에서 `!rx_prev && rx_line_sync` 감지 시 1클럭 펄스
 - PREAMBLE: 8비트 수집 후 `buffer[7:0] == 8'hAA` 검증
 - DATA: 42비트 수집 후 Hamming 검증 및 필드 추출
+
+---
+
+## v2 변경사항 — Systematic SECDED (Hamming [42,35] + p_overall)
+
+### 변경 개요
+
+| 항목 | v1 | v2 |
+|------|----|----|
+| 버퍼 폭 | 42비트 | **42비트 (불변)** |
+| DATA bit_cnt 최대 | 41 | **41 (불변)** |
+| 코드워드 구조 | 비체계적 (패리티 중간 삽입) | `{d[34:0], p[5:0], p_overall}` 체계적 배치 |
+| Hamming 검증 | syndrome s1~s32 직접 계산 | **`hamming_dec` 모듈 인스턴스화** |
+| 1비트 에러 | frame_valid 차단 (별도 정정 없음) | **자동 정정 후 frame_valid=1** |
+| 2비트 에러 | hamming_err=1 | **동일** |
+
+### 새로운 버퍼 필드 매핑 (v2)
+
+```
+buffer[41:0]  (42비트, MSB first 수신)
+  ├─ buffer[41:7]  = d_rx[34:0] = {frame_addr[2:0], frame_data[31:0]}
+  ├─ buffer[6:1]   = p_rx[5:0]   ← 체계적 패리티 6비트
+  └─ buffer[0]     = p_overall_rx ← 전체 패리티
+```
+
+### 구현 변경 (v2)
+
+syndrome 직접 계산 로직 → **`hamming_dec` 모듈 인스턴스화**로 교체:
+
+```verilog
+wire [34:0] fixed_data;
+wire        ham_1bit_err, ham_2bit_err;
+hamming_dec u_dec (
+    .codeword    (buffer[41:0]),
+    .data        (fixed_data),
+    .ham_1bit_err(ham_1bit_err),
+    .ham_2bit_err(ham_2bit_err)
+);
+```
+
+### 출력 래치 (v2)
+
+```verilog
+if (state == DATA && at_sample && bit_cnt == 6'd41) begin
+    if (ham_2bit_err) begin
+        hamming_err <= 1'b1;           // 2비트 에러 → 데이터 파기
+    end else if (preamble_ok_latch) begin
+        frame_valid <= 1'b1;
+        frame_addr  <= fixed_data[34:32];  // 정정된 addr
+        frame_data  <= fixed_data[31:0];   // 정정된 payload
+    end
+end
+```
+
+- `ham_1bit_err=1` 시: `hamming_dec`이 데이터를 자동 정정하여 `fixed_data` 출력 → `frame_valid=1`로 상위에 정상 전달
+- `ham_2bit_err=1` 시: `hamming_err=1`, `frame_valid=0` → 상위에서 FAULT 처리
+
+FSM 타이밍, 버퍼 시프트, preamble 검증 로직은 **변경 없음**.
