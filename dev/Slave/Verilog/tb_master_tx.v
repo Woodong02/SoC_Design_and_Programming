@@ -6,7 +6,7 @@ module tb_master_tx;
 
     reg        clk, rst_n;
     reg [9:0]  div;
-    reg        tx_trigger, tx_enable;
+    reg        tx_trigger,
     reg [7:0]  halt_cmd;
 
     wire tx_line;
@@ -21,7 +21,7 @@ module tb_master_tx;
 
     master_tx u_tx (
         .clk(clk), .rst_n(rst_n),
-        .div(div), .tx_trigger(tx_trigger), .tx_enable(tx_enable),
+        .div(div), .tx_trigger(tx_trigger),
         .halt_cmd(halt_cmd),
         .tx_line(tx_line), .tx_active(tx_active), .data_sent(data_sent)
     );
@@ -64,7 +64,7 @@ module tb_master_tx;
 
     initial begin
         clk=0; rst_n=0;
-        div=10'd3; tx_trigger=0; tx_enable=1; halt_cmd=8'h00;
+        div=10'd3; tx_trigger=0; halt_cmd=8'h00;
         data_sent_seen=0; bc_valid_seen=0; recv_halt_cmd=0;
         pass_cnt=0; fail_cnt=0;
         #30; @(posedge clk); rst_n=1;

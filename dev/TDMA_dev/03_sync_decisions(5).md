@@ -38,10 +38,15 @@ wire active_edge = (~prev_rx) & rx_line;  // 0→1 상승 에지
 ### 1.3 슬롯 시작 오프셋
 
 ```
-slot_start[n] = cycle_start + n × slot_ticks    (n = SLAVE_ADDR)
+slot_start[n] = cycle_start + n × slot_ticks + GUARD_TICKS   (n = SLAVE_ADDR)
 ```
 
-슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.
+<<<<<<< HEAD:dev/TDMA_dev/03_sync_decisions(4).md
+슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks + GUARD_TICKS 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.
+=======
+~슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.~
+슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks + (guard_ticks>>1) 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 후 guard_ticks>>1 만큼의 카운트 후 전송을 시작한다. (슬롯의 양쪽 끝이 가드타임/2씩 차지하므로)
+>>>>>>> b80b4809321903281d7ee22f72d904a546ce606b:dev/TDMA_dev/03_sync_decisions(5).md
 
 ---
 
