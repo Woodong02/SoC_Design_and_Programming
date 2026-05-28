@@ -256,21 +256,21 @@ reg [7:0] received;
         if(preamble_err) begin
             case(slot)
                 3'd0:
-                    preamble_err_cnt0 <= preamble_err_cnt0 + 8'd6;
+                    preamble_err_cnt0 <= preamble_err_cnt0 + 8'd1;
                 3'd1:
-                    preamble_err_cnt1 <= preamble_err_cnt1 + 8'd6;
+                    preamble_err_cnt1 <= preamble_err_cnt1 + 8'd1;
                 3'd2:
-                    preamble_err_cnt2 <= preamble_err_cnt2 + 8'd6;
+                    preamble_err_cnt2 <= preamble_err_cnt2 + 8'd1;
                 3'd3:
-                    preamble_err_cnt3 <= preamble_err_cnt3 + 8'd6;
+                    preamble_err_cnt3 <= preamble_err_cnt3 + 8'd1;
                 3'd4:
-                    preamble_err_cnt4 <= preamble_err_cnt4 + 8'd6;
+                    preamble_err_cnt4 <= preamble_err_cnt4 + 8'd1;
                 3'd5:
-                    preamble_err_cnt5 <= preamble_err_cnt5 + 8'd6;
+                    preamble_err_cnt5 <= preamble_err_cnt5 + 8'd1;
                 3'd6:
-                    preamble_err_cnt6 <= preamble_err_cnt6 + 8'd6;
+                    preamble_err_cnt6 <= preamble_err_cnt6 + 8'd1;
                 default:
-                    preamble_err_cnt7 <= preamble_err_cnt7 + 8'd6;
+                    preamble_err_cnt7 <= preamble_err_cnt7 + 8'd1;
             endcase
         end
         else if(slot==3'd0 && clk_cnt == 11'd1) begin

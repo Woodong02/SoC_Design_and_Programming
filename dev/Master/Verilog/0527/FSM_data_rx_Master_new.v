@@ -1,4 +1,4 @@
- module FSM_data_rx_Master (
+ module Master_rx (
 
     input wire clk,
     input wire [9:0] DIV,
