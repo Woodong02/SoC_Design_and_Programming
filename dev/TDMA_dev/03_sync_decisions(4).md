@@ -38,10 +38,10 @@ wire active_edge = (~prev_rx) & rx_line;  // 0→1 상승 에지
 ### 1.3 슬롯 시작 오프셋
 
 ```
-slot_start[n] = cycle_start + n × slot_ticks    (n = SLAVE_ADDR)
+slot_start[n] = cycle_start + n × slot_ticks + GUARD_TICKS   (n = SLAVE_ADDR)
 ```
 
-슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.
+슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks + GUARD_TICKS 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.
 
 ---
 

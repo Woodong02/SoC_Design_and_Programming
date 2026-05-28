@@ -24,15 +24,23 @@
 
 | 이벤트 | 감지 조건 | 집계 카운터 |
 |--------|----------|------------|
-| `SLOT_TIMEOUT` | 슬롯 RX 윈도우 내 유효한 Manchester 신호(액티브 에지) 없음 | `FAULT_CNT` |
-| `FRAME_ERR` | 액티브 에지 감지 후 Manchester 인코딩 위반 검출 (mid-bit 전이 부재 또는 비트 수 불일치) | `FAULT_CNT` |
-| `HAMMING_ERR` | Hamming 2비트 오류 (정정 불가, 프레임 폐기) | `FAULT_CNT` |
-| `PREAMBLE_ERR` | 액티브 에지 감지 후 preamble(0x55) 패턴 불일치 | `LINE_CNT` |
-| `ADDR_ERR` | addr 필드가 슬롯 번호와 불일치 (별도 즉각 처리 경로) | 해당 없음 |
+| `SLOT_TIMEOUT` | 슬롯 내 수신 데이터의 슬레이브 주소가 슬롯과 다르거나 guardtime을 침범함. (단순 guardtime 침범시 cnt 6 증가, 슬롯 침범시 SHUTDOWN or cnt 100 증가?) | `slot_timeout_cnt` |
+~| `FRAME_ERR` | 액티브 에지 감지 후 Manchester 인코딩 위반 검출 (mid-bit 전이 부재 또는 비트 수 불일치) | `FAULT_CNT` |~
+| `HAMMING_ERR` | Hamming 1비트 오류시 4 증가, Hamming 2비트 오류시 8 증가 (정정 불가, 프레임 폐기) | `hamming_err_cnt` |
+| `PREAMBLE_ERR` | 액티브 에지 감지 후 preamble(0xAA) 패턴 불일치, 1씩 증가. | `preamble_err_cnt` |
+| `silent_ERR` | 슬롯에서 수신이 감지되지 않을 경우 | `silent_cnt` |
 
-`SLOT_TIMEOUT`은 물리 신호 자체가 없는 경우(슬레이브가 의도적으로 침묵하거나 전원 차단)이고, `PREAMBLE_ERR`은 신호는 있으나 내용이 올바르지 않은 경우(버스 잡음, 전기적 노이즈)다. 두 이벤트를 다른 카운터로 분리하여 장애 원인을 구분한다.
+~`SLOT_TIMEOUT`은 물리 신호 자체가 없는 경우(슬레이브가 의도적으로 침묵하거나 전원 차단)이고~, `PREAMBLE_ERR`은 신호는 있으나 내용이 올바르지 않은 경우(버스 잡음, 전기적 노이즈)다. 두 이벤트를 다른 카운터로 분리하여 장애 원인을 구분한다.
 
-`ADDR_ERR` 발생 시나리오: 슬레이브 A가 슬롯 B를 침범 → 충돌로 HAMMING_ERR 발생 → FAULT_CNT[B] 누적 → HALT_CMD[B] 발행 → 슬레이브 B 침묵 → A 단독 전송 → addr 불일치 감지 → addr 필드에 표시된 슬레이브(A)에 즉시 HALT_CMD 세팅. FAULT_CNT 누적 없음.
+!!silent_cnt에 대한 수정 필요할지도?
+
+`ADDR_ERR` 발생 시나리오: 슬레이브 A가 슬롯 B를 침범 → 충돌로 HAMMING_ERR 발생 → FAULT_CNT[B] 누적 → HALT_CMD[B] 발행 → 슬레이브 B 침묵 → A 단독 전송 → addr 불일치 감지 → addr 필드에 표시된 슬레이브(A)에 즉시 err_cnt를 255로 설정 후 SHUTDOWN 명령
+
+모든 cnt들은 각각 더하여 200내외로 비교 후 초과시 SHUTDOWN 메세지 송신
+모든 cnt들은 1 cycle당 1씩 감소한다.(오류 여부 무관)
+
+
+-----------------------------여기까지 수정--------------------
 
 **슬레이브 도메인** (슬레이브 자신이 감지):
 
