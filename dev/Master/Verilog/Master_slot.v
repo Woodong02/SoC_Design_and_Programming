@@ -12,6 +12,7 @@ module Master_slot (
 );
 
   reg [9:0] clk_cnt2;
+
   always @(posedge clk or negedge resetn) begin
       if (!resetn) begin
           last_slot <= 3'd0;
@@ -34,8 +35,13 @@ module Master_slot (
         clk_cnt2 <= clk_cnt2 + 10'd1;
       end
 
-      if ((clk_cnt == 11'd49 + {1'b0, GUARD_TICKS}) && (clk_cnt2 == DIV - 10'd1)) begin
-        slot_change <= 1'b1;
+      if (clk_cnt == 11'd49 + {1'b0, GUARD_TICKS}) begin
+        if ((DIV > 10'd1 && clk_cnt2 == DIV - 10'd2) || (DIV == 10'd1 && clk_cnt2 == 10'd0)) begin
+          slot_change <= 1'b1;
+        end
+        else begin
+          slot_change <= 1'b0;
+        end
       end
       else begin
         slot_change <= 1'b0;

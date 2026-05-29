@@ -1,70 +1,90 @@
-module error_and_hamming (
+module Master_dec_ham (
     input wire resetn,
     input wire clk,
     input wire in_sig,
-    input wire [9:0]  guard_ticks,
+    input wire [9:0]  GUARD_TICKS,
     input wire [41:0] data_in,
-    input wire [3:0]  slot,
+    input wire [2:0]  slot,
     input wire [10:0] clk_cnt,
     input wire preamble_err,
+    input wire slot_change,
+    input wire [2:0] last_slot,
+    input wire GPIO_in,
     
     output reg [31:0] slot_out0,
-    output reg [7:0]  preamble_err_cnt0,
-    output reg [7:0]  slot_timeout_cnt0,
-    output reg [7:0]  hamming_err_cnt0,
-    output reg [7:0]  silent_cnt0,
     output reg [31:0] slot_out1,
-    output reg [7:0]  preamble_err_cnt1,
-    output reg [7:0]  slot_timeout_cnt1,
-    output reg [7:0]  hamming_err_cnt1,
-    output reg [7:0]  silent_cnt1,
     output reg [31:0] slot_out2,
-    output reg [7:0]  preamble_err_cnt2,
-    output reg [7:0]  slot_timeout_cnt2,
-    output reg [7:0]  hamming_err_cnt2,
-    output reg [7:0]  silent_cnt2,
     output reg [31:0] slot_out3,
-    output reg [7:0]  preamble_err_cnt3,
-    output reg [7:0]  slot_timeout_cnt3,
-    output reg [7:0]  hamming_err_cnt3,
-    output reg [7:0]  silent_cnt3,
     output reg [31:0] slot_out4,
-    output reg [7:0]  preamble_err_cnt4,
-    output reg [7:0]  slot_timeout_cnt4,
-    output reg [7:0]  hamming_err_cnt4,
-    output reg [7:0]  silent_cnt4,
     output reg [31:0] slot_out5,
-    output reg [7:0]  preamble_err_cnt5,
-    output reg [7:0]  slot_timeout_cnt5,
-    output reg [7:0]  hamming_err_cnt5,
-    output reg [7:0]  silent_cnt5,
-    output reg [31:0] slot_out6 ,
-    output reg [7:0]  preamble_err_cnt6,
-    output reg [7:0]  slot_timeout_cnt6,
-    output reg [7:0]  hamming_err_cnt6,
-    output reg [7:0]  silent_cnt6,
+    output reg [31:0] slot_out6,
     output reg [31:0] slot_out7,
-    output reg [7:0]  preamble_err_cnt7,
-    output reg [7:0]  slot_timeout_cnt7,
-    output reg [7:0]  hamming_err_cnt7,
-    output reg [7:0]  silent_cnt7
+
+    output wire [31:0] err_cnt0,
+    output wire [31:0] err_cnt1,
+    output wire [31:0] err_cnt2,
+    output wire [31:0] err_cnt3,
+    output wire [31:0] err_cnt4,
+    output wire [31:0] err_cnt5,
+    output wire [31:0] err_cnt6,
+    output wire [31:0] err_cnt7
 );
 
-wire [6:0]  syndrome;
-
 reg out_sig;
-assign syndrome[0] = ^(data_in & 42'h155_5555_5555); // P1  (1, 3, 5, 7 ...)
-assign syndrome[1] = ^(data_in & 42'h266_6666_6666); // P2  (2, 3, 6, 7 ...)
-assign syndrome[2] = ^(data_in & 42'h078_7878_7878); // P4  (4~7, 12~15 ...)
-assign syndrome[3] = ^(data_in & 42'h380_7F80_7F80); // P8  (8~15, 24~31 ...)
-assign syndrome[4] = ^(data_in & 42'h000_7FFF_8000); // P16 (16~31)
-assign syndrome[5] = ^(data_in & 42'h3FF_8000_0000); // P32 (32~41)
-assign syndrome[6] = ^(data_in);
 
-wire [41:0] fixed_data = (syndrome[5:0] == 6'b0) ?  data_in : (data_in ^ (42'b1 << (syndrome[5:0] - 6'b1)));
 
-wire ham_1bit_err = (syndrome[5:0] != 6'b0) && (syndrome[6] == 1'b1);
-wire ham_over_1bit_err = (syndrome[5:0] != 6'b0) && (syndrome[6] == 1'b0);
+reg [7:0]  preamble_err_cnt0;
+reg [7:0]  slot_timeout_cnt0;
+reg [7:0]  hamming_err_cnt0;
+reg [7:0]  silent_cnt0;
+reg [7:0]  preamble_err_cnt1;
+reg [7:0]  slot_timeout_cnt1;
+reg [7:0]  hamming_err_cnt1;
+reg [7:0]  silent_cnt1;
+reg [7:0]  preamble_err_cnt2;
+reg [7:0]  slot_timeout_cnt2;
+reg [7:0]  hamming_err_cnt2;
+reg [7:0]  silent_cnt2;
+reg [7:0]  preamble_err_cnt3;
+reg [7:0]  slot_timeout_cnt3;
+reg [7:0]  hamming_err_cnt3;
+reg [7:0]  silent_cnt3;
+reg [7:0]  preamble_err_cnt4;
+reg [7:0]  slot_timeout_cnt4;
+reg [7:0]  hamming_err_cnt4;
+reg [7:0]  silent_cnt4;
+reg [7:0]  preamble_err_cnt5;
+reg [7:0]  slot_timeout_cnt5;
+reg [7:0]  hamming_err_cnt5;
+reg [7:0]  silent_cnt5;
+reg [7:0]  preamble_err_cnt6;
+reg [7:0]  slot_timeout_cnt6;
+reg [7:0]  hamming_err_cnt6;
+reg [7:0]  silent_cnt6;
+reg [7:0]  preamble_err_cnt7;
+reg [7:0]  slot_timeout_cnt7;
+reg [7:0]  hamming_err_cnt7;
+reg [7:0]  silent_cnt7;
+
+assign err_cnt0 = {preamble_err_cnt0, slot_timeout_cnt0, hamming_err_cnt0, silent_cnt0};
+assign err_cnt1 = {preamble_err_cnt1, slot_timeout_cnt1, hamming_err_cnt1, silent_cnt1};
+assign err_cnt2 = {preamble_err_cnt2, slot_timeout_cnt2, hamming_err_cnt2, silent_cnt2};
+assign err_cnt3 = {preamble_err_cnt3, slot_timeout_cnt3, hamming_err_cnt3, silent_cnt3};
+assign err_cnt4 = {preamble_err_cnt4, slot_timeout_cnt4, hamming_err_cnt4, silent_cnt4};
+assign err_cnt5 = {preamble_err_cnt5, slot_timeout_cnt5, hamming_err_cnt5, silent_cnt5};
+assign err_cnt6 = {preamble_err_cnt6, slot_timeout_cnt6, hamming_err_cnt6, silent_cnt6};
+assign err_cnt7 = {preamble_err_cnt7, slot_timeout_cnt7, hamming_err_cnt7, silent_cnt7};
+
+wire [34:0] fixed_data;
+wire        ham_1bit_err;
+wire        ham_2bit_err;
+
+hamming_dec u_hamming_dec (
+    .codeword    (data_in),
+    .data        (fixed_data),
+    .ham_1bit_err(ham_1bit_err),
+    .ham_2bit_err(ham_2bit_err)
+);
 
 
 reg [7:0] received;
@@ -83,7 +103,7 @@ reg [7:0] received;
         received <= 8'b0;
         end
         else begin
-            if(in_sig) begin 
+            if(GPIO_in) begin 
                 case(slot)
                     3'd0:
                             received[0] <= 1'b1;
@@ -103,59 +123,43 @@ reg [7:0] received;
                             received[7] <= 1'b1;
                 endcase
             end
-            else if(slot==3'd0 && clk_cnt == 11'd1) begin
-                case(slot)
-                    3'd0: begin
-                        if(!received[0]) 
-                            silent_cnt0 <= silent_cnt0 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt0 <= silent_cnt0 - 8'b1;
-                    end
-                    3'd1: begin
-                        if(!received[1]) 
-                            silent_cnt1 <= silent_cnt1 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt1 <= silent_cnt1 - 8'b1;
-                    end
-                    3'd2: begin
-                        if(!received[2]) 
-                            silent_cnt2 <= silent_cnt2 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt2 <= silent_cnt2 - 8'b1;
-                    end
-                    3'd3: begin
-                        if(!received[3]) 
-                            silent_cnt3 <= silent_cnt3 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt3 <= silent_cnt3 - 8'b1;
-                    end
-                    3'd4: begin
-                        if(!received[4]) 
-                            silent_cnt4 <= silent_cnt4 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt4 <= silent_cnt4 - 8'b1;
-                    end
-                    3'd5: begin
-                        if(!received[5]) 
-                            silent_cnt5 <= silent_cnt5 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt5 <= silent_cnt5 - 8'b1;
-                    end
-                    3'd6: begin
-                        if(!received[6]) 
-                            silent_cnt6 <= silent_cnt6 + 8'b6;
-                        else if(silent_cnt0)
-                            silent_cnt6 <= silent_cnt6 - 8'b1;
-                    end
-                    default: begin
-                        if(!received[7]) 
-                            silent_cnt7 <= silent_cnt7 + 8'b6;   
-                        else if(silent_cnt0)
-                            silent_cnt7 <= silent_cnt7 - 8'b1;
-                    end    
-                endcase
+            else if(slot!=last_slot && slot==3'd0) begin
+                if(!received[0]) 
+                    silent_cnt0 <= silent_cnt0 + 8'd6;
+                else if(silent_cnt0 && (silent_cnt0 < 8'd200))
+                    silent_cnt0 <= silent_cnt0 - 8'b1;
+                if(!received[1]) 
+                    silent_cnt1 <= silent_cnt1 + 8'd6;
+                else if(silent_cnt1 && (silent_cnt0 < 8'd200))
+                    silent_cnt1 <= silent_cnt1 - 8'b1;
+                if(!received[2]) 
+                    silent_cnt2 <= silent_cnt2 + 8'd6;
+                else if(silent_cnt2 && (silent_cnt0 < 8'd200))
+                    silent_cnt2 <= silent_cnt2 - 8'b1;
+                if(!received[3]) 
+                    silent_cnt3 <= silent_cnt3 + 8'd6;
+                else if(silent_cnt3 && (silent_cnt0 < 8'd200))
+                    silent_cnt3 <= silent_cnt3 - 8'b1;
+                if(!received[4]) 
+                    silent_cnt4 <= silent_cnt4 + 8'd6;
+                else if(silent_cnt4 && (silent_cnt0 < 8'd200))
+                    silent_cnt4 <= silent_cnt4 - 8'b1;
+                if(!received[5]) 
+                    silent_cnt5 <= silent_cnt5 + 8'd6;
+                else if(silent_cnt5 && (silent_cnt0 < 8'd200))
+                    silent_cnt5 <= silent_cnt5 - 8'b1;
+                if(!received[6]) 
+                    silent_cnt6 <= silent_cnt6 + 8'd6;
+                else if(silent_cnt6 && (silent_cnt0 < 8'd200))
+                    silent_cnt6 <= silent_cnt6 - 8'b1;
+                if(!received[7]) 
+                    silent_cnt7 <= silent_cnt7 + 8'd6;   
+                else if(silent_cnt7 && (silent_cnt0 < 8'd200))
+                    silent_cnt7 <= silent_cnt7 - 8'b1;
                 received <= 8'b0;
             end
+            else
+                received <= received;
         end
     end
 
@@ -172,70 +176,70 @@ reg [7:0] received;
       slot_timeout_cnt7 <= 8'b0;
     end
     else begin
-        if(out_sig) begin
-            case(fixed_data[40:38])
+        if(in_sig) begin
+            case(fixed_data[34:32])
             3'd0: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt0 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt0 <= slot_timeout_cnt0 + 8'b6;
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt0 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt0 <= slot_timeout_cnt0 + 8'd6;
                 else if(slot_timeout_cnt0)
                     slot_timeout_cnt0 <= slot_timeout_cnt0 - 8'b1;
             end
             3'd1: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt1 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt1 <= slot_timeout_cnt1 + 8'b6;
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt1 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt1 <= slot_timeout_cnt1 + 8'd6;
                 else if(slot_timeout_cnt1)
                     slot_timeout_cnt1 <= slot_timeout_cnt1 - 8'b1;
             end
             3'd2: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt2 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt2 <= slot_timeout_cnt2 + 8'b6;
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt2 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt2 <= slot_timeout_cnt2 + 8'd6;
                 else if(slot_timeout_cnt2)
                     slot_timeout_cnt2 <= slot_timeout_cnt2 - 8'b1;
             end
             3'd3: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt3 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt3 <= slot_timeout_cnt3 + 8'b6;
-                else if(slot_timeout_cnt1)
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt3 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt3 <= slot_timeout_cnt3 + 8'd6;
+                else if(slot_timeout_cnt3)
                     slot_timeout_cnt3 <= slot_timeout_cnt3 - 8'b1;
             end
             3'd4: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt4 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt4 <= slot_timeout_cnt4 + 8'b6;
-                else if(slot_timeout_cnt1)
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt4 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt4 <= slot_timeout_cnt4 + 8'd6;
+                else if(slot_timeout_cnt4)
                     slot_timeout_cnt4 <= slot_timeout_cnt4 - 8'b1;
             end
             3'd5: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt5 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt5 <= slot_timeout_cnt5 + 8'b6;
-                else if(slot_timeout_cnt1)
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt5 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt5 <= slot_timeout_cnt5 + 8'd6;
+                else if(slot_timeout_cnt5)
                     slot_timeout_cnt5 <= slot_timeout_cnt5 - 8'b1;
             end
             3'd6: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt6 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt6 <= slot_timeout_cnt6 + 8'b6;
-                else if(slot_timeout_cnt1)
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt6 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt6 <= slot_timeout_cnt6 + 8'd6;
+                else if(slot_timeout_cnt6)
                     slot_timeout_cnt6 <= slot_timeout_cnt6 - 8'b1;
             end
             3'd7: begin
-                if((fixed_data[40:38] != slot) || (clk_cnt < 10'd50)) //out_sig is 1clock later when slave transfer last bit of frame
-                    slot_timeout_cnt7 <= 8'b255;
-                else if( (clk_cnt < (10'd50 - (guard_ticks>>2))) || (10'd50 + (guard_ticks>>2) + (guard_ticks>>1)) < clk_cnt)
-                    slot_timeout_cnt7 <= slot_timeout_cnt7 + 8'b6;
-                else if(slot_timeout_cnt1)
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                    slot_timeout_cnt7 <= 8'd255;
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
+                    slot_timeout_cnt7 <= slot_timeout_cnt7 + 8'd6;
+                else if(slot_timeout_cnt7)
                     slot_timeout_cnt7 <= slot_timeout_cnt7 - 8'b1;
             end
 
@@ -259,24 +263,24 @@ reg [7:0] received;
         if(preamble_err) begin
             case(slot)
                 3'd0:
-                    preamble_err_cnt0 <= preamble_err_cnt0 + 8'b6;
+                    preamble_err_cnt0 <= preamble_err_cnt0 + 8'd6;
                 3'd1:
-                    preamble_err_cnt1 <= preamble_err_cnt1 + 8'b6;
+                    preamble_err_cnt1 <= preamble_err_cnt1 + 8'd6;
                 3'd2:
-                    preamble_err_cnt2 <= preamble_err_cnt2 + 8'b6;
+                    preamble_err_cnt2 <= preamble_err_cnt2 + 8'd6;
                 3'd3:
-                    preamble_err_cnt3 <= preamble_err_cnt3 + 8'b6;
+                    preamble_err_cnt3 <= preamble_err_cnt3 + 8'd6;
                 3'd4:
-                    preamble_err_cnt4 <= preamble_err_cnt4 + 8'b6;
+                    preamble_err_cnt4 <= preamble_err_cnt4 + 8'd6;
                 3'd5:
-                    preamble_err_cnt5 <= preamble_err_cnt5 + 8'b6;
+                    preamble_err_cnt5 <= preamble_err_cnt5 + 8'd6;
                 3'd6:
-                    preamble_err_cnt6 <= preamble_err_cnt6 + 8'b6;
+                    preamble_err_cnt6 <= preamble_err_cnt6 + 8'd6;
                 default:
-                    preamble_err_cnt7 <= preamble_err_cnt7 + 8'b6;
+                    preamble_err_cnt7 <= preamble_err_cnt7 + 8'd6;
             endcase
         end
-        else if(slot==3'd0 && clk_cnt == 11'd1) begin
+        else if(slot!=last_slot && slot==3'd0) begin
             if(preamble_err_cnt0)
                 preamble_err_cnt0 <= preamble_err_cnt0 - 8'b1;
             if(preamble_err_cnt1)
@@ -318,58 +322,58 @@ reg [7:0] received;
             out_sig <= 1'b0;
         end 
         else begin
-            if(slot==3'd0 && clk_cnt == 11'd1) begin
-                    out_sig <= 1'b0;
-                    if (hamming_err_cnt0)
-                        hamming_err_cnt0 <= hamming_err_cnt0 - 1'b1;
-                    if (hamming_err_cnt1)
-                        hamming_err_cnt1 <= hamming_err_cnt1 - 1'b1;
-                    if (hamming_err_cnt2)
-                        hamming_err_cnt2 <= hamming_err_cnt2 - 1'b1;
-                    if (hamming_err_cnt3)
-                        hamming_err_cnt3 <= hamming_err_cnt3 - 1'b1;
-                    if (hamming_err_cnt4)
-                        hamming_err_cnt4 <= hamming_err_cnt4 - 1'b1;
-                    if (hamming_err_cnt5)
-                        hamming_err_cnt5 <= hamming_err_cnt5 - 1'b1;
-                    if (hamming_err_cnt6)
-                        hamming_err_cnt6 <= hamming_err_cnt6 - 1'b1;
-                    if (hamming_err_cnt7)
-                        hamming_err_cnt7 <= hamming_err_cnt7 - 1'b1;
-                end
-            if(in_sig) begin
-                if (!ham_over_1bit_err) begin
-                    case(fixed_data[40:38])
+            if(slot!=last_slot && slot==2'd0) begin
+                out_sig <= 1'b0;
+                if (hamming_err_cnt0)
+                    hamming_err_cnt0 <= hamming_err_cnt0 - 1'b1;
+                if (hamming_err_cnt1)
+                    hamming_err_cnt1 <= hamming_err_cnt1 - 1'b1;
+                if (hamming_err_cnt2)
+                    hamming_err_cnt2 <= hamming_err_cnt2 - 1'b1;
+                if (hamming_err_cnt3)
+                    hamming_err_cnt3 <= hamming_err_cnt3 - 1'b1;
+                if (hamming_err_cnt4)
+                    hamming_err_cnt4 <= hamming_err_cnt4 - 1'b1;
+                if (hamming_err_cnt5)
+                    hamming_err_cnt5 <= hamming_err_cnt5 - 1'b1;
+                if (hamming_err_cnt6)
+                    hamming_err_cnt6 <= hamming_err_cnt6 - 1'b1;
+                if (hamming_err_cnt7)
+                    hamming_err_cnt7 <= hamming_err_cnt7 - 1'b1;
+            end
+            else if(in_sig) begin
+                if (!ham_2bit_err) begin
+                    case(fixed_data[34:32])
                         3'd0: begin
-                            slot_out0 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out0 <= fixed_data[31:0];
                             hamming_err_cnt0 <= hamming_err_cnt0 + (ham_1bit_err<<2);
                         end
                         3'd1: begin
-                            slot_out1 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out1 <= fixed_data[31:0];
                             hamming_err_cnt1 <= hamming_err_cnt1 + (ham_1bit_err<<2);
                         end
                         3'd2: begin
-                            slot_out2 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out2 <= fixed_data[31:0];
                             hamming_err_cnt2 <= hamming_err_cnt2 + (ham_1bit_err<<2);
                         end
                         3'd3: begin
-                            slot_out3 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out3 <= fixed_data[31:0];
                             hamming_err_cnt3 <= hamming_err_cnt3 + (ham_1bit_err<<2);
                         end
                         3'd4: begin
-                            slot_out4 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out4 <= fixed_data[31:0];
                             hamming_err_cnt4 <= hamming_err_cnt4 + (ham_1bit_err<<2);
                         end
                         3'd5: begin
-                            slot_out5 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out5 <= fixed_data[31:0];
                             hamming_err_cnt5 <= hamming_err_cnt5 + (ham_1bit_err<<2);
                         end
                         3'd6: begin
-                            slot_out6 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out6 <= fixed_data[31:0];
                             hamming_err_cnt6 <= hamming_err_cnt6 + (ham_1bit_err<<2);
                         end
                         default: begin
-                            slot_out7 <= {fixed_data[37:32], fixed_data[30:16], fixed_data[14:8], fixed_data[6:4], fixed_data[2]};
+                            slot_out7 <= fixed_data[31:0];
                             hamming_err_cnt7 <= hamming_err_cnt7 + (ham_1bit_err<<2);
                         end
                         endcase
@@ -377,30 +381,30 @@ reg [7:0] received;
                 end
                 else begin
                     out_sig <= 1'b0;
-                    case(fixed_data[40:38])
+                    case(fixed_data[34:32])
                         3'd0: begin
-                            hamming_err_cnt0 <= hamming_err_cnt0 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt0 <= hamming_err_cnt0 + (ham_2bit_err<<3);
                         end
                         3'd1: begin
-                            hamming_err_cnt1 <= hamming_err_cnt1 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt1 <= hamming_err_cnt1 + (ham_2bit_err<<3);
                         end
                         3'd2: begin
-                            hamming_err_cnt2 <= hamming_err_cnt2 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt2 <= hamming_err_cnt2 + (ham_2bit_err<<3);
                         end
                         3'd3: begin
-                            hamming_err_cnt3 <= hamming_err_cnt3 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt3 <= hamming_err_cnt3 + (ham_2bit_err<<3);
                         end
                         3'd4: begin
-                            hamming_err_cnt4 <= hamming_err_cnt4 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt4 <= hamming_err_cnt4 + (ham_2bit_err<<3);
                         end
                         3'd5: begin
-                            hamming_err_cnt5 <= hamming_err_cnt5 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt5 <= hamming_err_cnt5 + (ham_2bit_err<<3);
                         end
                         3'd6: begin
-                            hamming_err_cnt6 <= hamming_err_cnt6 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt6 <= hamming_err_cnt6 + (ham_2bit_err<<3);
                         end
                         default: begin
-                            hamming_err_cnt7 <= hamming_err_cnt7 + (ham_over_1bit_err<<3);
+                            hamming_err_cnt7 <= hamming_err_cnt7 + (ham_2bit_err<<3);
                         end
                     endcase
                 end
@@ -409,4 +413,5 @@ reg [7:0] received;
             out_sig <= 1'b0;
         end
     end
+
 endmodule
