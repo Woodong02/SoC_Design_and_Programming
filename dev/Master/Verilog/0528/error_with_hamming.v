@@ -102,7 +102,7 @@ reg [7:0] received;
         received <= 8'b0;
         end
         else begin
-            if(in_sig) begin 
+            if(GPIO_in) begin 
                 case(slot)
                     3'd0:
                             received[0] <= 1'b1;
