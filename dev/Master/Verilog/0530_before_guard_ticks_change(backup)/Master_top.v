@@ -11,8 +11,6 @@ module master_top (
     output wire [7:0] seg_data,
 
     output wire GPIO_out,
-    output wire [15:0] clk_cnt,
-    output wire [2:0] slot,
 
     output wire [31:0] err_cnt0,
     output wire [31:0] err_cnt1,
@@ -32,15 +30,15 @@ module master_top (
     output wire [31:0] slot_out7
 );
 
+    wire [2:0] last_slot;
+    wire [2:0] slot;
+    wire [10:0] clk_cnt;
     wire slot_change;
-    wire pre_slot_change;
-    wire slot_pre_change;
-    wire tx_trigger = (slot_pre_change && slot==NODE_CNT)? 1'b1 : 1'b0;
+    wire tx_trigger = (slot_change && slot==NODE_CNT)? 1'b1 : 1'b0;
     wire [7:0] halt_cmd;
     wire [41:0] data_bus;
     wire sig_bus;
     wire preamble_err;
-    wire [1:0] rx_stat;
 
     assign halt_cmd[0] = ((err_cnt0[31:24]+err_cnt0[23:16]+err_cnt0[15:8]) > 200) ? 1'b1 : 1'b0;
     assign halt_cmd[1] = ((err_cnt1[31:24]+err_cnt1[23:16]+err_cnt1[15:8]) > 200) ? 1'b1 : 1'b0;
@@ -52,16 +50,16 @@ module master_top (
     assign halt_cmd[7] = ((err_cnt7[31:24]+err_cnt7[23:16]+err_cnt7[15:8]) > 200) ? 1'b1 : 1'b0; //except silent_cnt!!
 
     Master_slot s0(.resetn(resetn), .clk(clk), .DIV(DIV), .GUARD_TICKS(GUARD_TICKS), .NODE_CNT(NODE_CNT),
-                   .slot(slot), .slot_change(slot_change), .slot_pre_change(slot_pre_change), .clk_cnt(clk_cnt), .rx_stat(rx_stat));
+                   .last_slot(last_slot), .slot(slot), .slot_change(slot_change), .clk_cnt(clk_cnt));
 
     Master_tx t0(.clk(clk), .resetn(resetn), .DIV(DIV), .tx_trigger(tx_trigger), .halt_cmd(halt_cmd),
                  .GPIO_out(GPIO_out));
 
-    Master_rx r0(.clk(clk), .DIV(DIV), .GPIO_in(GPIO_in), .resetn(resetn), .slot_pre_change(slot_pre_change),
+    Master_rx r0(.clk(clk), .DIV(DIV), .GPIO_in(GPIO_in), .resetn(resetn), .slot_change(slot_change),
                  .data_out(data_bus), .out_sig(sig_bus), .preamble_err(preamble_err));
 
     Master_dec_ham dh0(.resetn(resetn), .clk(clk), .in_sig(sig_bus), .GUARD_TICKS(GUARD_TICKS), .data_in(data_bus),
-                       .slot(slot), .preamble_err(preamble_err), .slot_change(slot_change), .GPIO_in(GPIO_in), .rx_stat(rx_stat),
+                       .slot(slot), .clk_cnt(clk_cnt), .preamble_err(preamble_err), .slot_change(slot_change), .last_slot(last_slot), .GPIO_in(GPIO_in),
                        .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2), .slot_out3(slot_out3), 
                        .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7),
                        .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), .err_cnt3(err_cnt3), 

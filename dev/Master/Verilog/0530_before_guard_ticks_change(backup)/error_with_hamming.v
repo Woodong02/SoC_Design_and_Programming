@@ -5,10 +5,11 @@ module Master_dec_ham (
     input wire [9:0]  GUARD_TICKS,
     input wire [41:0] data_in,
     input wire [2:0]  slot,
+    input wire [10:0] clk_cnt,
     input wire preamble_err,
     input wire slot_change,
+    input wire [2:0] last_slot,
     input wire GPIO_in,
-    input wire [1:0] rx_stat,
     
     output reg [31:0] slot_out0,
     output reg [31:0] slot_out1,
@@ -122,38 +123,38 @@ reg [7:0] received;
                             received[7] <= 1'b1;
                 endcase
             end
-            else if(slot_change && slot==3'd0) begin
+            else if(slot!=last_slot && slot==3'd0) begin
                 if(!received[0]) 
                     silent_cnt0 <= silent_cnt0 + 8'd6;
                 else if(silent_cnt0 && (silent_cnt0 < 8'd200))
                     silent_cnt0 <= silent_cnt0 - 8'b1;
                 if(!received[1]) 
                     silent_cnt1 <= silent_cnt1 + 8'd6;
-                else if(silent_cnt1 && (silent_cnt1 < 8'd200))
+                else if(silent_cnt1 && (silent_cnt0 < 8'd200))
                     silent_cnt1 <= silent_cnt1 - 8'b1;
                 if(!received[2]) 
                     silent_cnt2 <= silent_cnt2 + 8'd6;
-                else if(silent_cnt2 && (silent_cnt2 < 8'd200))
+                else if(silent_cnt2 && (silent_cnt0 < 8'd200))
                     silent_cnt2 <= silent_cnt2 - 8'b1;
                 if(!received[3]) 
                     silent_cnt3 <= silent_cnt3 + 8'd6;
-                else if(silent_cnt3 && (silent_cnt3 < 8'd200))
+                else if(silent_cnt3 && (silent_cnt0 < 8'd200))
                     silent_cnt3 <= silent_cnt3 - 8'b1;
                 if(!received[4]) 
                     silent_cnt4 <= silent_cnt4 + 8'd6;
-                else if(silent_cnt4 && (silent_cnt4 < 8'd200))
+                else if(silent_cnt4 && (silent_cnt0 < 8'd200))
                     silent_cnt4 <= silent_cnt4 - 8'b1;
                 if(!received[5]) 
                     silent_cnt5 <= silent_cnt5 + 8'd6;
-                else if(silent_cnt5 && (silent_cnt5 < 8'd200))
+                else if(silent_cnt5 && (silent_cnt0 < 8'd200))
                     silent_cnt5 <= silent_cnt5 - 8'b1;
                 if(!received[6]) 
                     silent_cnt6 <= silent_cnt6 + 8'd6;
-                else if(silent_cnt6 && (silent_cnt6 < 8'd200))
+                else if(silent_cnt6 && (silent_cnt0 < 8'd200))
                     silent_cnt6 <= silent_cnt6 - 8'b1;
                 if(!received[7]) 
                     silent_cnt7 <= silent_cnt7 + 8'd6;   
-                else if(silent_cnt7 && (silent_cnt7 < 8'd200))
+                else if(silent_cnt7 && (silent_cnt0 < 8'd200))
                     silent_cnt7 <= silent_cnt7 - 8'b1;
                 received <= 8'b0;
             end
@@ -162,8 +163,6 @@ reg [7:0] received;
         end
     end
 
-    wire severe_err = (rx_stat==2'd2) || (fixed_data[34:32] != slot);
-    wire weak_err = rx_stat==2'd1;
 
   always @(posedge clk or negedge resetn) begin
     if (!resetn) begin
@@ -180,65 +179,65 @@ reg [7:0] received;
         if(in_sig) begin
             case(fixed_data[34:32])
             3'd0: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt0 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt0 <= slot_timeout_cnt0 + 8'd6;
                 else if(slot_timeout_cnt0)
                     slot_timeout_cnt0 <= slot_timeout_cnt0 - 8'b1;
             end
             3'd1: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt1 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt1 <= slot_timeout_cnt1 + 8'd6;
                 else if(slot_timeout_cnt1)
                     slot_timeout_cnt1 <= slot_timeout_cnt1 - 8'b1;
             end
             3'd2: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt2 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt2 <= slot_timeout_cnt2 + 8'd6;
                 else if(slot_timeout_cnt2)
                     slot_timeout_cnt2 <= slot_timeout_cnt2 - 8'b1;
             end
             3'd3: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt3 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt3 <= slot_timeout_cnt3 + 8'd6;
                 else if(slot_timeout_cnt3)
                     slot_timeout_cnt3 <= slot_timeout_cnt3 - 8'b1;
             end
             3'd4: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt4 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt4 <= slot_timeout_cnt4 + 8'd6;
                 else if(slot_timeout_cnt4)
                     slot_timeout_cnt4 <= slot_timeout_cnt4 - 8'b1;
             end
             3'd5: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt5 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt5 <= slot_timeout_cnt5 + 8'd6;
                 else if(slot_timeout_cnt5)
                     slot_timeout_cnt5 <= slot_timeout_cnt5 - 8'b1;
             end
             3'd6: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt6 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt6 <= slot_timeout_cnt6 + 8'd6;
                 else if(slot_timeout_cnt6)
                     slot_timeout_cnt6 <= slot_timeout_cnt6 - 8'b1;
             end
             3'd7: begin
-                if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
+                if((fixed_data[34:32] != slot) || (clk_cnt < 11'd49)) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt7 <= 8'd255;
-                else if(weak_err)
+                else if( (clk_cnt < (11'd49 - (GUARD_TICKS>>2))) || (11'd49 + (GUARD_TICKS>>2) + (GUARD_TICKS>>1)) < clk_cnt)
                     slot_timeout_cnt7 <= slot_timeout_cnt7 + 8'd6;
                 else if(slot_timeout_cnt7)
                     slot_timeout_cnt7 <= slot_timeout_cnt7 - 8'b1;
@@ -281,7 +280,7 @@ reg [7:0] received;
                     preamble_err_cnt7 <= preamble_err_cnt7 + 8'd6;
             endcase
         end
-        else if(slot_change && slot==3'd0) begin
+        else if(slot!=last_slot && slot==3'd0) begin
             if(preamble_err_cnt0)
                 preamble_err_cnt0 <= preamble_err_cnt0 - 8'b1;
             if(preamble_err_cnt1)
@@ -323,7 +322,7 @@ reg [7:0] received;
             out_sig <= 1'b0;
         end 
         else begin
-            if(slot_change && slot==2'd0) begin
+            if(slot!=last_slot && slot==2'd0) begin
                 out_sig <= 1'b0;
                 if (hamming_err_cnt0)
                     hamming_err_cnt0 <= hamming_err_cnt0 - 1'b1;
