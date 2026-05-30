@@ -1,9 +1,9 @@
 # TDMA Master IP — Verilog 포트 및 모듈 계층 정의
 
-> 버전: 0.4
-> 작성일: 2026-05-21
+> 버전: 0.5
+> 작성일: 2026-05-30
 > v0.4: TX_TICK 제거, CLOCK_FAULT 제거, 모듈 구성 단순화
-
+> v0.5: 
 ---
 
 ## 1. 모듈 계층 구조
@@ -70,7 +70,7 @@ module tdma_master_top (
 ### 3.1 `clk_div` — 클럭 분주기
 
 ```verilog
-module clk_div (
+~module clk_div (
     input  wire        clk,
     input  wire        rst_n,
     input  wire [9:0]  div,          // LINK_CFG.DIV
@@ -80,33 +80,29 @@ module clk_div (
 
 > clk_tick은 DIV+1 clk 사이클마다 1클럭 폭 펄스를 생성한다. master_tx·shared_rx의 Manchester 비트 타이밍에만 사용된다. slot_timer는 clk_tick을 사용하지 않는다.
 
----
+---~
+> 클럭 분주기는 사용하지 않는다. 클럭 분주는 타임 슬롯 관리, 제어에 필요한데 슬롯 관리에는 original clock만 이용하는 것이 용이하다.
+타임 슬롯 변화 직전 slot_change 컨트롤을 위해 클럭 분주기를 폐기한다.
 
 ### 3.2 `slot_timer` — 사이클/슬롯 타이머 (clk 사이클 기준)
 
 ```verilog
 module slot_timer (
-    input  wire        clk,
-    input  wire        rst_n,
-    input  wire        enable,        // CTRL.ENABLE
-    input  wire [9:0]  div,           // LINK_CFG.DIV (frame_ticks = 50×2×(DIV+1) 계산용)
-    input  wire [9:0]  guard_ticks,   // LINK_CFG.GUARD_TICKS (clk 사이클 단위)
-    input  wire [2:0]  node_cnt,      // NODE_CFG.NODE_CNT
+    input wire resetn,
+    input wire clk,
+    input wire [9:0] DIV, //분주 정도, 1이라면 original clock 그대로 사용을 뜻한다.
+    input wire [9:0] GUARD_TICKS, //가드 타임, guard_min의 경우 ps의 init함수에서 연산 수행 후 반영한다.
+    input wire [2:0] NODE_CNT, // 활성 노드  개수
 
-    output wire [31:0] slot_ticks,    // frame_ticks + GUARD_TICKS → SLOT_TICKS_RO
-    output wire [31:0] guard_min,     // GUARD_MIN 계산값 → GUARD_MIN_RO
-    output wire [2:0]  current_slot,  // 현재 진행 중인 슬롯 번호 (0~node_cnt)
-    output wire        cycle_start,   // 새 사이클 시작 펄스 (1클럭 폭): master_tx 트리거
-    output wire        slot_start,    // 슬롯 시작 펄스 (1클럭 폭): shared_rx 윈도우 오픈
-    output wire        cycle_done,    // TDMA 사이클 완료 펄스 → IRQ
-    output wire [31:0] cycle_cnt,     // 완료된 사이클 수 → CYCLE_CNT
-    output wire        bus_active     // TDMA 버스 동작 중 → GLOBAL_STATUS.BUS_ACTIVE
+    output reg  [2:0] last_slot, //이전 슬롯, 새로운 슬롯 시작 직후 이벤트를 위한 신호이다.
+    output reg  [2:0] slot,  //현재 슬롯
+    output reg        slot_change, //슬롯 직전 신호를 보내 슬롯 교체 타이밍에 딱 맞는 이벤트를 발생시킬 수 있다.
+    output reg  [10:0] clk_cnt  //현재 슬롯 위치 비율을 확인할 수 있다.
 );
 ```
 
-> `slot_ticks = 50 × 2 × (DIV+1) + GUARD_TICKS`
-> `cycle_start`는 새 사이클이 시작되는 시점의 1클럭 폭 펄스. slot 0의 `slot_start`와 동시에 발생한다.
-> `guard_min`은 Verilog 파라미터(RX_PROCESS_CYCLES, CABLE_DELAY_TICKS, BUS_TURNAROUND, MAX_PPM 등)와 frame_ticks로 계산한 정적+동적 혼합 값이다. 상세 산출식은 `03_sync_decisions(4).md` §2.3 참조.
+GUARD_TICKS의 경우 제어신호이므로 ps에서 연산한다. 단위는 original clock이 아닌 (가상으로 분주된) bit단위로 계산한다.
+
 
 ---
 

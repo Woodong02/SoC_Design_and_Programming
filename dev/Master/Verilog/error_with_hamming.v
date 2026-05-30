@@ -4,11 +4,13 @@ module Master_dec_ham (
     input wire in_sig,
     input wire [9:0]  GUARD_TICKS,
     input wire [41:0] data_in,
+    input wire [7:0] SILENT_TH,
     input wire [2:0]  slot,
     input wire preamble_err,
     input wire slot_change,
     input wire GPIO_in,
     input wire [1:0] rx_stat,
+    input wire [7:0] halt_cmd,
     
     output reg [31:0] slot_out0,
     output reg [31:0] slot_out1,
@@ -125,35 +127,35 @@ reg [7:0] received;
             else if(slot_change && slot==3'd0) begin
                 if(!received[0]) 
                     silent_cnt0 <= silent_cnt0 + 8'd6;
-                else if(silent_cnt0 && (silent_cnt0 < 8'd200))
+                else if(silent_cnt0 && (silent_cnt0 < SILENT_TH))
                     silent_cnt0 <= silent_cnt0 - 8'b1;
                 if(!received[1]) 
                     silent_cnt1 <= silent_cnt1 + 8'd6;
-                else if(silent_cnt1 && (silent_cnt1 < 8'd200))
+                else if(silent_cnt1 && (silent_cnt1 < SILENT_TH))
                     silent_cnt1 <= silent_cnt1 - 8'b1;
                 if(!received[2]) 
                     silent_cnt2 <= silent_cnt2 + 8'd6;
-                else if(silent_cnt2 && (silent_cnt2 < 8'd200))
+                else if(silent_cnt2 && (silent_cnt2 < SILENT_TH))
                     silent_cnt2 <= silent_cnt2 - 8'b1;
                 if(!received[3]) 
                     silent_cnt3 <= silent_cnt3 + 8'd6;
-                else if(silent_cnt3 && (silent_cnt3 < 8'd200))
+                else if(silent_cnt3 && (silent_cnt3 < SILENT_TH))
                     silent_cnt3 <= silent_cnt3 - 8'b1;
                 if(!received[4]) 
                     silent_cnt4 <= silent_cnt4 + 8'd6;
-                else if(silent_cnt4 && (silent_cnt4 < 8'd200))
+                else if(silent_cnt4 && (silent_cnt4 < SILENT_TH))
                     silent_cnt4 <= silent_cnt4 - 8'b1;
                 if(!received[5]) 
                     silent_cnt5 <= silent_cnt5 + 8'd6;
-                else if(silent_cnt5 && (silent_cnt5 < 8'd200))
+                else if(silent_cnt5 && (silent_cnt5 < SILENT_TH))
                     silent_cnt5 <= silent_cnt5 - 8'b1;
                 if(!received[6]) 
                     silent_cnt6 <= silent_cnt6 + 8'd6;
-                else if(silent_cnt6 && (silent_cnt6 < 8'd200))
+                else if(silent_cnt6 && (silent_cnt6 < SILENT_TH))
                     silent_cnt6 <= silent_cnt6 - 8'b1;
                 if(!received[7]) 
                     silent_cnt7 <= silent_cnt7 + 8'd6;   
-                else if(silent_cnt7 && (silent_cnt7 < 8'd200))
+                else if(silent_cnt7 && (silent_cnt7 < SILENT_TH))
                     silent_cnt7 <= silent_cnt7 - 8'b1;
                 received <= 8'b0;
             end
@@ -184,7 +186,7 @@ reg [7:0] received;
                     slot_timeout_cnt0 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt0 <= slot_timeout_cnt0 + 8'd6;
-                else if(slot_timeout_cnt0)
+                else if(slot_timeout_cnt0 && !halt_cmd[0])
                     slot_timeout_cnt0 <= slot_timeout_cnt0 - 8'b1;
             end
             3'd1: begin
@@ -192,7 +194,7 @@ reg [7:0] received;
                     slot_timeout_cnt1 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt1 <= slot_timeout_cnt1 + 8'd6;
-                else if(slot_timeout_cnt1)
+                else if(slot_timeout_cnt1 && !halt_cmd[1])
                     slot_timeout_cnt1 <= slot_timeout_cnt1 - 8'b1;
             end
             3'd2: begin
@@ -200,7 +202,7 @@ reg [7:0] received;
                     slot_timeout_cnt2 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt2 <= slot_timeout_cnt2 + 8'd6;
-                else if(slot_timeout_cnt2)
+                else if(slot_timeout_cnt2 && !halt_cmd[2])
                     slot_timeout_cnt2 <= slot_timeout_cnt2 - 8'b1;
             end
             3'd3: begin
@@ -208,7 +210,7 @@ reg [7:0] received;
                     slot_timeout_cnt3 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt3 <= slot_timeout_cnt3 + 8'd6;
-                else if(slot_timeout_cnt3)
+                else if(slot_timeout_cnt3 && !halt_cmd[3])
                     slot_timeout_cnt3 <= slot_timeout_cnt3 - 8'b1;
             end
             3'd4: begin
@@ -216,7 +218,7 @@ reg [7:0] received;
                     slot_timeout_cnt4 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt4 <= slot_timeout_cnt4 + 8'd6;
-                else if(slot_timeout_cnt4)
+                else if(slot_timeout_cnt4 && !halt_cmd[4])
                     slot_timeout_cnt4 <= slot_timeout_cnt4 - 8'b1;
             end
             3'd5: begin
@@ -224,7 +226,7 @@ reg [7:0] received;
                     slot_timeout_cnt5 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt5 <= slot_timeout_cnt5 + 8'd6;
-                else if(slot_timeout_cnt5)
+                else if(slot_timeout_cnt5 && !halt_cmd[5])
                     slot_timeout_cnt5 <= slot_timeout_cnt5 - 8'b1;
             end
             3'd6: begin
@@ -232,7 +234,7 @@ reg [7:0] received;
                     slot_timeout_cnt6 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt6 <= slot_timeout_cnt6 + 8'd6;
-                else if(slot_timeout_cnt6)
+                else if(slot_timeout_cnt6 && !halt_cmd[6])
                     slot_timeout_cnt6 <= slot_timeout_cnt6 - 8'b1;
             end
             3'd7: begin
@@ -240,7 +242,7 @@ reg [7:0] received;
                     slot_timeout_cnt7 <= 8'd255;
                 else if(weak_err)
                     slot_timeout_cnt7 <= slot_timeout_cnt7 + 8'd6;
-                else if(slot_timeout_cnt7)
+                else if(slot_timeout_cnt7 && !halt_cmd[7])
                     slot_timeout_cnt7 <= slot_timeout_cnt7 - 8'b1;
             end
 
@@ -282,21 +284,21 @@ reg [7:0] received;
             endcase
         end
         else if(slot_change && slot==3'd0) begin
-            if(preamble_err_cnt0)
+            if(preamble_err_cnt0 && !halt_cmd[0])
                 preamble_err_cnt0 <= preamble_err_cnt0 - 8'b1;
-            if(preamble_err_cnt1)
+            if(preamble_err_cnt1 && !halt_cmd[1])
                 preamble_err_cnt1 <= preamble_err_cnt1 - 8'b1;
-            if(preamble_err_cnt2)
+            if(preamble_err_cnt2 && !halt_cmd[2])
                 preamble_err_cnt2 <= preamble_err_cnt2 - 8'b1;
-            if(preamble_err_cnt3)
+            if(preamble_err_cnt3 && !halt_cmd[3])
                 preamble_err_cnt3 <= preamble_err_cnt3 - 8'b1;
-            if(preamble_err_cnt4)
+            if(preamble_err_cnt4 && !halt_cmd[4])
                 preamble_err_cnt4 <= preamble_err_cnt4 - 8'b1;
-            if(preamble_err_cnt5)
+            if(preamble_err_cnt5 && !halt_cmd[5])
                 preamble_err_cnt5 <= preamble_err_cnt5 - 8'b1;
-            if(preamble_err_cnt6)
+            if(preamble_err_cnt6 && !halt_cmd[6])
                 preamble_err_cnt6 <= preamble_err_cnt6 - 8'b1;
-            if(preamble_err_cnt7)
+            if(preamble_err_cnt7 && !halt_cmd[7])
                 preamble_err_cnt7 <= preamble_err_cnt7 - 8'b1;
         end
     end
@@ -325,21 +327,21 @@ reg [7:0] received;
         else begin
             if(slot_change && slot==2'd0) begin
                 out_sig <= 1'b0;
-                if (hamming_err_cnt0)
+                if (hamming_err_cnt0 && !halt_cmd[0])
                     hamming_err_cnt0 <= hamming_err_cnt0 - 1'b1;
-                if (hamming_err_cnt1)
+                if (hamming_err_cnt1 && !halt_cmd[1])
                     hamming_err_cnt1 <= hamming_err_cnt1 - 1'b1;
-                if (hamming_err_cnt2)
+                if (hamming_err_cnt2 && !halt_cmd[2])
                     hamming_err_cnt2 <= hamming_err_cnt2 - 1'b1;
-                if (hamming_err_cnt3)
+                if (hamming_err_cnt3 && !halt_cmd[3])
                     hamming_err_cnt3 <= hamming_err_cnt3 - 1'b1;
-                if (hamming_err_cnt4)
+                if (hamming_err_cnt4 && !halt_cmd[4])
                     hamming_err_cnt4 <= hamming_err_cnt4 - 1'b1;
-                if (hamming_err_cnt5)
+                if (hamming_err_cnt5 && !halt_cmd[5])
                     hamming_err_cnt5 <= hamming_err_cnt5 - 1'b1;
-                if (hamming_err_cnt6)
+                if (hamming_err_cnt6 && !halt_cmd[6])
                     hamming_err_cnt6 <= hamming_err_cnt6 - 1'b1;
-                if (hamming_err_cnt7)
+                if (hamming_err_cnt7 && !halt_cmd[7])
                     hamming_err_cnt7 <= hamming_err_cnt7 - 1'b1;
             end
             else if(in_sig) begin

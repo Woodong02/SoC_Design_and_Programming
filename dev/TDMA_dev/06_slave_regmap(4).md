@@ -1,7 +1,8 @@
 # TDMA Slave IP — 레지스터 맵 사양
 
-> 버전: 0.4 · 데이터 폭: 32비트 · 주소 폭: 32비트 · 엔디언: little-endian · 비트 순서: MSB first
-> 레지스터 수: 8개
+> 버전: 0.6
+> 작성일: 2026-05-30
+> v0.6 변경 : GUARD_TICKS 수신 추가
 
 ---
 
@@ -36,7 +37,8 @@
 | 19:10 | GUARD_TICKS | RW | — | 슬롯 간 guard time (clk 사이클 단위) |
 | 31:20 | reserved | — | 0 | — |
 
-> **모든 노드의 LINK_CFG는 마스터와 동일하게 설정해야 한다.** DIV·GUARD_TICKS가 다르면 슬롯 타이밍이 어긋나 충돌이 발생한다.
+> ~**모든 노드의 LINK_CFG는 마스터와 동일하게 설정해야 한다.**~ GUARD_TICKS는 매 사이클마다 Master가 Slave에게 브로드캐스팅한다. DIV 값은 노드 자체 설정을 유지한다.
+
 
 ---
 

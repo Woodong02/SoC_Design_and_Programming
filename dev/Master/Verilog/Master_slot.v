@@ -9,7 +9,8 @@ module Master_slot (
     output reg        slot_change,
     output reg        slot_pre_change,
     output reg  [15:0] clk_cnt,
-    output wire [1:0] rx_stat
+    output wire [1:0] rx_stat,
+    output reg  [63:0] cycle_cnt
 );
 
   wire [15:0] data_len_tick = 16'd50 * DIV;
@@ -20,12 +21,15 @@ module Master_slot (
           clk_cnt <= 16'd0;
           slot <= 3'd0;
           slot_change <= 1'b1;
+          cycle_cnt <= 64'b0;
       end
       else begin
           if((clk_cnt == (total_tick - 16'd1))) begin
             clk_cnt <= 16'd0;
-            if(slot==NODE_CNT)
+            if(slot==NODE_CNT) begin
               slot <= 3'd0;
+              cycle_cnt <= cycle_cnt + 64'b1;
+            end
             else
               slot <= slot + 3'd1;
             slot_change <= 1'b1;
@@ -53,6 +57,6 @@ module Master_slot (
   end
 
   assign rx_stat = (clk_cnt < data_len_tick) ? 2'd2 :
-                   ((data_len_tick + (GUARD_TICKS>>2) < clk_cnt) && (clk_cnt < total_tick - (GUARD_TICKS>>2))) ? 2'd0 : 2'd1;
+                   ((data_len_tick + (GUARD_TICKS>>2) <= clk_cnt) && (clk_cnt < total_tick - (GUARD_TICKS>>2))) ? 2'd0 : 2'd1;
 
 endmodule

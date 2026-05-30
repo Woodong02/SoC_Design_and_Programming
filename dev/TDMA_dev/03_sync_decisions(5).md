@@ -1,9 +1,8 @@
 # TDMA IP — 슬롯 타이밍 기준 및 가드 타임 설계 결정
 
-> 버전: 0.4
-> 작성일: 2026-05-21
-> v0.4: TX_TICK 기반 클럭 보정 삭제. 액티브 에지 감지를 단일 동기 기준으로 확정.
->       guard time으로 크리스탈 드리프트를 흡수하는 방식 채택.
+> 버전: 0.6
+> 작성일: 2026-05-30
+> v0.6 변경: GUARD_TICKS 업데이트
 
 ---
 
@@ -33,16 +32,14 @@ always @(posedge clk) prev_rx <= rx_line;
 wire active_edge = (~prev_rx) & rx_line;  // 0→1 상승 에지
 ```
 
-라인이 1로 끝난 직전 사이클 다음에 동일한 드라이버가 재개하는 경우, 첫 전이가 상승 에지가 되지 않을 수 있다. preamble 0x55는 이러한 모호성을 Manchester 전이 패턴으로 자연스럽게 해소한다. 수신기는 첫 상승 에지 이후 preamble 패턴 검증으로 유효 사이클 시작을 확정한다.
-
 ### 1.3 슬롯 시작 오프셋
 
 ```
-slot_start[n] = cycle_start + n × slot_ticks + GUARD_TICKS   (n = SLAVE_ADDR)
+slot_start[n] = cycle_start + n × slot_ticks + GUARD_TICKS>>1   (n = SLAVE_ADDR)
 ```
 
 ~슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 즉시 전송을 시작한다.~
-슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks + (guard_ticks>>1) 카운트 완료 시점에 전송을 시작한다. n=0 슬레이브는 에지 감지 후 guard_ticks>>1 만큼의 카운트 후 전송을 시작한다. (슬롯의 양쪽 끝이 가드타임/2씩 차지하므로)
+n=0 슬레이브는 에지 감지 후 자신의 SLAVE_ADDR × slot_ticks + (guard_ticks>>1) 카운트 완료 시점에 전송을 시작한다. (슬롯의 양쪽 끝이 가드타임/2씩 차지하므로)
 
 ---
 
@@ -110,7 +107,7 @@ parameter GUARD_MIN = RX_PROCESS_CYCLES + CABLE_DELAY_TICKS + BUS_TURNAROUND + D
 |------|------|
 | `GUARD_TICKS ≥ GUARD_MIN_RO` | HW 계산 최솟값 이상으로 설정 |
 | `GUARD_TICKS ≥ DRIFT_MARGIN × 안전계수` | 드리프트 흡수를 위한 추가 여유. 안전계수 2 이상 권장 |
-| 모든 노드 동일 설정 | 마스터와 슬레이브의 GUARD_TICKS는 반드시 동일하게 구성 |
+| 모든 노드 동일 설정 | 마스터와 슬레이브의 GUARD_TICKS는 반드시 동일하게 구성(마스터가 브로드캐스트) |
 
 ---
 

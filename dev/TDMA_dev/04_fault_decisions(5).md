@@ -1,11 +1,8 @@
 # TDMA IP — 내고장성 설계 결정
 
-> 버전: 0.4
-> 작성일: 2026-05-21
-> v0.4 변경: TX_TICK 제거에 따라 SYNC_FAULT, CLOCK_FAULT, PAUSE 상태 삭제.
->            마스터 FSM 7→5 상태, 슬레이브 FSM 6→5 상태로 단순화.
->            카운터 구조를 연속 기반에서 포인트 점수 기반(+10/−1, 포화)으로 전면 변경.
->            RECOVERY_TH 레지스터 삭제 (카운터 배율이 충분한 복구 히스테리시스 제공).
+> 버전: 0.6
+> 작성일: 2026-05-30
+> v0.6 변경 : 마스터 fault 감지 변경(그림에 잘 나와있음)
 
 ---
 
@@ -24,7 +21,7 @@
 
 | 이벤트 | 감지 조건 | 집계 카운터 |
 |--------|----------|------------|
-| `SLOT_TIMEOUT` | 슬롯 내 수신 데이터의 슬레이브 주소가 슬롯과 다르거나 guardtime을 침범함. (단순 guardtime 침범시 cnt 6 증가, 슬롯 침범시 SHUTDOWN or cnt 100 증가?) | `slot_timeout_cnt` |
+| `SLOT_TIMEOUT` | 슬롯 내 수신 데이터의 슬레이브 주소가 슬롯과 다르거나 guardtime을 침범함. (단순 guardtime 침범시 cnt 6 증가, 슬롯 침범시 SHUTDOWN or cnt 100 증가?) | 
 ~| `FRAME_ERR` | 액티브 에지 감지 후 Manchester 인코딩 위반 검출 (mid-bit 전이 부재 또는 비트 수 불일치) | `FAULT_CNT` |~
 | `HAMMING_ERR` | Hamming 1비트 오류시 4 증가, Hamming 2비트 오류시 8 증가 (정정 불가, 프레임 폐기) | `hamming_err_cnt` |
 | `PREAMBLE_ERR` | 액티브 에지 감지 후 preamble(0xAA) 패턴 불일치, 1씩 증가. | `preamble_err_cnt` |
@@ -74,13 +71,13 @@ counter == 0         → NORMAL 복귀
 
 | 이벤트 | 마스터 FAULT_CNT[n] | 슬레이브 FAULT_CNT |
 |--------|-------------------|------------------|
-| SLOT_TIMEOUT | +10 (포화) | — |
-| FRAME_ERR | +10 (포화) | — |
-| HAMMING_ERR | +10 (포화) | — |
+| SLOT_TIMEOUT | +6 혹은 255 고정 | — |
+| SILENT_CNT | +6 (포화) | — |
+| HAMMING_ERR | +4 or +6 (포화) | — |
 | BROADCAST_HAMMING_ERR | — | +10 (포화) |
 | 정상 프레임 수신 | −1 (하한 0) | −1 (하한 0) |
 
-Hamming 1비트 자동 정정은 정상 수신으로 간주하며 FAULT_CNT를 증가시키지 않는다.
+Hamming 1비트 자동 정정은 4증가, 2비트 프레임 폐기시 8증가시킨다.
 
 ### 2.3 LINE_CNT 규칙 (마스터·슬레이브 공통)
 
@@ -106,8 +103,8 @@ FAULT_TH = 30 기준:
 FAULT_TH 설정으로 허용 오류 횟수(TH/10)와 복구 소요 사이클(TH)을 동시에 제어한다. RECOVERY_TH 레지스터는 불필요하다.
 
 ---
-
-## 3. Fault 우선순위
+~
+## 3. Fault 우선순위(이미지로 정리 완료)
 
 동시에 여러 fault 조건이 발생할 경우 아래 우선순위를 따른다.
 
@@ -119,7 +116,7 @@ LINE_FAULT > DATA_FAULT
 - `DATA_FAULT`: 라인은 정상이나 데이터에 오류 누적. 라인 복구 후 평가.
 
 `HALT_CMD`는 우선순위 체계 밖의 명시적 중단 명령으로, 어느 상태에서든 수신 즉시 FAULT 진입을 강제한다.
-
+~
 ---
 
 ## 4. 마스터 도메인 상태 머신 (슬레이브 n별)
@@ -130,9 +127,11 @@ LINE_FAULT > DATA_FAULT
 |------|--------|------|
 | `INACTIVE` | 000 | NODE_CNT 범위 밖. FAULT_CNT·LINE_CNT 집계 없음 |
 | `NORMAL` | 001 | 정상 동작. FAULT_CNT < FAULT_TH (임계값 미만에서 오류 누적 허용) |
-| `DATA_RECOVERY` | 010 | 0 < FAULT_CNT < FAULT_TH이며 DATA_FAULT에서 복구 중. 데이터 수신 재개 |
-| `DATA_FAULT` | 011 | FAULT_CNT ≥ FAULT_TH. 데이터 수신 격리 |
-| `LINE_FAULT` | 100 | LINE_CNT ≥ LINE_FAULT_TH. 공유 RX 버스 이상. 격리 |
+~| `DATA_RECOVERY` | 010 | 0 < FAULT_CNT < FAULT_TH이며 DATA_FAULT에서 복구 중. 데이터 수신 재개 |~ 한 번 SHUTDOWN된 노드는 리셋하지 않는 한 정지한다.
+~| `DATA_FAULT` | 011 | FAULT_CNT ≥ FAULT_TH. 데이터 수신 격리 |
+| `LINE_FAULT` | 100 | LINE_CNT ≥ LINE_FAULT_TH. 공유 RX 버스 이상. 격리 |~
+
+모든 에러 카운트를 합산하여 SHUTDOWN 여부를 결정한다. SILENT_CNT의 경우 SHUTDOWN 명령을 내리지 않으며 7-segment에 상태가 따로 표시된다.
 
 ### 4.2 상태 전이
 
@@ -227,7 +226,8 @@ HALT_CMD로 진입한 FAULT와 FAULT_CNT로 진입한 FAULT는 동일 상태이�
 
 ### 5.4 DEAD 상태에서 슬레이브 동작
 
-전송을 중단하고 버스를 High-Z로 유지한다. 액티브 에지 감지를 계속 시도한다. 유효 preamble 수신 시 LINE_CNT에 −1 적용 → LINE_CNT == 0에 도달 시 NORMAL로 자동 복구.
+전송을 중단하고 버스를 High-Z로 유지한다. ~액티브 에지 감지를 계속 시도한다. 유효 preamble 수신 시 LINE_CNT에 −1 적용 → LINE_CNT == 0에 도달 시 NORMAL로 자동 복구.~
+한 번 멈춘 슬레이브는 리셋 버튼으로만 복구할 수 있다.
 
 ---
 
