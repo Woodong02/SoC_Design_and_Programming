@@ -26,19 +26,20 @@
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 9:0 | DIV | RW | 0 | clk_tick 반주기 = clk / (DIV+1). Manchester 비트 주기 = 2×(DIV+1) clk 사이클 |
-| 19:10 | GUARD_TICKS | RW | — | 슬롯 간 guard time (clk 사이클 단위). GUARD_MIN_RO 이상으로 설정 |
-| 22:20 | NODE_CNT | RW | 0 | 값 N → 슬레이브 0~N 활성 (총 N+1개). 최대 7 (8개 슬레이브) |
+| 9:0 | DIV[9:0] | RW | 0 | clk_tick 반주기 = clk / (DIV+1). Manchester 비트 주기 = 2×(DIV+1) clk 사이클 |
+| 19:10 | GUARD_TICKS[9:0] | RW | — | 슬롯 간 guard time (clk 사이클 단위). GUARD_MIN_RO 이상으로 설정 |
+| 22:20 | NODE_CNT[2:0] | RW | 0 | 값 N → 슬레이브 0~N 활성 (총 N+1개). 최대 7 (8개 슬레이브) |
 | 23 | ENABLE | RW | 0 | 1: IP 동작 시작. 0: 정지 |
 | 31:24 | reserved | — | 0 | — |
 
-### 0x04 — MASTER_CLOCK
+### 0x04 — Polling_Reg
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 2:0 | slot_out | RO | 0 | GPIO_in 들어온 순간 슬롯
-| 18:3 | clk_cnt_out | RO | 0 | GPIO_in 들어온 순간 타임 슬롯 내 clk_cnt
-| 31:19 | reserved | — | 0 | — |
+| 2:0 | slot[2:0] | RO | 0 | 슬롯
+| 18:3 | clk_cnt[15:0] | RO | 0 | 타임 슬롯 내 clk_cnt
+| 19 | GPIO_in | RO | 0 | GPIO_in: 데이터 수신시 tftlcd 화면 업데이트
+| 31:20 | reserved | — | 0 | — |
 
 
 
@@ -50,9 +51,10 @@
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 7:0 | FAULT_TH | RW | 30 | FAULT_CNT 포화 임계값. 허용 오류 횟수 ≈ FAULT_TH / 10. 복구 소요 사이클 ≈ FAULT_TH |
-| 15:8 | SILENT_FAULT_TH | RW | 30 | LINE_CNT 포화 임계값. 라인 이상 허용 횟수 ≈ LINE_FAULT_TH / 10 |
-| 31:16 | reserved | — | 0 | — |
+| 7:0 | FAULT_TH[7:0] | RW | 30 | FAULT_CNT 포화 임계값. 허용 오류 횟수 ≈ FAULT_TH / 10. 복구 소요 사이클 ≈ FAULT_TH |
+| 15:8 | SILENT_FAULT_TH[7:0] | RW | 30 | LINE_CNT 포화 임계값. 라인 이상 허용 횟수 ≈ LINE_FAULT_TH / 10 |
+| 23:16 | new_Silent_node[7:0] | W0C | 0 | Silent_node 발생시 interrupt. Write 0 to clear |
+| 31:24 | new_Halt_cmd[7:0] | W0C | 0 | Fault node 발생시 interrupt. Write 0 to clear |
 
 > 카운터 동작: 위반 이벤트 +4/+6/+8, 정상 수신 or 사이클 시작: −1 (하한 0). 임계값 도달 시 fault 진입. ~0 복귀 시 NORMAL 복귀~. 상세 규칙은 `04_fault_decisions(4).md` §2 참조.
 
@@ -161,7 +163,7 @@
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 0 | intr | W0C | 0 | GPIO_in: 데이터 수신시 tftlcd 화면 업데이트 tx_trigger: 한 사이클마다 tftlcd 화면 초기화 |
+| 0 | intr | - | 0 | Silent Node, Halt_cmd 인터럽트. 0x08 — FAULT_CFG_with_intr 31:16 bit clear를 통해 제어|
 
 
 ---

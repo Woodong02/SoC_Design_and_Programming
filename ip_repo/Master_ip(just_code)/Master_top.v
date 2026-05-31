@@ -14,9 +14,8 @@ module master_top (
     output wire [7:0] seg_data,
 
     output wire GPIO_out,
-    output wire intr,
-    output reg [15:0] clk_cnt_out,
-    output reg [2:0] slot_out,
+    output wire [15:0] clk_cnt,
+    output wire [2:0] slot,
 
     output wire [31:0] err_cnt0,
     output wire [31:0] err_cnt1,
@@ -35,36 +34,23 @@ module master_top (
     output wire [31:0] slot_out6,
     output wire [31:0] slot_out7,
 
-    output wire [63:0] cycle_cnt
+    output wire [63:0] cycle_cnt,
+    
+    output wire [7:0] Silent_node,
+    output wire [7:0] halt_cmd
 );
     wire slot_change;
-    wire pre_slot_change;
     wire slot_pre_change;
-    wire [2:0] slot;
     wire [2:0] NODE_CNT_p1 = NODE_CNT + 3'd1;
     wire [9:0] DIV_p1 = DIV + 10'd1;
     wire tx_trigger = (slot_pre_change && slot==NODE_CNT_p1)? 1'b1 : 1'b0;
-    wire [7:0] halt_cmd;
     wire [41:0] data_bus;
     wire sig_bus;
     wire preamble_err;
     wire [1:0] rx_stat;
-    wire [15:0] clk_cnt;
-    assign intr = GPIO_in || tx_trigger;
     wire resetn = resetn_bt && ENABLE;
 
-    always @(posedge clk or negedge resetn) begin
-        if (!resetn) begin
-            slot_out    <= 3'd0;
-            clk_cnt_out <= 16'd0;
-        end
-        else begin
-            if (GPIO_in) begin 
-                slot_out    <= slot;
-                clk_cnt_out <= clk_cnt;
-            end
-        end
-    end
+
 
 
     assign halt_cmd[0] = ((err_cnt0[31:24]+err_cnt0[23:16]+err_cnt0[15:8]) > FAULT_TH) ? 1'b1 : 1'b0;
@@ -104,14 +90,23 @@ module master_top (
                            
     wire [31:0] seg_err_out;
 
-    assign seg_err_out[31:28] = err_cnt0[7:0] > 200 ? 1'd1 : halt_cmd[0] ? 4'd2 : 4'd0;
-    assign seg_err_out[27:24] = NODE_CNT_p1 < 3'd1 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[1] ? 4'd2 : 4'd0;
-    assign seg_err_out[23:20] = NODE_CNT_p1 < 3'd2 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[2] ? 4'd2 : 4'd0;
-    assign seg_err_out[19:16] = NODE_CNT_p1 < 3'd3 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[3] ? 4'd2 : 4'd0;
-    assign seg_err_out[15:12] = NODE_CNT_p1 < 3'd4 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[4] ? 4'd2 : 4'd0;
-    assign seg_err_out[11:8] = NODE_CNT_p1 < 3'd5 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[5] ? 4'd2 : 4'd0;
-    assign seg_err_out[7:4] = NODE_CNT_p1 < 3'd6 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[6] ? 4'd2 : 4'd0;
-    assign seg_err_out[3:0] = NODE_CNT_p1 < 3'd7 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[7] ? 4'd2 : 4'd0; 
+    assign Silent_node[0] = err_cnt0[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[1] = err_cnt1[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[2] = err_cnt2[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[3] = err_cnt3[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[4] = err_cnt4[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[5] = err_cnt5[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[6] = err_cnt6[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+    assign Silent_node[7] = err_cnt7[7:0] > SILENT_TH ? 1'd1 : 1'd0;
+
+    assign seg_err_out[31:28] = halt_cmd[0] ? 4'd2 : Silent_node[0] ? 4'd1 : 4'd0;
+    assign seg_err_out[27:24] = NODE_CNT_p1 < 3'd1 ? 4'd9 : halt_cmd[1] ? 4'd2 : Silent_node[1] ? 4'd1 : 4'd0;
+    assign seg_err_out[23:20] = NODE_CNT_p1 < 3'd2 ? 4'd9 : halt_cmd[2] ? 4'd2 : Silent_node[2] ? 4'd1 : 4'd0;
+    assign seg_err_out[19:16] = NODE_CNT_p1 < 3'd3 ? 4'd9 : halt_cmd[3] ? 4'd2 : Silent_node[3] ? 4'd1 : 4'd0;
+    assign seg_err_out[15:12] = NODE_CNT_p1 < 3'd4 ? 4'd9 : halt_cmd[4] ? 4'd2 : Silent_node[4] ? 4'd1 : 4'd0;
+    assign seg_err_out[11:8] = NODE_CNT_p1 < 3'd5 ? 4'd9 : halt_cmd[5] ? 4'd2 : Silent_node[5] ? 4'd1 : 4'd0;
+    assign seg_err_out[7:4] = NODE_CNT_p1 < 3'd6 ? 4'd9 : halt_cmd[6] ? 4'd2 : Silent_node[6] ? 4'd1 : 4'd0;
+    assign seg_err_out[3:0] = NODE_CNT_p1 < 3'd7 ? 4'd9 : halt_cmd[7] ? 4'd2 : Silent_node[7] ? 4'd1 : 4'd0; 
 
     wire [31:0] seg_in = DIP_SW[0] ? seg_slot_out : seg_err_out;
 

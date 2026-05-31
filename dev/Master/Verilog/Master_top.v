@@ -104,14 +104,17 @@ module master_top (
                            
     wire [31:0] seg_err_out;
 
+    wire[7:0] Silent_node;
+    Silent_node[0] = 
+
     assign seg_err_out[31:28] = err_cnt0[7:0] > 200 ? 1'd1 : halt_cmd[0] ? 4'd2 : 4'd0;
     assign seg_err_out[27:24] = NODE_CNT_p1 < 3'd1 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[1] ? 4'd2 : 4'd0;
-    assign seg_err_out[23:20] = NODE_CNT_p1 < 3'd2 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[2] ? 4'd2 : 4'd0;
-    assign seg_err_out[19:16] = NODE_CNT_p1 < 3'd3 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[3] ? 4'd2 : 4'd0;
-    assign seg_err_out[15:12] = NODE_CNT_p1 < 3'd4 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[4] ? 4'd2 : 4'd0;
-    assign seg_err_out[11:8] = NODE_CNT_p1 < 3'd5 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[5] ? 4'd2 : 4'd0;
-    assign seg_err_out[7:4] = NODE_CNT_p1 < 3'd6 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[6] ? 4'd2 : 4'd0;
-    assign seg_err_out[3:0] = NODE_CNT_p1 < 3'd7 ? 4'd9 : err_cnt1[7:0] > 200 ? 4'd1 : halt_cmd[7] ? 4'd2 : 4'd0; 
+    assign seg_err_out[23:20] = NODE_CNT_p1 < 3'd2 ? 4'd9 : err_cnt2[7:0] > 200 ? 4'd1 : halt_cmd[2] ? 4'd2 : 4'd0;
+    assign seg_err_out[19:16] = NODE_CNT_p1 < 3'd3 ? 4'd9 : err_cnt3[7:0] > 200 ? 4'd1 : halt_cmd[3] ? 4'd2 : 4'd0;
+    assign seg_err_out[15:12] = NODE_CNT_p1 < 3'd4 ? 4'd9 : err_cnt4[7:0] > 200 ? 4'd1 : halt_cmd[4] ? 4'd2 : 4'd0;
+    assign seg_err_out[11:8] = NODE_CNT_p1 < 3'd5 ? 4'd9 : err_cnt5[7:0] > 200 ? 4'd1 : halt_cmd[5] ? 4'd2 : 4'd0;
+    assign seg_err_out[7:4] = NODE_CNT_p1 < 3'd6 ? 4'd9 : err_cnt6[7:0] > 200 ? 4'd1 : halt_cmd[6] ? 4'd2 : 4'd0;
+    assign seg_err_out[3:0] = NODE_CNT_p1 < 3'd7 ? 4'd9 : err_cnt7[7:0] > 200 ? 4'd1 : halt_cmd[7] ? 4'd2 : 4'd0; 
 
     wire [31:0] seg_in = DIP_SW[0] ? seg_slot_out : seg_err_out;
 

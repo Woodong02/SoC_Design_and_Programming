@@ -35,10 +35,11 @@ void file_init();
 
 
 // Master Configurations
-void Master_node_init(u16 DIV, u16 GUARD_TICKS, u16 NODE_CNT, u16 FAULT_TH, u16 SILENT_TH);
+void Master_node_init(u16 DIV, u16 GUARD_TICKS, u16 NODE_CNT, u16 FAULT_TH, u16 SILENT_TH, u8 ENABLE);
 void SET_DIV(u16 DIV);
 void SET_GUARD_TICKS(u16 GUARD_TICKS);
 void SET_NODE_CNT(u16 NODE_CNT);
+void SET_ENABLE(u8 ENABLE);
 void SET_FAULT_TH(u16 FAULT_TH);
 void SET_SILENT_TH(u16 SILENT_TH);
 void READ_ERR_CNT(u8 NODE);
@@ -58,18 +59,29 @@ void	GetCmd(u8 *sel);
 void	InitValue(u8 *number, u8 *name);
 
 
-#define 	DIV_INIT	4
-#define		GUARD_TICKS_INIT	8
-#define		NODE_CNT_INIT	7
+u16 DIV = 4;
+u16 GUARD_TICKS=8;
+u16 NODE_CNT=7;
 #define		FAULT_TH_INIT	200
 #define		SILENT_TH_INIT	200
+#define		ENABLE_INIT	1
+
+#define BLACK   0x0000
+#define RED     0x001F
+#define GREEN   0x07E0
+#define YELLOW  0x07FF
+#define BLUE    0xF800
+#define MAGENTA 0xF81F
+#define CYAN    0xFFE0
+#define WHITE   0xFFFF
+
 
 int main()
 {
 
 	intr_init();
+	Master_node_init(DIV, GUARD_TICKS, NODE_CNT, FAULT_TH_INIT, SILENT_TH_INIT, ENABLE_INIT);
 	file_init(Path, filename);
-	Master_node_init(DIV_INIT, GUARD_TICKS_INIT, NODE_CNT_INIT, FAULT_TH_INIT, SILENT_TH_INIT);
 
 
 	while(1){
@@ -109,152 +121,160 @@ int main()
     return XST_SUCCESS;
 }
 
-void Master_node_init(u16 DIV, u16 GUARD_TICKS, u16 NODE_CNT, u16 FAULT_TH, u16 SILENT_TH){
+void ServiceRoutine(void *CallbackRef)
+{
+	Res = f_write(&fil, buffer, strlen(buffer), &NumBytesWrite);
+	if(Res){
+		xil_printf("data_read_fail\r\n");
+	}
+
+	u32 temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4);
+
+
+
+
+}
+
+void Master_node_init(u16 DIVi, u16 GUARD_TICKSi, u16 NODE_CNTi, u16 FAULT_TH, u16 SILENT_TH, u8 ENABLE){
+	DIV=DIVi;
+	GUARD_TICKS=GUARD_TICKSi;
+	NODE_CNT=NODE_CNTi;
 	SET_DIV(DIV);
 	SET_GUARD_TICKS(GUARD_TICKS);
 	SET_NODE_CNT(NODE_CNT);
 	SET_FAULT_TH(FAULT_TH);
 	SET_SILENT_TH(SILENT_TH);
+	SET_ENABLE(ENABLE);
 }
 
-void SET_DIV(u16 DIV){
+void SET_ENABLE(u8 ENABLE){
+	if(ENABLE)
+		xil_printf("Master Enabled.\r\n");
+	else
+		xil_printf("Master Disabled.\r\n");
+	MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, ENABLE<<23);
+}
+
+void SET_DIV(u16 DIVi){
+	DIV=DIVi;
 	if(!DIV)
-		xil_printf("DIV Cannot to be set zero.\n");
+		xil_printf("DIV Cannot to be set zero.\r\n");
 	else{
 		DIV--;
 		if(DIV > 1023)
-			xil_printf("Please enter less than 1025.\n");
+			xil_printf("Please enter less than 1025.\r\n");
 		else{
 			MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, DIV);
-			xil_printf("Set DIV completed.\n");
+			xil_printf("Set DIV completed.\r\n");
 		}
 	}
 }
 
-void SET_GUARD_TICKS(u16 GUARD_TICKS){
+void SET_GUARD_TICKS(u16 GUARD_TICKSi){
+	GUARD_TICKS = GUARD_TICKSi;
 	if(GUARD_TICKS > 1023)
-		xil_printf("Please enter less than 1024\n");
+		xil_printf("Please enter less than 1024\r\n");
 	else{
 		if(GUARD_TICKS < 4)
-			xil_printf("Really? It's too small\n");
+			xil_printf("Really? It's too small\r\n");
 		/*else if(GUARD_TICKS % 4 != 0)
-			xil_printf("I recommend you to set GUARD_TICKS multiple of 4\n");*/
+			xil_printf("I recommend you to set GUARD_TICKS multiple of 4\r\n");*/
 		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, GUARD_TICKS<<10);
-		xil_printf("Set GUARD_TICKS completed.\n");
+		xil_printf("Set GUARD_TICKS completed.\r\n");
 	}
 }
 
-void SET_NODE_CNT(u16 NODE_CNT){
+void SET_NODE_CNT(u16 NODE_CNTi){
+	NODE_CNT = NODE_CNTi;
 	if(!NODE_CNT)
-			xil_printf("NODE_CNT Cannot to be set zero.\n");
+			xil_printf("NODE_CNT Cannot to be set zero.\r\n");
 		else{
 			NODE_CNT--;
 			if(NODE_CNT > 7)
-				xil_printf("Please enter less than 9.\n");
+				xil_printf("Please enter less than 9.\r\n");
 			else{
 				MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, NODE_CNT<<20);
-				xil_printf("Set NODE_CNT completed.\n");
+				xil_printf("Set NODE_CNT completed.\r\n");
 			}
 		}
 }
 
 void SET_FAULT_TH(u16 FAULT_TH){
 	if(!FAULT_TH)
-		xil_printf("FAULT_TH Cannot to be set zero.\n");
+		xil_printf("FAULT_TH Cannot to be set zero.\r\n");
 	else if(FAULT_TH > 245)
-		xil_printf("Please enter less than 246.\n");
+		xil_printf("Please enter less than 246.\r\n");
 	else{
-		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4, FAULT_TH);
-		xil_printf("Set FAULT_TH completed.\n");
+		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, FAULT_TH);
+		xil_printf("Set FAULT_TH completed.\r\n");
 	}
 }
 
 void SET_SILENT_TH(u16 SILENT_TH){
 	if(!SILENT_TH)
-		xil_printf("SILENT_TH Cannot to be set zero.\n");
+		xil_printf("SILENT_TH Cannot to be set zero.\r\n");
 	else if(SILENT_TH > 245)
-		xil_printf("Please enter less than 246.\n");
+		xil_printf("Please enter less than 246.\r\n");
 	else{
-		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4, SILENT_TH<<8);
-		xil_printf("Set SILENT_TH completed.\n");
+		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, SILENT_TH<<8);
+		xil_printf("Set SILENT_TH completed.\r\n");
 	}
 }
 
 void READ_ALL_ERR_CNT(){
-	for(u8 i=0; i<8; i++){
+	for(u8 i=0; i<NODE_CNT; i++){
 		READ_ERR_CNT(i);
-		xil_printf("\n");
+		xil_printf("\r\n");
 	}
 }
 
 void READ_ERR_CNT(u8 NODE){
 	int temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4*(3+NODE));
-	xil_printf("Node %d\nsilent_cnt = %d\nhamming_err_cnt = %d\nslot_timeout_cnt = %d\npreamble_err_cnt = %d\n", NODE, temp&0xFF, (temp>>8)&0xFF, (temp>>16)&0xFF, temp>>24);
+	xil_printf("Node %u\r\nsilent_cnt = %u\r\nhamming_err_cnt = %u\r\nslot_timeout_cnt = %u\r\npreamble_err_cnt = %u\r\n", NODE, temp&0xFF, (temp>>8)&0xFF, (temp>>16)&0xFF, temp>>24);
 }
 
 void READ_CYCLE_CNT(){
-	u64 temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4*(3+NODE));
+	u32 low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x2C);
+	u32 high = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x30);
+	if(high==0)
+		xil_printf("Cycle done: %u\r\n", low);
+	else
+		xil_printf("Cycle done: %u%09u\r\n", high, low);
+	low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8);
+	xil_printf("FAULT_TH: %u\r\n", low&0xFF);
+	xil_printf("SILENT_TH: %u\r\n", (high>>8)&0xFF);
 }
 
-void ServiceRoutine(void *CallbackRef)
-{
-	Res = f_write(&fil, buffer, strlen(buffer), &NumBytesWrite);
-	if(Res){
-		xil_printf("data_read_fail\n");
-		exit(-1);
-	}
 
-	int temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0);
-
-	if ((temp & 1) == 1){
-		xil_printf("S1 Switch is pushed\r\n");
-	}
-	else if ((temp & 2) == 2){
-		xil_printf("S2 Switch is pushed\r\n");
-	}
-	else if ((temp & 4) == 4){
-		xil_printf("S3 Switch is pushed\r\n");
-	}
-	else if ((temp & 8) == 8){
-		xil_printf("S4 Switch is pushed\r\n");
-	}
-}
 
 void file_init(char* path, char* filename){
 	Res = f_mount(&fatfs, Path, 0);
 	if(Res != FR_OK){
-		xil_printf("mount_fail\n");
-		exit(-1);
+		xil_printf("mount_fail\r\n");
 	}
 
 	Res = f_open(&fil, filename, FA_CREATE_ALWAYS | FA_WRITE);
 	if(Res){
-		xil_printf("file_open_fail\n");
-		exit(-1);
+		xil_printf("file_open_fail\r\n");
 	}
 
 	Res = f_lseek(&fil, 0);
 	if (Res) {
-		xil_printf("fseek_fail\n");
-		exit(-1);
+		xil_printf("fseek_fail\r\n");
 	}
 
-	xil_printf("file_create_success\n");
+	xil_printf("file_create_success\r\n");
 }
 
 
 void intr_init(){
 	int Status;
-
-	xil_printf("Interrupt Test\r\n");
-
 	/*
 	 *  Run the Gic configure, specify the Device ID generated in xparameters.h
 	 */
 	Status = GicConfigure(INTC_DEVICE_ID);
 	if (Status != XST_SUCCESS) {
 		xil_printf("GIC Configure Failed\r\n");
-		exit(XST_FAILURE);
 	}
 }
 
