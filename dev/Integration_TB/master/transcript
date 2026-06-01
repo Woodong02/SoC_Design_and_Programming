@@ -1,0 +1,177 @@
+# do run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work work 
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:37 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module Master_tx
+# -- Compiling module tb_Master_tx
+# 
+# Top level modules:
+# 	tb_Master_tx
+# End time: 21:37:37 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_Master_tx 
+# Start time: 21:37:38 on Jun 01,2026
+# 
+# --- T1: í”„ë ˆì„ ì „ì†¡ íƒ€ì´ë° (DIV=8, 50ë¹„íŠ¸Ã—8í´ëŸ­=400í´ëŸ­) ---
+# [PASS] ble MSB)
+# [PASS] ÿÿÿ„ÿÿŒ)
+# 
+# --- T2: preamble=0xAA, halt=0x00, guard=0 ---
+# [PASS] ble=0xAA
+# [PASS] uard,0})
+# [PASS] cmd=0x00
+# [PASS] _ticks=0
+# [PASS] ng error
+# 
+# --- T3: halt=0xA5, guard=10'd256 ---
+# [PASS] ble=0xAA
+# [PASS]  correct
+# [PASS] cmd=0xA5
+# [PASS] icks=256
+# 
+# --- T4: ì „ì†¡ ì¤‘ tx_trigger ì¬ì¸ê°€ ë¬´ì‹œ ---
+# [PASS] O_out=0)
+# [PASS] ÿÿÿ—ÿÿÿŒ
+# 
+# ========================================
+# [DONE] Master_tx: 13 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v(143)
+#    Time: 17896 ns  Iteration: 0  Instance: /tb_Master_tx
+# Break in Module tb_Master_tx at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v line 143
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v line 143
+# End time: 21:37:38 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:38 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module Master_rx
+# -- Compiling module tb_Master_rx
+# 
+# Top level modules:
+# 	hamming_dec
+# 	tb_Master_rx
+# End time: 21:37:39 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_Master_rx 
+# Start time: 21:37:39 on Jun 01,2026
+# 
+# --- T1: ìœ íš¨ í”„ë ˆì„ halt=0x00 guard=0 ---
+# [PASS] T1a: out_sÿÿÿìÿÿÿ‹ÿÿÿ¨
+# [PASS] T1b: preamble_erÿÿÿ—ÿÿÿŒ
+# [PASS] T1c: data_out=codeword
+# 
+# --- T2: preamble=0xFF (ë¶ˆì¼ì¹˜) ---
+# [PASS] T2a: out_siÿÿÿ—ÿÿÿŒ
+# [PASS] T2b: preamble_err=1
+# 
+# --- T3: ìˆ˜ì‹  ì¤‘ slot_pre_change ë¦¬ì…‹ ---
+# [PASS] chanÿÿÿëÿÿÿ…ÿÿÿ›„ out_siÿÿÿ—ÿÿÿŒ
+# 
+# --- T4: halt=0xAB guard=100 ---
+# [PASS] T4a: out_sÿÿÿìÿÿÿ‹ÿÿÿ¨
+# [PASS] T4b: data_out correct
+# 
+# ========================================
+# [DONE] Master_rx: 8 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v(124)
+#    Time: 18616 ns  Iteration: 0  Instance: /tb_Master_rx
+# Break in Module tb_Master_rx at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v line 124
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v line 124
+# End time: 21:37:39 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:39 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module Master_slot
+# -- Compiling module tb_Master_slot
+# 
+# Top level modules:
+# 	tb_Master_slot
+# End time: 21:37:40 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_Master_slot 
+# Start time: 21:37:40 on Jun 01,2026
+# 
+# --- T1/T2: NODE_CNT=2, DIV=8, GUARD=0 ìŠ¬ë¡¯ ì‚¬ì´í´ ---
+# [PASS] ÿÿÿìÿÿÿƒÿÿÿ°ÿÿÿÿÿÿˆÿÿÿ˜ÿÿÿ•ÿÿ¸)
+# [PASS] ÿÿÿíÿ„ clk_cnt=0ÿÿÿ£ÿÿÿ°ÿÿÿ•ÿÿ)
+# 
+# --- T3: slot_pre_change íƒ€ì´ë° ---
+# [PASS] change = slot_changeÿÿÿÿÿÿ­ÿÿÿ„
+# 
+# --- T4: rx_stat (GUARD=20, data/guard êµ¬ê°„) ---
+# [PASS] T4a: rx_stat=2 (dataÿÿÿ¬ÿÿ„)
+# [PASS] _stat=0 (guaÿÿÿìÿÿÿƒÿÿÿœÿÿÿ„ÿÿ°)
+# [PASS] T4c: rx_stat=1 (guardÿÿÿ½ÿÿ„)
+# 
+# --- T5: cycle_cnt (NODE_CNT=1, slot 0â†’1â†’0 ì£¼ê¸°) ---
+# [PASS] T5: cycle_cÿÿÿìÿÿÿ°ÿÿÿ™ÿÿÿ¸
+# 
+# ========================================
+# [DONE] Master_slot: 7 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v(173)
+#    Time: 32496 ns  Iteration: 0  Instance: /tb_Master_slot
+# Break in Module tb_Master_slot at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v line 173
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v line 173
+# End time: 21:37:40 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:40 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module Master_dec_ham
+# -- Compiling module tb_Master_dec_ham
+# 
+# Top level modules:
+# 	tb_Master_dec_ham
+# End time: 21:37:41 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_Master_dec_ham 
+# Start time: 21:37:41 on Jun 01,2026
+# 
+# --- T1: ì •ìƒ ìˆ˜ì‹  slot=2, data=0xCAFEBABE ---
+# [PASS] T1a: slot_out2=0xCAFEBABE
+# [PASS] T1b: hamming_err_cnt2=0
+# 
+# --- T2: ì •ìƒ ìˆ˜ì‹  slot=5, data=0x12345678 ---
+# [PASS] T2a: slot_out5=0x12345678
+# 
+# --- T3: 1ë¹„íŠ¸ ì˜¤ë¥˜ (codeword[10] í”Œë¦½) ---
+# [PASS] T3a: slot_ouÿÿÿêÿÿÿ ÿÿÿ›ÿÿÿ°ÿÿÿ 
+# [PASS] T3b: hamming_err_cntÿÿÿ¦ÿÿÿ€
+# 
+# --- T4: 2ë¹„íŠ¸ ì˜¤ë¥˜ (rx_stat=10) ---
+# [PASS] ÿÿÿ°ÿÿÿ ÿÿÿ†ÿÿŒ ÿÿÿ¹ÿÿÿ¸ÿÿÿ¤ÿÿ˜)
+# [PASS] T4b: hamming_err_cntÿÿÿ¦ÿÿÿ€
+# 
+# --- T5: preamble_err ---
+# [PASS] T5: preamble_err_cntÿÿÿ¦ÿÿÿ€
+# 
+# --- T6: silent ê°ì§€ (GPIO_in=0 + slot_change) ---
+# [PASS] T6: silent_cntÿÿÿ¦ÿÿÿ€
+# 
+# ========================================
+# [DONE] Master_dec_ham: 9 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v(171)
+#    Time: 426 ns  Iteration: 0  Instance: /tb_Master_dec_ham
+# Break in Module tb_Master_dec_ham at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v line 171
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v line 171
+# End time: 21:37:41 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

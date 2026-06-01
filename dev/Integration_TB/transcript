@@ -1,0 +1,289 @@
+# do sim.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work work 
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:39:10 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_integration.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module Master_tx
+# -- Compiling module Master_rx
+# -- Compiling module Master_dec_ham
+# -- Compiling module tb_integration
+# 
+# Top level modules:
+# 	tb_integration
+# End time: 21:39:10 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_integration 
+# Start time: 21:39:10 on Jun 01,2026
+# 
+# --- T1: active_edge timing after Master_tx starts ---
+# [PASS] T1: active_edge fired within 10 clks
+# 
+# --- T2: bc_valid + fields (halt=0x00, guard=0) ---
+# [PASS] T2a: bc_valid received
+# [PASS] T2b: bc_halt_cmd=0x00
+# [PASS] T2c: bc_guard_ticks=0
+# 
+# --- T3: Broadcast fields (halt=0x01, guard=512) ---
+# [PASS] T3a: bc_halt_cmd=0x01
+# [PASS] T3b: bc_guard_ticks=512
+# 
+# --- T4: slave_tx -> Master_rx decode (addr=2, data=0xCAFEBABE) ---
+# [PASS] T4a: Master_rx out_sig received
+# [PASS] T4b: slot_out2=0xcafebabe
+# 
+# --- T5: slave_tx -> Master_rx decode (addr=5, data=0x12345678) ---
+# [PASS] T5a: Master_rx out_sig received
+# [PASS] T5b: slot_out5=0x12345678
+# 
+# ========================================
+# [DONE] integration: 10 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_integration.v(249)
+#    Time: 19855 ns  Iteration: 1  Instance: /tb_integration
+# Break in Module tb_integration at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_integration.v line 249
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_integration.v line 249
+# End time: 21:39:11 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:39:11 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_master_top.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module Master_tx
+# -- Compiling module Master_rx
+# -- Compiling module Master_slot
+# -- Compiling module Master_dec_ham
+# -- Compiling module seven_seg
+# -- Compiling module bin2seg
+# -- Compiling module master_top
+# -- Compiling module tb_master_top
+# 
+# Top level modules:
+# 	tb_master_top
+# End time: 21:39:11 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_master_top 
+# Start time: 21:39:11 on Jun 01,2026
+# ** Warning: (vsim-3015) C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v(107): [PCDPC] - Port size (3) does not match connection size (4) for port 'slot'. The port definition is at: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_master_top/u_top/dh0 File: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v
+# 
+# --- T1: ìë™ ë¸Œë¡œë“œìºìŠ¤íŠ¸ â†’ bc_valid (Bus A) ---
+# [PASS] c_valid ÿÿÿìÿ  (slave master_rx)
+# 
+# --- T2: cycle_cnt ì¦ê°€ (slot ìˆœí™˜ í™•ì¸) ---
+# [PASS] T2: cycle_cnÿÿÿ¦ÿÿÿ€
+# 
+# --- T3: slave_tx â†’ slot_out0=0xDEAD1234 (Bus B) ---
+# [PASS] T3: slot_out0=0xDEAD1234
+# 
+# --- T4: ENABLE=0 â†’ bc_valid ì—†ìŒ ---
+# [PASS] T4: ENABLE=0ÿÿÿ’ bc_valiÿÿÿ—ÿÿÿŒ
+# 
+# ========================================
+# [DONE] master_top: 4 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_master_top.v(193)
+#    Time: 71286 ns  Iteration: 0  Instance: /tb_master_top
+# Break in Module tb_master_top at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_master_top.v line 193
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_master_top.v line 193
+# End time: 21:39:11 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 1
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:39:11 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_sys_integration.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module clk_div
+# -- Compiling module slot_timer
+# -- Compiling module fault_fsm
+# -- Compiling module irq_ctrl
+# -- Compiling module tdma_slave_top
+# -- Compiling module Master_tx
+# -- Compiling module Master_rx
+# -- Compiling module Master_slot
+# -- Compiling module Master_dec_ham
+# -- Compiling module seven_seg
+# -- Compiling module bin2seg
+# -- Compiling module master_top
+# -- Compiling module tb_sys_integration
+# 
+# Top level modules:
+# 	tb_sys_integration
+# End time: 21:39:11 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_sys_integration 
+# Start time: 21:39:11 on Jun 01,2026
+# ** Warning: (vsim-3015) C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v(107): [PCDPC] - Port size (3) does not match connection size (4) for port 'slot'. The port definition is at: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tb_sys_integration/u_master/dh0 File: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v
+# 
+# === T1: N=1 ê¸°ë³¸ ë¼ìš´ë“œíŠ¸ë¦½ (slave 0) ===
+# [PASS] T1a: slave0 Iÿÿÿâÿ’NORMAL
+# [PASS] ATA0 (Buÿÿÿâÿ’B ÿÿÿìÿÿÿ“ÿÿÿ¸ÿÿ½)
+# [PASS] _sent IRÿÿÿ„ÿÿÿ¸ (irq_status[0])
+# [PASS] T1d: slave0 irqÿÿÿœÿÿ¥ HIGH
+# [PASS] : slave1 IDLÿÿÿëÿÿÿ™ÿÿÿ±ÿÿÿ•ÿÿ¸)
+# 
+# === T2: N=3 3ìŠ¬ë ˆì´ë¸Œ ë™ì‹œ ë™ì‘ (slave 0/1/2) ===
+# [PASS] T2a: slave0 NORMAL
+# [PASS] T2b: slave1 NORMAL
+# [PASS] T2c: slave2 NORMAL
+# [PASS] T2d: slot_out0 = SDATA0
+# [PASS] T2e: slot_out1 = SDATA1
+# [PASS] T2f: slot_out2 = SDATA2
+# [PASS] T2g: slave3 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# 
+# === T3: N=6 ìµœëŒ€ ìŠ¬ë ˆì´ë¸Œ ì „ì²´ ë™ì‘ (slave 0~5) ===
+# [PASS] T3a: slave0 NORMAL
+# [PASS] T3b: slave1 NORMAL
+# [PASS] T3c: slave2 NORMAL
+# [PASS] T3d: slave3 NORMAL
+# [PASS] T3e: slave4 NORMAL
+# [PASS] T3f: slave5 NORMAL
+# [PASS] T3g: slot_out0 = SDATA0
+# [PASS] T3h: slot_out1 = SDATA1
+# [PASS] T3i: slot_out2 = SDATA2
+# [PASS] T3j: slot_out3 = SDATA3
+# [PASS] T3k: slot_out4 = SDATA4
+# [PASS] T3l: slot_out5 = SDATA5
+# 
+# === T4: N=2 5ì‚¬ì´í´ ì—°ì† ì•ˆì •ì„± ===
+#   [INFO] cc0=1 (cycle_cnt at t=4000)
+#   [INFO] cycle_cnt=6 after +12000 clk
+# [PASS] cle_cnt ÿÿÿ¬ÿÿÿíÿÿÿìÿÿÿƒÿÿÿ¦ÿÿÿ€
+# [PASS] T4b: slot_ouÿÿÿìÿÿÿ ÿÿÿœÿÿÿ€
+# [PASS] T4c: slot_ouÿÿÿìÿÿÿ ÿÿÿœÿÿÿ€
+# [PASS] T4d: slave0 NORMAÿÿÿœÿÿÿ€
+# [PASS] T4e: slave1 NORMAÿÿÿœÿÿÿ€
+# 
+# === T5: no_broadcast watchdog (master ì •ì§€) ===
+# [PASS] ÿÿ´) slave0 NORMÿÿÿìÿÿÿÿÿÿ™ÿÿÿ¸
+# [PASS] _status[1] = no_broadcasÿÿÿ„ÿÿÿ¸
+# [PASS] e0 irq HIGH (IRQ_MASK[1]ÿÿÿœÿÿ±)
+# 
+# === T6: N=6 ë¹„ëŒ€ì¹­ í™œì„±í™” (slave 0/2/4 í™œì„±, 1/3/5 ë¹„í™œì„±) ===
+# [PASS] T6a: slave0 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T6b: slave2 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T6c: slave4 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T6d: slot_out0 = SDATA0
+# [PASS] T6e: slot_out2 = SDATA2
+# [PASS] T6f: slot_out4 = SDATA4
+# [PASS] T6g: slave1 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] T6h: slave3 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] T6i: slave5 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] slot_out1 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# [PASS] slot_out3 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# [PASS] slot_out5 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# 
+# === T7: N=4 soft_rst í›„ ì¬ë™ì‘ ===
+# [PASS] ÿÿÿ´) soft_rÿÿÿìÿ„ slave0 NORMAL
+# [PASS] ÿÿÿ´) soft_rÿÿÿìÿ„ slave3 NORMAL
+# [PASS] e0 soft_rst ÿÿ„ NORMÿÿÿìÿÿÿ§ÿÿÿ…
+# [PASS] e1 soft_rst ÿÿ„ NORMÿÿÿìÿÿÿ§ÿÿÿ…
+# [PASS] e2 soft_rst ÿÿ„ NORMÿÿÿìÿÿÿ§ÿÿÿ…
+# [PASS] e3 soft_rst ÿÿ„ NORMÿÿÿìÿÿÿ§ÿÿÿ…
+# [PASS] slot_out0 soft_rÿÿÿíÿÿÿìÿÿÿ°ÿÿÿ 
+# [PASS] slot_out3 soft_rÿÿÿíÿÿÿìÿÿÿ°ÿÿÿ 
+# 
+# ========================================
+# [DONE] sys_integration: 52 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_sys_integration.v(377)
+#    Time: 886136 ns  Iteration: 0  Instance: /tb_sys_integration
+# Break in Module tb_sys_integration at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_sys_integration.v line 377
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tb_sys_integration.v line 377
+# End time: 21:39:13 on Jun 01,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 1
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:39:13 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tbfix_n7.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module clk_div
+# -- Compiling module slot_timer
+# -- Compiling module fault_fsm
+# -- Compiling module irq_ctrl
+# -- Compiling module tdma_slave_top
+# -- Compiling module Master_tx
+# -- Compiling module Master_rx
+# -- Compiling module Master_slot
+# -- Compiling module Master_dec_ham
+# -- Compiling module seven_seg
+# -- Compiling module bin2seg
+# -- Compiling module master_top
+# -- Compiling module tbfix_n7
+# 
+# Top level modules:
+# 	tbfix_n7
+# End time: 21:39:14 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tbfix_n7 
+# Start time: 21:39:14 on Jun 01,2026
+# ** Warning: (vsim-3015) C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v(107): [PCDPC] - Port size (3) does not match connection size (4) for port 'slot'. The port definition is at: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tbfix_n7/u_master/dh0 File: C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v
+# 
+# === T1: N=7 (NODE_CNT_p1=8 fix) ì „ì²´ 7ìŠ¬ë ˆì´ë¸Œ ë™ì‘ ===
+# [PASS] T1a: slave0 NORMAL
+# [PASS] T1b: slave1 NORMAL
+# [PASS] T1c: slave2 NORMAL
+# [PASS] T1d: slave3 NORMAL
+# [PASS] T1e: slave4 NORMAL
+# [PASS] T1f: slave5 NORMAL
+# [PASS] e6 NORMAL (SLAVE_ADDR=6, SDATA6)
+# [PASS] T1h: slot_out0 = SDATA0
+# [PASS] T1i: slot_out1 = SDATA1
+# [PASS] T1j: slot_out2 = SDATA2
+# [PASS] T1k: slot_out3 = SDATA3
+# [PASS] T1l: slot_out4 = SDATA4
+# [PASS] T1m: slot_out5 = SDATA5
+# [PASS] T1n: slot_out6 = SDATA6
+# 
+# === T2: N=7 2ì‚¬ì´í´ ì—°ì† ì•ˆì •ì„± ===
+#   [INFO] cc0=2
+#   [INFO] cycle_cnt=5 after +12000 clk
+# [PASS] cle_cnt ÿÿÿ¬ÿÿÿíÿÿÿìÿÿÿƒÿÿÿ¦ÿÿÿ€
+# [PASS] T2b: slot_ouÿÿÿìÿÿÿ ÿÿÿœÿÿÿ€
+# [PASS] T2c: slot_ouÿÿÿìÿÿÿ ÿÿÿœÿÿÿ€
+# [PASS] T2d: slave6 NORMAÿÿÿœÿÿÿ€
+# 
+# === T3: N=7 ë¹„ëŒ€ì¹­ í™œì„±í™” (0/2/4/6 í™œì„±) ===
+# [PASS] T3a: slave0 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T3b: slave2 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T3c: slave4 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T3d: slave6 NORMAL ÿÿÿœÿÿ±)
+# [PASS] T3e: slot_out0 = SDATA0
+# [PASS] T3f: slot_out2 = SDATA2
+# [PASS] T3g: slot_out4 = SDATA4
+# [PASS] T3h: slot_out6 = SDATA6
+# [PASS] T3i: slave1 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] T3j: slave3 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] T3k: slave5 IDLEÿÿÿ¹ÿÿÿœÿÿ±)
+# [PASS] slot_out1 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# [PASS] slot_out3 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# [PASS] slot_out5 = 0 (slaveÿÿÿ¯ÿÿÿ‘ÿÿµ)
+# 
+# ========================================
+# [DONE] tbfix_n7 (NODE_CNT=7): 32 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tbfix_n7.v(251)
+#    Time: 430316 ns  Iteration: 0  Instance: /tbfix_n7
+# Break in Module tbfix_n7 at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tbfix_n7.v line 251
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/tbfix_n7.v line 251
+# End time: 21:39:15 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 1

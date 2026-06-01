@@ -1,0 +1,378 @@
+# do run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work work 
+# Modifying modelsim.ini
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:10 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_enc.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module tb_hamming_enc
+# 
+# Top level modules:
+# 	tb_hamming_enc
+# End time: 21:37:10 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_hamming_enc 
+# Start time: 21:37:10 on Jun 01,2026
+# [PASS] ll-zeros
+# [PASS] all-ones
+# [PASS] ]=1 only
+# [PASS] ly (MSB)
+# [PASS]  pattern
+# [PASS]  pattern
+# [PASS] EEF-like
+# [PASS]  pattern
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# [PASS] bit walk
+# 
+# [DONE] hamming_enc: 43 PASS, 0 FAIL
+# ALL PASS
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_enc.v(88)
+#    Time: 48 ns  Iteration: 0  Instance: /tb_hamming_enc
+# Break in Module tb_hamming_enc at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_enc.v line 88
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_enc.v line 88
+# End time: 21:37:11 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:11 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_dec.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module tb_hamming_dec
+# 
+# Top level modules:
+# 	tb_hamming_dec
+# End time: 21:37:11 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_hamming_dec 
+# Start time: 21:37:11 on Jun 01,2026
+# --- No-error tests ---
+# [PASS] ll-zeros: no error
+# [PASS] all-ones: no error
+# [PASS] DEADBEEF: no error
+# [PASS] ernating: no error
+# 
+# --- 1-bit data error (all 35 data bit positions) ---
+# [PASS] 1-bit data err at cw[7]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[8]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[9]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[10]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[11]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[12]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[13]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[14]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[15]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[16]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[17]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[18]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[19]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[20]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[21]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[22]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[23]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[24]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[25]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[26]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[27]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[28]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[29]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[30]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[31]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[32]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[33]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[34]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[35]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[36]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[37]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[38]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[39]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[40]: corrected, data=0x0deadbeef
+# [PASS] 1-bit data err at cw[41]: corrected, data=0x0deadbeef
+# 
+# --- 1-bit parity error (p[0..5]: cw[1..6]) ---
+# [PASS] 1-bit parity err at cw[1]: ham_1bit_err=1
+# [PASS] 1-bit parity err at cw[2]: ham_1bit_err=1
+# [PASS] 1-bit parity err at cw[3]: ham_1bit_err=1
+# [PASS] 1-bit parity err at cw[4]: ham_1bit_err=1
+# [PASS] 1-bit parity err at cw[5]: ham_1bit_err=1
+# [PASS] 1-bit parity err at cw[6]: ham_1bit_err=1
+# 
+# --- p_overall-only flip: syndrome=0,all_xor=1 -> no error flags ---
+# [PASS] p_overall-only flip: no flags, data correct
+# 
+# --- 2-bit error tests ---
+# [PASS] 2-bit err at cw[41,40]: ham_2bit_err=1
+# [PASS] 2-bit err at cw[41,7]: ham_2bit_err=1
+# [PASS] 2-bit err at cw[41,1]: ham_2bit_err=1
+# [PASS] 2-bit err at cw[1,0]: ham_2bit_err=1
+# [PASS] 2-bit err at cw[20,10]: ham_2bit_err=1
+# 
+# --- Round-trip: enc -> 1-bit flip -> dec ---
+# [PASS] round-trip: original data recovered after 1-bit error correction
+# 
+# [DONE] hamming_dec: 52 PASS, 0 FAIL
+# ALL PASS
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_dec.v(165)
+#    Time: 109 ns  Iteration: 0  Instance: /tb_hamming_dec
+# Break in Module tb_hamming_dec at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_dec.v line 165
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_hamming_dec.v line 165
+# End time: 21:37:11 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:12 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slave_tx.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module slave_tx
+# -- Compiling module tb_slave_tx
+# 
+# Top level modules:
+# 	hamming_dec
+# 	tb_slave_tx
+# End time: 21:37:12 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_slave_tx 
+# Start time: 21:37:12 on Jun 01,2026
+# 
+# --- Test 1: addr=0, data=0, DIV=8 ---
+# [PASS] frame match: addr=0 data=0x00000000 hamming=0x00
+# 
+# --- Test 2: addr=5, data=0xDEADBEEF, DIV=8 ---
+# [PASS] frame match: addr=5 data=0xdeadbeef hamming=0x6c
+# 
+# --- Test 3: data_sent pulse ---
+# [PASS] data_sent pulse received
+# 
+# --- Test 4: tx_enable=0 (no TX) ---
+# [PASS] tx_enable=0: no transmission
+# 
+# [DONE] slave_tx: 4 PASS, 0 FAIL
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slave_tx.v(191)
+#    Time: 17305 ns  Iteration: 1  Instance: /tb_slave_tx
+# Break in Module tb_slave_tx at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slave_tx.v line 191
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slave_tx.v line 191
+# End time: 21:37:12 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:12 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slot_timer.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module slot_timer
+# -- Compiling module tb_slot_timer
+# 
+# Top level modules:
+# 	tb_slot_timer
+# End time: 21:37:12 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_slot_timer 
+# Start time: 21:37:12 on Jun 01,2026
+# 
+# --- Test 1: slave_addr=0, guard=0, trig_cnt=0 ---
+# [PASS] slave_addr=0,guard=0: tx_trigger fires (cnt=1)
+# 
+# --- Test 2: slave_addr=1, guard=0, trig_cnt=400 ---
+# [PASS] =1,guard=0: tx_trigger at cnt=402 (expected 402)
+# 
+# --- Test 3: slave_addr=3, guard=0, trig_cnt=1200 ---
+# [PASS] =3,guard=0: tx_trigger at cnt=1202 (expected 1202)
+# 
+# --- Test 4: watchdog no_broadcast at 9*slot_ticks=3600 ---
+# [PASS] watchdog: no_broadcast at cnt=3602
+# 
+# --- Test 5: slave_addr=1, guard=10, trig_cnt=415 ---
+# [PASS] 1,guard=10: tx_trigger at cnt=417 (expected 417)
+# 
+# --- Test 6: slave_addr=0, guard=10, trig_cnt=5 ---
+# [PASS] 0,guard=10: tx_trigger at cnt=7 (expected 7)
+# 
+# ========================================
+# [DONE] slot_timer: 6 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slot_timer.v(163)
+#    Time: 57505 ns  Iteration: 1  Instance: /tb_slot_timer
+# Break in Module tb_slot_timer at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slot_timer.v line 163
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_slot_timer.v line 163
+# End time: 21:37:13 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:13 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_fault_fsm.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module fault_fsm
+# -- Compiling module tb_fault_fsm
+# 
+# Top level modules:
+# 	tb_fault_fsm
+# End time: 21:37:13 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_fault_fsm 
+# Start time: 21:37:13 on Jun 01,2026
+# 
+# --- Test 1: IDLE -> NORMAL on active_edge ---
+# [PASS] Initial state = IDLE
+# [PASS] LE->NORMAL: state=1
+# 
+# --- Test 2: NORMAL stays NORMAL with fault_cnt>0 (no DATA_RECOVERY) ---
+# [PASS]  DR state): state=1
+# 
+# --- Test 3: NORMAL -> DEAD when fault_cnt >= fault_th ---
+# [PASS] =fault_th): state=2
+# [PASS] tx_enable=0 in DEAD
+# 
+# --- Test 4: DEAD stays DEAD even when counters drop ---
+# [PASS] DEAD stays DEAD after counter drain
+# 
+# --- Test 5: halt_cmd -> DEAD directly from NORMAL ---
+# [PASS]  to NORMAL: state=1
+# [PASS] _cmd->DEAD: state=2
+# 
+# --- Test 6: NORMAL -> DEAD via line_cnt >= line_fault_th ---
+# [PASS]  to NORMAL: state=1
+# [PASS] t_th->DEAD: state=2
+# 
+# --- Test 7: tx_enable follows state ---
+# [PASS] tx_enable=1 in NORMAL
+# [PASS] tx_enable=0 in DEAD
+# 
+# --- Test 8: state_change fires on IDLE->NORMAL and NORMAL->DEAD ---
+# [PASS] state_change=1 on IDLE->NORMAL
+# [PASS] state_change=1 on NORMAL->DEAD
+# 
+# ========================================
+# [DONE] fault_fsm: 14 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_fault_fsm.v(198)
+#    Time: 1615 ns  Iteration: 1  Instance: /tb_fault_fsm
+# Break in Module tb_fault_fsm at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_fault_fsm.v line 198
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_fault_fsm.v line 198
+# End time: 21:37:13 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:13 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_irq_ctrl.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module irq_ctrl
+# -- Compiling module tb_irq_ctrl
+# 
+# Top level modules:
+# 	tb_irq_ctrl
+# End time: 21:37:13 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_irq_ctrl 
+# Start time: 21:37:13 on Jun 01,2026
+# 
+# --- Test 1: event pulse sets irq_status bit ---
+# [PASS] data_sent sets bit 0
+# [PASS] no_broadcast sets bit 1
+# [PASS] bc_hamming_err sets bit 2
+# [PASS] halt_cmd sets bit 3
+# [PASS] state_change sets bit 4
+# 
+# --- Test 2: irq asserted ---
+# [PASS] irq asserted
+# 
+# --- Test 3: W1C clear individual bits ---
+# [PASS] all bits cleared by W1C
+# 
+# --- Test 4: irq deasserted after clear ---
+# [PASS] irq deasserted
+# 
+# --- Test 5: mask gates irq ---
+# [PASS] bit 0 masked, irq not asserted
+# [PASS] bit 2 unmasked, irq asserted
+# 
+# --- Test 6: sticky bits ---
+# [PASS] bit stays set
+# 
+# [DONE] irq_ctrl: 11 PASS, 0 FAIL
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_irq_ctrl.v(114)
+#    Time: 515 ns  Iteration: 1  Instance: /tb_irq_ctrl
+# Break in Module tb_irq_ctrl at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_irq_ctrl.v line 114
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_irq_ctrl.v line 114
+# End time: 21:37:14 on Jun 01,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# ** Warning: (vlib-34) Library already exists at "work".
+# Start time: 21:37:14 on Jun 01,2026
+# vlog C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_tdma_slave_top.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module clk_div
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module slot_timer
+# -- Compiling module fault_fsm
+# -- Compiling module irq_ctrl
+# -- Compiling module tdma_slave_top
+# -- Compiling module tb_tdma_slave_top
+# 
+# Top level modules:
+# 	tb_tdma_slave_top
+# End time: 21:37:14 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_tdma_slave_top 
+# Start time: 21:37:14 on Jun 01,2026
+# 
+# --- Tests 1-3: Basic TX flow (DIV=8, GUARD=0, ADDR=0) ---
+# [PASS] T1: data_sent set after TX
+# [PASS] T2: FSM left IDLE (state=1)
+# [PASS] T3: irq asserted
+# 
+# --- Test 4: SOFT_RST resets FSM to IDLE ---
+# [PASS] T4: FSM=IDLE after SOFT_RST
+# 
+# --- Test 5: HALT_CMD via broadcast -> DEAD, no auto-recovery ---
+# [PASS] T5a: FSM=NORMAL after clean broadcast
+# [PASS] T5b: FSM=DEAD after HALT_CMD
+# [PASS] T5c: FSM stays DEAD (no auto-recovery)
+# 
+# --- Test 6: guard_ticks_sync updated from broadcast ---
+# [PASS] T6a: FSM=NORMAL after guard-broadcast
+# [PASS] T6b: data_sent after guard-sync broadcast
+# 
+# ========================================
+# [DONE] tdma_slave_top: 9 PASS, 0 FAIL
+# ========================================
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_tdma_slave_top.v(214)
+#    Time: 40275 ns  Iteration: 1  Instance: /tb_tdma_slave_top
+# Break in Module tb_tdma_slave_top at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_tdma_slave_top.v line 214
+# Stopped at C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/slave/tb_tdma_slave_top.v line 214
+# End time: 21:37:14 on Jun 01,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

@@ -1,0 +1,218 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master
+vhamming_dec
+Z1 !s110 1780317461
+!i10b 1
+!s100 EU:5c^66R0jzhJ4W1=a5g1
+I<XiLn_PAVDz0[=?7@ZfGE2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1779784466
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v
+L0 15
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z4 !s108 1780317460.000000
+Z5 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
+Z6 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v|
+!i113 1
+Z7 tCvgOpt 0
+vhamming_enc
+R1
+!i10b 1
+!s100 hHc@ljY>20@Yj2g2Qai3U0
+IPLKNgPI4dCkLTa=ePW6Pn3
+R2
+R0
+w1779784447
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v
+L0 14
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+vMaster_dec_ham
+R1
+!i10b 1
+!s100 l[ej;`Xd7gS6OV13A;dMO2
+I=EHm@2N=h_U5_T>>QWhkz0
+R2
+R0
+Z8 w1780278431
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@master_dec_ham
+vMaster_rx
+Z9 !s110 1780317459
+!i10b 1
+!s100 iMjV8FjU:@;]JPV8zcNTh0
+IAMV@N0G48maYJkPj4FfF@3
+R2
+R0
+R8
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z10 !s108 1780317458.000000
+Z11 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
+Z12 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v|
+!i113 1
+R7
+n@master_rx
+vMaster_slot
+Z13 !s110 1780317460
+!i10b 1
+!s100 H<cfW_W9TEQ`UoRd0GkH12
+I=oBPHbZ1Fk42D5_=jgHXB0
+R2
+R0
+w1780315937
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v
+L0 1
+R3
+r1
+!s85 0
+31
+Z14 !s108 1780317459.000000
+Z15 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|
+Z16 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v|
+!i113 1
+R7
+n@master_slot
+vMaster_tx
+Z17 !s110 1780317457
+!i10b 1
+!s100 Jk2UNJk9XH=;gckmIRY]N3
+IdNHXzYFj7H`89j30QFN750
+R2
+R0
+R8
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v
+L0 6
+R3
+r1
+!s85 0
+31
+Z18 !s108 1780317457.000000
+Z19 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
+Z20 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v|
+!i113 1
+R7
+n@master_tx
+vtb_Master_dec_ham
+R1
+!i10b 1
+!s100 `3>aRVlX`^R3YZj3ZiX>?0
+IImOB>D5YSdh^ABRF`P[bl1
+R2
+R0
+w1780312091
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_dec_ham.v
+L0 9
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+ntb_@master_dec_ham
+vtb_Master_rx
+R9
+!i10b 1
+!s100 ?@`Ei;fIY=2<@XlIDB]8Q3
+I0^Jh82GNSQczVJ0b>6QCS2
+R2
+R0
+w1780312041
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_rx.v
+L0 7
+R3
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R7
+ntb_@master_rx
+vtb_Master_slot
+R13
+!i10b 1
+!s100 CHHz;=QHkFc4U>WKn@?Zd1
+I4bn_kfmL>W?<lLgDbeA<M3
+R2
+R0
+w1780316190
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_slot.v
+L0 8
+R3
+r1
+!s85 0
+31
+R14
+R15
+R16
+!i113 1
+R7
+ntb_@master_slot
+vtb_Master_tx
+R17
+!i10b 1
+!s100 ;OdkZ2c::dRoQM6hfC=Df3
+IOBlF6lOKIZ7>4dLXaV>G?3
+R2
+R0
+w1780311544
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/Integration_TB/master/tb_Master_tx.v
+L0 7
+R3
+r1
+!s85 0
+31
+R18
+R19
+R20
+!i113 1
+R7
+ntb_@master_tx

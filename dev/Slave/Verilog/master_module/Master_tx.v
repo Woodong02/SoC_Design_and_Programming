@@ -1,34 +1,32 @@
-// slave_tx: NRZ transmitter for TDMA slave
-// Bit period = div clk cycles (master-compatible DIV convention)
+// master_tx: NRZ transmitter for TDMA master broadcast
+// Bit period = 2*(div+1) clk cycles (same as slave_tx)
 // Frame: [preamble 8b = 0xAA][codeword 42b] = 50 bits
-//   codeword = {addr[2:0], tx_data[31:0], p[5:0], p_overall}  (systematic SECDED)
-module slave_tx (
+//   codeword = {halt_cmd[7:0], 27'b0, p[5:0], p_overall}  (systematic SECDED)
+// GPIO_out is driven high/low while active; released (high-Z) when idle.
+module Master_tx (
     input  wire        clk,
-    input  wire        rst_n,
-    input  wire [9:0]  div,
+    input  wire        resetn,
     input  wire        tx_trigger,
-    input  wire        tx_enable,
-    input  wire [2:0]  slave_addr,
-    input  wire [31:0] tx_data,
+    input  wire [7:0]  halt_cmd,
+    input  wire [9:0]  GUARD_TICKS,
+    input  wire [9:0]  DIV,
 
-    output wire        rx_line,
-    output reg         tx_active,
-    output reg         data_sent
+    output wire        GPIO_out
 );
 
     reg [49:0] frame;
     reg [5:0]  bit_cnt;
-    reg [9:0]  tx_cnt;
+    reg [9:0] tx_cnt;
     reg        tx_bit;
+    reg       tx_active;
 
-    wire [9:0] cnt_max = div - 10'd1;  // DIV-1, period = DIV clocks
 
     // ----------------------------------------------------------------
     // Hamming systematic SECDED encoding via hamming_enc module
-    // d[34:0] = {slave_addr[2:0], tx_data[31:0]}
+    // d[34:0] = {halt_cmd, GUARD_TICKS, DIV, 17'b0};
     // codeword[41:0] = {d[34:0], p[5:0], p_overall}
     // ----------------------------------------------------------------
-    wire [34:0] d = {slave_addr, tx_data};
+    wire [34:0] d = {halt_cmd, GUARD_TICKS, 17'b0};
 
     wire [41:0] codeword;
     hamming_enc u_enc (.data(d), .codeword(codeword));
@@ -36,47 +34,39 @@ module slave_tx (
     // ----------------------------------------------------------------
     // tx counter and frame shift register
     // ----------------------------------------------------------------
-    always @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            tx_cnt   <= 10'd0;
+    always @(posedge clk or negedge resetn) begin
+        if (!resetn) begin
+            tx_cnt   <= 11'd0;
             bit_cnt  <= 6'd0;
             tx_active<= 1'b0;
-            data_sent<= 1'b0;
             frame    <= 50'd0;
             tx_bit   <= 1'b0;
         end else begin
-            data_sent <= 1'b0; // default deassert
-
             if (!tx_active) begin
-                tx_cnt  <= 10'd0;
+                tx_cnt  <= 11'd0;
                 bit_cnt <= 6'd0;
-                if (tx_trigger && tx_enable) begin
-                    // latch frame at trigger
+                if (tx_trigger) begin
                     frame     <= {8'hAA, codeword};
                     tx_active <= 1'b1;
-                    tx_bit    <= 1'b1; // preamble starts with 1 (MSB of 0xAA)
+                    tx_bit    <= 1'b1; // preamble MSB of 0xAA = 1
                 end
             end else begin
-                if (tx_cnt == cnt_max) begin
-                    tx_cnt <= 10'd0;
+                if (tx_cnt == DIV-1) begin
+                    tx_cnt <= 11'd0;
                     if (bit_cnt == 6'd49) begin
-                        // last bit done
                         tx_active <= 1'b0;
-                        data_sent <= 1'b1;
                         tx_bit    <= 1'b0;
                     end else begin
                         bit_cnt <= bit_cnt + 6'd1;
-                        // next bit: frame[49] is MSB (first sent), shift left
                         tx_bit  <= frame[49 - (bit_cnt + 6'd1)];
                     end
                 end else begin
-                    tx_cnt <= tx_cnt + 10'd1;
+                    tx_cnt <= tx_cnt + 11'd1;
                 end
             end
         end
     end
 
-    // tristate output
-    assign rx_line = (tx_active && tx_enable) ? tx_bit : 1'bz;
+    assign GPIO_out = (tx_active) ? tx_bit : 1'b0;
 
 endmodule

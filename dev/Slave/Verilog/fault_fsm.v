@@ -1,7 +1,9 @@
 // fault_fsm: TDMA slave fault state machine
-// States: IDLE(0) NORMAL(1) DATA_RECOVERY(2) FAULT(3) DEAD(4)
+// States: IDLE(0) NORMAL(1) DEAD(2)
 // FAULT_CNT: +10 on bc_hamming_err/halt_cmd (sat at fault_th), -1 on bc_valid (floor 0)
 // LINE_CNT:  +10 on no_broadcast/bc_preamble_err (sat at line_fault_th), -1 on bc_preamble_ok
+// NORMAL -> DEAD: halt_cmd | fault_cnt >= fault_th | line_cnt >= line_fault_th
+// DEAD: tx disabled, no auto-recovery; hardware reset only
 module fault_fsm (
     input  wire       clk,
     input  wire       rst_n,
@@ -22,11 +24,9 @@ module fault_fsm (
     output wire [7:0] fault_cnt_out,
     output wire [7:0] line_cnt_out
 );
-    localparam IDLE          = 3'd0;
-    localparam NORMAL        = 3'd1;
-    localparam DATA_RECOVERY = 3'd2;
-    localparam FAULT_ST      = 3'd3;
-    localparam DEAD          = 3'd4;
+    localparam IDLE   = 3'd0;
+    localparam NORMAL = 3'd1;
+    localparam DEAD   = 3'd2;
 
     reg [7:0] fault_cnt;
     reg [7:0] line_cnt;
@@ -43,8 +43,7 @@ module fault_fsm (
         end else begin
             state_change <= 1'b0;
 
-            // ---- counter updates (read old values, write new) ----
-            // FAULT_CNT: halt_cmd saturates to fault_th ("ignore counter" = 즉시 FAULT)
+            // FAULT_CNT: halt_cmd saturates immediately; bc_hamming_err +10 (sat); bc_valid -1 (floor 0)
             if (halt_cmd) begin
                 fault_cnt <= fault_th;
             end else if (bc_hamming_err) begin
@@ -54,7 +53,7 @@ module fault_fsm (
                 fault_cnt <= fault_cnt - 8'd1;
             end
 
-            // LINE_CNT
+            // LINE_CNT: no_broadcast/bc_preamble_err +10 (sat); bc_preamble_ok -1 (floor 0)
             if (no_broadcast || bc_preamble_err) begin
                 line_cnt <= ({1'b0, line_cnt} + 9'd10 >= {1'b0, line_fault_th})
                             ? line_fault_th : line_cnt + 8'd10;
@@ -62,7 +61,6 @@ module fault_fsm (
                 line_cnt <= line_cnt - 8'd1;
             end
 
-            // ---- state machine (reads old counter values) ----
             case (fsm_state)
                 IDLE: begin
                     if (active_edge) begin
@@ -72,54 +70,20 @@ module fault_fsm (
                 end
 
                 NORMAL: begin
-                    if (line_cnt >= line_fault_th) begin
+                    if (halt_cmd || fault_cnt >= fault_th || line_cnt >= line_fault_th) begin
                         fsm_state    <= DEAD;
-                        state_change <= 1'b1;
-                    end else if (halt_cmd || fault_cnt >= fault_th) begin
-                        fsm_state    <= FAULT_ST;
-                        state_change <= 1'b1;
-                    end else if (fault_cnt > 8'd0) begin
-                        fsm_state    <= DATA_RECOVERY;
-                        state_change <= 1'b1;
-                    end
-                end
-
-                DATA_RECOVERY: begin
-                    if (line_cnt >= line_fault_th) begin
-                        fsm_state    <= DEAD;
-                        state_change <= 1'b1;
-                    end else if (halt_cmd || fault_cnt >= fault_th) begin
-                        fsm_state    <= FAULT_ST;
-                        state_change <= 1'b1;
-                    end else if (fault_cnt == 8'd0) begin
-                        fsm_state    <= NORMAL;
-                        state_change <= 1'b1;
-                    end
-                end
-
-                FAULT_ST: begin
-                    if (line_cnt >= line_fault_th) begin
-                        fsm_state    <= DEAD;
-                        state_change <= 1'b1;
-                    end else if (fault_cnt < fault_th) begin
-                        fsm_state    <= DATA_RECOVERY;
                         state_change <= 1'b1;
                     end
                 end
 
                 DEAD: begin
-                    if (line_cnt == 8'd0) begin
-                        fsm_state    <= IDLE;
-                        state_change <= 1'b1;
-                    end
+                    // no auto-recovery; hardware reset only
                 end
 
                 default: fsm_state <= IDLE;
             endcase
 
-            // tx_enable: 1 in NORMAL/DATA_RECOVERY, 0 otherwise
-            // (updates same clock as state, effective next clock)
-            tx_enable <= (fsm_state == NORMAL || fsm_state == DATA_RECOVERY);
+            tx_enable <= (fsm_state == NORMAL);
         end
     end
 

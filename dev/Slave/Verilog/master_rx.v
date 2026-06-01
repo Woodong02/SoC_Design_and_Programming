@@ -1,7 +1,7 @@
 // master_rx: receives NRZ master broadcast frames
-// Bit period = 2*(div+1) clk cycles; sample at clk_cnt == div+1
+// Bit period = div clk cycles; sample at clk_cnt == div>>1 (master-compatible DIV convention)
 // Frame: [preamble 8b = 0xAA][codeword 42b] = 50 bits
-//   codeword = {halt_cmd[7:0], 27'b0, p[5:0], p_overall}  (systematic SECDED)
+//   codeword = {halt_cmd[7:0], guard_ticks[9:0], 17'b0, p[5:0], p_overall}  (systematic SECDED)
 // Buffer[41:0] = codeword; decoded via hamming_dec
 module master_rx (
     input  wire        clk,
@@ -14,6 +14,7 @@ module master_rx (
     output reg         bc_valid,
     output reg         bc_preamble_ok,
     output reg  [7:0]  bc_halt_cmd,
+    output reg  [9:0]  bc_guard_ticks,
     output reg         bc_hamming_err,
     output reg         bc_preamble_err
 );
@@ -23,15 +24,15 @@ module master_rx (
     localparam DATA     = 2'd2;
 
     reg [1:0]  state;
-    reg [10:0] clk_cnt;
+    reg [9:0]  clk_cnt;
     reg [5:0]  bit_cnt;
     reg [41:0] buffer;
     reg        tx_prev;
     reg        preamble_ok_latch;
 
-    wire [10:0] cnt_max    = {div, 1'b1};          // 2*DIV+1
-    wire [10:0] samp_point = {1'b0, div} + 11'd1;  // DIV+1
-    wire        at_sample  = (clk_cnt == samp_point);
+    wire [9:0] cnt_max    = div - 10'd1;  // DIV-1, period = DIV clocks
+    wire [9:0] samp_point = div >> 1;    // DIV/2, midpoint
+    wire       at_sample  = (clk_cnt == samp_point);
 
     // tx_prev for edge detection
     always @(posedge clk or negedge rst_n) begin
@@ -42,13 +43,13 @@ module master_rx (
     // clk_cnt: starts at 1 on rising edge, 0..cnt_max thereafter
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)
-            clk_cnt <= 11'd0;
+            clk_cnt <= 10'd0;
         else begin
             case (state)
                 IDLE:
-                    clk_cnt <= (enable && !tx_prev && tx_line_sync) ? 11'd1 : 11'd0;
+                    clk_cnt <= (enable && !tx_prev && tx_line_sync) ? 10'd1 : 10'd0;
                 default:
-                    clk_cnt <= (clk_cnt == cnt_max) ? 11'd0 : clk_cnt + 11'd1;
+                    clk_cnt <= (clk_cnt == cnt_max) ? 10'd0 : clk_cnt + 10'd1;
             endcase
         end
     end
@@ -124,6 +125,7 @@ module master_rx (
             bc_valid         <= 1'b0;
             bc_preamble_ok   <= 1'b0;
             bc_halt_cmd      <= 8'd0;
+            bc_guard_ticks   <= 10'd0;
             bc_hamming_err   <= 1'b0;
             bc_preamble_err  <= 1'b0;
             preamble_ok_latch<= 1'b0;
@@ -156,8 +158,9 @@ module master_rx (
                 if (ham_2bit_err) begin
                     bc_hamming_err <= 1'b1;
                 end else if (preamble_ok_latch) begin
-                    bc_valid    <= 1'b1;
-                    bc_halt_cmd <= fixed_data[34:27];
+                    bc_valid       <= 1'b1;
+                    bc_halt_cmd    <= fixed_data[34:27];
+                    bc_guard_ticks <= fixed_data[26:17];
                 end
             end
         end

@@ -1,6 +1,6 @@
 // slot_timer: generates tx_trigger and watchdog (no_broadcast) for TDMA slot timing
-// slot_ticks = 50 * 2*(div+1) + guard_ticks = 100*(div+1) + guard_ticks
-// tx_trigger  : 1-clock pulse at slot_cnt == slave_addr * slot_ticks (after active_edge)
+// slot_ticks = 50*div + guard_ticks  (50 bits per frame × DIV clocks/bit)
+// tx_trigger  : 1-clock pulse at slot_cnt == slave_addr * slot_ticks + guard_ticks>>1 (after active_edge)
 // no_broadcast: 1-clock pulse at slot_cnt == 9 * slot_ticks (watchdog)
 module slot_timer (
     input  wire        clk,
@@ -15,8 +15,8 @@ module slot_timer (
 );
     wire [31:0] div32      = {22'b0, div};
     wire [31:0] guard32    = {22'b0, guard_ticks};
-    wire [31:0] slot_ticks = 32'd100 * (div32 + 32'd1) + guard32;
-    wire [31:0] trig_cnt   = {29'b0, slave_addr} * slot_ticks;
+    wire [31:0] slot_ticks = 32'd50 * div32 + guard32;
+    wire [31:0] trig_cnt   = {29'b0, slave_addr} * slot_ticks + ({22'b0, guard_ticks} >> 1);
     wire [31:0] wdog_cnt   = 32'd9 * slot_ticks;
 
     reg [31:0] slot_cnt;
