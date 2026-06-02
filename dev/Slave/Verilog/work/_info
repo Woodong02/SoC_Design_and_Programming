@@ -29,7 +29,7 @@ Z7 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Des
 !i113 1
 Z8 tCvgOpt 0
 vclk_div
-R1
+Z9 !s110 1780377744
 !i10b 1
 !s100 7LjH>;_4Eg?NNzeN0haCY2
 INS[VeVGjdgCO:SkO^T^Z]2
@@ -43,13 +43,13 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+Z10 !s108 1780377744.000000
+Z11 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb_slave_sys.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_sys.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tx_data_gen.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
+Z12 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tx_data_gen.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_sys.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb_slave_sys.v|
 !i113 1
 R8
 verror_and_hamming
-Z9 !s110 1779805012
+Z13 !s110 1779805012
 !i10b 1
 !s100 GcY]IYJ5G@GCAH1Bl`:^01
 IOmnAJ^A`6EVI2eSAGK3lX2
@@ -63,13 +63,13 @@ R4
 r1
 !s85 0
 31
-Z10 !s108 1779805012.000000
-Z11 !s107 ../Master_임시/tb_error_and_hamming.v|../Master_임시/error_with_hamming.v|../Master_임시/hamming_dec.v|../Master_임시/hamming_enc.v|
-Z12 !s90 ../Master_임시/hamming_enc.v|../Master_임시/hamming_dec.v|../Master_임시/error_with_hamming.v|../Master_임시/tb_error_and_hamming.v|
+Z14 !s108 1779805012.000000
+Z15 !s107 ../Master_임시/tb_error_and_hamming.v|../Master_임시/error_with_hamming.v|../Master_임시/hamming_dec.v|../Master_임시/hamming_enc.v|
+Z16 !s90 ../Master_임시/hamming_enc.v|../Master_임시/hamming_dec.v|../Master_임시/error_with_hamming.v|../Master_임시/tb_error_and_hamming.v|
 !i113 1
 R8
 vfault_fsm
-R1
+R9
 !i10b 1
 !s100 Zb>cB0CBX5FSnC95XY3@Y0
 I4M<<RH_ZWWnKMB53;Zm<Q3
@@ -83,13 +83,13 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 vhamming_dec
-R1
+R9
 !i10b 1
 !s100 EU:5c^66R0jzhJ4W1=a5g1
 I<XiLn_PAVDz0[=?7@ZfGE2
@@ -98,18 +98,18 @@ R0
 w1779784466
 8C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v
 FC:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v
-Z13 L0 15
+Z17 L0 15
 R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 vhamming_enc
-R1
+R9
 !i10b 1
 !s100 hHc@ljY>20@Yj2g2Qai3U0
 IPLKNgPI4dCkLTa=ePW6Pn3
@@ -123,13 +123,13 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 virq_ctrl
-R1
+R9
 !i10b 1
 !s100 HO9kViG@D<EL3f1ocH_If1
 INlD>8O4Q9jg@gO<=[Z^eB1
@@ -143,9 +143,9 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 vMaster_dec_ham
@@ -169,6 +169,26 @@ R7
 !i113 1
 R8
 n@master_dec_ham
+vmaster_rx
+R9
+!i10b 1
+!s100 ZBoN]f>WUeVbJgn=cC2In1
+I8IkHAI=hONS`LijSHbThU1
+R2
+R0
+w1780291971
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v
+L0 6
+R4
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R8
 vMaster_rx
 R1
 !i10b 1
@@ -190,26 +210,6 @@ R7
 !i113 1
 R8
 n@master_rx
-vmaster_rx
-R1
-!i10b 1
-!s100 ZBoN]f>WUeVbJgn=cC2In1
-I8IkHAI=hONS`LijSHbThU1
-R2
-R0
-w1780291971
-8C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v
-FC:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v
-L0 6
-R4
-r1
-!s85 0
-31
-R5
-R6
-R7
-!i113 1
-R8
 vMaster_slot
 R1
 !i10b 1
@@ -251,6 +251,26 @@ R6
 R7
 !i113 1
 R8
+vmaster_tx
+Z18 !s110 1779787223
+!i10b 1
+!s100 dk8H>J>goXm7BFezC=WUj2
+IUeQ@WH52TZzH4Q4MinEIP1
+R2
+R0
+w1779784722
+8master_tx.v
+Fmaster_tx.v
+L0 6
+R4
+r1
+!s85 0
+31
+Z19 !s108 1779787222.000000
+Z20 !s107 tb_comm_master.v|slave_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
+Z21 !s90 hamming_enc.v|hamming_dec.v|master_tx.v|slave_rx.v|tb_comm_master.v|
+!i113 1
+R8
 vMaster_tx
 R1
 !i10b 1
@@ -272,26 +292,6 @@ R7
 !i113 1
 R8
 n@master_tx
-vmaster_tx
-Z14 !s110 1779787223
-!i10b 1
-!s100 dk8H>J>goXm7BFezC=WUj2
-IUeQ@WH52TZzH4Q4MinEIP1
-R2
-R0
-w1779784722
-8master_tx.v
-Fmaster_tx.v
-L0 6
-R4
-r1
-!s85 0
-31
-Z15 !s108 1779787222.000000
-Z16 !s107 tb_comm_master.v|slave_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
-Z17 !s90 hamming_enc.v|hamming_dec.v|master_tx.v|slave_rx.v|tb_comm_master.v|
-!i113 1
-R8
 vregfile
 !s110 1780293044
 !i10b 1
@@ -333,7 +333,7 @@ R7
 !i113 1
 R8
 vslave_rx
-R14
+R18
 !i10b 1
 !s100 8ggS`Y_MiOVFmeU`cORn90
 I5H<FF@ck2::0f3]H[R:Lf0
@@ -347,13 +347,13 @@ R4
 r1
 !s85 0
 31
-R15
-R16
-R17
+R19
+R20
+R21
 !i113 1
 R8
 vslave_tx
-R1
+R9
 !i10b 1
 !s100 Ehfmn;DMiRU`Lc8AfU3O<1
 I3Od04Xh6kJk<FzbMem:];0
@@ -367,13 +367,13 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 vslot_timer
-R1
+R9
 !i10b 1
 !s100 c9zX6FJ9BNB724GDR>?^X1
 I7E<bCKIZi7NJa6BCJELCO0
@@ -387,9 +387,9 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
 !i113 1
 R8
 vtb_clk_div
@@ -407,13 +407,13 @@ R4
 r1
 !s85 0
 31
-Z18 !s108 1779670930.000000
-Z19 !s107 tb_slave_rx.v|tb_master_tx.v|tb_tdma_slave_top.v|tb_regfile.v|tb_irq_ctrl.v|tb_fault_fsm.v|tb_slot_timer.v|tb_slave_tx.v|tb_master_rx.v|tb_clk_div.v|slave_rx.v|master_tx.v|tdma_slave_top.v|regfile.v|irq_ctrl.v|fault_fsm.v|slot_timer.v|slave_tx.v|master_rx.v|clk_div.v|
-Z20 !s90 clk_div.v|master_rx.v|slave_tx.v|slot_timer.v|fault_fsm.v|irq_ctrl.v|regfile.v|tdma_slave_top.v|master_tx.v|slave_rx.v|tb_clk_div.v|tb_master_rx.v|tb_slave_tx.v|tb_slot_timer.v|tb_fault_fsm.v|tb_irq_ctrl.v|tb_regfile.v|tb_tdma_slave_top.v|tb_master_tx.v|tb_slave_rx.v|
+Z22 !s108 1779670930.000000
+Z23 !s107 tb_slave_rx.v|tb_master_tx.v|tb_tdma_slave_top.v|tb_regfile.v|tb_irq_ctrl.v|tb_fault_fsm.v|tb_slot_timer.v|tb_slave_tx.v|tb_master_rx.v|tb_clk_div.v|slave_rx.v|master_tx.v|tdma_slave_top.v|regfile.v|irq_ctrl.v|fault_fsm.v|slot_timer.v|slave_tx.v|master_rx.v|clk_div.v|
+Z24 !s90 clk_div.v|master_rx.v|slave_tx.v|slot_timer.v|fault_fsm.v|irq_ctrl.v|regfile.v|tdma_slave_top.v|master_tx.v|slave_rx.v|tb_clk_div.v|tb_master_rx.v|tb_slave_tx.v|tb_slot_timer.v|tb_fault_fsm.v|tb_irq_ctrl.v|tb_regfile.v|tb_tdma_slave_top.v|tb_master_tx.v|tb_slave_rx.v|
 !i113 1
 R8
 vtb_comm_master
-R14
+R18
 !i10b 1
 !s100 ]nzXQ3QjHzTbR9oZdWUjJ3
 IiLnYNcPlgmCBQ>?d>ZFaM1
@@ -427,9 +427,9 @@ R4
 r1
 !s85 0
 31
-R15
-R16
-R17
+R19
+R20
+R21
 !i113 1
 R8
 vtb_comm_slave
@@ -453,7 +453,7 @@ r1
 !i113 1
 R8
 vtb_error_and_hamming
-R9
+R13
 !i10b 1
 !s100 WL:40XoACGBA8YZdIWM6M3
 IaY[?m6kY[P98gzfY7Ze5Y1
@@ -467,13 +467,13 @@ R4
 r1
 !s85 0
 31
-R10
-R11
-R12
+R14
+R15
+R16
 !i113 1
 R8
 vtb_fault_fsm
-Z21 !s110 1780313425
+Z25 !s110 1780313425
 !i10b 1
 !s100 7az23U<emF<heNkCna0hF1
 Ial^UP9;NjYOTiVE=[`mK_2
@@ -487,7 +487,7 @@ R4
 r1
 !s85 0
 31
-Z22 !s108 1780313425.000000
+Z26 !s108 1780313425.000000
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_fault_fsm.v|
 !i113 1
@@ -573,7 +573,7 @@ r1
 !i113 1
 R8
 vtb_Master_dec_ham
-Z23 !s110 1780316343
+Z27 !s110 1780316343
 !i10b 1
 !s100 `3>aRVlX`^R3YZj3ZiX>?0
 IS_<z032^>c5LOY:gDfGaf2
@@ -587,12 +587,32 @@ R4
 r1
 !s85 0
 31
-Z24 !s108 1780316343.000000
+Z28 !s108 1780316343.000000
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_Master_dec_ham.v|
 !i113 1
 R8
 ntb_@master_dec_ham
+vtb_master_rx
+!s110 1780306763
+!i10b 1
+!s100 GNPhDzY<h6:geRgoK;ndP3
+IKojJE?aVW[]BZa`7R3Ch03
+R2
+R0
+w1780292048
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v
+L0 3
+R4
+r1
+!s85 0
+31
+!s108 1780306763.000000
+!s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
+!s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v|
+!i113 1
+R8
 vtb_Master_rx
 !s110 1780316342
 !i10b 1
@@ -614,28 +634,8 @@ r1
 !i113 1
 R8
 ntb_@master_rx
-vtb_master_rx
-!s110 1780306763
-!i10b 1
-!s100 GNPhDzY<h6:geRgoK;ndP3
-IKojJE?aVW[]BZa`7R3Ch03
-R2
-R0
-w1780292048
-8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v
-FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v
-L0 3
-R4
-r1
-!s85 0
-31
-!s108 1780306763.000000
-!s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
-!s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_rx.v|
-!i113 1
-R8
 vtb_Master_slot
-R23
+R27
 !i10b 1
 !s100 CHHz;=QHkFc4U>WKn@?Zd1
 IE7[9XZGbmXzdIGhmbLJnB1
@@ -649,7 +649,7 @@ R4
 r1
 !s85 0
 31
-R24
+R28
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_Master_slot.v|
 !i113 1
@@ -665,34 +665,14 @@ R0
 w1780313403
 8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_top.v
 FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_top.v
-R13
+R17
 R4
 r1
 !s85 0
 31
-Z25 !s108 1780316344.000000
+Z29 !s108 1780316344.000000
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_master_top.v|
-!i113 1
-R8
-vtb_master_tx
-!s110 1779784926
-!i10b 1
-!s100 S@fI?^Zza1`f`DQ@jjRiR3
-IYm1MQS7`gmPcji62^ci[X1
-R2
-R0
-w1779670329
-8tb_master_tx.v
-Ftb_master_tx.v
-L0 5
-R4
-r1
-!s85 0
-31
-!s108 1779784926.000000
-!s107 tb_master_tx.v|master_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
-!s90 hamming_enc.v|hamming_dec.v|master_tx.v|master_rx.v|tb_master_tx.v|
 !i113 1
 R8
 vtb_Master_tx
@@ -716,6 +696,26 @@ r1
 !i113 1
 R8
 ntb_@master_tx
+vtb_master_tx
+!s110 1779784926
+!i10b 1
+!s100 S@fI?^Zza1`f`DQ@jjRiR3
+IYm1MQS7`gmPcji62^ci[X1
+R2
+R0
+w1779670329
+8tb_master_tx.v
+Ftb_master_tx.v
+L0 5
+R4
+r1
+!s85 0
+31
+!s108 1779784926.000000
+!s107 tb_master_tx.v|master_rx.v|master_tx.v|hamming_dec.v|hamming_enc.v|
+!s90 hamming_enc.v|hamming_dec.v|master_tx.v|master_rx.v|tb_master_tx.v|
+!i113 1
+R8
 vtb_regfile
 !s110 1779670931
 !i10b 1
@@ -731,9 +731,9 @@ R4
 r1
 !s85 0
 31
-R18
-R19
-R20
+R22
+R23
+R24
 !i113 1
 R8
 vtb_slave_rx
@@ -754,6 +754,26 @@ r1
 !s108 1779784905.000000
 !s107 tb_slave_rx.v|slave_rx.v|slave_tx.v|hamming_dec.v|hamming_enc.v|
 !s90 hamming_enc.v|hamming_dec.v|slave_tx.v|slave_rx.v|tb_slave_rx.v|
+!i113 1
+R8
+vtb_slave_sys
+R9
+!i10b 1
+!s100 G0ceYR_L9T>aOikNCnif;0
+IQ>SSZZB@caNoJl7G@FQdS3
+R2
+R0
+w1780377735
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb_slave_sys.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tb_slave_sys.v
+L0 6
+R4
+r1
+!s85 0
+31
+R10
+R11
+R12
 !i113 1
 R8
 vtb_slave_tx
@@ -777,7 +797,7 @@ r1
 !i113 1
 R8
 vtb_slot_timer
-R21
+R25
 !i10b 1
 !s100 aDYW]a]5<BkVjHmVoUlU22
 I82ST5jKVl@OR7J<>0OkI;3
@@ -791,7 +811,7 @@ R4
 r1
 !s85 0
 31
-R22
+R26
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_slot_timer.v|
 !i113 1
@@ -811,7 +831,7 @@ R4
 r1
 !s85 0
 31
-R25
+R29
 !s107 C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_sys_integration.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|
 !s90 C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slave_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/clk_div.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/slot_timer.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_tx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_rx.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_slot.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_dec_ham.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/seven_seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/bin2seg.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/master_module/Master_top.v|C:/SoC_Design_and_Programming/dev/Slave/Verilog/tb/tb_sys_integration.v|
 !i113 1
@@ -856,8 +876,28 @@ R6
 R7
 !i113 1
 R8
+vtdma_slave_sys
+R9
+!i10b 1
+!s100 cizKOFEMPc<ITP6EAOODc0
+Ia0?WB4?M=bdVBY0h<B1Hz0
+R2
+R0
+w1780377672
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_sys.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tdma_slave_sys.v
+L0 3
+R4
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R8
 vtdma_slave_top
-R1
+R9
 !i10b 1
 !s100 Pl<D9CY:DXHGCBjRL[><62
 IhoFlC9;9hn]:flzzefBaJ2
@@ -871,8 +911,28 @@ R4
 r1
 !s85 0
 31
-R5
-R6
-R7
+R10
+R11
+R12
+!i113 1
+R8
+vtx_data_gen
+R9
+!i10b 1
+!s100 =mVIS0<1ckTn[Gk>KTzYo3
+I_h@ZJ^7kz;:4n;IZLNAIU1
+R2
+R0
+w1780376697
+8C:/SoC_Design_and_Programming/dev/Slave/Verilog/tx_data_gen.v
+FC:/SoC_Design_and_Programming/dev/Slave/Verilog/tx_data_gen.v
+L0 3
+R4
+r1
+!s85 0
+31
+R10
+R11
+R12
 !i113 1
 R8
