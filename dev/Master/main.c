@@ -66,31 +66,66 @@ u16 NODE_CNT=7;
 #define		SILENT_TH_INIT	200
 #define		ENABLE_INIT	1
 
-#define BLACK   0x0000
-#define RED     0x001F
-#define GREEN   0x07E0
-#define YELLOW  0x07FF
-#define BLUE    0xF800
-#define MAGENTA 0xF81F
-#define CYAN    0xFFE0
-#define WHITE   0xFFFF
+const u16 NODE_COLORS[8] = {
+    0xF800,  // Node 0: Red
+    0x07E0,  // Node 1: Green
+    0x001F,  // Node 2: Blue
+    0xFFE0,  // Node 3: Yellow
+    0xF81F,  // Node 4: Magenta
+    0x07FF,  // Node 5: Cyan
+    0xFBE0,  // Node 6: Orange
+    0xFFFF   // Node 7: White
+};
 
 
 int main()
 {
-
 	intr_init();
 	Master_node_init(DIV, GUARD_TICKS, NODE_CNT, FAULT_TH_INIT, SILENT_TH_INIT, ENABLE_INIT);
 	file_init(Path, filename);
-
-
-	while(1){
-
-	}
+	
     int Data;
     int R;
     int G;
     int B;
+	char msg[128];
+	int ptr=0;
+	while(1){
+		if(XUartPs_IsReceiveData)
+			msg[ptr++] = XUartPs_RecvByte(XPAR_PS7_UART_1_BASEADDR);
+		if(msg[ptr-1] == CR){
+			msg[ptr-1] = 0;
+			xil_printf("Received: %s\r\n", msg);
+			ptr=0;
+			if (strcmp(msg, "READ_ALL_ERR_CNT") == 0)
+				READ_ALL_ERR_CNT();
+			else if (strncmp(msg, "READ_ERR_CNT ", 12) == 0)
+				READ_ERR_CNT(atoi(msg+12));
+			else if (strcmp(msg, "READ_CYCLE_CNT") == 0)
+				READ_CYCLE_CNT();
+			else if (strcmp(msg, "SET_ENABLE 1") == 0)
+				SET_ENABLE(1);
+			else if (strcmp(msg, "SET_ENABLE 0") == 0)
+				SET_ENABLE(0);
+			else if (strncmp(msg, "SET_DIV ", 8) == 0)
+				SET_DIV(atoi(msg+8));
+			else if (strncmp(msg, "SET_GUARD_TICKS ", 16) == 0)
+				SET_GUARD_TICKS(atoi(msg+16));
+			else if (strncmp(msg, "SET_NODE_CNT ", 13) == 0)
+				SET_NODE_CNT(atoi(msg+13));
+			else if (strncmp(msg, "SET_FAULT_TH ", 13) == 0)
+				SET_FAULT_TH(atoi(msg+13));
+			else if (strncmp(msg, "SET_SILENT_TH ", 15) == 0)
+				SET_SILENT_TH(atoi(msg+15));
+		}
+		Data = mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4);
+		if((data>>19) & 0x1 ==1){
+			(data&0x7)
+			Xil_Out32(XPAR_TFTLCD_0_S00_AXI_BASEADDR + (2*j + 480*i)*4, NODE_COLORS[Data&0x7]);
+		}
+	}
+
+	print
     /****************************TFT-LCD write(RGB565)****************************/
     for (int i = 0; i < 272; i++){
     	for (int j = 0; j < 240; j++){
@@ -123,16 +158,34 @@ int main()
 
 void ServiceRoutine(void *CallbackRef)
 {
-	Res = f_write(&fil, buffer, strlen(buffer), &NumBytesWrite);
-	if(Res){
-		xil_printf("data_read_fail\r\n");
-	}
-
 	u32 temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4);
+	MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4, temp&0x0000FFFF);
 
+	u32 cycles_low = Master_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x2C);
+	u32 cycles_high = Master_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x30);
+	u64 cycles = ((u64)cycles_high << 32) | cycles_low;
 
-
-
+	for(int i=0; i<8; i++){
+		if(temp & (1<<(i+24))){
+			sprintf(buffer, "Node %u is Halted.\n", i);
+			xil_printf("Node %u is Halted.\r\n", i);
+			Res = f_write(&fil, buffer, strlen(buffer), NULL);
+			if(Res)
+				xil_printf("data_write_fail\r\n");
+		}
+		if(temp & (1<<(i+16))){
+			sprintf(buffer, "Node %u is Silent.\n", i);
+			xil_printf("Node %u is Silent.\r\n", i);
+			Res = f_write(&fil, buffer, strlen(buffer), NULL);
+			if(Res)
+				xil_printf("data_write_fail\r\n");
+		}
+	}
+	sprintf(buffer, "After %llu cycles,\n\n", cycles);
+	Res = f_write(&fil, buffer, strlen(buffer), NULL);
+	if(Res)
+		xil_printf("data_write_fail\r\n");
+	xil_printf("After %llu cycles,\r\n\r\n", cycles);
 }
 
 void Master_node_init(u16 DIVi, u16 GUARD_TICKSi, u16 NODE_CNTi, u16 FAULT_TH, u16 SILENT_TH, u8 ENABLE){
@@ -152,7 +205,7 @@ void SET_ENABLE(u8 ENABLE){
 		xil_printf("Master Enabled.\r\n");
 	else
 		xil_printf("Master Disabled.\r\n");
-	MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, ENABLE<<23);
+	MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, (ENABLE&0x1)<<23);
 }
 
 void SET_DIV(u16 DIVi){
@@ -164,7 +217,7 @@ void SET_DIV(u16 DIVi){
 		if(DIV > 1023)
 			xil_printf("Please enter less than 1025.\r\n");
 		else{
-			MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, DIV);
+			MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, DIV&0x3FF);
 			xil_printf("Set DIV completed.\r\n");
 		}
 	}
@@ -179,7 +232,7 @@ void SET_GUARD_TICKS(u16 GUARD_TICKSi){
 			xil_printf("Really? It's too small\r\n");
 		/*else if(GUARD_TICKS % 4 != 0)
 			xil_printf("I recommend you to set GUARD_TICKS multiple of 4\r\n");*/
-		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, GUARD_TICKS<<10);
+		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, (GUARD_TICKS&0x3FF)<<10);
 		xil_printf("Set GUARD_TICKS completed.\r\n");
 	}
 }
@@ -193,7 +246,7 @@ void SET_NODE_CNT(u16 NODE_CNTi){
 			if(NODE_CNT > 7)
 				xil_printf("Please enter less than 9.\r\n");
 			else{
-				MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, NODE_CNT<<20);
+				MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0, (NODE_CNT&0x7)<<20);
 				xil_printf("Set NODE_CNT completed.\r\n");
 			}
 		}
@@ -205,7 +258,7 @@ void SET_FAULT_TH(u16 FAULT_TH){
 	else if(FAULT_TH > 245)
 		xil_printf("Please enter less than 246.\r\n");
 	else{
-		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, FAULT_TH);
+		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, FAULT_TH&0xFF);
 		xil_printf("Set FAULT_TH completed.\r\n");
 	}
 }
@@ -216,7 +269,7 @@ void SET_SILENT_TH(u16 SILENT_TH){
 	else if(SILENT_TH > 245)
 		xil_printf("Please enter less than 246.\r\n");
 	else{
-		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, SILENT_TH<<8);
+		MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, (SILENT_TH&0xFF)<<8);
 		xil_printf("Set SILENT_TH completed.\r\n");
 	}
 }
