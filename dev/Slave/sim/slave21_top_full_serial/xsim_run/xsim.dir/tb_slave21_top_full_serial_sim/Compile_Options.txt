@@ -1,0 +1,1 @@
+"tb_slave21_top_full_serial" -debug "typical" -s "tb_slave21_top_full_serial_sim" -log "xelab.log" 

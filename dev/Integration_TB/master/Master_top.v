@@ -41,9 +41,13 @@ module master_top (
 );
     wire slot_change;
     wire slot_pre_change;
-    wire [2:0] NODE_CNT_p1 = NODE_CNT;
-    wire [9:0] DIV_p1 = DIV + 1;  // DIV_p1 오프셋 삭제 후 alias
-    wire tx_trigger = (slot_pre_change && slot==NODE_CNT)? 1'b1 : 1'b0;
+    wire [9:0] DIV_p1 = DIV + 1;
+    wire [2:0] master_slot = NODE_CNT + 3'd1;  // 슬롯 0..NODE_CNT: 슬레이브, NODE_CNT+1: 마스터 DATA
+    // guard_ticks/2 시점에 마스터 DATA TX, 주기 끝에 SYNC TX
+    wire [15:0] data_trig_clk = {7'b0, GUARD_TICKS[9:1]};  // GUARD_TICKS / 2
+    wire sync_trigger = (slot_pre_change && slot == master_slot);
+    wire data_trigger = (slot == master_slot && clk_cnt == data_trig_clk);
+    wire tx_trigger = sync_trigger | data_trigger;
     wire [41:0] data_bus;
     wire sig_bus;
     wire preamble_err;
@@ -74,9 +78,10 @@ module master_top (
 
     Master_dec_ham dh0(.resetn(resetn), .clk(clk), .in_sig(sig_bus), .GUARD_TICKS(GUARD_TICKS), .data_in(data_bus), .SILENT_TH(SILENT_TH),
                        .slot(slot), .preamble_err(preamble_err), .slot_change(slot_change), .GPIO_in(GPIO_in), .rx_stat(rx_stat), .halt_cmd(halt_cmd),
-                       .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2), .slot_out3(slot_out3), 
+                       .NODE_CNT(NODE_CNT),
+                       .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2), .slot_out3(slot_out3),
                        .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7),
-                       .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), .err_cnt3(err_cnt3), 
+                       .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), .err_cnt3(err_cnt3),
                        .err_cnt4(err_cnt4), .err_cnt5(err_cnt5), .err_cnt6(err_cnt6), .err_cnt7(err_cnt7));
 
 

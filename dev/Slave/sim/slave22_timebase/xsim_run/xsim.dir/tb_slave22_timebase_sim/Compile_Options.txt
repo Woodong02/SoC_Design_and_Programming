@@ -1,0 +1,1 @@
+"tb_slave22_timebase" -debug "typical" -s "tb_slave22_timebase_sim" -log "xelab.log" 

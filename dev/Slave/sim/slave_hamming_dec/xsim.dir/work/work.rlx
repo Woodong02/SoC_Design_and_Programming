@@ -1,0 +1,8 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_dec.v,1780419028,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_hamming_dec.v,,hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_enc.v,1780419028,verilog,,C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_dec.v,,hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_hamming_dec.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/tb/tb_slave_hamming_dec.v,,slave_hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/tb/tb_slave_hamming_dec.v,1780407366,verilog,,,,tb_slave_hamming_dec,,,,,,,,

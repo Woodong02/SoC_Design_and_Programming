@@ -1,0 +1,12 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_control.v,1780407240,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_slot_timer.v,,slave_control,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_hamming_dec.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_rx.v,,slave_hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_hamming_enc.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_hamming_dec.v,,slave_hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_rx.v,1780418639,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_control.v,,slave_rx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_slot_timer.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_tx.v,,slave_slot_timer,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_top.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/tb/tb_slave_top.v,,slave_top,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_tx.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/slave_top.v,,slave_tx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/tb/tb_slave_top.v,1780418941,verilog,,,,tb_slave_top,,,,,,,,

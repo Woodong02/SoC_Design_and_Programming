@@ -1,0 +1,1 @@
+"tb_slave2_line_sync" -debug "typical" -s "tb_slave2_line_sync_sim" -log "xelab.log" 

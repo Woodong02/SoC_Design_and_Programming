@@ -1,7 +1,7 @@
 module Master_slot (
     input wire resetn,
     input wire clk,
-    input wire [9:0] DIV,     
+    input wire [9:0] DIV,
     input wire [9:0] GUARD_TICKS,
     input wire [2:0] NODE_CNT,
 
@@ -16,6 +16,9 @@ module Master_slot (
   wire [15:0] data_len_tick = 16'd50 * DIV;
   wire [15:0] total_tick = data_len_tick + {6'b0, GUARD_TICKS};
 
+  // 슬롯 0..NODE_CNT: 슬레이브 슬롯, NODE_CNT+1: 마스터 DATA 슬롯
+  wire [2:0] last_slot = NODE_CNT + 3'd1;
+
   always @(posedge clk or negedge resetn) begin
       if (!resetn) begin
           clk_cnt <= 16'd0;
@@ -26,7 +29,7 @@ module Master_slot (
       else begin
           if((clk_cnt == (total_tick - 16'd1))) begin
             clk_cnt <= 16'd0;
-            if(slot==NODE_CNT) begin
+            if(slot == last_slot) begin
               slot <= 3'd0;
               cycle_cnt <= cycle_cnt + 64'b1;
             end

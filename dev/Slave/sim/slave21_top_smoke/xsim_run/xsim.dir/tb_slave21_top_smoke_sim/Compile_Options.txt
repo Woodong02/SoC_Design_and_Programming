@@ -1,0 +1,1 @@
+"tb_slave21_top_smoke" -debug "typical" -s "tb_slave21_top_smoke_sim" -log "xelab.log" 

@@ -9,135 +9,141 @@ z2
 cModel Technology
 Z0 dC:/SoC_Design_and_Programming/dev/Integration_TB
 vbin2seg
-Z1 !s110 1780383321
+Z1 !s110 1780392551
 !i10b 1
 !s100 R=n0c6_@jD6E498CXfcdW3
-IDO^ESVIoYmFPY:KMa?dNn3
+ISmYO]cMb_5j2jc5i;cK?J3
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
 Z3 w1780271919
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/bin2seg.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/bin2seg.v
+8master/bin2seg.v
+Fmaster/bin2seg.v
 L0 1
 Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1780383321.000000
-Z6 !s107 C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_top.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/error_with_hamming.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_rx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_tx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_slot.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/seven_seg.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/bin2seg.v|
-Z7 !s90 C:/SoC_Design_and_Programming/dev/Integration_TB/Master/bin2seg.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/seven_seg.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_slot.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_tx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_rx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/error_with_hamming.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_top.v|
+Z5 !s108 1780392550.000000
+Z6 !s107 tb_sys_integration.v|slave/tdma_slave_top.v|slave/irq_ctrl.v|slave/fault_fsm.v|slave/slave_tx.v|slave/slot_timer.v|slave/master_rx.v|slave/clk_div.v|slave/hamming_dec.v|slave/hamming_enc.v|master/Master_top.v|master/seven_seg.v|master/bin2seg.v|master/error_with_hamming.v|master/Master_rx.v|master/Master_tx.v|master/Master_slot.v|master/hamming_dec.v|master/hamming_enc.v|
+Z7 !s90 -work|work|master/hamming_enc.v|master/hamming_dec.v|master/Master_slot.v|master/Master_tx.v|master/Master_rx.v|master/error_with_hamming.v|master/bin2seg.v|master/seven_seg.v|master/Master_top.v|slave/hamming_enc.v|slave/hamming_dec.v|slave/clk_div.v|slave/master_rx.v|slave/slot_timer.v|slave/slave_tx.v|slave/fault_fsm.v|slave/irq_ctrl.v|slave/tdma_slave_top.v|tb_sys_integration.v|
 !i113 1
-Z8 tCvgOpt 0
+Z8 o-work work
+Z9 tCvgOpt 0
 vclk_div
 R1
 !i10b 1
 !s100 7LjH>;_4Eg?NNzeN0haCY2
-IEXej39kn3XC1HhL3O<A6k2
+ImLEF[]j;:UjQXF1AeM80P3
 R2
 R0
 w1780306637
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v
+8slave/clk_div.v
+Fslave/clk_div.v
 L0 1
 R4
 r1
 !s85 0
 31
 R5
-Z9 !s107 C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v|
-Z10 !s90 C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v|C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v|
+R6
+R7
 !i113 1
 R8
+R9
 vfault_fsm
 R1
 !i10b 1
 !s100 Zb>cB0CBX5FSnC95XY3@Y0
-IDhME`7JEdl9MnQ>J3KZ=72
+IanlCmDMQNoQD=F]IGUDG61
 R2
 R0
 w1780287105
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v
+8slave/fault_fsm.v
+Fslave/fault_fsm.v
 L0 7
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 vhamming_dec
 R1
 !i10b 1
 !s100 EU:5c^66R0jzhJ4W1=a5g1
-I>e<^8hPWD7HI4iZmUe^_@2
+I83UX2S3jV]B^]O[eo=daJ2
 R2
 R0
 w1779784466
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v
+8slave/hamming_dec.v
+Fslave/hamming_dec.v
 L0 15
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 vhamming_enc
 R1
 !i10b 1
 !s100 hHc@ljY>20@Yj2g2Qai3U0
-IBXmEi4PEBHb_6bX4VYzkm2
+IlOU7U<6ef^BVS;OWmf>XI2
 R2
 R0
 w1779784447
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v
+8slave/hamming_enc.v
+Fslave/hamming_enc.v
 L0 14
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 virq_ctrl
 R1
 !i10b 1
 !s100 HO9kViG@D<EL3f1ocH_If1
-I[e7]N_KeF9IEL>o5YC:0L0
+If2GShSX]8IJdA2;I[TBdU2
 R2
 R0
 w1779644324
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v
+8slave/irq_ctrl.v
+Fslave/irq_ctrl.v
 L0 5
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 vMaster_dec_ham
-R1
+Z10 !s110 1780392550
 !i10b 1
-!s100 aOl>jDSTT5Y]G2EIA;LV42
-I9R5L>4TQOXJf8O9D^4S_n0
+!s100 jjXH>z?GOZd;E^e2M4z>Q0
+IQ3FM>a[1;hWL]oZFGBl180
 R2
 R0
-w1780359348
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/error_with_hamming.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/error_with_hamming.v
+w1780391578
+8master/error_with_hamming.v
+Fmaster/error_with_hamming.v
 L0 1
 R4
 r1
@@ -148,17 +154,18 @@ R6
 R7
 !i113 1
 R8
+R9
 n@master_dec_ham
 vMaster_rx
-R1
+R10
 !i10b 1
 !s100 iMjV8FjU:@;]JPV8zcNTh0
-IO?d]fMbEa3^NL081?;MgH2
+Ibb40hTb3>hZL9aSdB0AZY2
 R2
 R0
 w1780360418
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_rx.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_rx.v
+8master/Master_rx.v
+Fmaster/Master_rx.v
 L0 1
 R4
 r1
@@ -169,37 +176,39 @@ R6
 R7
 !i113 1
 R8
+R9
 n@master_rx
 vmaster_rx
 R1
 !i10b 1
 !s100 ZBoN]f>WUeVbJgn=cC2In1
-I`933]EZQ3PlIc@[ATG3V;2
+IWoTLoXi[B]3honWk4@GEM0
 R2
 R0
 w1780291971
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v
+8slave/master_rx.v
+Fslave/master_rx.v
 L0 6
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 vMaster_slot
-R1
+R10
 !i10b 1
-!s100 LSYiTb0OzJiAa;4FTnDJ52
-ID4l[j4LA<2^0QbkTfiYz]0
+!s100 5m]J@gG?6KH6iCcL>XTGO2
+I:3c8^FABNUFEX3[KPD75b0
 R2
 R0
-R3
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_slot.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_slot.v
+w1780391521
+8master/Master_slot.v
+Fmaster/Master_slot.v
 L0 1
 R4
 r1
@@ -210,17 +219,18 @@ R6
 R7
 !i113 1
 R8
+R9
 n@master_slot
 vmaster_top
 R1
 !i10b 1
-!s100 SVB]nHb0lcCMfZ4SCajUD0
-I2]5`jkdKl>7@I`bSc^]M?1
+!s100 n4[ThS9@TchY9jMZ9g5QE2
+IHS]27ZXanL4d>1`;eN5KZ3
 R2
 R0
-w1780383130
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_top.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_top.v
+w1780391543
+8master/Master_top.v
+Fmaster/Master_top.v
 L0 1
 R4
 r1
@@ -231,16 +241,17 @@ R6
 R7
 !i113 1
 R8
+R9
 vMaster_tx
-R1
+R10
 !i10b 1
 !s100 Jk2UNJk9XH=;gckmIRY]N3
-II]R66_D>CkSjZ0CXF;S>F1
+IiLJVzQke^:IAf4^Sgm]aL0
 R2
 R0
 w1780360638
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_tx.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_tx.v
+8master/Master_tx.v
+Fmaster/Master_tx.v
 L0 6
 R4
 r1
@@ -251,17 +262,18 @@ R6
 R7
 !i113 1
 R8
+R9
 n@master_tx
 vseven_seg
 R1
 !i10b 1
 !s100 0n_@PIaMB5emXJFV8?PC81
-Im5hf<XNcX<NneD4C`GQ_I1
+I2aB^G3SFY07i>>7_L5?O93
 R2
 R0
 R3
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Master/seven_seg.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Master/seven_seg.v
+8master/seven_seg.v
+Fmaster/seven_seg.v
 L0 1
 R4
 r1
@@ -272,83 +284,214 @@ R6
 R7
 !i113 1
 R8
+R9
 vslave_tx
 R1
 !i10b 1
-!s100 Ehfmn;DMiRU`Lc8AfU3O<1
-IhQKTgS3HB<iCAJoVnJACH0
+!s100 i[VF6C0C8Fe]EjFj]^;Ed3
+IG6D=?cU<mV1>`oU_8hP021
 R2
 R0
-w1780291995
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v
+w1780386027
+8slave/slave_tx.v
+Fslave/slave_tx.v
 L0 5
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
 vslot_timer
 R1
 !i10b 1
 !s100 c9zX6FJ9BNB724GDR>?^X1
-Io>d^BeRl`;?[0FSiMUPZC1
+Il<W=MGXY0Wda4z>BT::@V2
 R2
 R0
 w1780292005
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v
+8slave/slot_timer.v
+Fslave/slot_timer.v
 L0 5
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9
+vtb_master_rx
+!s110 1780392390
+!i10b 1
+!s100 h01gd7kBWaM>gQGmQ8l1=0
+ISgZfQ0Y]_RWg[5z@cM15O2
+R2
+R0
+w1780391719
+8slave/tb_master_rx.v
+Fslave/tb_master_rx.v
+L0 8
+R4
+r1
+!s85 0
+31
+!s108 1780392390.000000
+!s107 slave/tb_master_rx.v|slave/master_rx.v|slave/hamming_dec.v|slave/hamming_enc.v|
+!s90 -work|work|slave/hamming_enc.v|slave/hamming_dec.v|slave/master_rx.v|slave/tb_master_rx.v|
+!i113 1
+R8
+R9
+vtb_master_slot
+!s110 1780391896
+!i10b 1
+!s100 DCVTVGVf<mja9LQP6;EVc3
+ILhBgCfA@:M]eL]_7K?0Xm1
+R2
+R0
+w1780391890
+8master/tb_master_slot.v
+Fmaster/tb_master_slot.v
+L0 10
+R4
+r1
+!s85 0
+31
+!s108 1780391896.000000
+!s107 master/tb_master_slot.v|master/Master_slot.v|master/hamming_enc.v|
+!s90 -work|work|master/hamming_enc.v|master/Master_slot.v|master/tb_master_slot.v|
+!i113 1
+R8
+R9
+vtb_master_tx
+!s110 1780392103
+!i10b 1
+!s100 CMVUPF]NmToNAR:7A6;WK1
+IYVcI=5fUiFUGcGklIQVH90
+R2
+R0
+w1780392087
+8master/tb_master_tx.v
+Fmaster/tb_master_tx.v
+L0 8
+R4
+r1
+!s85 0
+31
+!s108 1780392103.000000
+!s107 master/tb_master_tx.v|master/Master_tx.v|master/hamming_enc.v|
+!s90 -work|work|master/hamming_enc.v|master/Master_tx.v|master/tb_master_tx.v|
+!i113 1
+R8
+R9
+vtb_slave_tx
+!s110 1780392382
+!i10b 1
+!s100 OFTPjm1<TP`eYLD13`^mY2
+IG<DZl9SzlQXM;UaE?zK0G0
+R2
+R0
+w1780392377
+8slave/tb_slave_tx.v
+Fslave/tb_slave_tx.v
+L0 8
+R4
+r1
+!s85 0
+31
+!s108 1780392382.000000
+!s107 slave/tb_slave_tx.v|slave/slave_tx.v|slave/hamming_enc.v|
+!s90 -work|work|slave/hamming_enc.v|slave/slave_tx.v|slave/tb_slave_tx.v|
+!i113 1
+R8
+R9
+vtb_slot_timer
+!s110 1780392355
+!i10b 1
+!s100 G=Z26Ae<UXj1M;S;S5R^P2
+IO;f5G2H3Teb6I8E<kMk:]3
+R2
+R0
+w1780392345
+8slave/tb_slot_timer.v
+Fslave/tb_slot_timer.v
+L0 13
+R4
+r1
+!s85 0
+31
+!s108 1780392355.000000
+!s107 slave/tb_slot_timer.v|slave/slot_timer.v|
+!s90 -work|work|slave/slot_timer.v|slave/tb_slot_timer.v|
+!i113 1
+R8
+R9
 vtb_sys_integration
 R1
 !i10b 1
-!s100 OFOFRX7X?zofa00R7j76;0
-IJ4TQMDPkikDSLR[:LY1FX1
+!s100 J1VjFBikObRkICFVRJd`o3
+I?Z0DJ:<fHHf=1N[o:Y5`:1
 R2
 R0
-w1780383311
-8C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v
-L0 9
+w1780391824
+8tb_sys_integration.v
+Ftb_sys_integration.v
+L0 21
 R4
 r1
 !s85 0
 31
 R5
-!s107 C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v|
-!s90 C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v|
+R6
+R7
 !i113 1
 R8
+R9
+vtb_tdma_slave_top
+!s110 1780392540
+!i10b 1
+!s100 ZHgzhXF=R8zU>ACHAzOGY0
+I0`dmVD50Q8;O<Q8DGk5eT3
+R2
+R0
+w1780392532
+8slave/tb_tdma_slave_top.v
+Fslave/tb_tdma_slave_top.v
+L0 18
+R4
+r1
+!s85 0
+31
+!s108 1780392540.000000
+!s107 slave/tb_tdma_slave_top.v|slave/tdma_slave_top.v|slave/irq_ctrl.v|slave/fault_fsm.v|slave/slave_tx.v|slave/slot_timer.v|slave/master_rx.v|slave/clk_div.v|slave/hamming_dec.v|slave/hamming_enc.v|
+!s90 -work|work|slave/hamming_enc.v|slave/hamming_dec.v|slave/clk_div.v|slave/master_rx.v|slave/slot_timer.v|slave/slave_tx.v|slave/fault_fsm.v|slave/irq_ctrl.v|slave/tdma_slave_top.v|slave/tb_tdma_slave_top.v|
+!i113 1
+R8
+R9
 vtdma_slave_top
 R1
 !i10b 1
-!s100 Pl<D9CY:DXHGCBjRL[><62
-IfndILmAWACLXYk]0BGA7I3
+!s100 cKX2EX:Rl4Xl^3eN=HfjJ3
+IAOAMiE8O`HRT5[KNFCk^Z3
 R2
 R0
-w1780293589
-8C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v
-FC:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v
+w1780386048
+8slave/tdma_slave_top.v
+Fslave/tdma_slave_top.v
 L0 4
 R4
 r1
 !s85 0
 31
 R5
-R9
-R10
+R6
+R7
 !i113 1
 R8
+R9

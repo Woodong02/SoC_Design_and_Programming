@@ -1,0 +1,1 @@
+"tb_slave21_fault_fsm" -debug "typical" -s "tb_slave21_fault_fsm_sim" -log "xelab.log" 

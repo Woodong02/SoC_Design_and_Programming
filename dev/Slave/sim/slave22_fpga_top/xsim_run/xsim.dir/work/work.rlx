@@ -1,0 +1,14 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_fault_fsm.v,1780445489,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_tx.v,,slave21_fault_fsm,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_rx.v,1780445982,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_fault_fsm.v,,slave21_rx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_tx.v,1780445756,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_timebase.v,,slave21_tx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave2_line_sync.v,1780422369,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_hamming_enc.v,,slave2_line_sync,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_control.v,1780407240,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave21_rx.v,,slave_control,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_hamming_dec.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_control.v,,slave_hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_hamming_enc.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/reuse/slave_hamming_dec.v,,slave_hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_fpga_top.v,1780458852,verilog,,,,slave22_fpga_top,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_timebase.v,1780452894,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_top.v,,slave22_timebase,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_top.v,1780453167,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_2/slave22_fpga_top.v,,slave22_top,,,,,,,,

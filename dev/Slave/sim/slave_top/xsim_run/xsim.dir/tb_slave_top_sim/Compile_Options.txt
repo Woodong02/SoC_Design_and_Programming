@@ -1,0 +1,1 @@
+"tb_slave_top" -debug "typical" -s "tb_slave_top_sim" -log "xelab.log" 

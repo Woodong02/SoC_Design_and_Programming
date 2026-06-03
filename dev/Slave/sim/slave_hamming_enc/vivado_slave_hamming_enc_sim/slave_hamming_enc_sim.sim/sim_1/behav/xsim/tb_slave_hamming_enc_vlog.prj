@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../../../Master_ip/hamming_enc.v" \
+"../../../../../../../Slave_ip/slave_hamming_enc.v" \
+"../../../../../../../tb/tb_slave_hamming_enc.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

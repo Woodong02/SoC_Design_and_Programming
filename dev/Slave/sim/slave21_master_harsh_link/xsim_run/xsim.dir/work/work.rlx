@@ -1,0 +1,17 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/sinsu/Desktop/myproject/Master_ip/Master_rx.v,1780419028,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave2_line_sync.v,,Master_rx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_dec.v,1780419028,verilog,,C:/Users/sinsu/Desktop/myproject/Master_ip/Master_rx.v,,hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_enc.v,1780419028,verilog,,C:/Users/sinsu/Desktop/myproject/Master_ip/hamming_dec.v,,hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave2_line_sync.v,1780422369,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_hamming_enc.v,,slave2_line_sync,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_control.v,1780407240,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_rx.v,,slave_control,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_hamming_dec.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_control.v,,slave_hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_hamming_enc.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/reuse/slave_hamming_dec.v,,slave_hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_fault_fsm.v,1780445489,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_timebase.v,,slave21_fault_fsm,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_rx.v,1780445982,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_fault_fsm.v,,slave21_rx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_timebase.v,1780446175,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_tx.v,,slave21_timebase,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_top.v,1780446689,verilog,,C:/Users/sinsu/Desktop/myproject/tb/tb_slave21_master_harsh_link.v,,slave21_top,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_tx.v,1780445756,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v2_1/slave21_top.v,,slave21_tx,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/tb/tb_slave21_master_harsh_link.v,1780447989,verilog,,,,tb_slave21_master_harsh_link,,,,,,,,

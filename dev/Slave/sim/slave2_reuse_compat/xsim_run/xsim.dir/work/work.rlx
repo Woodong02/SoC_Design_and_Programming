@@ -1,0 +1,8 @@
+0.6
+2019.1
+May 24 2019
+15:06:07
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v1_0/slave_control.v,1780407240,verilog,,C:/Users/sinsu/Desktop/myproject/tb/tb_slave2_reuse_compat.v,,slave_control,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v1_0/slave_hamming_dec.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v1_0/slave_control.v,,slave_hamming_dec,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/Slave_ip/v1_0/slave_hamming_enc.v,1780418895,verilog,,C:/Users/sinsu/Desktop/myproject/Slave_ip/v1_0/slave_hamming_dec.v,,slave_hamming_enc,,,,,,,,
+C:/Users/sinsu/Desktop/myproject/tb/tb_slave2_reuse_compat.v,1780422619,verilog,,,,tb_slave2_reuse_compat,,,,,,,,

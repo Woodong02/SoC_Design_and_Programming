@@ -1,0 +1,1 @@
+-debug "typical" "tb_slave_hamming_dec" -s "tb_slave_hamming_dec_sim" 

@@ -11,7 +11,8 @@ module Master_dec_ham (
     input wire GPIO_in,
     input wire [1:0] rx_stat,
     input wire [7:0] halt_cmd,
-    
+    input wire [2:0]  NODE_CNT,  // 마스터 슬롯 = NODE_CNT+1 (silent 카운트 억제)
+
     output reg [31:0] slot_out0,
     output reg [31:0] slot_out1,
     output reg [31:0] slot_out2,
@@ -33,6 +34,7 @@ module Master_dec_ham (
 
 reg out_sig;
 
+wire [2:0] master_slot = NODE_CNT + 3'd1;  // 이 슬롯은 슬레이브 없음
 
 reg [7:0]  preamble_err_cnt0;
 reg [7:0]  slot_timeout_cnt0;
@@ -125,38 +127,55 @@ reg [7:0] received;
                 endcase
             end
             else if(slot_change && slot==3'd0) begin
-                if(!received[0] && silent_cnt0 < SILENT_TH) 
-                    silent_cnt0 <= silent_cnt0 + 8'd6;
-                else if(silent_cnt0)
-                    silent_cnt0 <= silent_cnt0 - 8'b1;
-                if(!received[1] && silent_cnt1 < SILENT_TH) 
-                    silent_cnt1 <= silent_cnt1 + 8'd6;
-                else if(silent_cnt1)
-                    silent_cnt1 <= silent_cnt1 - 8'b1;
-                if(!received[2] && silent_cnt2 < SILENT_TH) 
-                    silent_cnt2 <= silent_cnt2 + 8'd6;
-                else if(silent_cnt2)
-                    silent_cnt2 <= silent_cnt2 - 8'b1;
-                if(!received[3] && silent_cnt3 < SILENT_TH) 
-                    silent_cnt3 <= silent_cnt3 + 8'd6;
-                else if(silent_cnt3)
-                    silent_cnt3 <= silent_cnt3 - 8'b1;
-                if(!received[4] && silent_cnt4 < SILENT_TH)
-                    silent_cnt4 <= silent_cnt4 + 8'd6;
-                else if(silent_cnt4)
-                    silent_cnt4 <= silent_cnt4 - 8'b1;
-                if(!received[5] && silent_cnt5 < SILENT_TH) 
-                    silent_cnt5 <= silent_cnt5 + 8'd6;
-                else if(silent_cnt5)
-                    silent_cnt5 <= silent_cnt5 - 8'b1;
-                if(!received[6] && silent_cnt6 < SILENT_TH) 
-                    silent_cnt6 <= silent_cnt6 + 8'd6;
-                else if(silent_cnt6)
-                    silent_cnt6 <= silent_cnt6 - 8'b1;
-                if(!received[7] && silent_cnt7 < SILENT_TH) 
-                    silent_cnt7 <= silent_cnt7 + 8'd6;   
-                else if(silent_cnt7)
-                    silent_cnt7 <= silent_cnt7 - 8'b1;
+                // master_slot = NODE_CNT+1 은 슬레이브 없음 → silent 카운트 억제
+                if(3'd0 != master_slot) begin
+                    if(!received[0] && silent_cnt0 < SILENT_TH)
+                        silent_cnt0 <= silent_cnt0 + 8'd6;
+                    else if(silent_cnt0)
+                        silent_cnt0 <= silent_cnt0 - 8'b1;
+                end
+                if(3'd1 != master_slot) begin
+                    if(!received[1] && silent_cnt1 < SILENT_TH)
+                        silent_cnt1 <= silent_cnt1 + 8'd6;
+                    else if(silent_cnt1)
+                        silent_cnt1 <= silent_cnt1 - 8'b1;
+                end
+                if(3'd2 != master_slot) begin
+                    if(!received[2] && silent_cnt2 < SILENT_TH)
+                        silent_cnt2 <= silent_cnt2 + 8'd6;
+                    else if(silent_cnt2)
+                        silent_cnt2 <= silent_cnt2 - 8'b1;
+                end
+                if(3'd3 != master_slot) begin
+                    if(!received[3] && silent_cnt3 < SILENT_TH)
+                        silent_cnt3 <= silent_cnt3 + 8'd6;
+                    else if(silent_cnt3)
+                        silent_cnt3 <= silent_cnt3 - 8'b1;
+                end
+                if(3'd4 != master_slot) begin
+                    if(!received[4] && silent_cnt4 < SILENT_TH)
+                        silent_cnt4 <= silent_cnt4 + 8'd6;
+                    else if(silent_cnt4)
+                        silent_cnt4 <= silent_cnt4 - 8'b1;
+                end
+                if(3'd5 != master_slot) begin
+                    if(!received[5] && silent_cnt5 < SILENT_TH)
+                        silent_cnt5 <= silent_cnt5 + 8'd6;
+                    else if(silent_cnt5)
+                        silent_cnt5 <= silent_cnt5 - 8'b1;
+                end
+                if(3'd6 != master_slot) begin
+                    if(!received[6] && silent_cnt6 < SILENT_TH)
+                        silent_cnt6 <= silent_cnt6 + 8'd6;
+                    else if(silent_cnt6)
+                        silent_cnt6 <= silent_cnt6 - 8'b1;
+                end
+                if(3'd7 != master_slot) begin
+                    if(!received[7] && silent_cnt7 < SILENT_TH)
+                        silent_cnt7 <= silent_cnt7 + 8'd6;
+                    else if(silent_cnt7)
+                        silent_cnt7 <= silent_cnt7 - 8'b1;
+                end
                 received <= 8'b0;
             end
             else

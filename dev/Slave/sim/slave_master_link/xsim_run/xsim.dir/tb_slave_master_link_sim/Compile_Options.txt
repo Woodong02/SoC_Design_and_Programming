@@ -1,0 +1,1 @@
+"tb_slave_master_link" -debug "typical" -s "tb_slave_master_link_sim" -log "xelab.log" 

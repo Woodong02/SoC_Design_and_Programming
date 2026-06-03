@@ -1,0 +1,1 @@
+"slave22_fpga_top" -s "fpga_top_chk" -log "xelab.log" 

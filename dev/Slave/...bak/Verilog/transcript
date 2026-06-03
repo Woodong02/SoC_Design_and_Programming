@@ -1,0 +1,58 @@
+# do run_slave_sys.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work work 
+# Modifying modelsim.ini
+# Start time: 15:27:19 on Jun 02,2026
+# vlog C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tx_data_gen.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_sys.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tb_slave_sys.v 
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# -- Compiling module hamming_enc
+# -- Compiling module hamming_dec
+# -- Compiling module clk_div
+# -- Compiling module master_rx
+# -- Compiling module slave_tx
+# -- Compiling module slot_timer
+# -- Compiling module fault_fsm
+# -- Compiling module irq_ctrl
+# -- Compiling module tdma_slave_top
+# -- Compiling module tx_data_gen
+# -- Compiling module tdma_slave_sys
+# -- Compiling module tb_slave_sys
+# 
+# Top level modules:
+# 	tb_slave_sys
+# End time: 15:27:19 on Jun 02,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -quiet -lib work tb_slave_sys 
+# Start time: 15:27:21 on Jun 02,2026
+# 
+# === Scenario 1: Normal broadcast x3 ===
+# [16290000 ns] RX FRAME | preamble=aa  addr=1  tx_data=0x00000197   PREAMBLE_OK
+# [16390000 ns] IRQ | status=10001 (sent=1 nobc=0 hamerr=0 halt=0 stchg=1) fsm=1
+# [20230000 ns] SC1 data_sent #1  fsm=1  gen_cnt=0x000003e9
+# [36730000 ns] RX FRAME | preamble=aa  addr=1  tx_data=0x00000595   PREAMBLE_OK
+# [36830000 ns] IRQ | status=00001 (sent=1 nobc=0 hamerr=0 halt=0 stchg=0) fsm=1
+# [40670000 ns] SC1 data_sent #2  fsm=1  gen_cnt=0x000007e7
+# [57170000 ns] RX FRAME | preamble=aa  addr=1  tx_data=0x00000993   PREAMBLE_OK
+# [57270000 ns] IRQ | status=00001 (sent=1 nobc=0 hamerr=0 halt=0 stchg=0) fsm=1
+# [61110000 ns] SC1 data_sent #3  fsm=1  gen_cnt=0x00000be5
+# SC1 PASS: sent=3 fsm=NORMAL
+# 
+# === Scenario 2: No-broadcast watchdog ===
+# [77850000 ns] RX FRAME | preamble=aa  addr=1  tx_data=0x00000197   PREAMBLE_OK
+# [77950000 ns] IRQ | status=10001 (sent=1 nobc=0 hamerr=0 halt=0 stchg=1) fsm=1
+# SC2 PASS: no_broadcast IRQ set, fsm=DEAD
+# 
+# === Scenario 3: HALT command ===
+# [162130000 ns] RX FRAME | preamble=aa  addr=1  tx_data=0x00000197   PREAMBLE_OK
+# [162230000 ns] IRQ | status=10001 (sent=1 nobc=0 hamerr=0 halt=0 stchg=1) fsm=1
+# SC3 PASS: halt_cmd IRQ set, fsm=DEAD  irq_status=11000
+# 
+# === Result: 3 / 3 scenarios passed ===
+# 
+# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tb_slave_sys.v(268)
+#    Time: 176610 ns  Iteration: 0  Instance: /tb_slave_sys
+# Break in Module tb_slave_sys at C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tb_slave_sys.v line 268
+# Stopped at C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tb_slave_sys.v line 268
+# End time: 15:27:22 on Jun 02,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

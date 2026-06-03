@@ -1,68 +1,45 @@
-# do run_sys_integration.do
-# ** Warning: (vlib-34) Library already exists at "work".
-# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
-# vmap work work 
-# Modifying modelsim.ini
-# Start time: 15:55:21 on Jun 02,2026
-# vlog C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_enc.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/hamming_dec.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/clk_div.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/master_rx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slave_tx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/slot_timer.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/fault_fsm.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/irq_ctrl.v C:/SoC_Design_and_Programming/dev/Integration_TB/Slave/tdma_slave_top.v 
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# -- Compiling module hamming_enc
-# -- Compiling module hamming_dec
-# -- Compiling module clk_div
-# -- Compiling module master_rx
-# -- Compiling module slave_tx
-# -- Compiling module slot_timer
-# -- Compiling module fault_fsm
-# -- Compiling module irq_ctrl
-# -- Compiling module tdma_slave_top
+# vsim -c tb_sys_integration -do "run -all; quit" 
+# Start time: 18:29:20 on Jun 02,2026
+# Loading work.tb_sys_integration
+# Loading work.master_top
+# Loading work.Master_slot
+# Loading work.Master_tx
+# Loading work.hamming_enc
+# Loading work.Master_rx
+# Loading work.Master_dec_ham
+# Loading work.hamming_dec
+# Loading work.seven_seg
+# Loading work.bin2seg
+# Loading work.tdma_slave_top
+# Loading work.clk_div
+# Loading work.master_rx
+# Loading work.slot_timer
+# Loading work.fault_fsm
+# Loading work.slave_tx
+# Loading work.irq_ctrl
+# run -all
+# [195000 ns] Reset released | DIV=8 DIV_M=7 GT=200 NCNT=2 master_slot=3
+#          cycle=2400 clk = 24 us
+# [480195000 ns] === SC1: Slave FSM state ===
+#   PASS | slave0 fsm=1 (NORMAL)
+#   PASS | slave1 fsm=1 (NORMAL)
+#   PASS | slave2 fsm=1 (NORMAL)
+# [480195000 ns] === SC2: Master slot_out data ===
+#   PASS | slot_out0 = 0xdead0001
+#   PASS | slot_out1 = 0xbeef0002
+#   PASS | slot_out2 = 0xcafe0003
+# [480195000 ns] === SC3: Master DATA TX in master_slot ===
+#   PASS |  slot==master_slot (clk_cnt<400)
+# [480195000 ns] === SC4: Error counters ===
+#   PASS | err_cnt0: slot_timeout=0
+#   PASS | err_cnt1: slot_timeout=0
+#   PASS | err_cnt2: slot_timeout=0
+# [480195000 ns] cycle_cnt=19  halt_cmd=0x00  silent=0x00
+# [480195000 ns] err0=0x60000006  err1=0x00000006  err2=0x00000006
+# [480195000 ns] irq_s0=10001 fsm=1  irq_s1=10001 fsm=1  irq_s2=10001 fsm=1
 # 
-# Top level modules:
-# 	tdma_slave_top
-# End time: 15:55:21 on Jun 02,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Start time: 15:55:21 on Jun 02,2026
-# vlog C:/SoC_Design_and_Programming/dev/Integration_TB/Master/bin2seg.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/seven_seg.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_slot.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_tx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_rx.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/error_with_hamming.v C:/SoC_Design_and_Programming/dev/Integration_TB/Master/Master_top.v 
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# -- Compiling module bin2seg
-# -- Compiling module seven_seg
-# -- Compiling module Master_slot
-# -- Compiling module Master_tx
-# -- Compiling module Master_rx
-# -- Compiling module Master_dec_ham
-# -- Compiling module master_top
-# 
-# Top level modules:
-# 	master_top
-# End time: 15:55:21 on Jun 02,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Start time: 15:55:21 on Jun 02,2026
-# vlog C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v 
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# -- Compiling module tb_sys_integration
-# 
-# Top level modules:
-# 	tb_sys_integration
-# End time: 15:55:21 on Jun 02,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vsim -quiet -lib work tb_sys_integration 
-# Start time: 15:55:21 on Jun 02,2026
-# [195000 ns] Reset released | DIV=7 GT=200 NODE_CNT=2
-# [360195000 ns] === SC1: Slave FSM state ===
-#   FAIL | slave0 fsm=2  exp=1
-#   FAIL | slave1 fsm=2  exp=1
-#   FAIL | slave2 fsm=2  exp=1
-# [360195000 ns] === SC2: Master slot_out data ===
-#   FAIL | slot_out0  got=0x00000000  exp=0xdead0001
-#   FAIL | slot_out1  got=0x00000000  exp=0xbeef0002
-#   FAIL | slot_out2  got=0x00000000  exp=0xcafe0003
-# [360195000 ns] cycle_cnt=19  halt_cmd=0x00  silent=0x00
-# [360195000 ns] err0=0x1200006a  err1=0x06000071  err2=0x0c000071
-# [360195000 ns] irq_s0=10001 fsm=2  irq_s1=10001 fsm=2  irq_s2=10001 fsm=2
-# 
-# === Result: 0 / 6 scenarios PASS  Errors=6 ===
-# ** Note: $finish    : C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v(156)
-#    Time: 360195 ns  Iteration: 1  Instance: /tb_sys_integration
-# Break in NamedBeginStat stim at C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v line 156
-# Stopped at C:/SoC_Design_and_Programming/dev/Integration_TB/tb_sys_integration.v line 156
-# End time: 15:55:22 on Jun 02,2026, Elapsed time: 0:00:01
+# === Result: 10 / 10 PASS  Errors=0 ===
+# ** Note: $finish    : tb_sys_integration.v(204)
+#    Time: 480195 ns  Iteration: 1  Instance: /tb_sys_integration
+# End time: 18:29:20 on Jun 02,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

@@ -1,0 +1,1 @@
+"tb_slave_comm_worst_case" -debug "typical" -s "tb_slave_comm_worst_case_sim" -log "xelab.log" 
