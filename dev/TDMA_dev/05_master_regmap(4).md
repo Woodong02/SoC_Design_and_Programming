@@ -26,20 +26,16 @@
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 9:0 | DIV[9:0] | RW | 0 | clk_tick 반주기 = clk / (DIV+1). Manchester 비트 주기 = 2×(DIV+1) clk 사이클 |
+| 9:0 | reserved
 | 19:10 | GUARD_TICKS[9:0] | RW | — | 슬롯 간 guard time (clk 사이클 단위). GUARD_MIN_RO 이상으로 설정 |
-| 22:20 | NODE_CNT[2:0] | RW | 0 | 값 N → 슬레이브 0~N 활성 (총 N+1개). 최대 7 (8개 슬레이브) |
+| 22:20 | NODE_CNT[2:0] | RW  | 0 | 값 N → 슬레이브 0~N 활성 (총 N+1개). 최대 7 (8개 슬레이브) |
 | 23 | ENABLE | RW | 0 | 1: IP 동작 시작. 0: 정지 |
 | 31:24 | reserved | — | 0 | — |
 
-### 0x04 — Polling_Reg
 
-| 비트 | 이름 | 접근 | 초기값 | 설명 |
-|------|------|------|--------|------|
-| 2:0 | slot[2:0] | RO | 0 | 슬롯
-| 18:3 | clk_cnt[15:0] | RO | 0 | 타임 슬롯 내 clk_cnt
-| 19 | GPIO_in | RO | 0 | GPIO_in: 데이터 수신시 tftlcd 화면 업데이트
-| 31:20 | reserved | — | 0 | — |
+## 0x04 - clk_DIV and DIV
+| 15:0 | clk_DIV[15:0] | RW | 0 | original clk 분주기
+| 31:16 | DIV[15:0] | RW | 0 | 분주된 clk 기준 송신 비트 폭
 
 
 
@@ -141,22 +137,24 @@
 
 
 ---
+### 0x2C, 30, 34, 38, 3C, 40, 44, 48
+    slot_out x 8!!
 
 ## 3. 글로벌 상태
 
-### 0x2C — CYCLE_CNT0
+### 0x4C — CYCLE_CNT0
 
 | 비트 | 이름 | 접근 | 초기값 | 설명 |
 |------|------|------|--------|------|
-| 31:0 | CYCLE_CNT[31:0] | RO | 0 | 완료된 TDMA 사이클 수. 64비트 중 절반
-
-### 0x30 — CYCLE_CNT1
-
-| 비트 | 이름 | 접근 | 초기값 | 설명 |
-|------|------|------|--------|------|
-| 31:0 | CYCLE_CNT[63:32] | RO | 0 | 완료된 TDMA 사이클 수. 64비트 중 절반
+| 31:0 | CYCLE_CNT[31:0] | RO | 0 | 완료된 TDMA 사이클 수. 32비트까지만 연산
 
 ---
+
+## 0x50 - buffer
+| 비트 | 이름 | 접근 | 초기값 | 설명 |
+|------|------|------|--------|------|
+| 31:0 | buffer_out[31:0] | RO | 0 | 가장 최근 샘플링된 32비트 데이터.
+
 
 
 ## 4. 인터럽트
@@ -166,14 +164,5 @@
 | 0 | intr | - | 0 | Silent Node, Halt_cmd 인터럽트. 0x08 — FAULT_CFG_with_intr 31:16 bit clear를 통해 제어|
 
 
----
-
-## 설정 초기화 순서
-
-```
-1. LINK_CFG 설정 (모든 노드 동일: DIV, GUARD_TICKS / 마스터 NODE_CNT 설정)
-2. GUARD_MIN_RO 확인 → GUARD_TICKS ≥ GUARD_MIN_RO 검증
-4. FAULT_CFG 설정 (FAULT_TH, LINE_FAULT_TH)
-5. IRQ_MASK 설정 (필요한 인터럽트 활성화)
-6. CTRL.ENABLE = 1
-```
+--
+추천: 슬레이브도 PS에서 clk_div, div, guard_ticks, slv_node 설정할 수 있으면 디버깅 시간이 현저히 줄어들 것으로 예상
