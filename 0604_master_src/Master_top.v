@@ -14,8 +14,6 @@ module master_top (
     output wire [7:0] seg_data,
 
     output wire GPIO_out,
-    output wire [21:0] clk_cnt,
-    output wire [2:0] slot,
 
     output wire [31:0] err_cnt0,
     output wire [31:0] err_cnt1,
@@ -38,8 +36,20 @@ module master_top (
     
     output wire [7:0] Silent_node,
     output wire [7:0] halt_cmd,
-    output wire [31:0] buffer_out
-);
+    output wire [31:0] buffer_out,
+    
+    output wire opclk,	
+    output wire Hsync,	
+    output wire Vsync,	
+    output wire [4:0] R, 
+    output wire [5:0] G, 
+    output wire [4:0] B, 
+    output wire TFTLCD_Tpower,  
+    output wire TFTLCD_DE_out
+);   
+
+    wire [21:0] clk_cnt;
+    wire [2:0] slot;
     wire slot_change;
     wire slot_pre_change;
     wire [15:0] DIV_p1 = DIV + 16'd1;
@@ -49,6 +59,7 @@ module master_top (
     wire preamble_err;
     wire [1:0] rx_stat;
     wire resetn = resetn_bt && ENABLE;
+
 
 
 
@@ -117,5 +128,21 @@ module master_top (
 
     seven_seg seg0(.resetn(resetn), .clk(clk), .data(seg_in), .seg_en(seg_en), .seg_data(seg_data));
 
+    // [Master_top.v ³»ºÎ ¾îµò°¡¿¡ »ðÀÔ]
+    TFTLCDctrl u_tft_lcd (
+        .clk(clk),
+        .rstn(resetn),
+        .slot(slot),
+        .clk_cnt(clk_cnt),
+        .DIV(DIV),
+        .GPIO_in(GPIO_in),
+        
+        .opclk(opclk),
+        .Hsync(Hsync),
+        .Vsync(Vsync),
+        .R(R), .G(G), .B(B),
+        .TFTLCD_Tpower(TFTLCD_Tpower),
+        .TFTLCD_DE_out(TFTLCD_DE_out)
+    );
 
 endmodule

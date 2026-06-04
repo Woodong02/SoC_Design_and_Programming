@@ -27,6 +27,14 @@
         output wire intr,
         output wire LED_in,
         output wire LED_out,
+        output wire opclk,	
+        output wire Hsync,	
+        output wire Vsync,	
+        output wire [4:0] R, 
+        output wire [5:0] G, 
+        output wire [4:0] B, 
+        output wire TFTLCD_Tpower,  
+        output wire TFTLCD_DE_out,
 		// User ports ends
 		// Do not modify the ports beyond this line
 

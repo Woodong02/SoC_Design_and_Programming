@@ -24,6 +24,14 @@
     
         output wire GPIO_out,
         output wire intr,
+        output wire opclk,	
+        output wire Hsync,	
+        output wire Vsync,	
+        output wire [4:0] R, 
+        output wire [5:0] G, 
+        output wire [4:0] B, 
+        output wire TFTLCD_Tpower,  
+        output wire TFTLCD_DE_out,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -569,9 +577,6 @@
 	end    
 
 
-
-    wire [2:0] slot;
-    wire [15:0] clk_cnt;
     
     wire [31:0] err_cnt0;
     wire [31:0] err_cnt1;
@@ -590,7 +595,7 @@
     wire [31:0] slot_out6;
     wire [31:0] slot_out7;
     wire [63:0] cycle_cnt;
-    
+    wire [31:0] buffer_out;
     
 	// Implement memory mapped register select and read logic generation
 	// Slave register read enable is asserted when valid address is available
@@ -671,15 +676,15 @@
 
 	assign	intr	=	|slv_reg2[31:16];
     
-    wire [31:0] buffer_out;
+
 
 
 	
     master_top mt0 (.clk(clk), .resetn_bt(resetn_bt), .DIV(DIV), .GUARD_TICKS(GUARD_TICKS), .NODE_CNT(NODE_CNT), .GPIO_in(GPIO_in), .DIP_SW(DIP_SW), .ENABLE(ENABLE), .FAULT_TH(FAULT_TH), .SILENT_TH(SILENT_TH),
-                    .seg_en(seg_en), .seg_data(seg_data), .GPIO_out(GPIO_out), .clk_cnt(clk_cnt), .slot(slot), .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), 
+                    .seg_en(seg_en), .seg_data(seg_data), .GPIO_out(GPIO_out), .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), 
                     .err_cnt3(err_cnt3), .err_cnt4(err_cnt4), .err_cnt5(err_cnt5), .err_cnt6(err_cnt6), .err_cnt7(err_cnt7), .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2),
                     .slot_out3(slot_out3), .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7), .cycle_cnt(cycle_cnt), .Silent_node(present_err[7:0]), .halt_cmd(present_err[15:8]),
-                    .buffer_out(buffer_out));
+                    .buffer_out(buffer_out), .opclk(opclk), .Hsync(Hsync), .Vsync(Vsync), .R(R), .G(G), .B(B), .TFTLCD_Tpower(TFTLCD_Tpower), .TFTLCD_DE_out(TFTLCD_DE_out));
 	// User logic ends
 
 	endmodule
