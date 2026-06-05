@@ -1,0 +1,388 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/sinsu/Desktop/slave_passive
+vslave_axi_ip_legacy_wrapper
+Z1 !s110 1780636385
+!i10b 1
+!s100 >=o3CWMHZhj8EFUAhCz4Z3
+I>PZCa3Oz5D^WG]00ZddPl2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1780634617
+8rtl/slave_axi_ip_legacy_wrapper.v
+Frtl/slave_axi_ip_legacy_wrapper.v
+Z3 L0 10
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1780636384.000000
+Z6 !s107 tb/tb_slave_axi_ip_top_fullcase.v|tb/tb_slave_axi_ip_top_smoke.v|rtl/slave_axi_ip_legacy_wrapper.v|rtl/slave_axi_ip_top.v|rtl/slave_ip_top.v|rtl/slave_status_event.v|rtl/slave_tx_serializer.v|rtl/slave_frame_builder.v|rtl/slave_payload_table.v|rtl/slave_slot_sequencer.v|rtl/slave_timing_scheduler.v|rtl/slave_broadcast_decoder.v|rtl/slave_broadcast_rx.v|rtl/slave_sync_detector.v|rtl/slave_cfg_shadow.v|rtl/slave_axi_lite_regs.v|reuse/slave_hamming_dec.v|reuse/slave_hamming_enc.v|
+Z7 !s90 -work|sim_work/work|reuse/slave_hamming_enc.v|reuse/slave_hamming_dec.v|rtl/slave_axi_lite_regs.v|rtl/slave_cfg_shadow.v|rtl/slave_sync_detector.v|rtl/slave_broadcast_rx.v|rtl/slave_broadcast_decoder.v|rtl/slave_timing_scheduler.v|rtl/slave_slot_sequencer.v|rtl/slave_payload_table.v|rtl/slave_frame_builder.v|rtl/slave_tx_serializer.v|rtl/slave_status_event.v|rtl/slave_ip_top.v|rtl/slave_axi_ip_top.v|rtl/slave_axi_ip_legacy_wrapper.v|tb/tb_slave_axi_ip_top_smoke.v|tb/tb_slave_axi_ip_top_fullcase.v|
+!i113 1
+Z8 o-work sim_work/work
+Z9 tCvgOpt 0
+vslave_axi_ip_top
+R1
+!i10b 1
+!s100 fKRdRUbR1jXbMODUhZhzM3
+IK@OUC`h?<n[g]8kl46U1z2
+R2
+R0
+w1780636343
+8rtl/slave_axi_ip_top.v
+Frtl/slave_axi_ip_top.v
+L0 11
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_axi_lite_regs
+R1
+!i10b 1
+!s100 RHZSQ5`Z<Sdh9`nKbYF`X3
+IfNnj:e3BfW<iW<Jz5Xl_A2
+R2
+R0
+w1780634810
+8rtl/slave_axi_lite_regs.v
+Frtl/slave_axi_lite_regs.v
+L0 8
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_broadcast_decoder
+R1
+!i10b 1
+!s100 oig=i=lllQS6J3dIlnF;81
+IGnFo4HZP0TNnYQ]=DCZ8P2
+R2
+R0
+w1780634643
+8rtl/slave_broadcast_decoder.v
+Frtl/slave_broadcast_decoder.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_broadcast_rx
+R1
+!i10b 1
+!s100 Gi>4M7M:Whgc1A8>^M^2i0
+I0IIhbe[U9T1O9Emm`5b7G1
+R2
+R0
+w1780634730
+8rtl/slave_broadcast_rx.v
+Frtl/slave_broadcast_rx.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_cfg_shadow
+R1
+!i10b 1
+!s100 @BK=GN9iY5En]iZ4K1cXl0
+I:2^hIJg[f5;BJ0_POG3n52
+R2
+R0
+w1780634775
+8rtl/slave_cfg_shadow.v
+Frtl/slave_cfg_shadow.v
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_frame_builder
+R1
+!i10b 1
+!s100 WfZSHXZ5E;CM1nWIclmP@2
+I@[1ZZD5[[IN`oXQTFL@Ql3
+R2
+R0
+w1780634657
+8rtl/slave_frame_builder.v
+Frtl/slave_frame_builder.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_hamming_dec
+R1
+!i10b 1
+!s100 7DRhz??Pb?ooF10zAO_322
+IZaOT89m6f_`S9hdO?W9<B0
+R2
+R0
+Z10 w1780418895
+8reuse/slave_hamming_dec.v
+Freuse/slave_hamming_dec.v
+L0 4
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_hamming_enc
+R1
+!i10b 1
+!s100 ?Sa0JX;lN0iDA[hBhhNIz1
+IGC0<`kMec:PzOENTLUQ2X2
+R2
+R0
+R10
+8reuse/slave_hamming_enc.v
+Freuse/slave_hamming_enc.v
+L0 5
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_ip_top
+R1
+!i10b 1
+!s100 4W?mk[Sch5YP8b@>7;iof1
+IzM<P_:gZ5ZPKkX5HgcoY90
+R2
+R0
+w1780636318
+8rtl/slave_ip_top.v
+Frtl/slave_ip_top.v
+L0 12
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_payload_table
+R1
+!i10b 1
+!s100 40BF4MJBVne2SIhggkW_Y0
+Ia4:Di3HQX@RS`eKoM[Wo=1
+R2
+R0
+w1780634671
+8rtl/slave_payload_table.v
+Frtl/slave_payload_table.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_slot_sequencer
+R1
+!i10b 1
+!s100 M^5Db:69a7lPBNYWF7SSe2
+IIYS:CYm8Oz8D>W?YJ08lg1
+R2
+R0
+w1780634687
+8rtl/slave_slot_sequencer.v
+Frtl/slave_slot_sequencer.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_status_event
+R1
+!i10b 1
+!s100 iNYfo@E3=8j8G7<TL1hQ81
+IgCX_fJ`4Qed9`V?;;>e110
+R2
+R0
+w1780634790
+8rtl/slave_status_event.v
+Frtl/slave_status_event.v
+L0 8
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_sync_detector
+R1
+!i10b 1
+!s100 [eg<57zIENg6[@_WgB`<`3
+IZcM57F[XcKdna8?XcYlE:2
+R2
+R0
+w1780634631
+8rtl/slave_sync_detector.v
+Frtl/slave_sync_detector.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_timing_scheduler
+R1
+!i10b 1
+!s100 9fVgizYTmG?be`5KO1eWX2
+Ic1N_;::gHV068I5ebMDFX2
+R2
+R0
+w1780634978
+8rtl/slave_timing_scheduler.v
+Frtl/slave_timing_scheduler.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_tx_serializer
+R1
+!i10b 1
+!s100 UPc0eDQT03NQ2Z38gLKKj0
+IQ1T`O79[@^k]XTYe@0Qg?3
+R2
+R0
+w1780634705
+8rtl/slave_tx_serializer.v
+Frtl/slave_tx_serializer.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_slave_axi_ip_top_fullcase
+R1
+!i10b 1
+!s100 i@ZO96g<E9I_V[damFE;U3
+I]2eIJMa>0?@[aMPkPkEJz3
+R2
+R0
+w1780636353
+8tb/tb_slave_axi_ip_top_fullcase.v
+Ftb/tb_slave_axi_ip_top_fullcase.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_slave_axi_ip_top_smoke
+R1
+!i10b 1
+!s100 RRM@MP<U_VWD34UngmXF<2
+I[D8bg;FEiRa<QQS@zX>2G0
+R2
+R0
+w1780632982
+8tb/tb_slave_axi_ip_top_smoke.v
+Ftb/tb_slave_axi_ip_top_smoke.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9

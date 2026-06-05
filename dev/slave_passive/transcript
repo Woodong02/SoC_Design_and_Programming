@@ -1,0 +1,24 @@
+# vsim -c -lib sim_work/work tb_slave_axi_ip_top_fullcase -do "run -all; quit" 
+# Start time: 14:13:17 on Jun 05,2026
+# Loading sim_work/work.tb_slave_axi_ip_top_fullcase
+# Loading sim_work/work.slave_axi_ip_top
+# Loading sim_work/work.slave_axi_lite_regs
+# Loading sim_work/work.slave_ip_top
+# Loading sim_work/work.slave_cfg_shadow
+# Loading sim_work/work.slave_sync_detector
+# Loading sim_work/work.slave_broadcast_rx
+# Loading sim_work/work.slave_broadcast_decoder
+# Loading sim_work/work.slave_hamming_dec
+# Loading sim_work/work.slave_timing_scheduler
+# Loading sim_work/work.slave_slot_sequencer
+# Loading sim_work/work.slave_payload_table
+# Loading sim_work/work.slave_frame_builder
+# Loading sim_work/work.slave_hamming_enc
+# Loading sim_work/work.slave_tx_serializer
+# Loading sim_work/work.slave_status_event
+# run -all
+# PASS tb_slave_axi_ip_top_fullcase
+# ** Note: $finish    : tb/tb_slave_axi_ip_top_fullcase.v(587)
+#    Time: 1570530 ns  Iteration: 1  Instance: /tb_slave_axi_ip_top_fullcase
+# End time: 14:13:19 on Jun 05,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0
