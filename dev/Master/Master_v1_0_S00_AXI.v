@@ -239,6 +239,10 @@
 	// These registers are cleared when reset (active low) is applied.
 	// Slave register write enable is asserted when valid address and data are available
 	// and the slave is ready to accept the write address and write data.
+	
+    reg		[15:0]	before_err;
+	reg		[15:0]	after_err;
+
 	assign slv_reg_wren = axi_wready && S_AXI_WVALID && axi_awready && S_AXI_AWVALID;
 
 	always @( posedge S_AXI_ACLK )
@@ -247,7 +251,7 @@
 	    begin
 	      slv_reg0 <= 0;
 	      slv_reg1 <= 0;
-	      slv_reg2 <= 0;
+	      slv_reg2 <= 32'h0000FFFF;
 	      slv_reg3 <= 0;
 	      slv_reg4 <= 0;
 	      slv_reg5 <= 0;
@@ -443,6 +447,30 @@
 	                    end
 	        endcase
 	      end
+		  else begin
+			slv_reg2[15:0] <= slv_reg2[15:0];
+			if(intr) begin
+	               slv_reg2[31:16]    <=  slv_reg2[31:16];
+	           end
+	           else begin
+	               slv_reg2[16] <=  before_err[0] & ~after_err[0];
+	               slv_reg2[17] <=  before_err[1] & ~after_err[1];
+	               slv_reg2[18] <=  before_err[2] & ~after_err[2];
+	               slv_reg2[19] <=  before_err[3] & ~after_err[3];
+	               slv_reg2[20] <=  before_err[4] & ~after_err[4];
+	               slv_reg2[21] <=  before_err[5] & ~after_err[5];
+	               slv_reg2[22] <=  before_err[6] & ~after_err[6];
+	               slv_reg2[23] <=  before_err[7] & ~after_err[7];
+	               slv_reg2[24] <=  before_err[8] & ~after_err[8];
+	               slv_reg2[25] <=  before_err[9] & ~after_err[9];
+	               slv_reg2[26] <=  before_err[10] & ~after_err[10];
+	               slv_reg2[27] <=  before_err[11] & ~after_err[11];
+	               slv_reg2[28] <=  before_err[12] & ~after_err[12];
+	               slv_reg2[29] <=  before_err[13] & ~after_err[13];
+	               slv_reg2[30] <=  before_err[14] & ~after_err[14];
+	               slv_reg2[31] <=  before_err[15] & ~after_err[15];
+	           end
+		  end
 	  end
 	end    
 
@@ -542,8 +570,8 @@
 
 
 
-    wire [2:0] slot_out;
-    wire [15:0] clk_cnt_out;
+    wire [2:0] slot;
+    wire [15:0] clk_cnt;
     
     wire [31:0] err_cnt0;
     wire [31:0] err_cnt1;
@@ -573,7 +601,7 @@
 	      // Address decoding for reading registers
 	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
 	        5'h00   : reg_data_out <= slv_reg0;
-	        5'h01   : reg_data_out <= {13'b0, clk_cnt_out, slot_out};
+	        5'h01   : reg_data_out <= {12'b0, GPIO_in, clk_cnt, slot};
 	        5'h02   : reg_data_out <= slv_reg2;
 	        5'h03   : reg_data_out <= err_cnt0;
 	        5'h04   : reg_data_out <= err_cnt1;
@@ -625,15 +653,29 @@
     wire [7:0] FAULT_TH      = slv_reg2[7:0];
     wire [7:0] SILENT_TH     = slv_reg2[15:8];
     
-    
+	wire	[15:0]	present_err;
+
+	always @(posedge S_AXI_ACLK)
+	begin
+		if(S_AXI_ARESETN == 1'b0) begin
+			before_err	<=	16'b0000;
+			after_err	<=	16'b0000;
+		end
+		else begin
+			before_err	<=	present_err;
+			after_err	<=	before_err;
+		end
+	end
+
+	assign	intr	=	|slv_reg2[31:16];
     
 
 	
 	
     master_top mt0 (.clk(clk), .resetn_bt(resetn_bt), .DIV(DIV), .GUARD_TICKS(GUARD_TICKS), .NODE_CNT(NODE_CNT), .GPIO_in(GPIO_in), .DIP_SW(DIP_SW), .ENABLE(ENABLE), .FAULT_TH(FAULT_TH), .SILENT_TH(SILENT_TH),
-                    .seg_en(seg_en), .seg_data(seg_data), .GPIO_out(GPIO_out), .intr(intr),  .clk_cnt_out(clk_cnt_out), .slot_out(slot_out), .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), 
+                    .seg_en(seg_en), .seg_data(seg_data), .GPIO_out(GPIO_out), .clk_cnt(clk_cnt), .slot(slot), .err_cnt0(err_cnt0), .err_cnt1(err_cnt1), .err_cnt2(err_cnt2), 
                     .err_cnt3(err_cnt3), .err_cnt4(err_cnt4), .err_cnt5(err_cnt5), .err_cnt6(err_cnt6), .err_cnt7(err_cnt7), .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2),
-                    .slot_out3(slot_out3), .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7), .cycle_cnt(cycle_cnt));
+                    .slot_out3(slot_out3), .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7), .cycle_cnt(cycle_cnt), .Silent_node(present_err[7:0]), .halt_cmd(present_err[15:8]));
 	// User logic ends
 
 	endmodule

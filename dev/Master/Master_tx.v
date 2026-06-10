@@ -1,14 +1,15 @@
 // master_tx: NRZ transmitter for TDMA master broadcast
-// Bit period = 2*(div+1) clk cycles (same as slave_tx)
+// Bit period = div clk cycles (same as slave_tx)
 // Frame: [preamble 8b = 0xAA][codeword 42b] = 50 bits
 //   codeword = {halt_cmd[7:0], 27'b0, p[5:0], p_overall}  (systematic SECDED)
 // GPIO_out is driven high/low while active; released (high-Z) when idle.
 module Master_tx (
     input  wire        clk,
     input  wire        resetn,
-    input  wire [9:0]  DIV,
     input  wire        tx_trigger,
     input  wire [7:0]  halt_cmd,
+    input  wire [9:0]  GUARD_TICKS,
+    input  wire [9:0]  DIV,
 
     output wire        GPIO_out
 );
@@ -22,10 +23,10 @@ module Master_tx (
 
     // ----------------------------------------------------------------
     // Hamming systematic SECDED encoding via hamming_enc module
-    // d[34:0] = {halt_cmd[7:0], 27'b0}
+    // d[34:0] = {halt_cmd, GUARD_TICKS, DIV, 17'b0};
     // codeword[41:0] = {d[34:0], p[5:0], p_overall}
     // ----------------------------------------------------------------
-    wire [34:0] d = {halt_cmd, 27'b0};
+    wire [34:0] d = {halt_cmd, GUARD_TICKS, 17'b0};
 
     wire [41:0] codeword;
     hamming_enc u_enc (.data(d), .codeword(codeword));
@@ -66,6 +67,6 @@ module Master_tx (
         end
     end
 
-    assign GPIO_out = (tx_active) ? tx_bit : 1'bz;
+    assign GPIO_out = (tx_active) ? tx_bit : 1'b0;
 
 endmodule

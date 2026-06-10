@@ -20,10 +20,10 @@ begin
 		4'd10	:	seg	=	8'b0001_0000;   // A.
 		4'd11	:	seg	=	8'b0000_0000;   // B.
 		4'd12	:	seg	=	8'b0110_0010;	// C.
-		4'd14	:	seg	=	8'b0000_0010;	// D.
-		4'd15	:	seg	=	8'b0110_0000;   // E.
+		4'd13	:	seg	=	8'b0000_0010;	// D.
+		4'd14	:	seg	=	8'b0110_0000;   // E.
 		default	:	seg	=	8'b0111_0000;	// F.
 	endcase
-end
+end //ABCDEF (alphabet) will display dot(.) because 0=D, 8=B in 7-segment.
 
 endmodule

@@ -125,11 +125,18 @@ int main()
 				xil_printf("Err command.\r\n");
 		}
 		Data = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 4);
+<<<<<<< HEAD
 		//���� = (data&0x7), clk_cnt = data(>>3)&0xFFFF
 		//0~479 ����, 0~271 ���� = 480*272 = 130560 pixels. ���θ� 3ĭ���� ������
 		//(data&0x7)/3*160 + (data&0x7)%3*160 = x��ǥ, (data>>3)&0xFFFF/160 = y��ǥ
 		if(((Data>>19)&0x1) ==1){
 			int node = Data & 0x7;
+=======
+		//xil_printf("%u",(Data>>19&0x1));
+		// 2. 비교 연산자 우선순위 괄호 체결 및 GPIO_in 플래그 검사
+		if ((Data >> 19) & 0x1) {
+		    int node = Data & 0x7;
+>>>>>>> 4d85de3f2a35d579181d575201f69f84dedd9f23
 
 			    if (location[lcdptr]) Xil_Out16(XPAR_TFTLCD_0_S00_AXI_BASEADDR + location[lcdptr], 0);
 
@@ -149,8 +156,8 @@ void ServiceRoutine(void *CallbackRef)
 {
 	u32 temp = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8);
 	MASTER_mWriteReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 8, temp&0x0000FFFF);
-	u32 cycles_low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x2C);
-	u32 cycles_high = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x30);
+	u32 cycles_low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x4C);
+	u32 cycles_high = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x50);
 	xil_printf("Interrupted\r\n");
 	READ_ALL_ERR_CNT();
 	for(int i=0; i<8; i++){
@@ -288,8 +295,8 @@ void READ_ERR_CNT(u8 NODE){
 }
 
 void READ_CYCLE_CNT(){
-	u32 low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x2C);
-	u32 high = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x30);
+	u32 low = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x4C);
+	u32 high = MASTER_mReadReg(XPAR_MASTER_0_S00_AXI_BASEADDR, 0x50);
 	if(high==0)
 		xil_printf("Cycle done: %u\r\n", low);
 	else

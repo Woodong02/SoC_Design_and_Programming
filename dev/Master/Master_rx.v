@@ -4,7 +4,7 @@
     input wire [9:0] DIV,
     input wire GPIO_in,
     input wire resetn,
-    input wire slot_change,
+    input wire slot_pre_change,
 
     output reg [41:0] data_out,
     output reg out_sig,
@@ -22,7 +22,7 @@
       clk_cnt <= 10'b0;
     end
     else begin
-        if(slot_change)
+        if(slot_pre_change)
           clk_cnt <= 10'b0;
         else begin
         case(state)
@@ -55,7 +55,7 @@
       bit_cnt <= 6'b0;
     end
     else begin
-      if(slot_change)
+      if(slot_pre_change)
         bit_cnt <= 6'b0;
       else begin
         case(state)
@@ -109,7 +109,7 @@
       state <= 2'd0;
     end
     else begin
-      if(slot_change)
+      if(slot_pre_change)
         state <= 2'b0;
       else begin
         case(state)
@@ -197,7 +197,7 @@
           preamble_err <= 1'b0;
       endcase
     end
-  end //detecting preamble err when data in buffer != 0x55
+  end //detecting preamble err when data in buffer != 0xAA
 
 
 
