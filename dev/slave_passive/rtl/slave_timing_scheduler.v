@@ -94,12 +94,17 @@ module slave_timing_scheduler (
     assign guard_ticks_64 = {54'd0, cfg_guard_ticks_core};
 
     // 타이밍 기준식:
-    // frame = 50 * bit_period_ticks, slot = frame + guard,
-    // target[n] = frame + n * slot + (guard >> 1).
+    // frame = 50 * bit_period_ticks,
+    // slot  = (50 + guard_ticks) * bit_period_ticks  (guard를 bit period 단위로 표현),
+    // guard_half = (guard_ticks >> 1) * bit_period_ticks,
+    // target[n] = n * slot + guard_half.
+    // sync_pulse 직후 guard_half만 기다린 뒤 바로 송신 시작. frame_ticks 대기 없음.
+    // 마스터 TX 선과 슬레이브 TX 선이 분리되어 있어 동시 송수신이 가능하다.
+    // GUARD_TICKS 단위: bit period 개수. total_slot = (50 + GUARD_TICKS) * DIV_p1 raw clocks.
     assign frame_ticks_calc = bit_period_ticks_64 * 64'd50;
-    assign slot_ticks_calc = frame_ticks_calc + guard_ticks_64;
-    assign guard_half_ticks_calc = {55'd0, cfg_guard_ticks_core[9:1]};
-    assign slot_target_tick0_calc = frame_ticks_calc + guard_half_ticks_calc;
+    assign slot_ticks_calc = (64'd50 + guard_ticks_64) * bit_period_ticks_64;
+    assign guard_half_ticks_calc = (guard_ticks_64 >> 1) * bit_period_ticks_64;
+    assign slot_target_tick0_calc = guard_half_ticks_calc;
     assign slot_target_tick1_calc = slot_target_tick0_calc + slot_ticks_calc;
     assign slot_target_tick2_calc = slot_target_tick1_calc + slot_ticks_calc;
     assign slot_target_tick3_calc = slot_target_tick2_calc + slot_ticks_calc;

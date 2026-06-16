@@ -13,7 +13,6 @@
 
 현재 RTL에 포함되지 않은 항목:
 
-- AXI/PS register interface.
 - runtime node 선택.
 - runtime active-slot 선택.
 - runtime `DIV` 또는 `GUARD_TICKS` write.
@@ -308,7 +307,6 @@ Module: `slave_hamming_dec`
 
 이 설계를 `slave_regmap.md`와 일치하는 configurable IP로 변환하려면 다음 변경이 우선 필요하다.
 
-- `slave23_passive_top` 주변에 AXI-lite/register wrapper 또는 별도 top wrapper 추가.
 - 필요 시 `DIV`, `GUARD_TICKS`, `NODE_ID`를 parameter에서 runtime input으로 변환하거나 wrapper에서 처리.
 - slave disabled 상태에서 master input을 무시하고 TX idle을 유지하도록 `ENABLE` gating 추가.
 - 하나의 hardware instance가 여러 node slot을 emulate해야 한다면 `ACTIVE_SLOT` 동작 구현.

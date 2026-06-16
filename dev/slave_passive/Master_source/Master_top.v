@@ -1,7 +1,7 @@
 module master_top (
     input wire clk,
     input wire resetn_bt,
-    input wire [9:0] DIV,
+    input wire [31:0] DIV,
     input wire [9:0] GUARD_TICKS,
     input wire [2:0] NODE_CNT,
     input wire GPIO_in,
@@ -14,8 +14,6 @@ module master_top (
     output wire [7:0] seg_data,
 
     output wire GPIO_out,
-    output wire [15:0] clk_cnt,
-    output wire [2:0] slot,
 
     output wire [31:0] err_cnt0,
     output wire [31:0] err_cnt1,
@@ -34,25 +32,34 @@ module master_top (
     output wire [31:0] slot_out6,
     output wire [31:0] slot_out7,
 
-    output wire [63:0] cycle_cnt,
+    output wire [31:0] cycle_cnt,
     
     output wire [7:0] Silent_node,
-    output wire [7:0] halt_cmd
-);
+    output wire [7:0] halt_cmd,
+    output wire [31:0] buffer_out,
+    
+    output wire opclk,	
+    output wire Hsync,	
+    output wire Vsync,	
+    output wire [4:0] R, 
+    output wire [5:0] G, 
+    output wire [4:0] B, 
+    output wire TFTLCD_Tpower,  
+    output wire TFTLCD_DE_out
+);   
+
+    wire [37:0] clk_cnt;
+    wire [2:0] slot;
     wire slot_change;
     wire slot_pre_change;
-<<<<<<< HEAD:dev/Integration_TB/master/Master_top.v
-    wire [2:0] NODE_CNT_p1 = NODE_CNT;
-    wire [9:0] DIV_p1 = DIV + 1;  // DIV_p1 ì˜¤í”„ì…‹ ì‚­ì œ í›„ alias
-=======
-    wire [2:0] DIV_p1 = DIV + 3'd1;
->>>>>>> ab2b828 (slave-passive update):dev/slave_passive/Master_source/Master_top.v
+    wire [31:0] DIV_p1 = DIV + 32'd1;
     wire tx_trigger = (slot_pre_change && slot==NODE_CNT)? 1'b1 : 1'b0;
     wire [41:0] data_bus;
     wire sig_bus;
     wire preamble_err;
     wire [1:0] rx_stat;
     wire resetn = resetn_bt && ENABLE;
+
 
 
 
@@ -74,9 +81,9 @@ module master_top (
 
 
     Master_rx r0(.clk(clk), .DIV(DIV_p1), .GPIO_in(GPIO_in), .resetn(resetn), .slot_pre_change(slot_pre_change),
-                 .data_out(data_bus), .out_sig(sig_bus), .preamble_err(preamble_err));
+                 .data_out(data_bus), .out_sig(sig_bus), .preamble_err(preamble_err), .buffer_out(buffer_out));
 
-    Master_dec_ham dh0(.resetn(resetn), .clk(clk), .in_sig(sig_bus), .GUARD_TICKS(GUARD_TICKS), .data_in(data_bus), .SILENT_TH(SILENT_TH),
+    Master_dec_ham dh0(.resetn(resetn), .clk(clk), .in_sig(sig_bus), .data_in(data_bus), .SILENT_TH(SILENT_TH),
                        .slot(slot), .preamble_err(preamble_err), .slot_change(slot_change), .GPIO_in(GPIO_in), .rx_stat(rx_stat), .halt_cmd(halt_cmd),
                        .slot_out0(slot_out0), .slot_out1(slot_out1), .slot_out2(slot_out2), .slot_out3(slot_out3), 
                        .slot_out4(slot_out4), .slot_out5(slot_out5), .slot_out6(slot_out6), .slot_out7(slot_out7),
@@ -121,5 +128,21 @@ module master_top (
 
     seven_seg seg0(.resetn(resetn), .clk(clk), .data(seg_in), .seg_en(seg_en), .seg_data(seg_data));
 
+    // [Master_top.v ³»ºÎ ¾îµò°¡¿¡ »ðÀÔ]
+    TFTLCDctrl u_tft_lcd (
+        .clk(clk),
+        .rstn(resetn),
+        .slot(slot),
+        .clk_cnt(clk_cnt),
+        .DIV(DIV),
+        .GPIO_in(GPIO_in),
+        
+        .opclk(opclk),
+        .Hsync(Hsync),
+        .Vsync(Vsync),
+        .R(R), .G(G), .B(B),
+        .TFTLCD_Tpower(TFTLCD_Tpower),
+        .TFTLCD_DE_out(TFTLCD_DE_out)
+    );
 
 endmodule

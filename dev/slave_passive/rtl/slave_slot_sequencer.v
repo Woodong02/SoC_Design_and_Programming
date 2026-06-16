@@ -135,12 +135,13 @@ module slave_slot_sequencer (
             end else if (state_ff == SEQ_IDLE) begin
                 state_ff <= SEQ_IDLE;
             end else if (state_ff == SEQ_WAIT_TARGET) begin
-                if (selected_slot_match == 1'b1) begin
-                    if (selected_slot_active == 1'b1) begin
-                        state_ff <= SEQ_ISSUE_TX;
-                    end else begin
-                        state_ff <= SEQ_NEXT_SLOT;
-                    end
+                if (selected_slot_active == 1'b0) begin
+                    // 비활성 슬롯: 타임매치 없이 즉시 건너뜀.
+                    // 활성 슬롯이 모두 끝나면 SEQ_DONE이 빠르게 발화하여
+                    // schedule_active가 다음 마스터 사이클 시작 전에 해제된다.
+                    state_ff <= SEQ_NEXT_SLOT;
+                end else if (selected_slot_match == 1'b1) begin
+                    state_ff <= SEQ_ISSUE_TX;
                 end else begin
                     state_ff <= SEQ_WAIT_TARGET;
                 end

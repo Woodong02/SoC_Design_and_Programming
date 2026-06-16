@@ -1,48 +1,49 @@
  module Master_rx (
 
     input wire clk,
-    input wire [9:0] DIV,
+    input wire [31:0] DIV,
     input wire GPIO_in,
     input wire resetn,
     input wire slot_pre_change,
 
     output reg [41:0] data_out,
     output reg out_sig,
-    output reg preamble_err
+    output reg preamble_err,
+    output wire [31:0] buffer_out
 );
 
-
-  reg [9:0] clk_cnt; //count for each state
+  reg [31:0] clk_cnt; //count for each state
   reg [41:0] buffer; //for buffer. output will out once it finished
   reg [1:0] state; //neutral, preamble, others
   reg [5:0] bit_cnt; //bit counts for each state
+  assign buffer_out = buffer[31:0];
 
   always @(posedge clk or negedge resetn) begin
     if (!resetn) begin
-      clk_cnt <= 10'b0;
+      clk_cnt <= 32'b0;
     end
     else begin
         if(slot_pre_change)
-          clk_cnt <= 10'b0;
+          clk_cnt <= 32'b0;
         else begin
         case(state)
           2'd0: begin
-            if(DIV!=10'd1 && GPIO_in==1'b1)
-              clk_cnt <= 10'b1;
+            if(DIV!=32'd1 && GPIO_in==1'b1)
+              clk_cnt <= 32'b1;
             else
-              clk_cnt <= 10'b0;
+              clk_cnt <= 32'b0;
           end
           2'd1: begin
-            if(clk_cnt == DIV-1)
-              clk_cnt <= 10'b0;
+            if(clk_cnt == DIV-32'd1)
+              clk_cnt <= 32'b0;
             else
-              clk_cnt <= clk_cnt + 10'b1;
+              clk_cnt <= clk_cnt + 32'b1;
           end
           default: begin
-            if(clk_cnt == DIV-1)
-              clk_cnt <= 10'b0;
+            if(clk_cnt == DIV-32'd1)
+              clk_cnt <= 32'b0;
             else
-              clk_cnt <= clk_cnt + 10'b1;
+              clk_cnt <= clk_cnt + 32'b1;
           end
         endcase
       end
@@ -60,7 +61,7 @@
       else begin
         case(state)
           2'd0:
-            if(GPIO_in==1 && DIV==10'd1)
+            if(GPIO_in==1 && DIV==16'd1)
               bit_cnt <= 6'd1;
             else
               bit_cnt <= 6'd0;
@@ -163,7 +164,7 @@
     else begin
       case(state)
         2'd2: begin
-          if(clk_cnt == 0 && bit_cnt == 6'd41)
+          if(clk_cnt == 32'd0 && bit_cnt == 6'd41)
             out_sig <= 1'b1;
           else
             out_sig <= 1'b0;

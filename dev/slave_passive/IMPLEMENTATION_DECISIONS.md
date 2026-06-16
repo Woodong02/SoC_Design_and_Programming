@@ -33,7 +33,7 @@ This file records implementation choices made while moving from the planning doc
 
 - `slave_timing_scheduler` takes `cycle_done` from `slave_slot_sequencer`.
 - `schedule_active` clears when the sequencer finishes scanning slots 0..7.
-- This makes `core_idle` true again after a cycle finishes, so pending AXI configuration can commit without requiring `ENABLE` to be dropped.
+- This makes `core_idle` true again after a cycle finishes.
 
 ## 2026-06-05: Halt Mask Snapshot Timing
 

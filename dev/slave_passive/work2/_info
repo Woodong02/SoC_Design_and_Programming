@@ -1,0 +1,388 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/SoC_Design_and_Programming/dev/slave_passive
+vslave21_rx
+Z1 !s110 1780980257
+!i10b 1
+!s100 E;D^j=?I@Ih_@3f^b8Zm03
+I;CaSO`]4Mee_]ljVP`o`h1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1780639907
+8rtl/slave21_rx.v
+Frtl/slave21_rx.v
+L0 3
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1780980257.000000
+Z6 !s107 tb/tb_slave_tx_path.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_broadcast_rx_decoder.v|rtl/slave_tx_serializer.v|rtl/slave_timing_scheduler.v|rtl/slave_sync_detector.v|rtl/slave_status_event.v|rtl/slave_slot_sequencer.v|rtl/slave_payload_table.v|rtl/slave_ip_top.v|rtl/slave_hamming_enc.v|rtl/slave_hamming_dec.v|rtl/slave_frame_builder.v|rtl/slave_cfg_shadow.v|rtl/slave_broadcast_rx.v|rtl/slave_broadcast_decoder.v|rtl/slave21_tx.v|rtl/slave21_rx.v|
+Z7 !s90 -work|work2|rtl/slave21_rx.v|rtl/slave21_tx.v|rtl/slave_broadcast_decoder.v|rtl/slave_broadcast_rx.v|rtl/slave_cfg_shadow.v|rtl/slave_frame_builder.v|rtl/slave_hamming_dec.v|rtl/slave_hamming_enc.v|rtl/slave_ip_top.v|rtl/slave_payload_table.v|rtl/slave_slot_sequencer.v|rtl/slave_status_event.v|rtl/slave_sync_detector.v|rtl/slave_timing_scheduler.v|rtl/slave_tx_serializer.v|tb/tb_slave_broadcast_rx_decoder.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_tx_path.v|
+!i113 1
+Z8 o-work work2
+Z9 tCvgOpt 0
+vslave21_tx
+R1
+!i10b 1
+!s100 Hfzh0?iF[YcgHLDkPQ:<Y3
+IaNAZAkdc3:]gDmZEz=PK]0
+R2
+R0
+R3
+8rtl/slave21_tx.v
+Frtl/slave21_tx.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_broadcast_decoder
+R1
+!i10b 1
+!s100 oig=i=lllQS6J3dIlnF;81
+I76_II`gMiSa1I9dj8@bG<3
+R2
+R0
+R3
+8rtl/slave_broadcast_decoder.v
+Frtl/slave_broadcast_decoder.v
+Z10 L0 10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_broadcast_rx
+R1
+!i10b 1
+!s100 Gi>4M7M:Whgc1A8>^M^2i0
+IE=R?XCVbEKUecfBmKQKde1
+R2
+R0
+R3
+8rtl/slave_broadcast_rx.v
+Frtl/slave_broadcast_rx.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_cfg_shadow
+R1
+!i10b 1
+!s100 @BK=GN9iY5En]iZ4K1cXl0
+Il^4MV1hJ9Yo]Q14F<NOil1
+R2
+R0
+R3
+8rtl/slave_cfg_shadow.v
+Frtl/slave_cfg_shadow.v
+L0 9
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_frame_builder
+R1
+!i10b 1
+!s100 WfZSHXZ5E;CM1nWIclmP@2
+I<`Jiej:4Q3iYSe]_:nXDR2
+R2
+R0
+R3
+8rtl/slave_frame_builder.v
+Frtl/slave_frame_builder.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_hamming_dec
+R1
+!i10b 1
+!s100 7DRhz??Pb?ooF10zAO_322
+IezQc[I5bV7IW>zm@R[c<I1
+R2
+R0
+R3
+8rtl/slave_hamming_dec.v
+Frtl/slave_hamming_dec.v
+L0 4
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_hamming_enc
+R1
+!i10b 1
+!s100 ?Sa0JX;lN0iDA[hBhhNIz1
+ISVgQ1ndB8CdW2c=EZidRZ0
+R2
+R0
+R3
+8rtl/slave_hamming_enc.v
+Frtl/slave_hamming_enc.v
+L0 5
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_ip_top
+R1
+!i10b 1
+!s100 4W?mk[Sch5YP8b@>7;iof1
+IS0kIAPQ=6aAnM2GHz<ZAP2
+R2
+R0
+R3
+8rtl/slave_ip_top.v
+Frtl/slave_ip_top.v
+L0 12
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_payload_table
+R1
+!i10b 1
+!s100 40BF4MJBVne2SIhggkW_Y0
+IFM;WXKOg[U>585lL=0h1Y3
+R2
+R0
+R3
+8rtl/slave_payload_table.v
+Frtl/slave_payload_table.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_slot_sequencer
+R1
+!i10b 1
+!s100 M^5Db:69a7lPBNYWF7SSe2
+IMlODXfEBQj]IkIod>lMl02
+R2
+R0
+R3
+8rtl/slave_slot_sequencer.v
+Frtl/slave_slot_sequencer.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_status_event
+R1
+!i10b 1
+!s100 iNYfo@E3=8j8G7<TL1hQ81
+I4j@1:AH>BI4LHVMO?SJ_H3
+R2
+R0
+R3
+8rtl/slave_status_event.v
+Frtl/slave_status_event.v
+L0 8
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_sync_detector
+R1
+!i10b 1
+!s100 [eg<57zIENg6[@_WgB`<`3
+IU55^mGa;HS@V3Q@OQA7jY2
+R2
+R0
+R3
+8rtl/slave_sync_detector.v
+Frtl/slave_sync_detector.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_timing_scheduler
+Z11 !s110 1780980258
+!i10b 1
+!s100 9fVgizYTmG?be`5KO1eWX2
+Il;QBbL?HYEzA0K2J8kVg;3
+R2
+R0
+R3
+8rtl/slave_timing_scheduler.v
+Frtl/slave_timing_scheduler.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vslave_tx_serializer
+R11
+!i10b 1
+!s100 UPc0eDQT03NQ2Z38gLKKj0
+I<32dV1oFzg?>f;6NBaG0R1
+R2
+R0
+R3
+8rtl/slave_tx_serializer.v
+Frtl/slave_tx_serializer.v
+R10
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_slave_broadcast_rx_decoder
+R11
+!i10b 1
+!s100 GM4k]4ijmS@SncC3M0QkW1
+IC]_BSS6jUc?1B94dlOAfI0
+R2
+R0
+R3
+8tb/tb_slave_broadcast_rx_decoder.v
+Ftb/tb_slave_broadcast_rx_decoder.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_slave_timing_scheduler
+R11
+!i10b 1
+!s100 DAB5V:iYN0=O0XMGDM<6d2
+ICe1CSkCVle>kHe[aal5fK3
+R2
+R0
+R3
+8tb/tb_slave_timing_scheduler.v
+Ftb/tb_slave_timing_scheduler.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9
+vtb_slave_tx_path
+R11
+!i10b 1
+!s100 1RmfO5LmfeAegdJ0Ti@Gc3
+IKI`;6;W`6mVYT;gWA?>cS2
+R2
+R0
+R3
+8tb/tb_slave_tx_path.v
+Ftb/tb_slave_tx_path.v
+L0 3
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+R9

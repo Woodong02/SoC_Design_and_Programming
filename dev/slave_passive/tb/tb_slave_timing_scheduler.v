@@ -63,32 +63,36 @@ module tb_slave_timing_scheduler;
         end
     endfunction
 
+    // slot = (50 + guard_ticks) * bit_period_ticks
     function [63:0] expected_slot_ticks;
         input [32:0] bit_period_ticks;
         input [9:0]  guard_ticks;
         begin
-            expected_slot_ticks = expected_frame_ticks(bit_period_ticks) +
-                                  {54'd0, guard_ticks};
+            expected_slot_ticks = (64'd50 + {54'd0, guard_ticks}) *
+                                  {31'd0, bit_period_ticks};
         end
     endfunction
 
+    // guard_half = (guard_ticks >> 1) * bit_period_ticks
     function [63:0] expected_guard_half_ticks;
-        input [9:0] guard_ticks;
+        input [32:0] bit_period_ticks;
+        input [9:0]  guard_ticks;
         begin
-            expected_guard_half_ticks = {55'd0, guard_ticks[9:1]};
+            expected_guard_half_ticks = ({54'd0, guard_ticks} >> 1) *
+                                        {31'd0, bit_period_ticks};
         end
     endfunction
 
+    // target[n] = n * slot_ticks + guard_half  (frame_ticks offset 없음)
     function [63:0] expected_target_tick;
         input [32:0] bit_period_ticks;
         input [9:0]  guard_ticks;
         input integer slot_index;
         begin
             expected_target_tick =
-                expected_frame_ticks(bit_period_ticks) +
                 ({32'd0, slot_index[31:0]} *
                  expected_slot_ticks(bit_period_ticks, guard_ticks)) +
-                expected_guard_half_ticks(guard_ticks);
+                expected_guard_half_ticks(bit_period_ticks, guard_ticks);
         end
     endfunction
 
@@ -148,7 +152,7 @@ module tb_slave_timing_scheduler;
             check_equal64("slot_ticks", slot_ticks,
                           expected_slot_ticks(bit_period_ticks, guard_ticks));
             check_equal64("guard_half_ticks", guard_half_ticks,
-                          expected_guard_half_ticks(guard_ticks));
+                          expected_guard_half_ticks(bit_period_ticks, guard_ticks));
             check_equal64("slot_target_tick0", slot_target_tick0,
                           expected_target_tick(bit_period_ticks, guard_ticks, 0));
             check_equal64("slot_target_tick1", slot_target_tick1,
@@ -303,8 +307,8 @@ module tb_slave_timing_scheduler;
         check_equal64("reset sync_tick_counter", sync_tick_counter, 64'd0);
         check_equal8("reset slot_time_match", slot_time_match, 8'd0);
 
-        run_timing_case(33'd1, 10'd0, "bit_period=1 guard=0");
-        run_timing_case(33'd2, 10'd1, "bit_period=2 guard=1 odd");
+        run_timing_case(33'd1, 10'd2, "bit_period=1 guard=2");
+        run_timing_case(33'd2, 10'd3, "bit_period=2 guard=3 odd");
         run_timing_case(33'd3, 10'd2, "bit_period=3 guard=2 even");
         run_timing_case(33'd4, 10'd3, "bit_period=4 guard=3 odd");
         run_timing_case(33'd7, 10'd10, "bit_period=7 guard=10 representative");

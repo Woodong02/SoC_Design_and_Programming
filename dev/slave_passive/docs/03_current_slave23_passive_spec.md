@@ -13,7 +13,6 @@ Current RTL goal:
 
 Out of scope in the current RTL:
 
-- AXI/PS register interface.
 - Runtime node selection.
 - Runtime active-slot selection.
 - Runtime `DIV` or `GUARD_TICKS` writes.
@@ -308,7 +307,6 @@ Note: This correction policy is intentionally described as current behavior. Bef
 
 To convert this design into a configurable IP matching `slave_regmap.md`, the likely first changes are:
 
-- Add an AXI-lite/register wrapper or a separate top wrapper around `slave23_passive_top`.
 - Convert or wrap `DIV`, `GUARD_TICKS`, and `NODE_ID` from parameters to runtime inputs where needed.
 - Add `ENABLE` gating so the slave can ignore master input and hold TX idle when disabled.
 - Implement `ACTIVE_SLOT` behavior if one hardware instance must emulate multiple node slots.

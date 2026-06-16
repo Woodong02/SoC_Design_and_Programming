@@ -9,14 +9,14 @@ module Master_tx (
     input  wire        tx_trigger,
     input  wire [7:0]  halt_cmd,
     input  wire [9:0]  GUARD_TICKS,
-    input  wire [9:0]  DIV,
+    input  wire [31:0]  DIV,
 
     output wire        GPIO_out
 );
 
     reg [49:0] frame;
     reg [5:0]  bit_cnt;
-    reg [9:0] tx_cnt;
+    reg [31:0] tx_cnt;
     reg        tx_bit;
     reg       tx_active;
 
@@ -36,14 +36,14 @@ module Master_tx (
     // ----------------------------------------------------------------
     always @(posedge clk or negedge resetn) begin
         if (!resetn) begin
-            tx_cnt   <= 11'd0;
+            tx_cnt   <= 32'd0;
             bit_cnt  <= 6'd0;
             tx_active<= 1'b0;
             frame    <= 50'd0;
             tx_bit   <= 1'b0;
         end else begin
             if (!tx_active) begin
-                tx_cnt  <= 11'd0;
+                tx_cnt  <= 32'd0;
                 bit_cnt <= 6'd0;
                 if (tx_trigger) begin
                     frame     <= {8'hAA, codeword};
@@ -52,7 +52,7 @@ module Master_tx (
                 end
             end else begin
                 if (tx_cnt == DIV-1) begin
-                    tx_cnt <= 11'd0;
+                    tx_cnt <= 32'd0;
                     if (bit_cnt == 6'd49) begin
                         tx_active <= 1'b0;
                         tx_bit    <= 1'b0;
@@ -61,7 +61,7 @@ module Master_tx (
                         tx_bit  <= frame[49 - (bit_cnt + 6'd1)];
                     end
                 end else begin
-                    tx_cnt <= tx_cnt + 11'd1;
+                    tx_cnt <= tx_cnt + 32'd1;
                 end
             end
         end

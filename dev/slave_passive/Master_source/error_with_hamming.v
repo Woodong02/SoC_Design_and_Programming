@@ -2,7 +2,6 @@ module Master_dec_ham (
     input wire resetn,
     input wire clk,
     input wire in_sig,
-    input wire [9:0]  GUARD_TICKS,
     input wire [41:0] data_in,
     input wire [7:0] SILENT_TH,
     input wire [2:0]  slot,
@@ -31,7 +30,6 @@ module Master_dec_ham (
     output wire [31:0] err_cnt7
 );
 
-reg out_sig;
 
 
 reg [7:0]  preamble_err_cnt0;
@@ -159,44 +157,6 @@ reg [7:0] received;
                             received[7] <= 1'b1;
                 endcase
             end
-<<<<<<< HEAD:dev/Integration_TB/master/error_with_hamming.v
-            else if(slot_change && slot==3'd0) begin
-                if(!received[0] && silent_cnt0 < SILENT_TH) 
-                    silent_cnt0 <= silent_cnt0 + 8'd6;
-                else if(silent_cnt0)
-                    silent_cnt0 <= silent_cnt0 - 8'b1;
-                if(!received[1] && silent_cnt1 < SILENT_TH) 
-                    silent_cnt1 <= silent_cnt1 + 8'd6;
-                else if(silent_cnt1)
-                    silent_cnt1 <= silent_cnt1 - 8'b1;
-                if(!received[2] && silent_cnt2 < SILENT_TH) 
-                    silent_cnt2 <= silent_cnt2 + 8'd6;
-                else if(silent_cnt2)
-                    silent_cnt2 <= silent_cnt2 - 8'b1;
-                if(!received[3] && silent_cnt3 < SILENT_TH) 
-                    silent_cnt3 <= silent_cnt3 + 8'd6;
-                else if(silent_cnt3)
-                    silent_cnt3 <= silent_cnt3 - 8'b1;
-                if(!received[4] && silent_cnt4 < SILENT_TH)
-                    silent_cnt4 <= silent_cnt4 + 8'd6;
-                else if(silent_cnt4)
-                    silent_cnt4 <= silent_cnt4 - 8'b1;
-                if(!received[5] && silent_cnt5 < SILENT_TH) 
-                    silent_cnt5 <= silent_cnt5 + 8'd6;
-                else if(silent_cnt5)
-                    silent_cnt5 <= silent_cnt5 - 8'b1;
-                if(!received[6] && silent_cnt6 < SILENT_TH) 
-                    silent_cnt6 <= silent_cnt6 + 8'd6;
-                else if(silent_cnt6)
-                    silent_cnt6 <= silent_cnt6 - 8'b1;
-                if(!received[7] && silent_cnt7 < SILENT_TH) 
-                    silent_cnt7 <= silent_cnt7 + 8'd6;   
-                else if(silent_cnt7)
-                    silent_cnt7 <= silent_cnt7 - 8'b1;
-                received <= 8'b0;
-            end
-=======
->>>>>>> ab2b828 (slave-passive update):dev/slave_passive/Master_source/error_with_hamming.v
             else
                 received <= received;
         end
@@ -222,7 +182,7 @@ reg [7:0] received;
             3'd0: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt0 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[0])
                     slot_timeout_cnt0 <= slot_timeout_cnt0 + 8'd6;
                 else if(slot_timeout_cnt0 && !halt_cmd[0])
                     slot_timeout_cnt0 <= slot_timeout_cnt0 - 8'b1;
@@ -230,7 +190,7 @@ reg [7:0] received;
             3'd1: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt1 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[1])
                     slot_timeout_cnt1 <= slot_timeout_cnt1 + 8'd6;
                 else if(slot_timeout_cnt1 && !halt_cmd[1])
                     slot_timeout_cnt1 <= slot_timeout_cnt1 - 8'b1;
@@ -238,7 +198,7 @@ reg [7:0] received;
             3'd2: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt2 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[2])
                     slot_timeout_cnt2 <= slot_timeout_cnt2 + 8'd6;
                 else if(slot_timeout_cnt2 && !halt_cmd[2])
                     slot_timeout_cnt2 <= slot_timeout_cnt2 - 8'b1;
@@ -246,7 +206,7 @@ reg [7:0] received;
             3'd3: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt3 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[3])
                     slot_timeout_cnt3 <= slot_timeout_cnt3 + 8'd6;
                 else if(slot_timeout_cnt3 && !halt_cmd[3])
                     slot_timeout_cnt3 <= slot_timeout_cnt3 - 8'b1;
@@ -254,7 +214,7 @@ reg [7:0] received;
             3'd4: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt4 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[4])
                     slot_timeout_cnt4 <= slot_timeout_cnt4 + 8'd6;
                 else if(slot_timeout_cnt4 && !halt_cmd[4])
                     slot_timeout_cnt4 <= slot_timeout_cnt4 - 8'b1;
@@ -262,7 +222,7 @@ reg [7:0] received;
             3'd5: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt5 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[5])
                     slot_timeout_cnt5 <= slot_timeout_cnt5 + 8'd6;
                 else if(slot_timeout_cnt5 && !halt_cmd[5])
                     slot_timeout_cnt5 <= slot_timeout_cnt5 - 8'b1;
@@ -270,7 +230,7 @@ reg [7:0] received;
             3'd6: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt6 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[6])
                     slot_timeout_cnt6 <= slot_timeout_cnt6 + 8'd6;
                 else if(slot_timeout_cnt6 && !halt_cmd[6])
                     slot_timeout_cnt6 <= slot_timeout_cnt6 - 8'b1;
@@ -278,7 +238,7 @@ reg [7:0] received;
             3'd7: begin
                 if(severe_err) //when in_sig, the timing will exactly same with estimated last bit slave have given
                     slot_timeout_cnt7 <= 8'd255;
-                else if(weak_err)
+                else if(weak_err && !halt_cmd[7])
                     slot_timeout_cnt7 <= slot_timeout_cnt7 + 8'd6;
                 else if(slot_timeout_cnt7 && !halt_cmd[7])
                     slot_timeout_cnt7 <= slot_timeout_cnt7 - 8'b1;
@@ -360,11 +320,9 @@ reg [7:0] received;
             slot_out5 <= 32'b0;
             slot_out6 <= 32'b0;
             slot_out7 <= 32'b0;
-            out_sig <= 1'b0;
         end 
         else begin
             if(slot_change && slot==3'd0) begin
-                out_sig <= 1'b0;
                 if (hamming_err_cnt0 && !halt_cmd[0])
                     hamming_err_cnt0 <= hamming_err_cnt0 - 1'b1;
                 if (hamming_err_cnt1 && !halt_cmd[1])
@@ -387,71 +345,83 @@ reg [7:0] received;
                     case(fixed_data[34:32])
                         3'd0: begin
                             slot_out0 <= fixed_data[31:0];
-                            hamming_err_cnt0 <= hamming_err_cnt0 + (ham_1bit_err<<2);
+                            if(!halt_cmd[0])
+                                hamming_err_cnt0 <= hamming_err_cnt0 + (ham_1bit_err<<2);
                         end
                         3'd1: begin
                             slot_out1 <= fixed_data[31:0];
-                            hamming_err_cnt1 <= hamming_err_cnt1 + (ham_1bit_err<<2);
+                            if(!halt_cmd[1])
+                                hamming_err_cnt1 <= hamming_err_cnt1 + (ham_1bit_err<<2);
                         end
                         3'd2: begin
                             slot_out2 <= fixed_data[31:0];
-                            hamming_err_cnt2 <= hamming_err_cnt2 + (ham_1bit_err<<2);
+                            if(!halt_cmd[2])
+                                hamming_err_cnt2 <= hamming_err_cnt2 + (ham_1bit_err<<2);
                         end
                         3'd3: begin
                             slot_out3 <= fixed_data[31:0];
-                            hamming_err_cnt3 <= hamming_err_cnt3 + (ham_1bit_err<<2);
+                            if(!halt_cmd[3])
+                                hamming_err_cnt3 <= hamming_err_cnt3 + (ham_1bit_err<<2);
                         end
                         3'd4: begin
                             slot_out4 <= fixed_data[31:0];
-                            hamming_err_cnt4 <= hamming_err_cnt4 + (ham_1bit_err<<2);
+                            if(!halt_cmd[4])
+                                hamming_err_cnt4 <= hamming_err_cnt4 + (ham_1bit_err<<2);
                         end
                         3'd5: begin
                             slot_out5 <= fixed_data[31:0];
-                            hamming_err_cnt5 <= hamming_err_cnt5 + (ham_1bit_err<<2);
+                            if(!halt_cmd[5])
+                                hamming_err_cnt5 <= hamming_err_cnt5 + (ham_1bit_err<<2);
                         end
                         3'd6: begin
                             slot_out6 <= fixed_data[31:0];
-                            hamming_err_cnt6 <= hamming_err_cnt6 + (ham_1bit_err<<2);
+                            if(!halt_cmd[6])
+                                hamming_err_cnt6 <= hamming_err_cnt6 + (ham_1bit_err<<2);
                         end
                         default: begin
                             slot_out7 <= fixed_data[31:0];
-                            hamming_err_cnt7 <= hamming_err_cnt7 + (ham_1bit_err<<2);
+                            if(!halt_cmd[7])
+                                hamming_err_cnt7 <= hamming_err_cnt7 + (ham_1bit_err<<2);
                         end
                         endcase
-                    out_sig <= 1'b1;
                 end
                 else begin
-                    out_sig <= 1'b0;
                     case(fixed_data[34:32])
                         3'd0: begin
-                            hamming_err_cnt0 <= hamming_err_cnt0 + (ham_2bit_err<<3);
+                            if(!halt_cmd[0])
+                                hamming_err_cnt0 <= hamming_err_cnt0 + (ham_2bit_err<<3);
                         end
                         3'd1: begin
+                            if(!halt_cmd[1])
                             hamming_err_cnt1 <= hamming_err_cnt1 + (ham_2bit_err<<3);
                         end
                         3'd2: begin
+                            if(!halt_cmd[2])
                             hamming_err_cnt2 <= hamming_err_cnt2 + (ham_2bit_err<<3);
                         end
                         3'd3: begin
+                            if(!halt_cmd[3])
                             hamming_err_cnt3 <= hamming_err_cnt3 + (ham_2bit_err<<3);
                         end
                         3'd4: begin
+                            if(!halt_cmd[4])
                             hamming_err_cnt4 <= hamming_err_cnt4 + (ham_2bit_err<<3);
                         end
                         3'd5: begin
+                            if(!halt_cmd[5])
                             hamming_err_cnt5 <= hamming_err_cnt5 + (ham_2bit_err<<3);
                         end
                         3'd6: begin
+                            if(!halt_cmd[6])
                             hamming_err_cnt6 <= hamming_err_cnt6 + (ham_2bit_err<<3);
                         end
                         default: begin
+                            if(!halt_cmd[7])
                             hamming_err_cnt7 <= hamming_err_cnt7 + (ham_2bit_err<<3);
                         end
                     endcase
                 end
             end
-            else
-            out_sig <= 1'b0;
         end
     end
 
