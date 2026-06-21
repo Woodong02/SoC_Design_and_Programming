@@ -1,9 +1,9 @@
 {
   "reg": [
-    { "bits": 8, "name": "preamble\n0xAA" },
-    { "bits": 3, "name": "slot_id" },
+    { "bits": 7, "name": "hamming" },
     { "bits": 32, "name": "payload" },
-    { "bits": 7, "name": "hamming" }
+    { "bits": 3, "name": "slot_id" },
+    { "bits": 8, "name": "preamble\n0xAA" }
   ],
   "config": { "bits": 50, "lanes": 1, "lsb": false }
 }

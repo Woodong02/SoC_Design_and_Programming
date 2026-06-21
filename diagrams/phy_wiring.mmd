@@ -1,9 +1,20 @@
 flowchart LR
     M["Master"]
-    S["Slave"]
-    M -->|"TX (Master→Slave)"| S
-    S -->|"TX (Slave→Master)"| M
-    M -.->|"GND (공통)"| S
+    S1["Slave 1"]
+    S2["Slave 2"]
+    SN["Slave N"]
+
+    M -->|"TX (Master→Slave, 공통 브로드캐스트)"| S1
+    M -->|"TX"| S2
+    M -->|"TX"| SN
+    S1 -.->|"TX (자신의 슬롯에만 구동, 공유 라인)"| M
+    S2 -.->|"TX"| M
+    SN -.->|"TX"| M
+    M ---|"GND (공통)"| S1
+    M ---|"GND"| S2
+    M ---|"GND"| SN
 
     style M fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
-    style S fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
+    style S1 fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
+    style S2 fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
+    style SN fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111

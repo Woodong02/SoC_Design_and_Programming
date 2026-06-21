@@ -1,10 +1,10 @@
 {
   "reg": [
-    { "bits": 8, "name": "preamble\n0xAA" },
-    { "bits": 8, "name": "halt_cmd" },
-    { "bits": 10, "name": "guard_ticks" },
+    { "bits": 7, "name": "hamming" },
     { "bits": 17, "name": "reserved" },
-    { "bits": 7, "name": "hamming" }
+    { "bits": 10, "name": "guard_ticks" },
+    { "bits": 8, "name": "halt_cmd" },
+    { "bits": 8, "name": "preamble\n0xAA" }
   ],
   "config": { "bits": 50, "lanes": 1, "lsb": false }
 }
