@@ -1,0 +1,33 @@
+flowchart LR
+    subgraph MasterTop ["master_top"]
+        direction TB
+        SLOT["Master_slot<br/>(슬롯 스케줄러)"]:::core
+        TX["Master_tx<br/>(프레임 송신)"]:::core
+        RX["Master_rx<br/>(프레임 수신)"]:::core
+        DEC["Master_dec_ham<br/>(Hamming 복호 · 에러집계)"]:::core
+        HALT["halt_cmd 판정<br/>(err_cnt > FAULT_TH)"]:::logic
+        SEG["seven_seg"]:::periph
+        LCD["TFTLCDctrl"]:::periph
+
+        SLOT -->|"slot, slot_change<br/>cycle_cnt"| TX
+        SLOT -->|"slot, clk_cnt"| LCD
+        SLOT -->|"rx_stat"| RX
+        TX -->|"tx_trigger 수신"| SLOT
+        RX -->|"data_bus, sig_bus<br/>preamble_err"| DEC
+        DEC -->|"err_cnt0..7<br/>slot_out0..7"| HALT
+        HALT -->|"halt_cmd"| TX
+        HALT -->|"halt_cmd"| DEC
+        DEC -->|"slot_out / err_cnt"| SEG
+    end
+
+    GPIO_OUT(["GPIO_out"]):::io
+    GPIO_IN(["GPIO_in"]):::io
+
+    TX --> GPIO_OUT
+    GPIO_IN --> RX
+    GPIO_IN --> LCD
+
+    classDef core fill:#FFFFFF,stroke:#111111,stroke-width:1.2px,color:#222222
+    classDef logic fill:#E0E0E0,stroke:#999999,stroke-width:0.8px,color:#222222
+    classDef periph fill:#F2F2F2,stroke:#999999,stroke-width:0.8px,color:#666666
+    classDef io fill:#2D2D2D,stroke:#111111,color:#FFFFFF

@@ -1,0 +1,15 @@
+flowchart LR
+    M["Master IP<br/>(master_top)"]:::master
+    S1["Slave IP<br/>(slave_ip_top) #1"]:::slave
+    S2["Slave IP<br/>(slave_ip_top) #2"]:::slave
+    SN["Slave IP<br/>(slave_ip_top) #N"]:::slave
+
+    M -->|"Sync + halt_cmd<br/>(공통 브로드캐스트)"| S1
+    M -->|"Sync + halt_cmd"| S2
+    M -->|"Sync + halt_cmd"| SN
+    S1 -.->|"슬롯별 응답 프레임<br/>(공유 라인)"| M
+    S2 -.->|"슬롯별 응답 프레임"| M
+    SN -.->|"슬롯별 응답 프레임"| M
+
+    classDef master fill:#2D2D2D,stroke:#111111,stroke-width:1.5px,color:#FFFFFF
+    classDef slave fill:#FFFFFF,stroke:#111111,stroke-width:1.2px,color:#222222
