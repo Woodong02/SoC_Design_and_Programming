@@ -100,12 +100,12 @@ pres.title = "Master / Slave 블록도";
 {
   let s = pres.addSlide();
   s.background = { color: C.secBg };
-  s.addText("3. Master / Slave 블록도", {
+  s.addText("3. Master / Slave 구현 사항", {
     x: 0.6, y: 2.0, w: 8.8, h: 1.5,
     fontSize: 40, bold: true, fontFace: FONT,
     color: C.title, align: "left", valign: "middle"
   });
-  s.addText("보드 내부 구조를 단계적으로 확대해서 살펴본다", {
+  s.addText("시스템의 구현과 설계 특이사항을 다룬다", {
     x: 0.6, y: 3.4, w: 8.8, h: 0.5,
     fontSize: 20, fontFace: FONT, color: C.sub, align: "left"
   });
