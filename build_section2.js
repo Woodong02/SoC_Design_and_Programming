@@ -159,7 +159,22 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
   addPageNum(s, 6);
 }
 
-// Slide 7: DLL - Flow Control (패턴 B - flow_control.png, 1.38:1)
+// Slide 7: DLL - 클럭 동기
+{
+  let s = pres.addSlide();
+  addTitle(s, "DLL - 클럭 동기");
+  s.addText([
+    { text: "Master·Slave는 클럭을 공유하지 않음", options: { bullet: true, breakLine: true, fontSize: 20, color: C.body, paraSpaceAfter: 12 } },
+    { text: "클럭 오차가 통신에 치명적인 방해 요인 — guard tick만으로는 누적 오차를 막을 수 없음", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 17, color: "444444", paraSpaceAfter: 8 } },
+    { text: "분주 클럭으로 동일 타이밍 가정", options: { bullet: true, breakLine: true, fontSize: 20, color: C.body, paraSpaceAfter: 12 } },
+    { text: "DIV 값을 AXI 레지스터로 설정, Master·Slave 양쪽에 동일한 DIV 값을 쓴다고 가정 — 분주 클럭은 메인 클럭 / (DIV + 1)", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 17, color: "444444", paraSpaceAfter: 8 } },
+    { text: "샘플링 방식", options: { bullet: true, breakLine: true, fontSize: 20, color: C.body, paraSpaceAfter: 12 } },
+    { text: "수신 샘플링은 비트 구간의 중간 지점에서 1회만 수행", options: { bullet: true, indentLevel: 1, fontSize: 17, color: "444444" } },
+  ], { x: 0.6, y: 1.35, w: 8.8, h: 3.25, fontFace: FONT, valign: "top" });
+  addPageNum(s, 7);
+}
+
+// Slide 8: DLL - Flow Control (패턴 B - flow_control.png, 1.38:1)
 {
   let s = pres.addSlide();
   addTitle(s, "DLL - Flow Control");
@@ -178,7 +193,7 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
     x: 5.5, y: 1.5, w: bw, h: bh,
     sizing: { type: "contain", w: bw, h: bh }
   });
-  addPageNum(s, 7);
+  addPageNum(s, 8);
 }
 
 pres.writeFile({ fileName: __dirname + "/section2_tdma_protocol.pptx" })

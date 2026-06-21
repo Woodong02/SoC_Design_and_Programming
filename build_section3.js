@@ -248,20 +248,7 @@ pres.title = "Master / Slave 블록도";
   addPageNum(s, 12);
 }
 
-// Slide 13: 클럭 동기의 어려움
-{
-  let s = pres.addSlide();
-  addTitle(s, "클럭 동기의 어려움");
-  addBulletSlide(s, [
-    { text: "Master·Slave는 클럭을 공유하지 않음 — 클럭 오차가 통신에 치명적인 방해 요인" },
-    { text: "DIV 값을 AXI 레지스터로 설정해 클럭을 분주, Master·Slave 양쪽에 동일한 DIV 값을 쓴다고 가정" },
-    { text: "분주 클럭은 메인 클럭 / (DIV + 1)" },
-    { text: "수신 샘플링은 비트 구간의 중간 지점에서 1회만 수행" },
-  ]);
-  addPageNum(s, 13);
-}
-
-// Slide 14: Master의 고장 처리
+// Slide 13: Master의 고장 처리
 {
   let s = pres.addSlide();
   addTitle(s, "Master의 고장 처리");
@@ -271,10 +258,10 @@ pres.title = "Master / Slave 블록도";
     { text: "판정 임곗값(FAULT_TH, SILENT_TH)은 PS가 AXI 레지스터로 설정" },
     { text: "(preamble_err_cnt + slot_timeout_cnt + hamming_err_cnt) > FAULT_TH 이면 halt_cmd=1 → 동기 프레임에 실어 전송 (silent_cnt는 표시용으로 합산에서 제외)" },
   ]);
-  addPageNum(s, 14);
+  addPageNum(s, 13);
 }
 
-// Slide 15: Master의 고장 처리 흐름도
+// Slide 14: Master의 고장 처리 흐름도
 {
   let s = pres.addSlide();
   addTitle(s, "Master의 고장 처리 흐름도");
@@ -284,10 +271,10 @@ pres.title = "Master / Slave 블록도";
     "누적합이 FAULT_TH를 넘으면 halt_cmd=1, 이후 카운터는 동결됨",
     "halt_cmd는 리셋 전까지 유지되며, 취소 경로는 없음",
   ], D + "master_fault_flow.png", 1568 / 328);
-  addPageNum(s, 15);
+  addPageNum(s, 14);
 }
 
-// Slide 16: Slave의 고장 처리
+// Slide 15: Slave의 고장 처리
 {
   let s = pres.addSlide();
   addTitle(s, "Slave의 고장 처리");
@@ -296,7 +283,7 @@ pres.title = "Master / Slave 블록도";
     { text: "Master가 다음 broadcast에서 해당 비트를 0으로 보내면 다음 사이클부터 자동으로 재개" },
     { text: "Slave 자체 감지 고장(tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit)은 플래그로 누적되어 인터럽트 신호만 발생, 별도 조치는 없음" },
   ]);
-  addPageNum(s, 16);
+  addPageNum(s, 15);
 }
 
 pres.writeFile({ fileName: __dirname + "/section3_block_diagrams.pptx" })
