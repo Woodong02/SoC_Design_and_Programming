@@ -3,7 +3,8 @@
 > 출처: `slave_passive/rtl/slave_ip_top.v`, `slave_pl_top.v` 및 하위 9개 서브모듈을
 > 에이전트가 조사(포트/인스턴스 와이어링만 경량 조사). 슬레이브는 PS/AXI 없이
 > PL 단독 동작(`slave_pl_top.v` 기준)이므로 PS 블록 없음.
-> 원본 다이어그램 소스: `slave_full_stack.mmd`
+> 원본 다이어그램 소스: `slave_full_stack.mmd` (렌더: `slave_full_stack.png`)
+> 상태: 슬레이브 기능 블록도 확정 완료.
 
 ## 노드 (위치별 그룹)
 
@@ -44,3 +45,8 @@ GND는 어떤 노드와도 연결되지 않음 (GPIO 점선 블록 내 단독 �
 ## 제외/생략 사항
 - AXI-Lite/PS 인터페이스: `slave_ip_top.v`에는 존재하지만(`i_reg_*`, `o_status/event/fault_reg_value`, `o_irq`), 이번 다이어그램은 PS 없는 `slave_pl_top.v` 기준 단독 PL 동작을 그리므로 제외.
 - DIP Switch / Push Button / 7-Segment: `slave_pl_top.v`에 해당 포트 없음 (LED만 존재).
+
+## 마스터-슬레이브 통합 연결도 참고
+마스터와 슬레이브를 동시에 담는 통합 연결도를 그릴 경우, 두 노드 사이는
+**TX/RX 라인만 연결**하면 됨 (GND는 각자 미연결 상태 유지, AXI/PS는
+서로 무관). 마스터 측 대응 문서: `master_full_relations.md`.
