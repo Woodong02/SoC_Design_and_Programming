@@ -5,6 +5,7 @@ const C = {
   title: "111111", body: "222222", sub: "666666",
   num: "999999", secBg: "F2F2F2", tblHdr: "2D2D2D"
 };
+const D = __dirname + "/diagrams/section3/zoom/";
 
 function addPageNum(slide, n) {
   slide.addText(`${n}`, {
@@ -36,6 +37,23 @@ const mkHdr = (t) => ({
   text: t, options: { bold: true, fill: { color: C.tblHdr }, color: "FFFFFF", fontSize: 14, fontFace: FONT }
 });
 
+// 텍스트(좌, 짧게) + 이미지(우, 세로로 긴 흐름도) 레이아웃
+function addTallFlowSlide(s, bullets, imgPath, ratio) {
+  s.addText(bullets.map((t, i) => ({
+    text: t,
+    options: {
+      bullet: true, breakLine: i < bullets.length - 1,
+      fontSize: 16, color: C.body, paraSpaceAfter: 8
+    }
+  })), { x: 0.6, y: 1.35, w: 3.7, h: 3.25, fontFace: FONT, valign: "top" });
+
+  const boxH = 3.5;
+  const h = boxH, w = boxH * ratio;
+  const x = 4.7 + (4.7 - w) / 2;
+  const y = 1.2;
+  s.addImage({ path: imgPath, x, y, w, h, sizing: { type: "contain", w, h } });
+}
+
 let pres = new pptxgen();
 pres.layout = "LAYOUT_16x9";
 pres.title = "Master / Slave 내부 동작 검증";
@@ -56,40 +74,26 @@ pres.title = "Master / Slave 내부 동작 검증";
   addPageNum(s, 1);
 }
 
-// Slide 2: 멀티 슬롯 시뮬레이션 구조
+// Slide 2: Slave의 멀티 슬롯 시뮬레이션
 {
   let s = pres.addSlide();
-  addTitle(s, "멀티 슬롯 시뮬레이션 구조");
+  addTitle(s, "Slave의 멀티 슬롯 시뮬레이션");
   addBulletSlide(s, [
-    { text: "하나의 물리 시퀀서가 마스터 사이클마다 8개의 고정 슬롯을 순차 처리 — 슬롯 위치 번호(0~7)가 식별자 역할" },
-    { text: "i_CFG_ACTIVE_SLOT[7:0] 비트마스크로 슬롯별 활성/비활성 결정" },
-    { text: "슬롯별 payload 출처가 분리됨", level: 0 },
-    { text: "슬롯 0~5: AXI 레지스터, 슬롯 6~7: 외부 PL 버스", level: 1 },
-    { text: "슬롯 인덱스가 프레임에 {slot_id, payload} 형태로 직접 포함됨" },
+    { text: "통신 시연에서는 하나의 물리 시퀀서가 8개의 슬롯(슬롯 인덱스 0~7)을 순차 처리 — 슬롯 위치가 식별자 역할을 함" },
+    { text: "각 슬롯은 자신의 타임슬롯에서 자신의 payload를 전송 (슬롯별 절대 타겟 틱을 기준으로 순회)" },
+    { text: "슬롯 0~5는 AXI 레지스터, 슬롯 6~7은 외부 PL 버스에서 payload를 가져옴" },
+    { text: "시연에서는 버튼으로 payload 값을 바꾸고, 변경된 값이 Master에서 정확히 수신되는지 확인" },
   ]);
   addPageNum(s, 2);
 }
 
-// Slide 3: 슬롯 순회 타이밍과 한계
+// Slide 3: Slave의 payload (표)
 {
   let s = pres.addSlide();
-  addTitle(s, "슬롯 순회 타이밍과 한계");
-  addBulletSlide(s, [
-    { text: "sync_pulse를 기준으로 8개 슬롯의 절대 타겟 틱을 계산 (slave_timing_scheduler)" },
-    { text: "시퀀서 FSM이 슬롯 0→7 순서로 순회하며, 각 슬롯의 타겟 시각에 도달하면 TX 발행" },
-    { text: "3비트 slot_id 필드 폭의 구조적 한계로 최대 8개로 고정 — 파라미터로 늘릴 수 없음" },
-    { text: "합성 가능한 RTL로 구현됨" },
-  ]);
-  addPageNum(s, 3);
-}
-
-// Slide 4: 버튼 기반 Payload 생성 (표)
-{
-  let s = pres.addSlide();
-  addTitle(s, "버튼 기반 Payload 생성");
+  addTitle(s, "Slave의 payload");
   s.addText([
-    { text: "버튼을 20ms 주기로 샘플링, HIGH→LOW 디바운스 펄스를 검출했을 때만 1회 증가", options: { bullet: true, breakLine: true, fontSize: 18, color: C.body, paraSpaceAfter: 10 } },
-    { text: "슬롯별 증가량은 정확히 2^slot_id — 8개의 독립된 32비트 레지스터", options: { bullet: true, fontSize: 18, color: C.body } },
+    { text: "payload 레지스터는 리셋 시 0으로 초기화", options: { bullet: true, breakLine: true, fontSize: 18, color: C.body, paraSpaceAfter: 10 } },
+    { text: "버튼의 디바운스된 단발 펄스마다 슬롯별로 정해진 값만큼 증가", options: { bullet: true, fontSize: 18, color: C.body } },
   ], { x: 0.6, y: 1.3, w: 8.8, h: 0.95, fontFace: FONT, valign: "top" });
 
   s.addTable([
@@ -107,99 +111,71 @@ pres.title = "Master / Slave 내부 동작 검증";
     "32비트 payload는 프레임 내부에서 {slot_id(3bit) + payload(32bit)}로 결합된 뒤 Hamming 인코딩되어 50비트 프레임으로 전송됨",
     { x: 0.6, y: 3.7, w: 8.8, h: 0.7, fontSize: 16, color: "444444", fontFace: FONT, valign: "top" }
   );
+  addPageNum(s, 3);
+}
+
+// Slide 4: 클럭 동기의 어려움
+{
+  let s = pres.addSlide();
+  addTitle(s, "클럭 동기의 어려움");
+  addBulletSlide(s, [
+    { text: "Master·Slave는 클럭을 공유하지 않음 — 클럭 오차가 통신에 치명적인 방해 요인" },
+    { text: "DIV 값을 AXI 레지스터로 설정해 클럭을 분주, Master·Slave 양쪽에 동일한 DIV 값을 쓴다고 가정" },
+    { text: "분주된 비트 구간은 Master가 DIV 클럭, Slave가 (DIV+1) 클럭으로 1클럭만큼 비대칭 — 동일 DIV를 가정해도 실제 주파수는 정확히 같지 않음" },
+    { text: "수신 샘플링은 비트 구간의 중간 지점에서 1회만 수행" },
+  ]);
   addPageNum(s, 4);
 }
 
-// Slide 5: Master 수신 및 검증
+// Slide 5: Master의 고장 처리
 {
   let s = pres.addSlide();
-  addTitle(s, "Master 수신 및 검증");
+  addTitle(s, "Master의 고장 처리");
   addBulletSlide(s, [
-    { text: "디코딩된 payload가 슬롯별로 slot_out0~7 레지스터에 저장됨" },
-    { text: "DIP 스위치로 원하는 슬롯을 선택해 7-세그먼트에 표시" },
-    { text: "테스트벤치(tb_btn_payload_ctrl.v, tb_btn_slave_master_comm.v)로 검증" },
-    { text: "버튼→슬레이브→마스터 전체 경로에서 n_press × {1,2,4,...,128}이 정확히 일치함을 확인", level: 1 },
+    { text: "슬롯별 4가지 카운터(preamble_err_cnt, slot_timeout_cnt, hamming_err_cnt, silent_cnt)로 임계치 기반 고장 판정" },
+    { text: "slot_timeout_cnt는 심각한 타이밍/주소 불일치 시 즉시 255로 saturate, 약한 가드 경계 오류 시 +6" },
+    { text: "판정 임곗값(FAULT_TH, SILENT_TH)은 PS가 AXI 레지스터로 설정" },
+    { text: "(preamble_err_cnt + slot_timeout_cnt + hamming_err_cnt) > FAULT_TH 이면 halt_cmd=1 → 동기 프레임에 실어 전송 (silent_cnt는 표시용으로 합산에서 제외)" },
   ]);
   addPageNum(s, 5);
 }
 
-// Slide 6: 클럭 분리와 분주비
+// Slide 6: Master 고장 처리 흐름도
 {
   let s = pres.addSlide();
-  addTitle(s, "클럭 분리와 분주비");
-  addBulletSlide(s, [
-    { text: "Master·Slave는 클럭선을 공유하지 않음 — 데이터선(TX/RX 1비트)만 연결, 각자 로컬 클럭에서 분주" },
-    { text: "분주비 DIV는 AXI 레지스터로 런타임에 소프트웨어가 설정 (하드코딩된 기본값 없음)" },
-    { text: "Master·Slave 양쪽에 동일한 DIV 값으로 설정한다고 가정" },
-    { text: "1비트 구간 = DIV + 1 클럭" },
-  ]);
+  addTitle(s, "Master 고장 처리 흐름도");
+  addTallFlowSlide(s, [
+    "슬롯마다 프리앰블 → 타이밍 → Hamming 순으로 검사",
+    "각 단계의 오류는 해당 카운터를 증가시킴",
+    "누적합이 FAULT_TH를 넘으면 halt_cmd=1, 이후 카운터는 동결됨",
+    "halt_cmd는 리셋 전까지 유지되며, 취소 경로는 없음",
+  ], D + "master_fault_flow.png", 1568 / 4162);
   addPageNum(s, 6);
 }
 
-// Slide 7: 비트 샘플링과 한계
+// Slide 7: Slave의 고장 처리
 {
   let s = pres.addSlide();
-  addTitle(s, "비트 샘플링과 한계");
+  addTitle(s, "Slave의 고장 처리");
   addBulletSlide(s, [
-    { text: "매 비트 구간의 중간 지점에서 정확히 1회만 샘플링 — 오버샘플링·다수결 방식이 아님" },
-    { text: "에지 검출은 프레임 시작(프리앰블)에만 사용되어 동기를 재정렬" },
-    { text: "이후 비트들은 순수 카운터 기반으로 진행 — 비트마다 재동기하지 않음" },
-    { text: "한계: guard_ticks는 슬롯 경계 여유 파라미터일 뿐, 비트 단위 클럭 드리프트 허용치를 정량화·보장하는 코드는 없음", level: 0 },
+    { text: "Master broadcast 프레임의 halt_cmd(halt_mask) 필드를 수신하면 해당 슬롯을 active_slot에서 제외 → 그 슬롯의 TX가 발행되지 않음" },
+    { text: "Master가 다음 broadcast에서 해당 비트를 0으로 보내면 다음 사이클부터 자동으로 재개 — Slave 쪽에서 재시작을 요청하는 로직은 없음" },
+    { text: "Slave 자체 감지 고장(tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit)은 sticky 플래그로 누적되어 PS에 인터럽트만 발생, 자동 셧다운은 하지 않음" },
   ]);
   addPageNum(s, 7);
 }
 
-// Slide 8: 고장 진단 모델과 Master 고장 유형 (표)
+// Slide 8: Slave halt 흐름도
 {
   let s = pres.addSlide();
-  addTitle(s, "Master의 고장 진단과 처리");
-  s.addText(
-    "Master는 슬롯별로 4개의 임계값 카운터(preamble_err_cnt, slot_timeout_cnt, hamming_err_cnt, silent_cnt)와 조합논리로 고장을 진단함",
-    { x: 0.6, y: 1.3, w: 8.8, h: 0.55, fontSize: 16, color: "444444", fontFace: FONT, valign: "top" }
-  );
-
-  s.addTable([
-    [mkHdr("고장 유형"), mkHdr("처리")],
-    ["프리앰블 불일치", "preamble_err_cnt +6"],
-    ["심각한 타이밍 오류 (데이터 윈도우 중 수신/슬롯 불일치)", "slot_timeout_cnt 즉시 255로 saturate"],
-    ["약한 타이밍 오류 (가드 경계 수신)", "slot_timeout_cnt +6 (없으면 매 사이클 -1로 감쇠)"],
-    ["Hamming 1비트 정정 가능 오류", "데이터는 정정 수용, hamming_err_cnt +4"],
-    ["Hamming 2비트 정정 불가 오류", "프레임 폐기(이전 값 유지), hamming_err_cnt +8"],
-    ["무응답 (silent)", "silent_cnt +6 — 표시만 하고 halt_cmd 판정에는 미포함"],
-  ], {
-    x: 0.6, y: 1.95, w: 8.8,
-    fontFace: FONT, fontSize: 13, color: C.body,
-    border: { pt: 0.5, color: "CCCCCC" },
-    rowH: 0.36,
-  });
+  addTitle(s, "Slave halt 흐름도");
+  addTallFlowSlide(s, [
+    "Master broadcast에서 halt_mask 추출",
+    "슬롯 시퀀서가 active_slot에서 halt된 슬롯을 제외",
+    "해당 슬롯은 TX를 발행하지 않음",
+    "Master가 비트를 다시 0으로 보내면 자동 재개",
+  ], D + "slave_halt_flow.png", 1050 / 3832);
   addPageNum(s, 8);
-}
-
-// Slide 9: 종합 판정과 halt_cmd
-{
-  let s = pres.addSlide();
-  addTitle(s, "종합 판정과 halt_cmd");
-  addBulletSlide(s, [
-    { text: "(preamble_err_cnt + slot_timeout_cnt + hamming_err_cnt) > FAULT_TH 이면 해당 슬롯 halt_cmd = 1" },
-    { text: "silent_cnt는 이 종합 판정에서 제외됨" },
-    { text: "halt_cmd = 1이 된 슬롯은 이후 카운터가 동결됨" },
-    { text: "Master가 브로드캐스트 프레임에 halt_cmd를 실어 모든 Slave에 전송" },
-  ]);
-  addPageNum(s, 9);
-}
-
-// Slide 10: Slave 측 처리와 Master/Slave 모델 차이
-{
-  let s = pres.addSlide();
-  addTitle(s, "Slave 측 처리와 모델 차이");
-  addBulletSlide(s, [
-    { text: "halt_cmd 수신 시 해당 슬롯을 active_slot에서 제외 — 그 슬롯의 TX 자체가 발행되지 않음" },
-    { text: "자체 감지 고장: tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit", level: 0 },
-    { text: "처리: sticky W1C 플래그 설정 + PS에 인터럽트(o_irq) — PS가 직접 클리어해야 함", level: 1 },
-    { text: "자체 감지 고장은 보고만 하고 자동 셧다운하지 않음 — 능동적 송신 중단은 halt_cmd 수신 시뿐", level: 1 },
-    { text: "Master(누적-임계치 err_cnt/FAULT_TH 모델) ↔ Slave(상태없는 sticky 이벤트 플래그 모델) — 공유되는 건 halt_cmd/broadcast_halt_mask 8비트뿐" },
-  ]);
-  addPageNum(s, 10);
 }
 
 pres.writeFile({ fileName: __dirname + "/section3_part2_internals.pptx" })

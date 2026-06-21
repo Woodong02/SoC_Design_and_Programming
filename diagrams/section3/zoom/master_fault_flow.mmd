@@ -1,0 +1,24 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 35, 'rankSpacing': 45}}%%
+flowchart TD
+    A["프레임 수신"]:::node --> B{"프리앰블 일치?"}:::dim
+    B -- 불일치 --> B1["preamble_err_cnt +6"]:::node
+    B -- 일치 --> C{"심각한 타이밍 오류?"}:::dim
+    B1 --> C
+    C -- 발생 --> C1["slot_timeout_cnt = 255"]:::node
+    C -- 없음 --> D{"가드 경계 오류?"}:::dim
+    D -- 발생 --> D1["slot_timeout_cnt +6"]:::node
+    D -- 없음 --> E{"Hamming 오류?"}:::dim
+    C1 --> E
+    D1 --> E
+    E -- 2비트 --> E1["프레임 폐기, hamming_err_cnt +8"]:::node
+    E -- 1비트 --> E2["정정 데이터 수용, hamming_err_cnt +4"]:::node
+    E -- 없음 --> E3["정상 수용"]:::node
+    E1 --> F{"누적합 > FAULT_TH?"}:::dim
+    E2 --> F
+    E3 --> F
+    F -- Yes --> G["halt_cmd=1\n카운터 동결, 동기 프레임에 송신"]:::node
+    F -- No --> H["다음 슬롯 진행"]:::node
+    A -.무응답.-> S["silent_cnt +6\n(표시용, 합산 제외)"]:::dim
+
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px

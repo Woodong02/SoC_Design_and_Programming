@@ -1,0 +1,13 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 35, 'rankSpacing': 45}}%%
+flowchart TD
+    A["Master broadcast 프레임 수신"]:::node --> B["halt_mask 추출"]:::node
+    B --> C["슬롯 시퀀서:\nactive_slot에서 halt 슬롯 제외"]:::node
+    C --> D{"해당 슬롯 active?"}:::dim
+    D -- No --> E["해당 슬롯 TX 미발행"]:::node
+    D -- Yes --> F["정상 송신"]:::node
+    E --> G{"다음 broadcast의\nhalt 비트 = 0?"}:::dim
+    G -- Yes --> F
+    G -- No --> E
+
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px
