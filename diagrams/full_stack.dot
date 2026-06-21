@@ -5,9 +5,6 @@ digraph G {
     edge [fontname="Noto Sans CJK KR", fontsize=10, color=black, arrowsize=0.6];
 
     EXT [label="외부 테스트 장치", shape=ellipse];
-    GND [label="GND"];
-    TXP [label="TX 포트"];
-    RXP [label="RX 포트"];
 
     subgraph cluster_ps {
         label="PS";
@@ -29,6 +26,19 @@ digraph G {
         ISR  -> UARTCMD [style=dashed, label="상태 로그"];
     }
 
+    subgraph cluster_gpio {
+        label="GPIO";
+        style=dashed;
+        fontname="Noto Sans CJK KR";
+
+        GND [label="GND"];
+        TXP [label="TX 포트"];
+        RXP [label="RX 포트"];
+
+        { rank=same; GND; TXP; RXP; }
+    }
+
+    { rank=same; INIT; CFG; UARTCMD; GND; TXP; RXP; }
 
     subgraph cluster_pl {
         label="PL";
@@ -76,9 +86,6 @@ digraph G {
         PB   -> AXI [label="resetn"];
     }
 
-    { rank=same; GND; TXP; RXP; LED; }
-
-    GND -> LED;
     TXP -> LED;
     RXP -> LED;
     TX  -> TXP [label="GPIO_out"];

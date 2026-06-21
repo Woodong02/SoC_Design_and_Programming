@@ -8,8 +8,8 @@
 ### 외부
 - 외부 테스트 장치 (EXT)
 
-### 보드 핀 (PS, PL 모두 밖)
-- GND
+### GPIO (점선 경계, PS·PL 밖)
+- GND (연결 없음)
 - TX 포트 (TXP)
 - RX 포트 (RXP)
 
@@ -25,6 +25,7 @@
 - DIP Switch
 - Push Button (PB)
 - 7-Segment (SEG)
+- (TX/RX 포트는 GPIO 점선 블록 소속이며, LED·Master IP로의 연결만 PL 경계를 가로지름)
 
 ### Master IP (PL 내부, 점선 경계)
 - AXI-Lite 레지스터 (AXI)
@@ -58,11 +59,12 @@
 | DIP | SEG | | |
 | SLOT | SEG | | |
 | DEC | SEG | | |
-| GND | LED | | |
 | TXP | LED | | |
 | RXP | LED | | |
 | TX | TXP | GPIO_out | |
 | RXP | RX | GPIO_in | |
+
+GND는 어떤 노드와도 연결되지 않음 (GPIO 점선 블록 내 단독 노드).
 
 ## 제외 사항
 - 디스플레이/TFTLCD 관련 기능 (main.c의 픽셀 쓰기 로직 등) — 지원 중단으로 다이어그램에서 완전히 제외.
