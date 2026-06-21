@@ -5,12 +5,30 @@ digraph G {
     edge [fontname="Noto Sans CJK KR", fontsize=10, color=black, arrowsize=0.6];
 
     EXT [label="외부 테스트 장치", shape=ellipse];
-    PS  [label="PS", shape=ellipse];
     GND [label="GND"];
     TXP [label="TX 포트"];
     RXP [label="RX 포트"];
 
-    { rank=same; PS; GND; TXP; RXP; }
+    subgraph cluster_ps {
+        label="PS";
+        style=dashed;
+        fontname="Noto Sans CJK KR";
+
+        INIT [label="인터럽트 초기화"];
+        CFG  [label="마스터 설정"];
+        UARTCMD [label="UART 명령 인터페이스"];
+        ISR  [label="인터럽트 처리"];
+        POLL [label="상태 폴링 루프"];
+
+        { rank=same; INIT; CFG; UARTCMD; }
+        { rank=same; ISR; POLL; }
+
+        INIT -> CFG;
+        CFG  -> POLL;
+        UARTCMD -> CFG [style=dashed];
+        ISR  -> UARTCMD [style=dashed, label="상태 로그"];
+    }
+
 
     subgraph cluster_pl {
         label="PL";
@@ -63,6 +81,8 @@ digraph G {
         PB   -> AXI [label="resetn"];
     }
 
-    EXT -> PS [label="UART", dir=both];
-    PS  -> AXI [label="AXI4-Lite", dir=both];
+    EXT -> UARTCMD [label="UART", dir=both];
+    CFG  -> AXI [label="AXI4-Lite (설정)"];
+    POLL -> AXI [label="AXI4-Lite (폴링)", dir=both];
+    ISR  -> AXI [label="AXI4-Lite (인터럽트)", dir=both];
 }
