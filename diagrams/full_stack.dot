@@ -1,0 +1,62 @@
+digraph G {
+    rankdir=LR;
+    fontname="Noto Sans CJK KR";
+    labelloc="t";
+    node [shape=box, fontname="Noto Sans CJK KR", fontsize=14, style=solid, color=black];
+    edge [fontname="Noto Sans CJK KR", fontsize=10, color=black];
+
+    EXT [label="외부 테스트 장치", shape=ellipse];
+    PS [label="PS (ARM Core)", shape=ellipse];
+
+    subgraph cluster_board {
+        label="SoC 보드 (PL)";
+        style=dashed;
+
+        GND [label="GND"];
+        TXP [label="TX 포트"];
+        RXP [label="RX 포트"];
+        LED [label="LED"];
+        SEG [label="7-Segment"];
+        DIP [label="DIP Switch"];
+        PB  [label="Push Button"];
+
+        subgraph cluster_master {
+            label="Master IP";
+            style=solid;
+
+            AXI  [label="AXI-Lite 레지스터"];
+            SLOT [label="슬롯 스케줄러"];
+            RX   [label="NRZ 수신"];
+            DEC  [label="Hamming 복호"];
+            HALT [label="halt_cmd 판정"];
+            TX   [label="NRZ 송신"];
+            DISP [label="디스플레이 제어"];
+
+            { rank=same; RX; DEC; HALT; }
+            { rank=same; AXI; SLOT; TX; }
+
+            AXI  -> SLOT [label="DIV,GUARD_TICKS.."];
+            SLOT -> RX   [label="rx_stat"];
+            RX   -> DEC  [label="data_out"];
+            DEC  -> HALT [label="err_cnt"];
+            HALT -> TX   [label="halt_cmd"];
+            HALT -> DEC  [label="halt_cmd"];
+            SLOT -> TX   [label="slot,cycle_cnt"];
+            DEC  -> AXI  [label="slot_out,err_cnt", style=dashed];
+            SLOT -> DISP;
+            DEC  -> DISP;
+        }
+
+        GND -> LED;
+        TXP -> LED;
+        RXP -> LED;
+        TXP -> TX  [dir=back, label="GPIO_out"];
+        RXP -> RX  [label="GPIO_in"];
+        DISP -> SEG;
+        DIP  -> DISP;
+        PB   -> SLOT [label="resetn_bt"];
+    }
+
+    PS -> AXI [dir=both, label="AXI-Lite"];
+    PS -> EXT [dir=both, label="UART"];
+}
