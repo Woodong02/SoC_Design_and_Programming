@@ -88,6 +88,38 @@ def add_section_slide(prs, title, page_num, subtitle=None):
     return s
 
 
+def add_toc_slide(prs, items, page_num):
+    layout = prs.slide_layouts[0]
+    s = prs.slides.add_slide(layout)
+    for shp in list(s.shapes):
+        shp._element.getparent().remove(shp._element)
+
+    tb = s.shapes.add_textbox(Emu(548640), Emu(457200), Emu(8046720), Emu(774192))
+    tf = tb.text_frame
+    p = tf.paragraphs[0]
+    run = p.add_run()
+    run.text = "Contents"
+    run.font.size = Pt(36)
+    run.font.bold = True
+    run.font.name = FONT
+    run.font.color.rgb = C_TITLE
+
+    tb2 = s.shapes.add_textbox(Emu(548640), Emu(1645920), Emu(8046720), Emu(3200400))
+    tf2 = tb2.text_frame
+    tf2.word_wrap = True
+    for i, item in enumerate(items):
+        p2 = tf2.paragraphs[0] if i == 0 else tf2.add_paragraph()
+        p2.space_after = Pt(20)
+        run2 = p2.add_run()
+        run2.text = f"{i + 1}.  {item}"
+        run2.font.size = Pt(24)
+        run2.font.name = FONT
+        run2.font.color.rgb = RGBColor(0x22, 0x22, 0x22)
+
+    add_page_num(s, page_num)
+    return s
+
+
 def add_page_num(slide, n):
     tb = slide.shapes.add_textbox(Emu(8503920), Emu(4754880), Emu(457200), Emu(274320))
     tf = tb.text_frame
@@ -116,22 +148,32 @@ def renumber_page(slide, n):
 
 
 prs = Presentation("section1_intro.pptx")
-page = 0
-for slide in prs.slides:
-    page += 1
-    renumber_page(slide, page)
+
+add_toc_slide(prs, [
+    "프로젝트 개요",
+    "TDMA PHY · Datalink · 프로토콜 정의",
+    "Master / Slave 구현 사항",
+    "TDMA 통신 시연",
+    "마무리",
+], 0)
+# move the just-added TOC slide (currently last) to position 1, right after the title slide
+sldIdLst = prs.slides._sldIdLst
+toc_sldId = sldIdLst[-1]
+sldIdLst.remove(toc_sldId)
+sldIdLst.insert(1, toc_sldId)
 
 for fname in ["section2_tdma_protocol.pptx", "section3_block_diagrams.pptx"]:
     src = Presentation(fname)
     for slide in src.slides:
-        new_slide = copy_slide(prs, slide)
-        page += 1
-        renumber_page(new_slide, page)
+        copy_slide(prs, slide)
 
-page += 1
-add_section_slide(prs, "4. TDMA 통신 시연", page)
-page += 1
-add_section_slide(prs, "5. 마무리", page)
+add_section_slide(prs, "4. TDMA 통신 시연", 0)
+add_section_slide(prs, "5. 마무리", 0)
+
+page = 0
+for slide in prs.slides:
+    page += 1
+    renumber_page(slide, page)
 
 prs.save("presentation_full.pptx")
 print("done:", page, "slides")
