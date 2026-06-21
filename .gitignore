@@ -9,3 +9,8 @@ Thumbs.db
 
 # deps
 node_modules/
+
+# intermediate per-section pptx (regenerate via build_section*.js)
+section1_intro.pptx
+section2_tdma_protocol.pptx
+section3_block_diagrams.pptx
