@@ -6,22 +6,24 @@ digraph G {
 
     EXT [label="외부 테스트 장치", shape=ellipse];
     PS  [label="PS", shape=ellipse];
+    GND [label="GND"];
+    TXP [label="TX 포트"];
+    RXP [label="RX 포트"];
+
+    { rank=same; PS; GND; TXP; RXP; }
 
     subgraph cluster_pl {
         label="PL";
         style=dashed;
         fontname="Noto Sans CJK KR";
 
-        GND [label="GND"];
-        TXP [label="TX 포트"];
-        RXP [label="RX 포트"];
         LED [label="LED"];
         DIP [label="DIP Switch"];
+        PB  [label="Push Button"];
         MASTER [label="Master IP"];
         SEG [label="7-Segment"];
 
-        { rank=same; GND; TXP; RXP; }
-        { rank=same; DIP; MASTER; }
+        { rank=same; DIP; MASTER; PB; }
         { rank=same; LED; SEG; }
     }
 
@@ -35,5 +37,6 @@ digraph G {
     MASTER -> TXP [label="GPIO_out"];
     RXP -> MASTER [label="GPIO_in"];
     DIP -> MASTER;
+    PB  -> MASTER [label="resetn"];
     MASTER -> SEG [label="통신 상태"];
 }

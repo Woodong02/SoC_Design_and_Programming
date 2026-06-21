@@ -6,17 +6,20 @@ digraph G {
 
     EXT [label="외부 테스트 장치", shape=ellipse];
     PS  [label="PS", shape=ellipse];
+    GND [label="GND"];
+    TXP [label="TX 포트"];
+    RXP [label="RX 포트"];
+
+    { rank=same; PS; GND; TXP; RXP; }
 
     subgraph cluster_pl {
         label="PL";
         style=dashed;
         fontname="Noto Sans CJK KR";
 
-        GND [label="GND"];
-        TXP [label="TX 포트"];
-        RXP [label="RX 포트"];
         LED [label="LED"];
         DIP [label="DIP Switch"];
+        PB  [label="Push Button"];
         SEG [label="7-Segment"];
 
         subgraph cluster_master {
@@ -47,7 +50,6 @@ digraph G {
             DEC  -> AXI  [label="slot_out,err_cnt", style=dashed];
         }
 
-        { rank=same; GND; TXP; RXP; }
         { rank=same; LED; SEG; }
 
         GND -> LED;
@@ -58,6 +60,7 @@ digraph G {
         DIP -> SEG;
         SLOT -> SEG;
         DEC  -> SEG;
+        PB   -> AXI [label="resetn"];
     }
 
     EXT -> PS [label="UART", dir=both];
