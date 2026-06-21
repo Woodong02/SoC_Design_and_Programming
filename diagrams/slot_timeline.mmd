@@ -1,24 +1,24 @@
 flowchart LR
-    SY["Sync 수신\n(슬롯 계산 기준점)"]:::sync --> H0a
+    SY["Sync 수신<br/>(슬롯 계산 기준점)"]:::sync --> Slot0
 
     subgraph Slot0 ["Slot 0"]
-        direction LR
-        H0a["½ guard tick"]:::guard --> D0["데이터 전송"]:::slot --> H0b["½ guard tick"]:::guard
+        direction TB
+        H0a["½ guard"]:::guard --> D0["데이터 전송"]:::slot --> H0b["½ guard"]:::guard
     end
 
     subgraph Slot1 ["Slot 1"]
-        direction LR
-        H1a["½ guard tick"]:::guard --> D1["데이터 전송"]:::slot --> H1b["½ guard tick"]:::guard
+        direction TB
+        H1a["½ guard"]:::guard --> D1["데이터 전송"]:::slot --> H1b["½ guard"]:::guard
     end
 
     subgraph SlotN ["Slot N"]
-        direction LR
-        HNa["½ guard tick"]:::guard --> DN["데이터 전송"]:::slot --> HNb["½ guard tick"]:::guard
+        direction TB
+        HNa["½ guard"]:::guard --> DN["데이터 전송"]:::slot --> HNb["½ guard"]:::guard
     end
 
-    H0b --> H1a
-    H1b --> HNa
-    HNb --> SY2["Sync 전송\n(다음 사이클 예고)"]:::sync
+    Slot0 --> Slot1
+    Slot1 --> SlotN
+    SlotN --> SY2["Sync 전송<br/>(다음 사이클 예고)"]:::sync
 
     classDef slot fill:#FFFFFF,stroke:#111111,stroke-width:1.2px,color:#222222
     classDef guard fill:#E0E0E0,stroke:#999999,stroke-width:0.5px,color:#999999
