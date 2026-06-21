@@ -9,7 +9,7 @@ digraph G {
     SLOT   [label="슬롯 스케줄러"];
     GPIOIN [label="GPIO_in", shape=ellipse];
     RX     [label="NRZ 수신"];
-    DISP   [label="디스플레이 제어"];
+    SEG    [label="7-Segment"];
     DEC    [label="Hamming 복호"];
     HALT   [label="halt_cmd 판정"];
     TX     [label="NRZ 송신"];
@@ -18,7 +18,7 @@ digraph G {
     { rank=same; PS; }
     { rank=same; AXI; }
     { rank=same; SLOT; }
-    { rank=same; GPIOIN; RX; DISP; }
+    { rank=same; GPIOIN; RX; SEG; }
     { rank=same; DEC; }
     { rank=same; HALT; TX; }
     { rank=same; GPIOOUT; }
@@ -27,9 +27,9 @@ digraph G {
     AXI -> SLOT [label="DIV,GUARD_TICKS.."];
     GPIOIN -> RX;
     SLOT -> RX [label="rx_stat"];
-    SLOT -> DISP;
+    SLOT -> SEG;
     RX -> DEC [label="data_out"];
-    DEC -> DISP;
+    DEC -> SEG;
     DEC -> HALT [label="err_cnt"];
     HALT -> TX [label="halt_cmd"];
     HALT -> DEC [label="halt_cmd"];
