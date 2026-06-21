@@ -34,7 +34,7 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
     fontSize: 40, bold: true, fontFace: FONT,
     color: C.title, align: "left", valign: "middle"
   });
-  s.addText("OSI 7계층을 단축한 TDMA 자체 계층 구조", {
+  s.addText("프레임 구조부터 동기화, 흐름 제어까지 통신 규약을 설계한다", {
     x: 0.6, y: 3.4, w: 8.8, h: 0.5,
     fontSize: 20, fontFace: FONT, color: C.sub, align: "left"
   });

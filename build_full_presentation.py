@@ -162,7 +162,7 @@ toc_sldId = sldIdLst[-1]
 sldIdLst.remove(toc_sldId)
 sldIdLst.insert(1, toc_sldId)
 
-add_section_slide(prs, "1. 프로젝트 소개", 0)
+add_section_slide(prs, "1. 프로젝트 소개", 0, subtitle="왜 시간을 나누어 전송해야 하는지, 프로젝트의 목표를 짚는다")
 # move the just-added section-1 divider (currently last) to position 2, right after the TOC slide
 sec1_sldId = sldIdLst[-1]
 sldIdLst.remove(sec1_sldId)
@@ -173,7 +173,7 @@ for fname in ["section2_tdma_protocol.pptx", "section3_block_diagrams.pptx"]:
     for slide in src.slides:
         copy_slide(prs, slide)
 
-add_section_slide(prs, "4. TDMA 통신 시연", 0)
+add_section_slide(prs, "4. TDMA 통신 시연", 0, subtitle="실제 보드에서 TDMA 통신이 동작하는 과정을 시연한다")
 add_section_slide(prs, "5. 마무리", 0)
 
 page = 0

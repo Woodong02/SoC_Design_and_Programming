@@ -105,7 +105,7 @@ pres.title = "Master / Slave 블록도";
     fontSize: 40, bold: true, fontFace: FONT,
     color: C.title, align: "left", valign: "middle"
   });
-  s.addText("시스템의 구현과 설계 특이사항을 다룬다", {
+  s.addText("하드웨어 블록 구성부터 고장 처리 로직까지 구현 세부사항을 짚는다", {
     x: 0.6, y: 3.4, w: 8.8, h: 0.5,
     fontSize: 20, fontFace: FONT, color: C.sub, align: "left"
   });
