@@ -1,5 +1,5 @@
-%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 35, 'rankSpacing': 45}}%%
-flowchart TD
+%%{init: {'themeVariables': {'fontSize': '40px'}}, 'flowchart': {'nodeSpacing': 45, 'rankSpacing': 70}}%%
+flowchart LR
     A["Master broadcast 프레임 수신"]:::node --> B["halt_mask 추출"]:::node
     B --> C["슬롯 시퀀서:\nactive_slot에서 halt 슬롯 제외"]:::node
     C --> D{"해당 슬롯 active?"}:::dim
@@ -9,5 +9,5 @@ flowchart TD
     G -- Yes --> F
     G -- No --> E
 
-classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
-classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:40px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:40px

@@ -37,20 +37,22 @@ const mkHdr = (t) => ({
   text: t, options: { bold: true, fill: { color: C.tblHdr }, color: "FFFFFF", fontSize: 14, fontFace: FONT }
 });
 
-// 텍스트(좌, 짧게) + 이미지(우, 세로로 긴 흐름도) 레이아웃
-function addTallFlowSlide(s, bullets, imgPath, ratio) {
+// 텍스트(상) + 이미지(하, 가로로 넓은 흐름도) 레이아웃
+function addBottomFlowSlide(s, bullets, imgPath, ratio) {
   s.addText(bullets.map((t, i) => ({
     text: t,
     options: {
       bullet: true, breakLine: i < bullets.length - 1,
-      fontSize: 16, color: C.body, paraSpaceAfter: 8
+      fontSize: 16, color: C.body, paraSpaceAfter: 6
     }
-  })), { x: 0.6, y: 1.35, w: 3.7, h: 3.25, fontFace: FONT, valign: "top" });
+  })), { x: 0.6, y: 1.3, w: 8.8, h: 0.75, fontFace: FONT, valign: "top" });
 
-  const boxH = 3.5;
-  const h = boxH, w = boxH * ratio;
-  const x = 4.7 + (4.7 - w) / 2;
-  const y = 1.2;
+  const boxW = 8.8, boxH = 2.9, boxRatio = boxW / boxH;
+  let w, h;
+  if (ratio >= boxRatio) { w = boxW; h = boxW / ratio; }
+  else { h = boxH; w = boxH * ratio; }
+  const x = 0.6 + (boxW - w) / 2;
+  const y = 2.1 + (boxH - h) / 2;
   s.addImage({ path: imgPath, x, y, w, h, sizing: { type: "contain", w, h } });
 }
 
@@ -144,12 +146,12 @@ pres.title = "Master / Slave 내부 동작 검증";
 {
   let s = pres.addSlide();
   addTitle(s, "Master 고장 처리 흐름도");
-  addTallFlowSlide(s, [
+  addBottomFlowSlide(s, [
     "슬롯마다 프리앰블 → 타이밍 → Hamming 순으로 검사",
     "각 단계의 오류는 해당 카운터를 증가시킴",
     "누적합이 FAULT_TH를 넘으면 halt_cmd=1, 이후 카운터는 동결됨",
     "halt_cmd는 리셋 전까지 유지되며, 취소 경로는 없음",
-  ], D + "master_fault_flow.png", 1568 / 4162);
+  ], D + "master_fault_flow.png", 1568 / 328);
   addPageNum(s, 6);
 }
 
@@ -169,12 +171,12 @@ pres.title = "Master / Slave 내부 동작 검증";
 {
   let s = pres.addSlide();
   addTitle(s, "Slave halt 흐름도");
-  addTallFlowSlide(s, [
+  addBottomFlowSlide(s, [
     "Master broadcast에서 halt_mask 추출",
     "슬롯 시퀀서가 active_slot에서 halt된 슬롯을 제외",
     "해당 슬롯은 TX를 발행하지 않음",
     "Master가 비트를 다시 0으로 보내면 자동 재개",
-  ], D + "slave_halt_flow.png", 1050 / 3832);
+  ], D + "slave_halt_flow.png", 1568 / 372);
   addPageNum(s, 8);
 }
 
