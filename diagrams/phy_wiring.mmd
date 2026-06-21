@@ -1,0 +1,9 @@
+flowchart LR
+    M["Master"]
+    S["Slave"]
+    M -->|"TX (Master→Slave)"| S
+    S -->|"TX (Slave→Master)"| M
+    M -.->|"GND (공통)"| S
+
+    style M fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
+    style S fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111
