@@ -163,19 +163,6 @@ pres.title = "Master / Slave 내부 동작 검증";
   addPageNum(s, 7);
 }
 
-// Slide 8: Slave halt 흐름도
-{
-  let s = pres.addSlide();
-  addTitle(s, "Slave halt 흐름도");
-  addBottomFlowSlide(s, [
-    "Master broadcast에서 halt_mask 추출",
-    "슬롯 시퀀서가 active_slot에서 halt된 슬롯을 제외",
-    "해당 슬롯은 TX를 발행하지 않음",
-    "Master가 비트를 다시 0으로 보내면 자동 재개",
-  ], D + "slave_halt_flow.png", 1568 / 372);
-  addPageNum(s, 8);
-}
-
 pres.writeFile({ fileName: __dirname + "/section3_part2_internals.pptx" })
   .then(() => console.log("done"))
   .catch(e => console.error(e));
