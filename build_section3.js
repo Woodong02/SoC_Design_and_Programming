@@ -274,10 +274,10 @@ pres.title = "Master / Slave 블록도";
   addPageNum(s, 14);
 }
 
-// Slide 15: Master 고장 처리 흐름도
+// Slide 15: Master의 고장 처리 흐름도
 {
   let s = pres.addSlide();
-  addTitle(s, "Master 고장 처리 흐름도");
+  addTitle(s, "Master의 고장 처리 흐름도");
   addBottomFlowSlide(s, [
     "슬롯마다 프리앰블 → 타이밍 → Hamming 순으로 검사",
     "각 단계의 오류는 해당 카운터를 증가시킴",
@@ -292,7 +292,7 @@ pres.title = "Master / Slave 블록도";
   let s = pres.addSlide();
   addTitle(s, "Slave의 고장 처리");
   addBulletSlide(s, [
-    { text: "Master broadcast 프레임의 halt_cmd(halt_mask) 필드를 수신하면 해당 슬롯은 송신 중단" },
+    { text: "Master broadcast 프레임의 halt_cmd 필드를 수신하면 해당 슬롯은 송신 중단" },
     { text: "Master가 다음 broadcast에서 해당 비트를 0으로 보내면 다음 사이클부터 자동으로 재개" },
     { text: "Slave 자체 감지 고장(tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit)은 플래그로 누적되어 인터럽트 신호만 발생, 별도 조치는 없음" },
   ]);

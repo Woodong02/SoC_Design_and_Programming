@@ -65,7 +65,7 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
     { text: "라인 코딩", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 10 } },
     { text: "NRZ (Non-Return-to-Zero)", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 16, color: "444444", paraSpaceAfter: 6 } },
     { text: "배선", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 10 } },
-    { text: "TX 1선 + RX 1선 + 공통 GND = 3선 — 슬레이브는 자신의 슬롯에만 TX 구동", options: { bullet: true, indentLevel: 1, fontSize: 16, color: "444444" } },
+    { text: "TX 1선 + RX 1선 + 공통 GND = 3선 — Slave는 자신의 슬롯에만 TX 구동", options: { bullet: true, indentLevel: 1, fontSize: 16, color: "444444" } },
   ], { x: 0.6, y: 1.35, w: 4.3, h: 3.25, fontFace: FONT, valign: "top" });
 
   const bw = 4.3, bh = bw * (411 / 491);
@@ -91,7 +91,7 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
     { text: "에러 검출/정정", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 8 } },
     { text: "SEC-DED 방식 — 1비트 에러는 검출 후 정정, 2비트 에러는 검출만 가능", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 16, color: "444444", paraSpaceAfter: 6 } },
     { text: "slot_id의 의미", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 8 } },
-    { text: "슬레이브 고유 식별자가 아니라 TDMA 슬롯 번호로 운용됨", options: { bullet: true, indentLevel: 1, fontSize: 16, color: "444444" } },
+    { text: "Slave 고유 식별자가 아니라 TDMA 슬롯 번호로 운용됨", options: { bullet: true, indentLevel: 1, fontSize: 16, color: "444444" } },
   ], { x: 0.6, y: 1.35, w: 8.8, h: 2.05, fontFace: FONT, valign: "top" });
 
   const iw = 8.8, ih = iw * (56 / 800);
@@ -115,7 +115,7 @@ pres.title = "TDMA PHY · Datalink · 프로토콜 정의";
     { text: "필드 구성", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 8 } },
     { text: "preamble(8) + halt_cmd(8) + guard_ticks(10) + reserved(17) + hamming parity(7)", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 16, color: "444444", paraSpaceAfter: 6 } },
     { text: "halt_cmd", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 8 } },
-    { text: "슬레이브별 1비트 마스크 — err_cnt가 임계치(FAULT_TH) 초과 시 해당 비트 set, 고장 슬레이브 중단 명령", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 16, color: "444444", paraSpaceAfter: 6 } },
+    { text: "Slave별 1비트 마스크 — err_cnt가 임계치(FAULT_TH) 초과 시 해당 비트 set, 고장 Slave 중단 명령", options: { bullet: true, indentLevel: 1, breakLine: true, fontSize: 16, color: "444444", paraSpaceAfter: 6 } },
     { text: "에러 검출/정정", options: { bullet: true, breakLine: true, fontSize: 19, color: C.body, paraSpaceAfter: 8 } },
     { text: "Slave 프레임과 동일한 SEC-DED 방식 적용", options: { bullet: true, indentLevel: 1, fontSize: 16, color: "444444" } },
   ], { x: 0.6, y: 1.35, w: 8.8, h: 2.25, fontFace: FONT, valign: "top" });
