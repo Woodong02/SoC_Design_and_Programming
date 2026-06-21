@@ -1,0 +1,8 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 60, 'rankSpacing': 80}}%%
+flowchart LR
+    GPIO["GPIO"]:::node
+    PL["PL\n(Slave IP 포함)"]:::node
+
+    GPIO <-->|"TX/RX 시리얼"| PL
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px

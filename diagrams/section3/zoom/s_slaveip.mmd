@@ -1,0 +1,27 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 35, 'rankSpacing': 55}}%%
+flowchart LR
+    GPIO["GPIO"]:::dim
+    LED["LED (PL)"]:::dim
+
+    subgraph SLAVEB ["Slave IP"]
+        direction LR
+        SYNC["수신/동기"]:::node
+        TIME["타이밍/스케줄"]:::node
+        TXPATH["페이로드/송신"]:::node
+        CFG["설정/보호"]:::node
+        STAT["상태/이벤트"]:::node
+
+        SYNC --> TIME
+        SYNC -.-> STAT
+        CFG --> TIME
+        CFG --> TXPATH
+        TIME --> TXPATH
+        TIME -.-> STAT
+        TXPATH -.-> STAT
+    end
+
+    GPIO --> SYNC
+    TXPATH --> GPIO
+    GPIO --> LED
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px

@@ -1,0 +1,9 @@
+flowchart TD
+    A["프레임 수신"] --> B{"에러 비트 수?"}
+    B -->|"1비트"| C["Hamming 정정 → 정상 사용"]
+    B -->|"2비트 이상"| D["무효 처리 → 폐기, 이전 값 유지"]
+
+    style A fill:#FFFFFF,stroke:#111111,color:#111111
+    style B fill:#FFFFFF,stroke:#111111,color:#111111
+    style C fill:#FFFFFF,stroke:#111111,color:#222222
+    style D fill:#FFFFFF,stroke:#111111,color:#222222

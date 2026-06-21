@@ -1,0 +1,19 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 70}}%%
+flowchart LR
+    EXT(["외부 테스트 장치"]):::node
+    PS["PS"]:::dim
+    PL["PL (Master IP 포함)"]:::dim
+
+    subgraph GPIOB ["GPIO"]
+        direction TB
+        GND["GND"]:::node
+        RXP["RX 포트"]:::node
+        TXP["TX 포트"]:::node
+    end
+
+    EXT <--> PS
+    PS <--> PL
+    RXP --> PL
+    PL <--> TXP
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px
