@@ -61,7 +61,7 @@ pres.title = "Master / Slave 내부 동작 검증";
   let s = pres.addSlide();
   addTitle(s, "멀티 슬롯 시뮬레이션 구조");
   addBulletSlide(s, [
-    { text: "별도의 \"슬레이브 ID\" 식별 시스템은 없음 — 슬롯 위치 번호(0~7)가 식별자 역할을 대신함" },
+    { text: "하나의 물리 시퀀서가 마스터 사이클마다 8개의 고정 슬롯을 순차 처리 — 슬롯 위치 번호(0~7)가 식별자 역할" },
     { text: "i_CFG_ACTIVE_SLOT[7:0] 비트마스크로 슬롯별 활성/비활성 결정" },
     { text: "슬롯별 payload 출처가 분리됨", level: 0 },
     { text: "슬롯 0~5: AXI 레지스터, 슬롯 6~7: 외부 PL 버스", level: 1 },
@@ -78,7 +78,7 @@ pres.title = "Master / Slave 내부 동작 검증";
     { text: "sync_pulse를 기준으로 8개 슬롯의 절대 타겟 틱을 계산 (slave_timing_scheduler)" },
     { text: "시퀀서 FSM이 슬롯 0→7 순서로 순회하며, 각 슬롯의 타겟 시각에 도달하면 TX 발행" },
     { text: "3비트 slot_id 필드 폭의 구조적 한계로 최대 8개로 고정 — 파라미터로 늘릴 수 없음" },
-    { text: "합성 가능한 실제 RTL로 구현되어 있으며, 테스트벤치 전용 코드가 아님" },
+    { text: "합성 가능한 RTL로 구현됨" },
   ]);
   addPageNum(s, 3);
 }
@@ -154,7 +154,7 @@ pres.title = "Master / Slave 내부 동작 검증";
   let s = pres.addSlide();
   addTitle(s, "Master의 고장 진단과 처리");
   s.addText(
-    "\"FSM이 진단한다\"는 표현과 달리, 실제로는 슬롯별 4개의 임계값 카운터(preamble_err_cnt, slot_timeout_cnt, hamming_err_cnt, silent_cnt)와 조합논리로 동작함",
+    "Master는 슬롯별로 4개의 임계값 카운터(preamble_err_cnt, slot_timeout_cnt, hamming_err_cnt, silent_cnt)와 조합논리로 고장을 진단함",
     { x: 0.6, y: 1.3, w: 8.8, h: 0.55, fontSize: 16, color: "444444", fontFace: FONT, valign: "top" }
   );
 
