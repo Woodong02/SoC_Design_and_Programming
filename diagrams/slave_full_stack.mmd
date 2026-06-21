@@ -1,0 +1,40 @@
+%%{init: {'themeVariables': {'fontSize': '22px'}}, 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 60}}%%
+flowchart LR
+    subgraph GPIOB ["GPIO"]
+        direction TB
+        GND["GND"]:::io
+        TXP["TX 포트"]:::io
+        RXP["RX 포트"]:::io
+    end
+
+    subgraph PLB ["PL"]
+        direction TB
+        LED["LED"]:::periph
+
+        subgraph SLAVEB ["Slave"]
+            direction TB
+            SYNC["수신/동기"]:::core
+            TIME["타이밍/스케줄"]:::core
+            TXPATH["페이로드/송신"]:::core
+            CFG["설정/보호"]:::logic
+            STAT["상태/이벤트"]:::logic
+
+            SYNC -->|"sync_pulse"| TIME
+            SYNC -.->|"rx_active,frame_done"| STAT
+            CFG -->|"cfg_guard_ticks,cfg_active_slot"| TIME
+            CFG -->|"cfg_data_out0-5"| TXPATH
+            TIME -->|"seq_tx_cmd_valid/slot_id"| TXPATH
+            TIME -.->|"seq_slot_cycle_done"| STAT
+            TXPATH -.->|"tx_done"| STAT
+        end
+    end
+
+    RXP -->|"i_master_serial"| SYNC
+    TXPATH -->|"o_slave_serial"| TXP
+    TXP --> LED
+    RXP --> LED
+
+    classDef io fill:#2D2D2D,stroke:#111111,color:#FFFFFF,font-weight:bold
+    classDef core fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold
+    classDef logic fill:#F2F2F2,stroke:#999999,stroke-width:1px,color:#111111,font-weight:bold
+    classDef periph fill:#F2F2F2,stroke:#999999,stroke-width:1px,color:#666666
