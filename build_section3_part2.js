@@ -95,7 +95,7 @@ pres.title = "Master / Slave 내부 동작 검증";
   addTitle(s, "Slave의 payload");
   s.addText([
     { text: "payload 레지스터는 리셋 시 0으로 초기화", options: { bullet: true, breakLine: true, fontSize: 18, color: C.body, paraSpaceAfter: 10 } },
-    { text: "버튼의 디바운스된 단발 펄스마다 슬롯별로 정해진 값만큼 증가", options: { bullet: true, fontSize: 18, color: C.body } },
+    { text: "버튼을 누를 때마다 슬롯별로 정해진 값만큼 증가", options: { bullet: true, fontSize: 18, color: C.body } },
   ], { x: 0.6, y: 1.3, w: 8.8, h: 0.95, fontFace: FONT, valign: "top" });
 
   s.addTable([
@@ -109,10 +109,6 @@ pres.title = "Master / Slave 내부 동작 검증";
     align: "center",
   });
 
-  s.addText(
-    "32비트 payload는 프레임 내부에서 {slot_id(3bit) + payload(32bit)}로 결합된 뒤 Hamming 인코딩되어 50비트 프레임으로 전송됨",
-    { x: 0.6, y: 3.7, w: 8.8, h: 0.7, fontSize: 16, color: "444444", fontFace: FONT, valign: "top" }
-  );
   addPageNum(s, 3);
 }
 
@@ -123,7 +119,7 @@ pres.title = "Master / Slave 내부 동작 검증";
   addBulletSlide(s, [
     { text: "Master·Slave는 클럭을 공유하지 않음 — 클럭 오차가 통신에 치명적인 방해 요인" },
     { text: "DIV 값을 AXI 레지스터로 설정해 클럭을 분주, Master·Slave 양쪽에 동일한 DIV 값을 쓴다고 가정" },
-    { text: "분주된 비트 구간은 Master가 DIV 클럭, Slave가 (DIV+1) 클럭으로 1클럭만큼 비대칭 — 동일 DIV를 가정해도 실제 주파수는 정확히 같지 않음" },
+    { text: "분주 클럭은 메인 클럭 / (DIV + 1)" },
     { text: "수신 샘플링은 비트 구간의 중간 지점에서 1회만 수행" },
   ]);
   addPageNum(s, 4);
@@ -160,9 +156,9 @@ pres.title = "Master / Slave 내부 동작 검증";
   let s = pres.addSlide();
   addTitle(s, "Slave의 고장 처리");
   addBulletSlide(s, [
-    { text: "Master broadcast 프레임의 halt_cmd(halt_mask) 필드를 수신하면 해당 슬롯을 active_slot에서 제외 → 그 슬롯의 TX가 발행되지 않음" },
-    { text: "Master가 다음 broadcast에서 해당 비트를 0으로 보내면 다음 사이클부터 자동으로 재개 — Slave 쪽에서 재시작을 요청하는 로직은 없음" },
-    { text: "Slave 자체 감지 고장(tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit)은 sticky 플래그로 누적되어 PS에 인터럽트만 발생, 자동 셧다운은 하지 않음" },
+    { text: "Master broadcast 프레임의 halt_cmd(halt_mask) 필드를 수신하면 해당 슬롯은 송신 중단" },
+    { text: "Master가 다음 broadcast에서 해당 비트를 0으로 보내면 다음 사이클부터 자동으로 재개" },
+    { text: "Slave 자체 감지 고장(tx_overlap, slot_timing_invalid, pl_payload6/7_invalid, rx_ham_2bit)은 플래그로 누적되어 인터럽트 신호만 발생, 별도 조치는 없음" },
   ]);
   addPageNum(s, 7);
 }
