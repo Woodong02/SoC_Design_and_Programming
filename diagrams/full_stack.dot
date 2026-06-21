@@ -1,28 +1,28 @@
 digraph G {
-    rankdir=LR;
+    rankdir=TB;
     fontname="Noto Sans CJK KR";
-    labelloc="t";
-    node [shape=box, fontname="Noto Sans CJK KR", fontsize=14, style=solid, color=black];
-    edge [fontname="Noto Sans CJK KR", fontsize=10, color=black];
+    node [shape=box, fontname="Noto Sans CJK KR", fontsize=14, color=black];
+    edge [fontname="Noto Sans CJK KR", fontsize=10, color=black, arrowsize=0.6];
 
     EXT [label="외부 테스트 장치", shape=ellipse];
-    PS [label="PS (ARM Core)", shape=ellipse];
+    PS  [label="PS", shape=ellipse];
 
-    subgraph cluster_board {
-        label="SoC 보드 (PL)";
+    subgraph cluster_pl {
+        label="PL";
         style=dashed;
+        fontname="Noto Sans CJK KR";
 
         GND [label="GND"];
         TXP [label="TX 포트"];
         RXP [label="RX 포트"];
         LED [label="LED"];
-        SEG [label="7-Segment"];
         DIP [label="DIP Switch"];
-        PB  [label="Push Button"];
+        SEG [label="7-Segment"];
 
         subgraph cluster_master {
             label="Master IP";
-            style=solid;
+            style=dashed;
+            fontname="Noto Sans CJK KR";
 
             AXI  [label="AXI-Lite 레지스터"];
             SLOT [label="슬롯 스케줄러"];
@@ -30,10 +30,12 @@ digraph G {
             DEC  [label="Hamming 복호"];
             HALT [label="halt_cmd 판정"];
             TX   [label="NRZ 송신"];
-            DISP [label="디스플레이 제어"];
 
-            { rank=same; RX; DEC; HALT; }
-            { rank=same; AXI; SLOT; TX; }
+            { rank=same; AXI; }
+            { rank=same; SLOT; }
+            { rank=same; RX; }
+            { rank=same; DEC; }
+            { rank=same; HALT; TX; }
 
             AXI  -> SLOT [label="DIV,GUARD_TICKS.."];
             SLOT -> RX   [label="rx_stat"];
@@ -43,20 +45,21 @@ digraph G {
             HALT -> DEC  [label="halt_cmd"];
             SLOT -> TX   [label="slot,cycle_cnt"];
             DEC  -> AXI  [label="slot_out,err_cnt", style=dashed];
-            SLOT -> DISP;
-            DEC  -> DISP;
         }
+
+        { rank=same; GND; TXP; RXP; }
+        { rank=same; LED; SEG; }
 
         GND -> LED;
         TXP -> LED;
         RXP -> LED;
-        TXP -> TX  [dir=back, label="GPIO_out"];
+        TX  -> TXP [label="GPIO_out"];
         RXP -> RX  [label="GPIO_in"];
-        DISP -> SEG;
-        DIP  -> DISP;
-        PB   -> SLOT [label="resetn_bt"];
+        DIP -> SEG;
+        SLOT -> SEG;
+        DEC  -> SEG;
     }
 
-    PS -> AXI [dir=both, label="AXI-Lite"];
-    PS -> EXT [dir=both, label="UART"];
+    EXT -> PS [label="UART", dir=both];
+    PS  -> AXI [label="AXI4-Lite", dir=both];
 }
