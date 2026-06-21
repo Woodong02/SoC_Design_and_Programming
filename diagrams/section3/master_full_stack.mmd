@@ -1,0 +1,72 @@
+%%{init: {'themeVariables': {'fontSize': '22px'}}, 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 60}}%%
+flowchart LR
+    EXT(["외부 테스트 장치"]):::io
+
+    subgraph PSB ["PS"]
+        direction TB
+        INIT["인터럽트 초기화"]:::core
+        CFG["마스터 설정"]:::core
+        UARTCMD["UART 명령 인터페이스"]:::core
+        ISR["인터럽트 처리"]:::core
+        POLL["상태 폴링 루프"]:::core
+
+        INIT --> CFG
+        CFG --> POLL
+        UARTCMD -.-> CFG
+        ISR -.->|"상태 로그"| UARTCMD
+    end
+
+    subgraph GPIOB ["GPIO"]
+        direction TB
+        GND["GND"]:::io
+        TXP["TX 포트"]:::io
+        RXP["RX 포트"]:::io
+    end
+
+    subgraph PLB ["PL"]
+        direction TB
+        LED["LED"]:::periph
+        DIP["DIP Switch"]:::periph
+        PB["Push Button"]:::periph
+        SEG["7-Segment"]:::periph
+
+        subgraph MASTERB ["Master IP"]
+            direction TB
+            AXI["AXI-Lite 레지스터"]:::axi
+            SLOT["슬롯 스케줄러"]:::core
+            RX["NRZ 수신"]:::core
+            DEC["Hamming 복호"]:::core
+            HALT["halt_cmd 판정"]:::logic
+            TX["NRZ 송신"]:::core
+
+            AXI -->|"DIV,GUARD_TICKS.."| SLOT
+            SLOT -->|"rx_stat"| RX
+            RX -->|"data_out"| DEC
+            DEC -->|"err_cnt"| HALT
+            HALT -->|"halt_cmd"| TX
+            HALT -->|"halt_cmd"| DEC
+            SLOT -->|"slot,cycle_cnt"| TX
+            DEC -.->|"slot_out,err_cnt"| AXI
+        end
+
+        PB --> AXI
+        DIP --> SEG
+        SLOT --> SEG
+        DEC --> SEG
+    end
+
+    EXT <-->|"UART"| UARTCMD
+    CFG -->|"AXI4-Lite (설정)"| AXI
+    POLL <-->|"AXI4-Lite (폴링)"| AXI
+    ISR <-->|"AXI4-Lite (인터럽트)"| AXI
+
+    TXP --> LED
+    RXP --> LED
+    TX -->|"GPIO_out"| TXP
+    RXP -->|"GPIO_in"| RX
+
+    classDef io fill:#2D2D2D,stroke:#111111,color:#FFFFFF,font-weight:bold
+    classDef axi fill:#E0E0E0,stroke:#999999,stroke-width:1px,color:#111111,font-weight:bold
+    classDef core fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold
+    classDef logic fill:#F2F2F2,stroke:#999999,stroke-width:1px,color:#111111,font-weight:bold
+    classDef periph fill:#F2F2F2,stroke:#999999,stroke-width:1px,color:#666666
