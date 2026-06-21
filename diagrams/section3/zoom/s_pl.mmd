@@ -1,0 +1,14 @@
+%%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 40, 'rankSpacing': 70}}%%
+flowchart LR
+    GPIO["GPIO"]:::dim
+
+    subgraph PLB ["PL"]
+        direction TB
+        LED["LED"]:::node
+        SIP["Slave IP"]:::dim
+    end
+
+    GPIO <--> LED
+    GPIO <--> SIP
+classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
+classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px
