@@ -70,16 +70,19 @@ digraph G {
 
         { rank=same; LED; SEG; }
 
-        GND -> LED;
-        TXP -> LED;
-        RXP -> LED;
-        TX  -> TXP [label="GPIO_out"];
-        RXP -> RX  [label="GPIO_in"];
         DIP -> SEG;
         SLOT -> SEG;
         DEC  -> SEG;
         PB   -> AXI [label="resetn"];
     }
+
+    { rank=same; GND; TXP; RXP; LED; }
+
+    GND -> LED;
+    TXP -> LED;
+    RXP -> LED;
+    TX  -> TXP [label="GPIO_out"];
+    RXP -> RX  [label="GPIO_in"];
 
     EXT -> UARTCMD [label="UART", dir=both];
     CFG  -> AXI [label="AXI4-Lite (설정)"];
