@@ -150,7 +150,7 @@ def renumber_page(slide, n):
 prs = Presentation("section1_intro.pptx")
 
 add_toc_slide(prs, [
-    "프로젝트 개요",
+    "프로젝트 소개",
     "TDMA PHY · Datalink · 프로토콜 정의",
     "Master / Slave 구현 사항",
     "TDMA 통신 시연",
@@ -161,6 +161,12 @@ sldIdLst = prs.slides._sldIdLst
 toc_sldId = sldIdLst[-1]
 sldIdLst.remove(toc_sldId)
 sldIdLst.insert(1, toc_sldId)
+
+add_section_slide(prs, "1. 프로젝트 소개", 0)
+# move the just-added section-1 divider (currently last) to position 2, right after the TOC slide
+sec1_sldId = sldIdLst[-1]
+sldIdLst.remove(sec1_sldId)
+sldIdLst.insert(2, sec1_sldId)
 
 for fname in ["section2_tdma_protocol.pptx", "section3_block_diagrams.pptx"]:
     src = Presentation(fname)
