@@ -1,0 +1,28 @@
+digraph G {
+    layout=neato;
+    fontname="Noto Sans CJK KR";
+    node [shape=box, fontname="Noto Sans CJK KR", fontsize=14, color=black];
+    edge [fontname="Noto Sans CJK KR", fontsize=10, color=black, arrowsize=0.6];
+
+    EXT [label="외부 테스트 장치", shape=ellipse, pos="0,6!"];
+    PS  [label="PS", shape=ellipse, pos="2.3,5!"];
+    DIP [label="DIP Switch", pos="0.5,3.2!"];
+    PB  [label="Push Button", pos="0.5,1.8!"];
+    MASTER [label="Master IP", pos="4.5,3.5!"];
+    SEG [label="7-Segment", pos="7,4.6!"];
+    TXP [label="TX 포트", pos="7,2.6!"];
+    RXP [label="RX 포트", pos="7,1.2!"];
+    GND [label="GND", pos="9,1.8!"];
+    LED [label="LED", pos="9,0.2!"];
+
+    EXT -> PS  [label="UART", dir=both];
+    PS  -> MASTER [label="AXI-Lite", dir=both];
+    DIP -> MASTER;
+    PB  -> MASTER [label="resetn_bt"];
+    MASTER -> SEG;
+    MASTER -> TXP [label="GPIO_out"];
+    RXP -> MASTER [label="GPIO_in"];
+    GND -> LED;
+    TXP -> LED;
+    RXP -> LED;
+}

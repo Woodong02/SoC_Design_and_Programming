@@ -1,0 +1,31 @@
+digraph G {
+    layout=neato;
+    fontname="Noto Sans CJK KR";
+    node [shape=box, fontname="Noto Sans CJK KR", fontsize=14, color=black];
+    edge [fontname="Noto Sans CJK KR", fontsize=10, color=black, arrowsize=0.6];
+
+    PS     [label="PS", shape=ellipse, pos="0,7!"];
+    AXI    [label="AXI-Lite 레지스터", pos="2.5,6.2!"];
+    SLOT   [label="슬롯 스케줄러", pos="5,5.2!"];
+    GPIOIN [label="GPIO_in", shape=ellipse, pos="1,3.8!"];
+    RX     [label="NRZ 수신", pos="4.5,3.6!"];
+    DISP   [label="디스플레이 제어", pos="7.5,4.4!"];
+    DEC    [label="Hamming 복호", pos="7,2.4!"];
+    HALT   [label="halt_cmd 판정", pos="9.5,1.4!"];
+    TX     [label="NRZ 송신", pos="9.5,3.2!"];
+    GPIOOUT [label="GPIO_out", shape=ellipse, pos="12,2.4!"];
+
+    PS -> AXI [label="AXI-Lite", dir=both];
+    AXI -> SLOT [label="DIV,GUARD_TICKS.."];
+    GPIOIN -> RX;
+    SLOT -> RX [label="rx_stat"];
+    RX -> DEC [label="data_out"];
+    DEC -> HALT [label="err_cnt"];
+    HALT -> TX [label="halt_cmd"];
+    HALT -> DEC [label="halt_cmd"];
+    SLOT -> TX [label="slot,cycle_cnt"];
+    DEC -> AXI [label="slot_out,err_cnt", style=dashed];
+    SLOT -> DISP;
+    DEC -> DISP;
+    TX -> GPIOOUT;
+}

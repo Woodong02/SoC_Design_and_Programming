@@ -1,0 +1,13 @@
+digraph G {
+    layout=neato;
+    fontname="Noto Sans CJK KR";
+    node [shape=box, fontname="Noto Sans CJK KR", fontsize=15, color=black];
+    edge [fontname="Noto Sans CJK KR", fontsize=12, color=black, arrowsize=0.7];
+
+    EXT [label="외부 테스트 장치", shape=ellipse, pos="0,3!"];
+    PS  [label="PS", shape=ellipse, pos="2.5,1.7!"];
+    PL  [label="PL", pos="5,0.3!"];
+
+    EXT -> PS [label="UART", dir=both];
+    PS  -> PL [label="AXI-Lite", dir=both];
+}
