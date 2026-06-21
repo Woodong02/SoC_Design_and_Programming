@@ -9,175 +9,196 @@ z2
 cModel Technology
 Z0 dC:/SoC_Design_and_Programming/dev/slave_passive
 vbin2seg
-Z1 !s110 1781574369
+Z1 !s110 1781598052
 !i10b 1
 !s100 R=n0c6_@jD6E498CXfcdW3
 IRBl_O3Ma4XG>F6JddI1eX0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z3 w1780271919
+Z3 dC:/SoC_Design_and_Programming/slave_passive
+Z4 w1780271919
 8Master_source/bin2seg.v
 FMaster_source/bin2seg.v
 L0 1
-Z4 OV;L;10.5b;63
+Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1781574368.000000
+Z6 !s108 1781598052.000000
 !s107 Master_source/bin2seg.v|
 !s90 -reportprogress|300|-work|work|Master_source/bin2seg.v|
 !i113 1
-Z6 o-work work
-Z7 tCvgOpt 0
+Z7 o-work work
+Z8 tCvgOpt 0
+vbtn_payload_ctrl
+Z9 !s110 1781598053
+!i10b 1
+!s100 R88PneZ7E1>XUh6ZmW6Y^1
+I;2jbVKXJ:N]9=Q?E^RC8_0
+R2
+R3
+w1781588759
+8test_src/btn_payload_ctrl.v
+Ftest_src/btn_payload_ctrl.v
+L0 13
+R5
+r1
+!s85 0
+31
+Z10 !s108 1781598053.000000
+!s107 test_src/btn_payload_ctrl.v|
+!s90 -reportprogress|300|-work|work|test_src/btn_payload_ctrl.v|
+!i113 1
+R7
+R8
 vg2m
 R1
 !i10b 1
 !s100 hm:WX`n9TNSS2aY>cbdgX0
 IK=9nFI9In_i]dg]E7eX>12
 R2
-R0
+R3
 w1621666126
 8Master_source/g2m.v
 FMaster_source/g2m.v
 L0 8
-R4
+R5
 r1
 !s85 0
 31
-Z8 !s108 1781574369.000000
+R6
 !s107 Master_source/g2m.v|
 !s90 -reportprogress|300|-work|work|Master_source/g2m.v|
 !i113 1
-R6
 R7
+R8
 vhamming_dec
-Z9 !s110 1781574368
+R1
 !i10b 1
 !s100 gG1oBJ^7JnQeSBD>f>2>z0
 IF10IASTCf0]X=U`M<QIgU2
 R2
-R0
 R3
+R4
 8Master_source/hamming_dec.v
 FMaster_source/hamming_dec.v
 L0 15
-R4
+R5
 r1
 !s85 0
 31
-R5
+R6
 !s107 Master_source/hamming_dec.v|
 !s90 -reportprogress|300|-work|work|Master_source/hamming_dec.v|
 !i113 1
-R6
 R7
+R8
 vhamming_enc
-R9
+R1
 !i10b 1
 !s100 hHc@ljY>20@Yj2g2Qai3U0
 I8@IBAF1fO3IZj<az1@WAA1
 R2
-R0
 R3
+R4
 8Master_source/hamming_enc.v
 FMaster_source/hamming_enc.v
 L0 14
-R4
+R5
 r1
 !s85 0
 31
-R5
+R6
 !s107 Master_source/hamming_enc.v|
 !s90 -reportprogress|300|-work|work|Master_source/hamming_enc.v|
 !i113 1
-R6
 R7
+R8
 vhorizontal
 R1
 !i10b 1
 !s100 HMMkI6N8m1TeSiOf?bzA10
 IgVM9VSI3mR:bh2;8^O8<P1
 R2
-R0
+R3
 w1621666118
 8Master_source/horizontal.v
 FMaster_source/horizontal.v
 L0 3
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/horizontal.v|
 !s90 -reportprogress|300|-work|work|Master_source/horizontal.v|
 !i113 1
-R6
 R7
+R8
 vMaster_dec_ham
-R9
+R1
 !i10b 1
 !s100 BBn9_c8Iko];@`IngPzIf2
 IAhUi`92dgU@;]D0A>_kAZ3
 R2
-R0
+R3
 w1780892252
 8Master_source/error_with_hamming.v
 FMaster_source/error_with_hamming.v
 L0 1
-R4
+R5
 r1
 !s85 0
 31
-R5
+R6
 !s107 Master_source/error_with_hamming.v|
 !s90 -reportprogress|300|-work|work|Master_source/error_with_hamming.v|
 !i113 1
-R6
 R7
+R8
 n@master_dec_ham
 vMaster_rx
-R9
+R1
 !i10b 1
 !s100 @olP8e:036mAd0hUzBY_C0
 I`AF<8DcHKSAhCNcIjOlk]0
 R2
-R0
+R3
 w1780980594
 8Master_source/Master_rx.v
 FMaster_source/Master_rx.v
 L0 1
-R4
+R5
 r1
 !s85 0
 31
-R5
+R6
 !s107 Master_source/Master_rx.v|
 !s90 -reportprogress|300|-work|work|Master_source/Master_rx.v|
 !i113 1
-R6
 R7
+R8
 n@master_rx
 vMaster_slot
-R9
+R1
 !i10b 1
 !s100 dJ?X^iUCz<Ug5_P:g4ZE=1
 IhOUFagKd0gG0O941T[D_i3
 R2
-R0
+R3
 w1780997178
 8Master_source/Master_slot.v
 FMaster_source/Master_slot.v
 L0 1
-R4
+R5
 r1
 !s85 0
 31
-R5
+!s108 1781598051.000000
 !s107 Master_source/Master_slot.v|
 !s90 -reportprogress|300|-work|work|Master_source/Master_slot.v|
 !i113 1
-R6
 R7
+R8
 n@master_slot
 vmaster_top
 R1
@@ -185,64 +206,64 @@ R1
 !s100 [G]=?^XlYh[1@0lQV;f251
 IIGBf^@V2^M5@lH2;;`[[W3
 R2
-R0
+R3
 w1780579875
 8Master_source/Master_top.v
 FMaster_source/Master_top.v
 L0 1
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/Master_top.v|
 !s90 -reportprogress|300|-work|work|Master_source/Master_top.v|
 !i113 1
-R6
 R7
+R8
 vMaster_tx
-R9
+R1
 !i10b 1
 !s100 9aTzPCV^i^@g<YoGz;cCd0
 Idi6ddOLGD@gbAQLI6_V1H2
 R2
-R0
+R3
 w1780579717
 8Master_source/Master_tx.v
 FMaster_source/Master_tx.v
 L0 6
-R4
+R5
 r1
 !s85 0
 31
-R5
+R6
 !s107 Master_source/Master_tx.v|
 !s90 -reportprogress|300|-work|work|Master_source/Master_tx.v|
 !i113 1
-R6
 R7
+R8
 n@master_tx
 vMaster_v1_0_S00_AXI
-R1
+R9
 !i10b 1
 !s100 EZNXPMG^79[U>LT>5F9bI1
 IDZhi2oK1V8dLK<3b9Uf0f2
 R2
-R0
+R3
 w1780579452
 8Master_source/Master_v1_0_S00_AXI.v
 FMaster_source/Master_v1_0_S00_AXI.v
 L0 4
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/Master_v1_0_S00_AXI.v|
 !s90 -reportprogress|300|-work|work|Master_source/Master_v1_0_S00_AXI.v|
 !i113 1
-R6
 R7
+R8
 n@master_v1_0_@s00_@a@x@i
 vrgb
 R1
@@ -250,212 +271,212 @@ R1
 !s100 H`;6QzSfVP_AZW9TL3g?@0
 I8U^=R6f7d8PEi1SoBcMV`0
 R2
-R0
+R3
 w1780893892
 8Master_source/rgb.v
 FMaster_source/rgb.v
 L0 24
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/rgb.v|
 !s90 -reportprogress|300|-work|work|Master_source/rgb.v|
 !i113 1
-R6
 R7
+R8
 vseven_seg
 R1
 !i10b 1
 !s100 0n_@PIaMB5emXJFV8?PC81
 I:;3Y>eF9b_lL9bK1beoUk0
 R2
-R0
 R3
+R4
 8Master_source/seven_seg.v
 FMaster_source/seven_seg.v
 L0 1
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/seven_seg.v|
 !s90 -reportprogress|300|-work|work|Master_source/seven_seg.v|
 !i113 1
-R6
 R7
+R8
 vslave_broadcast_decoder
-Z10 !s110 1781574370
+R9
 !i10b 1
 !s100 oig=i=lllQS6J3dIlnF;81
-IPJ]51n@FG?2_S:9dLlL3T0
+I>59V4JBWm5YGhYG6<DADc2
 R2
-R0
+R3
 Z11 w1780639907
-8rtl/slave_broadcast_decoder.v
-Frtl/slave_broadcast_decoder.v
+8test_src/slave_broadcast_decoder.v
+Ftest_src/slave_broadcast_decoder.v
 Z12 L0 10
-R4
+R5
 r1
 !s85 0
 31
-Z13 !s108 1781574370.000000
-!s107 rtl/slave_broadcast_decoder.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_broadcast_decoder.v|
-!i113 1
-R6
-R7
-vslave_broadcast_rx
 R10
+!s107 test_src/slave_broadcast_decoder.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_broadcast_decoder.v|
+!i113 1
+R7
+R8
+vslave_broadcast_rx
+R9
 !i10b 1
 !s100 Gi>4M7M:Whgc1A8>^M^2i0
-ImD=?d:aoDHM4>gXnKG8DR0
+I_fS02@2SSfIQBS:?=69nR2
 R2
-R0
+R3
 R11
-8rtl/slave_broadcast_rx.v
-Frtl/slave_broadcast_rx.v
+8test_src/slave_broadcast_rx.v
+Ftest_src/slave_broadcast_rx.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_broadcast_rx.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_broadcast_rx.v|
-!i113 1
-R6
-R7
-vslave_cfg_shadow
 R10
-!i10b 1
-!s100 k[QF6e;PmH@ZPEIgT;4G@3
-IzgC^37z`IIKhXfD7;XRZi1
-R2
-R0
-R11
-8rtl/slave_cfg_shadow.v
-Frtl/slave_cfg_shadow.v
-L0 9
-R4
-r1
-!s85 0
-31
+!s107 test_src/slave_broadcast_rx.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_broadcast_rx.v|
+!i113 1
+R7
 R8
-!s107 rtl/slave_cfg_shadow.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_cfg_shadow.v|
-!i113 1
-R6
-R7
-vslave_frame_builder
+vslave_cfg_shadow
+R9
+!i10b 1
+!s100 _G=<MCSm^GLB`TUOhLlVo1
+ID8ZLmIAXH?X=zh9`JTgk?3
+R2
+R3
+w1781592488
+8test_src/slave_cfg_shadow.v
+Ftest_src/slave_cfg_shadow.v
+L0 9
+R5
+r1
+!s85 0
+31
 R10
+!s107 test_src/slave_cfg_shadow.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_cfg_shadow.v|
+!i113 1
+R7
+R8
+vslave_frame_builder
+R9
 !i10b 1
 !s100 WfZSHXZ5E;CM1nWIclmP@2
-IzlGol<G[dk=ia@fz:S19f3
+I77Sz7?Bd:G?7MKCQcdFk^0
 R2
-R0
+R3
 R11
-8rtl/slave_frame_builder.v
-Frtl/slave_frame_builder.v
+8test_src/slave_frame_builder.v
+Ftest_src/slave_frame_builder.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_frame_builder.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_frame_builder.v|
+R10
+!s107 test_src/slave_frame_builder.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_frame_builder.v|
 !i113 1
-R6
 R7
+R8
 vslave_hamming_dec
-R1
+R9
 !i10b 1
 !s100 7DRhz??Pb?ooF10zAO_322
-IJeh;dJ5MBY]DH=ozGhc5@0
+I<9j3G:aHAg0mUbJj1F2gG2
 R2
-R0
+R3
 R11
-8rtl/slave_hamming_dec.v
-Frtl/slave_hamming_dec.v
+8test_src/slave_hamming_dec.v
+Ftest_src/slave_hamming_dec.v
 L0 4
-R4
+R5
 r1
 !s85 0
 31
-R8
-!s107 rtl/slave_hamming_dec.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_hamming_dec.v|
+R10
+!s107 test_src/slave_hamming_dec.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_hamming_dec.v|
 !i113 1
-R6
 R7
+R8
 vslave_hamming_enc
-R1
+R9
 !i10b 1
 !s100 ?Sa0JX;lN0iDA[hBhhNIz1
-IiKEkgZ0a[OD2`z:ooMb=I3
+I0Q;XXa:[JngNN>9XSk3PO1
 R2
-R0
+R3
 R11
-8rtl/slave_hamming_enc.v
-Frtl/slave_hamming_enc.v
+8test_src/slave_hamming_enc.v
+Ftest_src/slave_hamming_enc.v
 L0 5
-R4
+R5
 r1
 !s85 0
 31
-R8
-!s107 rtl/slave_hamming_enc.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_hamming_enc.v|
-!i113 1
-R6
-R7
-vslave_ip_top
 R10
+!s107 test_src/slave_hamming_enc.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_hamming_enc.v|
+!i113 1
+R7
+R8
+vslave_ip_top
+R9
 !i10b 1
 !s100 4W?mk[Sch5YP8b@>7;iof1
-IRBGUZ`7T@>W3??GN^2?3<0
+IzZ3]`cT;:>ahmIGoOfl=[0
 R2
-R0
+R3
 R11
-8rtl/slave_ip_top.v
-Frtl/slave_ip_top.v
-Z14 L0 12
-R4
+8test_src/slave_ip_top.v
+Ftest_src/slave_ip_top.v
+Z13 L0 12
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_ip_top.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_ip_top.v|
-!i113 1
-R6
-R7
-vslave_payload_table
 R10
+!s107 test_src/slave_ip_top.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_ip_top.v|
+!i113 1
+R7
+R8
+vslave_payload_table
+R9
 !i10b 1
 !s100 40BF4MJBVne2SIhggkW_Y0
-IJ]OPalC4Z5[VZDEa=59GR0
+I?gaa_zA<LPCPhPGC4XAIa2
 R2
-R0
+R3
 R11
-8rtl/slave_payload_table.v
-Frtl/slave_payload_table.v
+8test_src/slave_payload_table.v
+Ftest_src/slave_payload_table.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_payload_table.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_payload_table.v|
+R10
+!s107 test_src/slave_payload_table.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_payload_table.v|
 !i113 1
-R6
 R7
+R8
 vslave_pl_top
-Z15 !s110 1781574371
+Z14 !s110 1781574371
 !i10b 1
 !s100 933jHUJ]?I7Y^I?BXjeKR1
 Ij8SPB@2j8:F4=VEV4VYPO0
@@ -465,123 +486,123 @@ w1780996292
 8rtl/slave_pl_top.v
 Frtl/slave_pl_top.v
 L0 16
-R4
+R5
 r1
 !s85 0
 31
-R13
+!s108 1781574370.000000
 !s107 rtl/slave_pl_top.v|
 !s90 -reportprogress|300|-work|work|rtl/slave_pl_top.v|
 !i113 1
-R6
 R7
+R8
 vslave_slot_sequencer
-R10
+R9
 !i10b 1
 !s100 ZBPY[hIPL[:@360mJ^^W90
-IXO]m8_88T9OcTiCQ3CX;63
+IbC<=L6eB5;?U:1]`65RR^2
 R2
-R0
+R3
 w1780997764
-8rtl/slave_slot_sequencer.v
-Frtl/slave_slot_sequencer.v
+8test_src/slave_slot_sequencer.v
+Ftest_src/slave_slot_sequencer.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_slot_sequencer.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_slot_sequencer.v|
-!i113 1
-R6
-R7
-vslave_status_event
 R10
+!s107 test_src/slave_slot_sequencer.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_slot_sequencer.v|
+!i113 1
+R7
+R8
+vslave_status_event
+R9
 !i10b 1
 !s100 NY^HUd5E47TglknC:zD?M0
-IF800B]@8Gh9`O2CL10ka_1
+I02[`b;6zC0IBI5K9n4^:?3
 R2
-R0
+R3
 R11
-8rtl/slave_status_event.v
-Frtl/slave_status_event.v
+8test_src/slave_status_event.v
+Ftest_src/slave_status_event.v
 L0 8
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_status_event.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_status_event.v|
-!i113 1
-R6
-R7
-vslave_sync_detector
 R10
+!s107 test_src/slave_status_event.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_status_event.v|
+!i113 1
+R7
+R8
+vslave_sync_detector
+R9
 !i10b 1
 !s100 [eg<57zIENg6[@_WgB`<`3
-I>:Od`1P>6bLl]^jD`<1Oe3
+ILmWVJ[GOjF>;IVlgDkn6O3
 R2
-R0
+R3
 R11
-8rtl/slave_sync_detector.v
-Frtl/slave_sync_detector.v
+8test_src/slave_sync_detector.v
+Ftest_src/slave_sync_detector.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_sync_detector.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_sync_detector.v|
-!i113 1
-R6
-R7
-vslave_timing_scheduler
 R10
+!s107 test_src/slave_sync_detector.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_sync_detector.v|
+!i113 1
+R7
+R8
+vslave_timing_scheduler
+R9
 !i10b 1
 !s100 g[hO:Y:ob;4Z8?__AnTR`2
-Iobz;oDMAE2bodXk:mUa4Z3
+IFA=6jEdfz]J9jS<WG]HRR1
 R2
-R0
+R3
 w1780996008
-8rtl/slave_timing_scheduler.v
-Frtl/slave_timing_scheduler.v
+8test_src/slave_timing_scheduler.v
+Ftest_src/slave_timing_scheduler.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_timing_scheduler.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_timing_scheduler.v|
-!i113 1
-R6
-R7
-vslave_tx_serializer
 R10
+!s107 test_src/slave_timing_scheduler.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_timing_scheduler.v|
+!i113 1
+R7
+R8
+vslave_tx_serializer
+R9
 !i10b 1
 !s100 UPc0eDQT03NQ2Z38gLKKj0
-I1zgGBF_gM=7ZFNMNSoU_80
+IQzBUCccf1D95E=:bI3DOl2
 R2
-R0
+R3
 R11
-8rtl/slave_tx_serializer.v
-Frtl/slave_tx_serializer.v
+8test_src/slave_tx_serializer.v
+Ftest_src/slave_tx_serializer.v
 R12
-R4
+R5
 r1
 !s85 0
 31
-R13
-!s107 rtl/slave_tx_serializer.v|
-!s90 -reportprogress|300|-work|work|rtl/slave_tx_serializer.v|
+R10
+!s107 test_src/slave_tx_serializer.v|
+!s90 -reportprogress|300|-work|work|test_src/slave_tx_serializer.v|
 !i113 1
-R6
 R7
+R8
 vtb_axi_master_slave_comm
-R15
+R14
 !i10b 1
 !s100 7YZfAEEaIi:fh[08c2[m72
 I2MVA1zB0U6TZe[Qmi4jag3
@@ -591,7 +612,7 @@ w1780998224
 8tb/tb_axi_master_slave_comm.v
 Ftb/tb_axi_master_slave_comm.v
 L0 21
-R4
+R5
 r1
 !s85 0
 31
@@ -599,8 +620,29 @@ r1
 !s107 tb/tb_axi_master_slave_comm.v|
 !s90 -reportprogress|300|-work|work|tb/tb_axi_master_slave_comm.v|
 !i113 1
-R6
 R7
+R8
+vtb_btn_slave_master_comm
+R9
+!i10b 1
+!s100 >7SgX8_]GjC_elbMB7H0K3
+I9MXhGziBzj6MBVoD8nAOV3
+R2
+R3
+w1781597764
+8tb/tb_btn_slave_master_comm.v
+Ftb/tb_btn_slave_master_comm.v
+L0 32
+R5
+r1
+!s85 0
+31
+R10
+!s107 tb/tb_btn_slave_master_comm.v|
+!s90 -reportprogress|300|-work|work|tb/tb_btn_slave_master_comm.v|
+!i113 1
+R7
+R8
 vtb_master_slave_pl_comm
 !s110 1780984490
 !i10b 1
@@ -611,8 +653,8 @@ R0
 w1780983918
 8tb/tb_master_slave_pl_comm.v
 Ftb/tb_master_slave_pl_comm.v
-R14
-R4
+R13
+R5
 r1
 !s85 0
 31
@@ -620,9 +662,9 @@ r1
 !s107 tb/tb_master_slave_pl_comm.v|Master_source/Master_rx.v|Master_source/Master_tx.v|Master_source/Master_slot.v|Master_source/error_with_hamming.v|Master_source/hamming_dec.v|Master_source/hamming_enc.v|rtl/slave_pl_top.v|rtl/slave_ip_top.v|rtl/slave_tx_serializer.v|rtl/slave_timing_scheduler.v|rtl/slave_status_event.v|rtl/slave_slot_sequencer.v|rtl/slave_payload_table.v|rtl/slave_frame_builder.v|rtl/slave_cfg_shadow.v|rtl/slave_broadcast_decoder.v|rtl/slave_broadcast_rx.v|rtl/slave_sync_detector.v|rtl/slave_hamming_dec.v|rtl/slave_hamming_enc.v|
 !s90 rtl/slave_hamming_enc.v|rtl/slave_hamming_dec.v|rtl/slave_sync_detector.v|rtl/slave_broadcast_rx.v|rtl/slave_broadcast_decoder.v|rtl/slave_cfg_shadow.v|rtl/slave_frame_builder.v|rtl/slave_payload_table.v|rtl/slave_slot_sequencer.v|rtl/slave_status_event.v|rtl/slave_timing_scheduler.v|rtl/slave_tx_serializer.v|rtl/slave_ip_top.v|rtl/slave_pl_top.v|Master_source/hamming_enc.v|Master_source/hamming_dec.v|Master_source/error_with_hamming.v|Master_source/Master_slot.v|Master_source/Master_tx.v|Master_source/Master_rx.v|tb/tb_master_slave_pl_comm.v|
 !i113 1
-R7
+R8
 vtb_slave_broadcast_rx_decoder
-Z16 !s110 1780983063
+Z15 !s110 1780983063
 !i10b 1
 !s100 GM4k]4ijmS@SncC3M0QkW1
 IoV0_:RT[=b:LPJFAHlGA[3
@@ -632,15 +674,15 @@ R11
 8tb/tb_slave_broadcast_rx_decoder.v
 Ftb/tb_slave_broadcast_rx_decoder.v
 L0 3
-R4
+R5
 r1
 !s85 0
 31
-Z17 !s108 1780983063.000000
-Z18 !s107 tb/tb_slave_tx_path.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_broadcast_rx_decoder.v|rtl/slave_pl_top.v|rtl/slave_ip_top.v|rtl/slave_tx_serializer.v|rtl/slave_timing_scheduler.v|rtl/slave_status_event.v|rtl/slave_slot_sequencer.v|rtl/slave_payload_table.v|rtl/slave_frame_builder.v|rtl/slave_cfg_shadow.v|rtl/slave_broadcast_decoder.v|rtl/slave_broadcast_rx.v|rtl/slave_sync_detector.v|rtl/slave_hamming_dec.v|rtl/slave_hamming_enc.v|
-Z19 !s90 rtl/slave_hamming_enc.v|rtl/slave_hamming_dec.v|rtl/slave_sync_detector.v|rtl/slave_broadcast_rx.v|rtl/slave_broadcast_decoder.v|rtl/slave_cfg_shadow.v|rtl/slave_frame_builder.v|rtl/slave_payload_table.v|rtl/slave_slot_sequencer.v|rtl/slave_status_event.v|rtl/slave_timing_scheduler.v|rtl/slave_tx_serializer.v|rtl/slave_ip_top.v|rtl/slave_pl_top.v|tb/tb_slave_broadcast_rx_decoder.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_tx_path.v|
+Z16 !s108 1780983063.000000
+Z17 !s107 tb/tb_slave_tx_path.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_broadcast_rx_decoder.v|rtl/slave_pl_top.v|rtl/slave_ip_top.v|rtl/slave_tx_serializer.v|rtl/slave_timing_scheduler.v|rtl/slave_status_event.v|rtl/slave_slot_sequencer.v|rtl/slave_payload_table.v|rtl/slave_frame_builder.v|rtl/slave_cfg_shadow.v|rtl/slave_broadcast_decoder.v|rtl/slave_broadcast_rx.v|rtl/slave_sync_detector.v|rtl/slave_hamming_dec.v|rtl/slave_hamming_enc.v|
+Z18 !s90 rtl/slave_hamming_enc.v|rtl/slave_hamming_dec.v|rtl/slave_sync_detector.v|rtl/slave_broadcast_rx.v|rtl/slave_broadcast_decoder.v|rtl/slave_cfg_shadow.v|rtl/slave_frame_builder.v|rtl/slave_payload_table.v|rtl/slave_slot_sequencer.v|rtl/slave_status_event.v|rtl/slave_timing_scheduler.v|rtl/slave_tx_serializer.v|rtl/slave_ip_top.v|rtl/slave_pl_top.v|tb/tb_slave_broadcast_rx_decoder.v|tb/tb_slave_timing_scheduler.v|tb/tb_slave_tx_path.v|
 !i113 1
-R7
+R8
 vtb_slave_timing_scheduler
 !s110 1780996090
 !i10b 1
@@ -652,7 +694,7 @@ w1780996085
 8tb/tb_slave_timing_scheduler.v
 Ftb/tb_slave_timing_scheduler.v
 L0 3
-R4
+R5
 r1
 !s85 0
 31
@@ -660,10 +702,10 @@ r1
 !s107 tb/tb_slave_timing_scheduler.v|
 !s90 -work|work|tb/tb_slave_timing_scheduler.v|
 !i113 1
-R6
 R7
+R8
 vtb_slave_tx_path
-R16
+R15
 !i10b 1
 !s100 1RmfO5LmfeAegdJ0Ti@Gc3
 I03=F=cEC:LV>]1bOUNekH0
@@ -673,36 +715,36 @@ R11
 8tb/tb_slave_tx_path.v
 Ftb/tb_slave_tx_path.v
 L0 3
-R4
+R5
 r1
 !s85 0
 31
+R16
 R17
 R18
-R19
 !i113 1
-R7
+R8
 vTFTLCDctrl
 R1
 !i10b 1
 !s100 5DV]SNIFldbKP[k=W^@nF3
 Iddd;EWEUM0Rk5N>]KXK801
 R2
-R0
+R3
 w1780579974
 8Master_source/TFTLCDCtrl.v
 FMaster_source/TFTLCDCtrl.v
 L0 8
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/TFTLCDCtrl.v|
 !s90 -reportprogress|300|-work|work|Master_source/TFTLCDCtrl.v|
 !i113 1
-R6
 R7
+R8
 n@t@f@t@l@c@dctrl
 vvertical
 R1
@@ -710,18 +752,18 @@ R1
 !s100 K<h4F^0<Z6D7S_X4VGGa`1
 IcL;8OI]g8kHbzJ1UL8PRl1
 R2
-R0
+R3
 w1621666052
 8Master_source/vertical.v
 FMaster_source/vertical.v
 L0 2
-R4
+R5
 r1
 !s85 0
 31
-R8
+R6
 !s107 Master_source/vertical.v|
 !s90 -reportprogress|300|-work|work|Master_source/vertical.v|
 !i113 1
-R6
 R7
+R8

@@ -1,0 +1,140 @@
+# do _check.do
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work work 
+# Copying C:/intelFPGA/18.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:25 on Jun 16,2026
+# vlog -work work slave_hamming_enc.v 
+# -- Compiling module slave_hamming_enc
+# 
+# Top level modules:
+# 	slave_hamming_enc
+# End time: 15:48:25 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:25 on Jun 16,2026
+# vlog -work work slave_hamming_dec.v 
+# -- Compiling module slave_hamming_dec
+# 
+# Top level modules:
+# 	slave_hamming_dec
+# End time: 15:48:25 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:25 on Jun 16,2026
+# vlog -work work slave_cfg_shadow.v 
+# -- Compiling module slave_cfg_shadow
+# 
+# Top level modules:
+# 	slave_cfg_shadow
+# End time: 15:48:25 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:25 on Jun 16,2026
+# vlog -work work slave_broadcast_rx.v 
+# -- Compiling module slave_broadcast_rx
+# 
+# Top level modules:
+# 	slave_broadcast_rx
+# End time: 15:48:25 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:25 on Jun 16,2026
+# vlog -work work slave_broadcast_decoder.v 
+# -- Compiling module slave_broadcast_decoder
+# 
+# Top level modules:
+# 	slave_broadcast_decoder
+# End time: 15:48:25 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_sync_detector.v 
+# -- Compiling module slave_sync_detector
+# 
+# Top level modules:
+# 	slave_sync_detector
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_timing_scheduler.v 
+# -- Compiling module slave_timing_scheduler
+# 
+# Top level modules:
+# 	slave_timing_scheduler
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_tx_serializer.v 
+# -- Compiling module slave_tx_serializer
+# 
+# Top level modules:
+# 	slave_tx_serializer
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_frame_builder.v 
+# -- Compiling module slave_frame_builder
+# 
+# Top level modules:
+# 	slave_frame_builder
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_payload_table.v 
+# -- Compiling module slave_payload_table
+# 
+# Top level modules:
+# 	slave_payload_table
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_slot_sequencer.v 
+# -- Compiling module slave_slot_sequencer
+# 
+# Top level modules:
+# 	slave_slot_sequencer
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_status_event.v 
+# -- Compiling module slave_status_event
+# 
+# Top level modules:
+# 	slave_status_event
+# End time: 15:48:26 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:26 on Jun 16,2026
+# vlog -work work slave_ip_top.v 
+# -- Compiling module slave_ip_top
+# 
+# Top level modules:
+# 	slave_ip_top
+# End time: 15:48:27 on Jun 16,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:27 on Jun 16,2026
+# vlog -work work btn_payload_ctrl.v 
+# -- Compiling module btn_payload_ctrl
+# 
+# Top level modules:
+# 	btn_payload_ctrl
+# End time: 15:48:27 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 15:48:27 on Jun 16,2026
+# vlog -work work slave_tb_test_top.v 
+# -- Compiling module slave_tb_test_top
+# 
+# Top level modules:
+# 	slave_tb_test_top
+# End time: 15:48:27 on Jun 16,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

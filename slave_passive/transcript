@@ -1,281 +1,295 @@
-# do run_axi_tb_wave.do
+# do run_btn_slave_tb_wave.do
 # ** Warning: (vlib-34) Library already exists at "work".
 # Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
 # vmap work work 
 # Modifying modelsim.ini
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:51 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/Master_slot.v 
 # -- Compiling module Master_slot
 # 
 # Top level modules:
 # 	Master_slot
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/Master_tx.v 
 # -- Compiling module Master_tx
 # 
 # Top level modules:
 # 	Master_tx
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/Master_rx.v 
 # -- Compiling module Master_rx
 # 
 # Top level modules:
 # 	Master_rx
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/hamming_enc.v 
 # -- Compiling module hamming_enc
 # 
 # Top level modules:
 # 	hamming_enc
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/hamming_dec.v 
 # -- Compiling module hamming_dec
 # 
 # Top level modules:
 # 	hamming_dec
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/error_with_hamming.v 
 # -- Compiling module Master_dec_ham
 # 
 # Top level modules:
 # 	Master_dec_ham
-# End time: 10:46:08 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:08 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/bin2seg.v 
 # -- Compiling module bin2seg
 # 
 # Top level modules:
 # 	bin2seg
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:01
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/seven_seg.v 
 # -- Compiling module seven_seg
 # 
 # Top level modules:
 # 	seven_seg
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/g2m.v 
 # -- Compiling module g2m
 # 
 # Top level modules:
 # 	g2m
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/rgb.v 
 # -- Compiling module rgb
 # 
 # Top level modules:
 # 	rgb
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/vertical.v 
 # -- Compiling module vertical
 # 
 # Top level modules:
 # 	vertical
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/horizontal.v 
 # -- Compiling module horizontal
 # 
 # Top level modules:
 # 	horizontal
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/TFTLCDCtrl.v 
 # -- Compiling module TFTLCDctrl
 # 
 # Top level modules:
 # 	TFTLCDctrl
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/Master_top.v 
 # -- Compiling module master_top
 # 
 # Top level modules:
 # 	master_top
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:52 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
+# Start time: 17:20:52 on Jun 16,2026
 # vlog -reportprogress 300 -work work Master_source/Master_v1_0_S00_AXI.v 
 # -- Compiling module Master_v1_0_S00_AXI
 # 
 # Top level modules:
 # 	Master_v1_0_S00_AXI
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_hamming_enc.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_hamming_enc.v 
 # -- Compiling module slave_hamming_enc
 # 
 # Top level modules:
 # 	slave_hamming_enc
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_hamming_dec.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_hamming_dec.v 
 # -- Compiling module slave_hamming_dec
 # 
 # Top level modules:
 # 	slave_hamming_dec
-# End time: 10:46:09 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:09 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_cfg_shadow.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_cfg_shadow.v 
 # -- Compiling module slave_cfg_shadow
 # 
 # Top level modules:
 # 	slave_cfg_shadow
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:01
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_broadcast_rx.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_broadcast_rx.v 
 # -- Compiling module slave_broadcast_rx
 # 
 # Top level modules:
 # 	slave_broadcast_rx
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_broadcast_decoder.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_broadcast_decoder.v 
 # -- Compiling module slave_broadcast_decoder
 # 
 # Top level modules:
 # 	slave_broadcast_decoder
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_sync_detector.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_sync_detector.v 
 # -- Compiling module slave_sync_detector
 # 
 # Top level modules:
 # 	slave_sync_detector
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_timing_scheduler.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_timing_scheduler.v 
 # -- Compiling module slave_timing_scheduler
 # 
 # Top level modules:
 # 	slave_timing_scheduler
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_tx_serializer.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_tx_serializer.v 
 # -- Compiling module slave_tx_serializer
 # 
 # Top level modules:
 # 	slave_tx_serializer
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_frame_builder.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_frame_builder.v 
 # -- Compiling module slave_frame_builder
 # 
 # Top level modules:
 # 	slave_frame_builder
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_payload_table.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_payload_table.v 
 # -- Compiling module slave_payload_table
 # 
 # Top level modules:
 # 	slave_payload_table
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_slot_sequencer.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_slot_sequencer.v 
 # -- Compiling module slave_slot_sequencer
 # 
 # Top level modules:
 # 	slave_slot_sequencer
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_status_event.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_status_event.v 
 # -- Compiling module slave_status_event
 # 
 # Top level modules:
 # 	slave_status_event
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_ip_top.v 
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/slave_ip_top.v 
 # -- Compiling module slave_ip_top
 # 
 # Top level modules:
 # 	slave_ip_top
-# End time: 10:46:10 on Jun 16,2026, Elapsed time: 0:00:00
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:10 on Jun 16,2026
-# vlog -reportprogress 300 -work work rtl/slave_pl_top.v 
-# -- Compiling module slave_pl_top
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work test_src/btn_payload_ctrl.v 
+# -- Compiling module btn_payload_ctrl
 # 
 # Top level modules:
-# 	slave_pl_top
-# End time: 10:46:11 on Jun 16,2026, Elapsed time: 0:00:01
+# 	btn_payload_ctrl
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 10:46:11 on Jun 16,2026
-# vlog -reportprogress 300 -work work tb/tb_axi_master_slave_comm.v 
-# -- Compiling module tb_axi_master_slave_comm
+# Start time: 17:20:53 on Jun 16,2026
+# vlog -reportprogress 300 -work work tb/tb_btn_slave_master_comm.v 
+# -- Compiling module tb_btn_slave_master_comm
 # 
 # Top level modules:
-# 	tb_axi_master_slave_comm
-# End time: 10:46:11 on Jun 16,2026, Elapsed time: 0:00:00
+# 	tb_btn_slave_master_comm
+# End time: 17:20:53 on Jun 16,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# vsim -novopt work.tb_axi_master_slave_comm 
-# Start time: 10:46:11 on Jun 16,2026
-# Loading work.tb_axi_master_slave_comm
+# vsim -novopt work.tb_btn_slave_master_comm 
+# Start time: 17:20:54 on Jun 16,2026
+# Loading work.tb_btn_slave_master_comm
+# Loading work.btn_payload_ctrl
+# Loading work.slave_ip_top
+# Loading work.slave_cfg_shadow
+# Loading work.slave_sync_detector
+# Loading work.slave_broadcast_rx
+# Loading work.slave_broadcast_decoder
+# Loading work.slave_hamming_dec
+# Loading work.slave_timing_scheduler
+# Loading work.slave_slot_sequencer
+# Loading work.slave_payload_table
+# Loading work.slave_frame_builder
+# Loading work.slave_hamming_enc
+# Loading work.slave_tx_serializer
+# Loading work.slave_status_event
 # Loading work.Master_v1_0_S00_AXI
 # Loading work.master_top
 # Loading work.Master_slot
@@ -291,152 +305,31 @@
 # Loading work.horizontal
 # Loading work.vertical
 # Loading work.rgb
-# Loading work.slave_pl_top
-# Loading work.slave_ip_top
-# Loading work.slave_cfg_shadow
-# Loading work.slave_sync_detector
-# Loading work.slave_broadcast_rx
-# Loading work.slave_broadcast_decoder
-# Loading work.slave_hamming_dec
-# Loading work.slave_timing_scheduler
-# Loading work.slave_slot_sequencer
-# Loading work.slave_payload_table
-# Loading work.slave_frame_builder
-# Loading work.slave_hamming_enc
-# Loading work.slave_tx_serializer
-# Loading work.slave_status_event
 # ** Warning: (vsim-3015) Master_source/Master_v1_0_S00_AXI.v(683): [PCDPC] - Port size (32) does not match connection size (64) for port 'cycle_cnt'. The port definition is at: Master_source/Master_top.v(35).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_axi_master_slave_comm/u_master_axi/mt0 File: Master_source/Master_top.v
+#    Time: 0 ps  Iteration: 0  Instance: /tb_btn_slave_master_comm/u_master_axi/mt0 File: Master_source/Master_top.v
 # ** Warning: (vsim-3015) Master_source/TFTLCDCtrl.v(69): [PCDPC] - Port size (10) does not match connection size (9) for port 'VsyncCount'. The port definition is at: Master_source/rgb.v(31).
-#    Time: 0 ps  Iteration: 0  Instance: /tb_axi_master_slave_comm/u_master_axi/mt0/u_tft_lcd/rgb_u0 File: Master_source/rgb.v
+#    Time: 0 ps  Iteration: 0  Instance: /tb_btn_slave_master_comm/u_master_axi/mt0/u_tft_lcd/rgb_u0 File: Master_source/rgb.v
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: sinsu  Hostname: BOOK5PRO360  ProcessID: 23240
-#           Attempting to use alternate WLF file "./wlftc7n0th".
+#           Attempting to use alternate WLF file "./wlft01q1fa".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftc7n0th
-# [1460000 ns] AXI init done: DIV=200 GUARD=4 NODE_CNT=4 ENABLE=1
-#   [TX] cycle=1 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=1 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=1  slot=0 done  =>  slot_out={0,0,0,0}  err={0000000c,0000000c,0000000c,0000000c}
-#   [TX] cycle=1 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=1 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=1  slot=1 done  =>  slot_out={0,1,0,0}  err={0000000c,0000000c,0000000c,0000000c}
-#   [TX] cycle=1 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=1 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=1  slot=2 done  =>  slot_out={0,1,2,0}  err={0000000c,0000000c,0000000c,0000000c}
-#   [TX] cycle=1 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=1 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=1  slot=3 done  =>  slot_out={0,1,2,3}  err={0000000c,0000000c,0000000c,0000000c}
-#   [TX] cycle=2 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=2 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=2  slot=0 done  =>  slot_out={0,1,2,3}  err={0000000b,0000000b,0000000b,0000000b}
-#   [TX] cycle=2 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=2 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=2  slot=1 done  =>  slot_out={0,1,2,3}  err={0000000b,0000000b,0000000b,0000000b}
-#   [TX] cycle=2 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=2 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=2  slot=2 done  =>  slot_out={0,1,2,3}  err={0000000b,0000000b,0000000b,0000000b}
-#   [TX] cycle=2 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=2 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=2  slot=3 done  =>  slot_out={0,1,2,3}  err={0000000b,0000000b,0000000b,0000000b}
-#   [TX] cycle=3 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=3 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=3  slot=0 done  =>  slot_out={0,1,2,3}  err={0000000a,0000000a,0000000a,0000000a}
-#   [TX] cycle=3 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=3 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=3  slot=1 done  =>  slot_out={0,1,2,3}  err={0000000a,0000000a,0000000a,0000000a}
-#   [TX] cycle=3 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=3 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=3  slot=2 done  =>  slot_out={0,1,2,3}  err={0000000a,0000000a,0000000a,0000000a}
-#   [TX] cycle=3 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=3 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=3  slot=3 done  =>  slot_out={0,1,2,3}  err={0000000a,0000000a,0000000a,0000000a}
-#   [TX] cycle=4 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=4 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=4  slot=0 done  =>  slot_out={0,1,2,3}  err={00000009,00000009,00000009,00000009}
-#   [TX] cycle=4 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=4 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=4  slot=1 done  =>  slot_out={0,1,2,3}  err={00000009,00000009,00000009,00000009}
-#   [TX] cycle=4 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=4 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=4  slot=2 done  =>  slot_out={0,1,2,3}  err={00000009,00000009,00000009,00000009}
-#   [TX] cycle=4 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=4 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=4  slot=3 done  =>  slot_out={0,1,2,3}  err={00000009,00000009,00000009,00000009}
-#   [TX] cycle=5 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=5 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=5  slot=0 done  =>  slot_out={0,1,2,3}  err={00000008,00000008,00000008,00000008}
-#   [TX] cycle=5 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=5 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=5  slot=1 done  =>  slot_out={0,1,2,3}  err={00000008,00000008,00000008,00000008}
-#   [TX] cycle=5 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=5 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=5  slot=2 done  =>  slot_out={0,1,2,3}  err={00000008,00000008,00000008,00000008}
-#   [TX] cycle=5 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=5 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=5  slot=3 done  =>  slot_out={0,1,2,3}  err={00000008,00000008,00000008,00000008}
-#   [TX] cycle=6 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=6 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=6  slot=0 done  =>  slot_out={0,1,2,3}  err={00000007,00000007,00000007,00000007}
-#   [TX] cycle=6 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=6 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=6  slot=1 done  =>  slot_out={0,1,2,3}  err={00000007,00000007,00000007,00000007}
-#   [TX] cycle=6 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=6 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=6  slot=2 done  =>  slot_out={0,1,2,3}  err={00000007,00000007,00000007,00000007}
-#   [TX] cycle=6 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=6 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=6  slot=3 done  =>  slot_out={0,1,2,3}  err={00000007,00000007,00000007,00000007}
-#   [TX] cycle=7 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=7 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=7  slot=0 done  =>  slot_out={0,1,2,3}  err={00000006,00000006,00000006,00000006}
-#   [TX] cycle=7 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=7 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=7  slot=1 done  =>  slot_out={0,1,2,3}  err={00000006,00000006,00000006,00000006}
-#   [TX] cycle=7 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=7 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=7  slot=2 done  =>  slot_out={0,1,2,3}  err={00000006,00000006,00000006,00000006}
-#   [TX] cycle=7 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=7 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=7  slot=3 done  =>  slot_out={0,1,2,3}  err={00000006,00000006,00000006,00000006}
-#   [TX] cycle=8 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=8 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=8  slot=0 done  =>  slot_out={0,1,2,3}  err={00000005,00000005,00000005,00000005}
-#   [TX] cycle=8 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=8 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=8  slot=1 done  =>  slot_out={0,1,2,3}  err={00000005,00000005,00000005,00000005}
-#   [TX] cycle=8 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=8 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=8  slot=2 done  =>  slot_out={0,1,2,3}  err={00000005,00000005,00000005,00000005}
-#   [TX] cycle=8 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=8 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=8  slot=3 done  =>  slot_out={0,1,2,3}  err={00000005,00000005,00000005,00000005}
-#   [TX] cycle=9 slot_id=0  codeword=00000000000_00000000000_00000000000_00000000000  payload=0x00000000
-#   [RX] cycle=9 cur_slot=0  raw=00000000000_00000000000_00000000000_00000000000  slot_id=0  data=0x00000000
-# cycle=9  slot=0 done  =>  slot_out={0,1,2,3}  err={00000004,00000004,00000004,00000004}
-#   [TX] cycle=9 slot_id=1  codeword=00001000000_00000000000_00000000000_00011000001  payload=0x00000001
-#   [RX] cycle=9 cur_slot=1  raw=00001000000_00000000000_00000000000_00011000001  slot_id=1  data=0x00000001
-# cycle=9  slot=1 done  =>  slot_out={0,1,2,3}  err={00000004,00000004,00000004,00000004}
-#   [TX] cycle=9 slot_id=2  codeword=00010000000_00000000000_00000000000_00101000001  payload=0x00000002
-#   [RX] cycle=9 cur_slot=2  raw=00010000000_00000000000_00000000000_00101000001  slot_id=2  data=0x00000002
-# cycle=9  slot=2 done  =>  slot_out={0,1,2,3}  err={00000004,00000004,00000004,00000004}
-#   [TX] cycle=9 slot_id=3  codeword=00011000000_00000000000_00000000000_00110000000  payload=0x00000003
-#   [RX] cycle=9 cur_slot=3  raw=00011000000_00000000000_00000000000_00110000000  slot_id=3  data=0x00000003
-# cycle=9  slot=3 done  =>  slot_out={0,1,2,3}  err={00000004,00000004,00000004,00000004}
-# ----------------------------------------------------
-# RESULT after 10 cycles:
-#   slot_out0=0  (expect 0)
-#   slot_out1=1  (expect 1)
-#   slot_out2=2  (expect 2)
-#   slot_out3=3  (expect 3)
-# FAIL tb_axi_master_slave_comm
-#   FAIL reason: err_cnt non-zero (severe_err occurred)
-# ----------------------------------------------------
-# ** Note: $finish    : tb/tb_axi_master_slave_comm.v(298)
-#    Time: 17367660 ns  Iteration: 1  Instance: /tb_axi_master_slave_comm
-# 1
-# Break in Module tb_axi_master_slave_comm at tb/tb_axi_master_slave_comm.v line 298
-# 0 ps
-# 18236043 ns
-# End time: 10:57:47 on Jun 16,2026, Elapsed time: 0:11:36
+#           Using alternate file: ./wlft01q1fa
+# [82000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [86000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [90000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [94000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [98000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [102000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [106000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [110000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [114000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [118000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [122000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [126000 ns] cycle=0 slot=0  btn_pl={0,0,0,0,0,0,0,0}  slot_out={0,0,0,0,0,0,0,0}
+# [146000 ns] AXI init done: DIV=100000 GUARD_TICKS=100 8-slot ENABLE=1
+#   REG0=0x00f19000 REG1=0x000186a0 REG2=0x0000f4f4
+# A time value could not be extracted from the current line
+# Break key hit
+# Simulation stop requested.
+# End time: 17:22:23 on Jun 16,2026, Elapsed time: 0:01:29
 # Errors: 0, Warnings: 4
