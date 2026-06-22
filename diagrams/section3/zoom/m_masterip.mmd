@@ -7,16 +7,18 @@ flowchart LR
 
     subgraph MASTERB ["Master IP"]
         direction LR
-        CTRLREG["제어 레지스터"]:::node
-        SLOT["슬롯 스케줄러"]:::node
+        subgraph REGGROUP [" "]
+            direction TB
+            CTRLREG["제어 레지스터"]:::node
+            SLOT["슬롯 스케줄러"]:::node
+        end
         RX["NRZ 수신"]:::node
         DEC["Hamming 복호"]:::node
         SLOTDET["슬롯 판별"]:::node
         HALT["halt_cmd 판정"]:::node
         TX["NRZ 송신"]:::node
 
-        CTRLREG ~~~ SLOT
-        SLOT ~~~ RX
+        REGGROUP ~~~ RX
         RX --> DEC
         DEC --> SLOTDET
         SLOTDET --> HALT
@@ -30,3 +32,4 @@ flowchart LR
     MASTERB --> PLPERIPH
 classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
 classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:34px
+style REGGROUP fill:none,stroke:none
