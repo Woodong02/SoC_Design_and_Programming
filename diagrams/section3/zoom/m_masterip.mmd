@@ -1,25 +1,30 @@
 %%{init: {'themeVariables': {'fontSize': '34px'}}, 'flowchart': {'nodeSpacing': 35, 'rankSpacing': 55}}%%
 flowchart LR
+    EXT(["외부 테스트 장치"]):::node
     PS["PS"]:::dim
     GPIO["GPIO"]:::dim
     PLPERIPH["PL 주변기기\n(LED/DIP/PB/SEG)"]:::dim
-    SLOT["슬롯 스케줄러"]:::node
 
     subgraph MASTERB ["Master IP"]
         direction LR
         CTRLREG["제어 레지스터"]:::node
+        SLOT["슬롯 스케줄러"]:::node
         RX["NRZ 수신"]:::node
         DEC["Hamming 복호"]:::node
         SLOTDET["슬롯 판별"]:::node
         HALT["halt_cmd 판정"]:::node
         TX["NRZ 송신"]:::node
 
+        CTRLREG ~~~ SLOT
+        SLOT ~~~ RX
         RX --> DEC
         DEC --> SLOTDET
         SLOTDET --> HALT
         HALT --> TX
     end
 
+    EXT <-->|"UART"| PS
+    PS <--> MASTERB
     GPIO --> RX
     TX --> GPIO
     MASTERB --> PLPERIPH

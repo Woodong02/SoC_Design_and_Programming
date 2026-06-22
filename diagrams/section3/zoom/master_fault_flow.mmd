@@ -3,13 +3,14 @@ flowchart LR
     A["통신 사이클 시작"]:::node --> B{"gpio_in 감지?"}:::dim
     B -- No --> B1["silent_cnt += 6"]:::node
     B -- Yes --> C{"preamble 검사"}:::dim
-    C -- 불일치 --> C1["preamble_err_cnt += 1"]:::node
+    C -- 불일치 --> C1["preamble_err_cnt += 2"]:::node
     C -- 일치 --> D{"hamming 검사"}:::dim
     D -- "2비트 이상 오류" --> D1["hamming_err_cnt += 8"]:::node
     D -- "1비트 오류" --> D2["hamming_err_cnt += 4"]:::node
     D -- "오류 없음" --> E{"clk_cnt 및 slot 비교"}:::dim
     E -- "Guardticks/2 이내 수신" --> F["정상 수신 완료"]:::node
-    E -- "그외 수신" --> G["time_out_cnt = 255"]:::node
+    E -- "약한 타임아웃" --> G1["time_out_cnt += 6"]:::node
+    E -- "강한 타임아웃" --> G2["time_out_cnt = 255"]:::node
 
 classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:40px
 classDef dim fill:#F2F2F2,stroke:#AAAAAA,color:#777777,font-weight:bold,font-size:40px
