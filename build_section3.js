@@ -219,7 +219,6 @@ pres.title = "Master / Slave 블록도";
   addBulletSlide(s, [
     { text: "통신 시연에서는 하나의 물리 시퀀서가 8개의 슬롯(슬롯 인덱스 0~7)을 순차 처리 — 슬롯 위치가 식별자 역할을 함" },
     { text: "각 슬롯은 자신의 타임슬롯에서 자신의 payload를 전송 (슬롯별 절대 타겟 틱을 기준으로 순회)" },
-    { text: "슬롯 0~5는 AXI 레지스터, 슬롯 6~7은 외부 PL 버스에서 payload를 가져옴" },
     { text: "시연에서는 버튼으로 payload 값을 바꾸고, 변경된 값이 Master에서 정확히 수신되는지 확인" },
   ]);
   addPageNum(s, 11);
