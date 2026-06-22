@@ -140,8 +140,8 @@ pres.title = "Master / Slave 블록도";
   addTitle(s, "Master - PS 확대");
   addBottomImageSlide(s, [
     "외부 테스트 장치에서 초깃값을 입력받아 Master를 초기 구동",
-    "구동 중인 Master 값을 주기적으로 읽고, Master가 발생시키는 인터럽트를 수신",
-  ], D + "m_ps.png", 1568 / 562);
+    "구동 중인 Master 값을 레지스터로 읽고, Master가 발생시키는 인터럽트를 수신",
+  ], D + "m_ps.png", 1568 / 620);
   addPageNum(s, 4);
 }
 
@@ -164,7 +164,7 @@ pres.title = "Master / Slave 블록도";
   addBottomImageSlide(s, [
     "PS에서 설정값을 받아 동기 메시지를 송신, 각 Slave의 응답을 수신",
     "에러·데이터 전송 여부·형식·슬롯 침범 여부를 확인해 내부에서 고장 처리 후 PS에 보고",
-  ], D + "m_masterip.png", 1568 / 416);
+  ], D + "m_masterip.png", 1568 / 358);
   addPageNum(s, 6);
 }
 
@@ -266,11 +266,11 @@ pres.title = "Master / Slave 블록도";
   let s = pres.addSlide();
   addTitle(s, "Master의 고장 처리 흐름도");
   addBottomFlowSlide(s, [
-    "슬롯마다 프리앰블 → 타이밍 → Hamming 순으로 검사",
+    "슬롯마다 프리앰블 → Hamming → 타이밍(clk_cnt/slot 비교) 순으로 검사",
     "각 단계의 오류는 해당 카운터를 증가시킴",
     "누적합이 FAULT_TH를 넘으면 halt_cmd=1, 이후 카운터는 동결됨",
     "halt_cmd는 리셋 전까지 유지되며, 취소 경로는 없음",
-  ], D + "master_fault_flow.png", 1568 / 328);
+  ], D + "master_fault_flow.png", 1568 / 594);
   addPageNum(s, 14);
 }
 

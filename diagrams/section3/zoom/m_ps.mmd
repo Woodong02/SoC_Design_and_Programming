@@ -10,17 +10,16 @@ flowchart LR
         CFG["마스터 설정"]:::node
         UARTCMD["UART 명령 인터페이스"]:::node
         ISR["인터럽트 처리"]:::node
-        POLL["상태 폴링 루프"]:::node
+        CTRLREG["제어 레지스터"]:::node
 
         INIT --> CFG
-        CFG --> POLL
-        UARTCMD -.-> CFG
+        CFG <--> CTRLREG
+        UARTCMD <--> CTRLREG
         ISR -.->|"상태 로그"| UARTCMD
     end
 
     EXT <-->|"UART"| UARTCMD
-    CFG -->|"AXI4-Lite (설정)"| PL
-    POLL <-->|"AXI4-Lite (폴링)"| PL
+    CTRLREG <-->|"AXI4-Lite"| PL
     ISR <-->|"AXI4-Lite (인터럽트)"| PL
     GPIO <--> PL
 classDef node fill:#FFFFFF,stroke:#111111,stroke-width:1.5px,color:#111111,font-weight:bold,font-size:34px
