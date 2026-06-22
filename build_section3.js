@@ -164,7 +164,7 @@ pres.title = "Master / Slave 블록도";
   addBottomImageSlide(s, [
     "PS에서 설정값을 받아 동기 메시지를 송신, 각 Slave의 응답을 수신",
     "에러·데이터 전송 여부·형식·슬롯 침범 여부를 확인해 내부에서 고장 처리 후 PS에 보고",
-  ], D + "m_masterip.png", 1568 / 358);
+  ], D + "m_masterip.png", 1568 / 400);
   addPageNum(s, 6);
 }
 
@@ -270,7 +270,7 @@ pres.title = "Master / Slave 블록도";
     "각 단계의 오류는 해당 카운터를 증가시킴",
     "누적합이 FAULT_TH를 넘으면 halt_cmd=1, 이후 카운터는 동결됨",
     "halt_cmd는 리셋 전까지 유지되며, 취소 경로는 없음",
-  ], D + "master_fault_flow.png", 1568 / 594);
+  ], D + "master_fault_flow.png", 1568 / 652);
   addPageNum(s, 14);
 }
 
